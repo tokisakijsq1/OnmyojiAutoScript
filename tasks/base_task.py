@@ -15,6 +15,7 @@ from module.atom.long_click import RuleLongClick
 from module.atom.ocr import RuleOcr
 from module.atom.swipe import RuleSwipe
 from module.base.timer import Timer
+from module.base.utils import random_lognormal_interval
 from module.config.config import Config
 from module.device.device import Device
 from module.exception import ScriptError
@@ -200,10 +201,12 @@ class BaseTask(GlobalGameAssets, CostumeBase):
         """
         appear = self.appear(target, interval=interval, threshold=threshold)
         if appear and not action:
+            self._humanized_click_delay()
             x, y = target.coord()
             self.device.click(x, y, control_name=target.name)
 
         elif appear and action:
+            self._humanized_click_delay()
             x, y = action.coord()
             if isinstance(action, RuleLongClick):
                 if duration is None:
@@ -268,9 +271,11 @@ class BaseTask(GlobalGameAssets, CostumeBase):
         appear = self.appear_multi_scale(target, interval=interval, threshold=threshold, scales=scales, scale_range=scale_range)
 
         if appear and not action:
+            self._humanized_click_delay()
             x, y = target.coord()
             self.device.click(x, y, control_name=target.name)
         elif appear and action:
+            self._humanized_click_delay()
             x, y = action.coord()
             if isinstance(action, RuleLongClick):
                 if duration is None:
@@ -323,6 +328,7 @@ class BaseTask(GlobalGameAssets, CostumeBase):
         """
         if not self.wait_until_appear(target, wait_time):
             return False
+        self._humanized_click_delay()
         click_x, click_y = target.coord()
         if action is None:
             self.device.click(click_x, click_y, control_name=target.name)
@@ -479,6 +485,11 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             # logger.info(f'Swipe {swipe.name}')
             self.interval_timer[swipe.name].reset()
 
+    def _humanized_click_delay(self) -> None:
+        """Sleep a small log-normal delay before clicking, so the gap between
+        clicks is right-skewed instead of hitting the interval floor exactly."""
+        sleep(random_lognormal_interval(median=0.2, sigma=0.4, floor=0.05, ceil=1.2))
+
     def click(self, click: Union[RuleClick, RuleLongClick, RuleImage, RuleOcr] = None, interval: float = None) -> bool:
         """
         点击或者长按
@@ -501,6 +512,7 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             if not self.interval_timer[click.name].reached():
                 return False
 
+        self._humanized_click_delay()
         x, y = click.coord()
         if isinstance(click, RuleLongClick):
             self.device.long_click(x=x, y=y, duration=click.duration / 1000, control_name=click.name)
@@ -580,9 +592,11 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             return False
 
         if action:
+            self._humanized_click_delay()
             x, y = action.coord()
             self.click(action, interval)
         else:
+            self._humanized_click_delay()
             x, y = target.coord()
             self.device.click(x=x, y=y, control_name=target.name)
         return True
