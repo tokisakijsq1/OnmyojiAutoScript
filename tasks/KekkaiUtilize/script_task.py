@@ -9,7 +9,7 @@ from datetime import timedelta, datetime
 from module.base.timer import Timer
 from module.atom.image_grid import ImageGrid
 from module.logger import logger
-from module.exception import TaskEnd
+from module.exception import GameStuckError, TaskEnd
 
 from tasks.GameUi.game_ui import GameUi
 from tasks.Utils.config_enum import ShikigamiClass
@@ -18,7 +18,7 @@ from tasks.KekkaiUtilize.config import UtilizeRule, SelectFriendList
 from tasks.KekkaiUtilize.utils import CardClass, target_to_card_class
 from tasks.Component.ReplaceShikigami.replace_shikigami import ReplaceShikigami
 from tasks.GameUi.page import page_main, page_guild
-from module.base.utils import point2str
+from module.base.utils import point2str, random_normal_distribution_int
 import random
 
 """ 结界蹭卡 """
@@ -30,9 +30,11 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
     ap_max_num = 0
     jade_max_num = 0
     first_utilize = True
+    friend_search_exhausted = False
 
     def run(self):
         con = self.config.kekkai_utilize.utilize_config
+        self.friend_search_exhausted = False
         self.ui_get_current_page()
         self.ui_goto(page_guild)
 
@@ -100,7 +102,8 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
             if not self.grown_goto_utilize():
                 logger.info('Utilize failed, exit')
             # 开始执行寄养
-            if self.run_utilize(con.select_friend_list, con.shikigami_class, con.shikigami_order):
+            friend_name = con.friend_name if con.utilize_target_friend else ''
+            if self.run_utilize(con.select_friend_list, con.shikigami_class, con.shikigami_order, friend_name):
                 # 退出寮结界
                 self.back_guild()
                 # 进入寮结界
@@ -388,6 +391,140 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
         time.sleep(0.5)
 
     @cached_property
+    def all_card_targets(self) -> ImageGrid:
+        """指定好友查找用的全量结界卡模板，不依赖蹭卡规则的优先级配置"""
+        return ImageGrid([
+            self.I_U_FISH_3, self.I_U_FISH_4, self.I_U_FISH_5, self.I_U_FISH_6,
+            self.I_U_TAIKO_3, self.I_U_TAIKO_4, self.I_U_TAIKO_5, self.I_U_TAIKO_6,
+            self.I_U_MOON_2, self.I_U_MOON_3, self.I_U_MOON_4, self.I_U_MOON_5, self.I_U_MOON_6,
+        ])
+
+    def _ocr_friend_names(self) -> list:
+        """识别当前屏好友列表区域内的所有文本"""
+        return self.O_U_FRIEND_NAME.detect_and_ocr(self.device.image)
+
+    def _friend_name_area(self, boxed) -> tuple:
+        """把 OCR 结果的 box 换算成屏幕坐标区域 (x, y, w, h)，box 需要加上 roi 偏移"""
+        roi_x, roi_y = self.O_U_FRIEND_NAME.roi[0], self.O_U_FRIEND_NAME.roi[1]
+        x, y = boxed.box[0, 0] + roi_x, boxed.box[0, 1] + roi_y
+        w, h = boxed.box[1, 0] - boxed.box[0, 0], boxed.box[2, 1] - boxed.box[0, 1]
+        return x, y, w, h
+
+    def _click_friend_card_in_row(self, name_area: tuple) -> bool:
+        """在好友名字同一行的范围内找到结界卡图标并点击选中"""
+        cards = self.all_card_targets.find_everyone(self.device.image)
+        name_y = name_area[1] + name_area[3] / 2
+        for _, _, card_area in cards:
+            card_y = card_area[1] + card_area[3] / 2
+            if abs(card_y - name_y) <= 60:
+                self.C_SELECT_CARD.roi_front = card_area
+                self.click(self.C_SELECT_CARD)
+                time.sleep(1.5)
+                logger.info(f'Click friend realm card in row: {card_area}')
+                return True
+        return False
+
+    def _select_friend_in_screen(self, name: str, results: list) -> bool:
+        """
+        在当前屏的 OCR 结果中查找指定好友并选中其结界
+        先精确匹配好友名，匹配不到再尝试包含匹配
+        """
+        matched = None
+        for res in results:
+            if res.ocr_text.strip() == name:
+                matched = res
+                break
+        if matched is None:
+            for res in results:
+                if name in res.ocr_text:
+                    matched = res
+                    break
+        if matched is None:
+            return False
+
+        area = self._friend_name_area(matched)
+        logger.info(f'Found target friend {name} at {area}')
+        # 优先点击同一行的结界卡图标（与常规选卡一致的手势）
+        if self._click_friend_card_in_row(area):
+            return True
+        # 该行没有识别到卡图标时，直接点击好友名字（名字应位于好友列表区域内）
+        name_x = area[0] + area[2] / 2
+        if 210 < name_x < 640:
+            x = random_normal_distribution_int(area[0], area[0] + area[2])
+            y = random_normal_distribution_int(area[1], area[1] + area[3])
+            self.device.click(x=x, y=y, control_name=self.O_U_FRIEND_NAME.name)
+            time.sleep(1.5)
+            return True
+        logger.warning(f'Friend name area is unexpected, skip: {area}')
+        return False
+
+    def find_and_enter_friend_realm(self, name: str) -> bool:
+        """
+        在当前好友列表中滑动查找指定好友并选中其结界卡
+        :param name: 好友全名
+        :return: 是否成功选中
+        """
+        if not name:
+            return False
+        logger.info(f'Search target friend in current friend list: {name}')
+        timer = Timer(240).start()
+        max_swipes = 25
+        last_texts = None
+        clamp_count = 0
+        for swipe_count in range(max_swipes + 1):
+            if timer.reached():
+                logger.warning('Search target friend timeout')
+                break
+            self.screenshot()
+            results = self._ocr_friend_names()
+            if self._select_friend_in_screen(name, results):
+                return True
+            # 连续两屏内容不变说明已经滑到列表末尾
+            texts = tuple(sorted(res.ocr_text.strip() for res in results))
+            if texts and texts == last_texts:
+                clamp_count += 1
+                if clamp_count >= 2:
+                    logger.info('Reach the end of friend list')
+                    break
+            else:
+                clamp_count = 0
+            last_texts = texts
+            self.perform_swipe_action()
+        logger.warning(f'Target friend not found in current friend list: {name}')
+        return False
+
+    def try_target_friend(self, friend_name: str,
+                          shikigami_class: ShikigamiClass = ShikigamiClass.N,
+                          shikigami_order: int = 7) -> bool:
+        """
+        尝试蹭指定好友的结界卡，任何一步失败都返回 False，由外层回退到常规蹭卡
+        """
+        if not self.find_and_enter_friend_realm(friend_name):
+            return False
+        # 好友卡片详情出现后，先检查寄养位是否被占用（右侧详情卡片上的已占用标签）
+        timer = Timer(10)
+        timer.start()
+        while 1:
+            self.screenshot()
+            if self.appear(self.I_U_OCCUPIED):
+                self.save_image(wait_time=0, push_flag=False,
+                                content=f'指定好友 {friend_name} 的寄养位已被占用', image_type='png')
+                logger.warning('Target friend realm card is occupied')
+                return False
+            if self.appear(self.I_U_ENTER_REALM):
+                break
+            if timer.reached():
+                logger.warning('Target friend realm detail timeout')
+                return False
+            if self.appear_then_click(self.I_CHECK_FRIEND_REALM_2, interval=1.5):
+                continue
+        try:
+            return self._enter_and_set_shikigami(shikigami_class, shikigami_order, no_pit_success=False)
+        except GameStuckError:
+            logger.warning('Target friend utilize failed when set shikigami')
+            return False
+
+    @cached_property
     def order_targets(self) -> ImageGrid:
         rule = self.config.kekkai_utilize.utilize_config.utilize_rule
         if rule == UtilizeRule.DEFAULT:
@@ -422,12 +559,14 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
 
     def run_utilize(self, friend: SelectFriendList = SelectFriendList.SAME_SERVER,
                     shikigami_class: ShikigamiClass = ShikigamiClass.N,
-                    shikigami_order: int = 7):
+                    shikigami_order: int = 7,
+                    friend_name: str = '') -> bool:
         """
         执行寄养
         :param shikigami_class:
         :param friend:
         :param rule:
+        :param friend_name: 指定好友名称，非空时优先蹭该好友，失败自动回退常规蹭卡
         :return:
         """
         logger.hr('Start utilize')
@@ -443,6 +582,25 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
         else:
             self.switch_friend_list(friend)
 
+        # --------------- 指定好友优先 ---------------
+        friend_name = (friend_name or '').strip()
+        if friend_name and not self.friend_search_exhausted:
+            logger.info(f'Try target friend utilize: {friend_name}')
+            if self.try_target_friend(friend_name, shikigami_class, shikigami_order):
+                # 找到卡,重置次数
+                self.utilize_add_count = 0
+                return True
+            # 本次任务运行内不再重复全列表查找，避免找不到时反复滑动
+            self.friend_search_exhausted = True
+            logger.warning('Target friend utilize failed, fallback to normal utilize')
+            # 指定好友流程可能停留在任意界面，从头恢复到蹭卡列表
+            self.back_realm()
+            self.realm_goto_grown()
+            if not self.grown_goto_utilize():
+                # 育成界面没有放置寄养按钮，说明寄养已经生效（部分成功）
+                return True
+            self.switch_friend_list(friend)
+
         # --------------- 结界卡选择 ---------------
         if not self._select_optimal_resource_card():
             return False
@@ -450,13 +608,23 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
         # 找到卡,重置次数
         self.utilize_add_count = 0
         logger.info('开始执行进入结界蹭卡流程')
+        return self._enter_and_set_shikigami(shikigami_class, shikigami_order, no_pit_success=True)
+
+    def _enter_and_set_shikigami(self, shikigami_class: ShikigamiClass = ShikigamiClass.N,
+                                 shikigami_order: int = 7,
+                                 no_pit_success: bool = True) -> bool:
+        """
+        进入选中的好友结界并放置寄养式神
+        :param no_pit_success: 没有空余坑位时是否按成功处理（常规蹭卡为 True，指定好友为 False 以触发回退）
+        :return: 是否完成寄养（或按既有语义视为结束）
+        """
         self.screenshot()
         # 进入结界
         if not self.appear(self.I_U_ENTER_REALM):
             logger.warning('Cannot find enter realm button')
             # 可能是滑动的时候出错
             logger.warning('The best reason is that the swipe is wrong')
-            return
+            return False
         wait_timer = Timer(20)
         wait_timer.start()
         while 1:
@@ -475,7 +643,7 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
             if wait_timer.reached():
                 self.save_image(wait_time=0, push_flag=False, content='进入好友结界超时', image_type='png')
                 logger.warning('Appear friend realm timeout')
-                return
+                return False
             if self.appear_then_click(self.I_CHECK_FRIEND_REALM_2, interval=1.5):
                 logger.info('Click too fast to enter the friend\'s realm pool')
                 continue
@@ -497,7 +665,7 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
             # 没有坑位可能是其他人的手速太快了抢占了
             self.save_image(content='没有坑位了', wait_time=0, push_flag=False, image_type='png')
             logger.warning('没有坑位可能是其他人的手速太快了抢占了')
-            return True
+            return no_pit_success
         # 切换式神的类型
         self.switch_shikigami_class(shikigami_class)
         # 上式神
