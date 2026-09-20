@@ -24,6 +24,9 @@ class ActivationConfig(BaseModel):
     card_sort_order: str = Field(default='', description='按星级优先级挂卡(可选)。示例: 斗鱼4星>太鼓5星,用>分隔,越靠前优先级越高,仅支持斗鱼/太鼓3~6星。'
                                                         '填写后优先按此顺序遍历卡列表挂卡,上方的放卡规则(card_type)与最低收益阈值(min_taiko_num/min_fish_num)不再触发;'
                                                         '只有当排序中的卡一张都没有时,才回退默认方式(按每小时收益选最大)挂卡。留空则不启用,直接按默认方式挂卡')
+    card_sort_no_fallback: bool = Field(default=False, description='严格排序模式(不回退): 开启后若遍历完整卡列表也没找到排序中的卡,'
+                                                                  '本次不挂任何卡也不回退默认方式,推送通知提醒人工挂卡,'
+                                                                  '并按失败间隔(failure_interval,默认10小时)后自动重试')
     min_taiko_num: int = Field(default=8, description='挂卡太鼓每小时最少收益,低于则不挂卡')
     min_fish_num: int = Field(default=16, description='挂卡斗鱼每小时最少收益,低于则不挂卡')
     exchange_before: bool = Field(default=True, description='exchange_before_help')

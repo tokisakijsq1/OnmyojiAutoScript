@@ -229,14 +229,19 @@ class ScriptTask(KU, KekkaiActivationAssets):
             return
 
         # 星级优先排序模式: 遍历卡列表找排序中最高优先级的卡
-        # 找不到排序中的任何卡则回退默认挂卡模式(按每小时收益选最大)
-        order_str = self.config.kekkai_activation.activation_config.card_sort_order
+        # 找不到排序中的任何卡: 严格模式(开启不回退)则推送提醒人工挂卡后结束;
+        # 否则回退默认挂卡模式(按每小时收益选最大)
+        activation_config = self.config.kekkai_activation.activation_config
+        order_str = activation_config.card_sort_order
         if order_str and order_str.strip():
             order = parse_card_sort_order(order_str)
             if order:
                 target = self._select_card_by_order(order)
                 if target is not None:
                     self._confirm_card(target, rule)
+                    return
+                if activation_config.card_sort_no_fallback:
+                    self._card_sort_not_found()
                     return
                 logger.info('No card matched the sort order, fallback to default activation')
             else:
@@ -508,6 +513,23 @@ class ScriptTask(KU, KekkaiActivationAssets):
         # 保存配置并设置下次执行
         self.config.save()
         self.set_next_run("KekkaiActivation", target=next_run)
+        raise TaskEnd
+
+    def _card_sort_not_found(self):
+        """
+        严格排序模式下遍历完整卡列表仍未找到排序中的卡:
+        推送通知提醒人工挂卡，不挂卡不回退默认方式，
+        按失败间隔(failure_interval, 默认10小时)后自动重试
+        :return:
+        """
+        order_str = self.config.kekkai_activation.activation_config.card_sort_order
+        content = f'❌ 结界挂卡失败: 卡列表中没有「{order_str}」中的任何卡, 本次未挂卡, 请人工挂卡' \
+                  f'(或调整排序/关闭严格模式), 将按失败间隔自动重试'
+        logger.warning(content)
+        self.save_image(content=content, push_flag=True)
+        # 真实推送: 走全局 Notifier (设置 -> 错误处理 -> 启用通知开关)
+        self.config.notifier.push(title='结界挂卡失败', content=content)
+        self.set_next_run("KekkaiActivation", target=datetime.now() + self.config.kekkai_activation.scheduler.failure_interval)
         raise TaskEnd
 
     def check_max_lv(self, shikigami_class: ShikigamiClass = ShikigamiClass.N):
