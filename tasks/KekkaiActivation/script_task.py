@@ -19,7 +19,7 @@ from module.exception import TaskEnd, GameStuckError
 from tasks.KekkaiUtilize.script_task import ScriptTask as KU
 from tasks.KekkaiUtilize.utils import CardClass
 from tasks.KekkaiActivation.assets import KekkaiActivationAssets
-from tasks.KekkaiActivation.utils import parse_rule
+from tasks.KekkaiActivation.utils import parse_rule, parse_card_sort_order
 from tasks.KekkaiActivation.config import ActivationConfig
 from tasks.Utils.config_enum import ShikigamiClass
 from tasks.GameUi.page import page_main, page_guild
@@ -228,6 +228,37 @@ class ScriptTask(KU, KekkaiActivationAssets):
             self.push_notify(content='Unknown card rule')
             return
 
+        # 星级优先排序模式: 遍历卡列表找排序中最高优先级的卡
+        # 找不到排序中的任何卡则回退默认挂卡模式(按每小时收益选最大)
+        order_str = self.config.kekkai_activation.activation_config.card_sort_order
+        if order_str and order_str.strip():
+            order = parse_card_sort_order(order_str)
+            if order:
+                target = self._select_card_by_order(order)
+                if target is not None:
+                    self._confirm_card(target, rule)
+                    return
+                logger.info('No card matched the sort order, fallback to default activation')
+            else:
+                logger.warning('Card sort order can not be parsed, fallback to default activation')
+
+        self._select_card_class(target_class)
+
+        # 找最优卡
+        while 1:
+            self.screenshot()
+            target = self.check_card_num()
+            if target is None:
+                # 未发现卡，处理逻辑
+                self._card_not_found()
+            self._confirm_card(target, rule)
+
+    def _select_card_class(self, target_class: RuleImage):
+        """
+        在挂卡界面点击“切换卡的种类”下拉并选中目标卡类型
+        :param target_class: 卡类型下拉项 RuleImage (I_A_CARD_KAIKO / I_A_CARD_FISH)
+        :return:
+        """
         while 1:
             self.screenshot()
 
@@ -238,22 +269,22 @@ class ScriptTask(KU, KekkaiActivationAssets):
                     break
             if self.click(self.C_A_SELECT_CARD_LIST, interval=2.5):
                 continue
-        logger.info('Appear card class: {}'.format(card_class))
         while 1:
             self.screenshot()
             if not self.appear(target_class):
                 break
             if self.appear_then_click(target_class, interval=1):
                 continue
-        logger.info('Selected card class: {}'.format(card_class))
 
-        # 找最优卡
+    def _confirm_card(self, target: RuleClick, rule: str):
+        """
+        点击选中的卡并等待挂卡生效
+        :param target: 目标卡的点击区域
+        :param rule: 卡类型文案，用于成功推送
+        :return:
+        """
         while 1:
             self.screenshot()
-            target = self.check_card_num()
-            if target is None:
-                # 未发现卡，处理逻辑
-                self._card_not_found()
             if self.appear(self.I_A_EMPTY):
                 while 1:
                     self.screenshot()
@@ -327,6 +358,124 @@ class ScriptTask(KU, KekkaiActivationAssets):
                 self.device.swipe_adb(p1, p2, duration=duration)
                 time.sleep(1)
                 continue
+
+    def _swipe_up_card_list(self):
+        """
+        卡列表向上滑动一屏(向列表底部滚动)
+        :return:
+        """
+        duration = 2
+        safe_pos_x = random.randint(200, 400)
+        safe_pos_y = random.randint(580, 600)
+        p1 = (safe_pos_x, safe_pos_y)
+        p2 = (safe_pos_x, safe_pos_y - 410)
+        logger.info('Swipe %s -> %s, %sS ' % (point2str(*p1), point2str(*p2), duration))
+        self.device.swipe_adb(p1, p2, duration=duration)
+        time.sleep(1)
+
+    def _swipe_card_list_to_top(self, swipes: int):
+        """
+        反向下滑把卡列表回滚到顶部
+        :param swipes: 之前累计的上滑次数，多滑一次确保到顶(列表无法越过顶部，多滑无副作用)
+        :return:
+        """
+        logger.info(f'Swipe back to top of card list after {swipes} swipes')
+        duration = 2
+        for _ in range(swipes + 1):
+            safe_pos_x = random.randint(200, 400)
+            safe_pos_y = random.randint(180, 200)
+            p1 = (safe_pos_x, safe_pos_y)
+            p2 = (safe_pos_x, safe_pos_y + 410)
+            logger.info('Swipe %s -> %s, %sS ' % (point2str(*p1), point2str(*p2), duration))
+            self.device.swipe_adb(p1, p2, duration=duration)
+            time.sleep(1)
+
+    def _select_card_by_order(self, order: list[CardClass]) -> RuleClick or None:
+        """
+        按星级优先级在卡列表中选卡: 优先级列表按连续同类型分组，逐组切换卡类型下拉，
+        从顶部往下滑逐屏匹配组内各星级模板，命中组内最高优先级的卡记为候选;
+        滑到底或达到滑动上限仍未命中则看下一组，全部组未命中返回 None
+        :param order: 优先级从高到低的 CardClass 列表 (仅 TAIKO3~6 / FISH3~6)
+        :return: 命中卡的 RuleClick，没有则 None
+        """
+        # 按连续同类型分组: [FISH4, FISH3, TAIKO5] -> [(FISH, [(0, FISH4), (1, FISH3)]), (TAIKO, [(2, TAIKO5)])]
+        groups = []
+        for idx, card in enumerate(order):
+            card_type = CardType.TAIKO if card.name.startswith('TAIKO') else CardType.FISH
+            if groups and groups[-1][0] == card_type:
+                groups[-1][1].append((idx, card))
+            else:
+                groups.append((card_type, [(idx, card)]))
+
+        type_targets = {
+            CardType.TAIKO: self.I_A_CARD_KAIKO,
+            CardType.FISH: self.I_A_CARD_FISH,
+        }
+        best_priority = len(order)  # 越小优先级越高
+        best_box = None
+        swipes = 0  # 当前卡列表自顶部起累计的上滑次数
+
+        for card_type, pairs in groups:
+            target_class = type_targets[card_type]
+            logger.info(f'Searching card group: {card_type} {[c.name for _, c in pairs]}')
+            self._select_card_class(target_class)
+            if swipes:
+                # 切换类型后列表可能停留在上次滚动的位置，先回滚到顶部
+                self._swipe_card_list_to_top(swipes)
+                swipes = 0
+
+            found, used = self._search_cards_in_list(pairs)
+            swipes = used
+            if found is not None:
+                priority, box = found
+                if priority < best_priority:
+                    best_priority = priority
+                    best_box = box
+                # 已经是全局最高优先级，无需继续找更低优先级的组
+                if best_priority == 0:
+                    break
+
+        if best_box is not None:
+            x, y, w, h = best_box
+            roi = int(x), int(y), int(w), int(h)
+            target = RuleClick(roi_front=roi, roi_back=roi, name="tmpclick")
+            logger.info(f'选择挂卡(按优先级): order={order[best_priority].name} {roi}')
+            return target
+
+        # 没有任何排序中的卡: 回滚到顶部，交回默认挂卡模式
+        if swipes:
+            self._swipe_card_list_to_top(swipes)
+        logger.info('No card matched the sort order in the whole list')
+        return None
+
+    def _search_cards_in_list(self, pairs: list[tuple]) -> tuple:
+        """
+        在当前卡类型列表中从顶部向下滑逐屏匹配目标星级模板
+        :param pairs: (全局优先级下标, CardClass) 列表，下标越小优先级越高
+        :return: ((优先级下标, 匹配框 (x, y, w, h)), 上滑次数)，未找到时第一项为 None
+        """
+        max_swipes = 20
+        targets = [(idx, card, self.dict_card_image[card]) for idx, card in pairs]
+        swipe_count = 0
+        while 1:
+            self.screenshot()
+            image = self.device.image
+            # 每屏按优先级顺序匹配，命中即返回
+            for idx, card, target_image in targets:
+                matches = target_image.match_all_any(image)
+                if matches:
+                    # 取匹配分数最高的一个
+                    score, x, y, w, h = max(matches, key=lambda m: m[0])
+                    logger.info(f'Found card {card.name} score={score:.3f} at ({x}, {y}, {w}, {h})')
+                    return (idx, (x, y, w, h)), swipe_count
+            if self.appear(self.I_AA_SWIPE_BLOCK):
+                logger.info('Swipe to the end of card list')
+                return None, swipe_count
+            if swipe_count >= max_swipes:
+                logger.warning('Max swipe count reached in card list')
+                return None, swipe_count
+            self._swipe_up_card_list()
+            swipe_count += 1
 
     def _card_not_found(self):
         # 获取配置引用
