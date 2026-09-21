@@ -75,6 +75,8 @@
   "utilize_friend_name_help": "填写好友全名，优先蹭该好友的结界卡（基于OCR识别，需完整名称，只在上方的跨区/同服好友列表里查找）。\n如果找不到该好友、寄养位被占或寄养失败，会自动回退为常规蹭卡。留空则不启用",
   "utilize_target_friend": "启用指定好友寄养",
   "utilize_target_friend_help": "开启后优先蹭上方填写的好友，关闭后即使填了名字也只执行常规蹭卡",
+  "Friend Name": "指定好友名称",
+  "Utilize Target Friend": "启用指定好友寄养",
   "card_sort_order": "挂卡星级优先级(可选)",
   "card_sort_order_help": "按星级优先级挂卡，示例: 斗鱼4星>太鼓5星，用 > 分隔，越靠前优先级越高，仅支持斗鱼/太鼓3~6星。\n填写后优先按此顺序遍历卡列表挂卡，上方的放卡规则(card_type)与最低收益阈值(min_taiko_num/min_fish_num)不再触发；只有当排序中的卡一张都没有时，才回退默认方式(按每小时收益选最大)挂卡。\n留空则不启用，直接按默认方式挂卡",
   "card_sort_no_fallback": "严格排序模式(不回退)",

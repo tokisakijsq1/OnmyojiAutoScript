@@ -5,6 +5,7 @@ from tasks.GuildActivityMonitor.config import GuildActivityMonitor
 from typing import Dict, Any
 
 import re
+import json
 import inflection
 
 from pathlib import Path
@@ -12,6 +13,33 @@ from pydantic import BaseModel, ValidationError, Field
 
 from module.config.utils import *
 from module.logger import logger
+
+
+_ZH_CN_TRANSLATIONS: dict | None = None
+
+
+def _load_zh_cn_translations() -> dict:
+    """
+    加载附加中文翻译表（assets/i18n/zh-CN.json）。
+    该文件只被 GET /home/additional_translate 读取，不会被 oasx 回写覆盖，
+    用于在后端直接翻译字段的 title/description，兼容不拉取附加翻译的旧版 oasx。
+    """
+    global _ZH_CN_TRANSLATIONS
+    if _ZH_CN_TRANSLATIONS is None:
+        path = Path.cwd() / "assets" / "i18n" / "zh-CN.json"
+        try:
+            _ZH_CN_TRANSLATIONS = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as e:
+            logger.warning(f"load zh-CN translations failed: {e}")
+            _ZH_CN_TRANSLATIONS = {}
+    return _ZH_CN_TRANSLATIONS
+
+
+def _translate_text(text: str) -> str:
+    """若文本是翻译键则替换为中文，否则原样返回"""
+    if not isinstance(text, str) or not text:
+        return text
+    return _load_zh_cn_translations().get(text, text)
 
 # 导入配置的Python文件
 from tasks.Component.config_base import ConfigBase, TimeDelta
@@ -327,9 +355,9 @@ class ConfigModel(ConfigBase):
 
                 item = {}
                 item["name"] = key
-                item["title"] = value["title"] if "title" in value else inflection.underscore(key)
+                item["title"] = _translate_text(value["title"] if "title" in value else inflection.underscore(key))
                 if "description" in value:
-                    item["description"] = value["description"]
+                    item["description"] = _translate_text(value["description"])
                 item["default"] = value["default"]
                 item["value"] = jsons[key] if key in jsons else value["default"]
                 item["type"] = value["type"] if "type" in value else "enum"
