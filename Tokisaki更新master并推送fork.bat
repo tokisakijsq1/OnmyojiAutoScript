@@ -19,10 +19,37 @@ rem        -> 本地分支 rebase 到 master 上
 rem        -> 拉 fork 最新分支(防止强推覆盖新提交)
 rem        -> 推送到 GitHub fork（朋友们从这里拉取）
 rem  注意: 本脚本需要你的 GitHub 凭据和可用的代理/网络。
+rem
+rem  本脚本只存在于功能分支，checkout master 会把它从工作区删掉，
+rem  cmd 读不到下一行就会报「找不到批处理文件」。因此从仓库里启动时
+rem  先复制到 %TEMP% 再执行副本；副本不在仓库里，切分支不会把它删掉。
 rem ============================================================
 
-set "GIT=%~dp0toolkit\Git\cmd\git.exe"
-if not exist "%GIT%" set "GIT=%~dp0toolkit\Git\mingw64\bin\git.exe"
+rem 仓库根目录：从仓库内启动时就是脚本所在目录；从 %TEMP% 副本启动时由 TOK_REPO 传入
+if not defined TOK_REPO set "TOK_REPO=%~dp0"
+if "!TOK_REPO:~-1!"=="\" set "TOK_REPO=!TOK_REPO:~0,-1!"
+
+rem 还在仓库目录里时，改从临时副本执行，避免 checkout master 删掉正在运行的脚本
+echo "%~f0" | findstr /I /C:"%TEMP%\\" >nul
+if errorlevel 1 (
+    set "TOK_COPY=%TEMP%\tokisaki-push-fork.bat"
+    copy /Y "%~f0" "!TOK_COPY!" >nul
+    if errorlevel 1 (
+        echo [错误] 无法把脚本复制到临时目录: !TOK_COPY!
+        echo        checkout master 会删除仓库里的本脚本，不能直接在仓库内继续。
+        pause
+        exit /b 1
+    )
+    echo.
+    echo [防护] 已复制到临时目录再执行，避免切换 master 时脚本被删掉。
+    echo.
+    rem cmd /k 是新进程，不会继承这里的 setlocal 变量，仓库路径必须写进启动命令
+    cmd /k "set TOK_REPO=!TOK_REPO!&& "!TOK_COPY!""
+    exit /b 0
+)
+
+set "GIT=%TOK_REPO%\toolkit\Git\cmd\git.exe"
+if not exist "%GIT%" set "GIT=%TOK_REPO%\toolkit\Git\mingw64\bin\git.exe"
 set "BRANCH=fix/mumu-adb-root"
 set "OFFICIAL=https://gitcode.com/OnmyojiAutoScript/OnmyojiAutoScript.git"
 set "FORK_URL=https://github.com/tokisakijsq1/OnmyojiAutoScript.git"
@@ -36,9 +63,9 @@ set "GIT_EDITOR="
 set "GIT_PAGER=cat"
 
 rem Bundled git 的 remote helper 在 mingw64\bin，必须加入 PATH
-set "PATH=%~dp0toolkit\Git\cmd;%~dp0toolkit\Git\mingw64\bin;%PATH%"
+set "PATH=%TOK_REPO%\toolkit\Git\cmd;%TOK_REPO%\toolkit\Git\mingw64\bin;%PATH%"
 
-cd /d "%~dp0"
+cd /d "%TOK_REPO%"
 
 echo.
 echo ============================================
