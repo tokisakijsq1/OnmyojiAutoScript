@@ -1,4 +1,16 @@
 @echo off
+rem ---------- 防闪退保护 ----------
+rem 若脚本遇到 cmd 解析级致命错误，窗口会直接消失；
+rem 这里用 cmd /k 重新启动自身，保证出错后窗口仍然保留，可以看到完整错误信息。
+if not defined TOK_GUARD (
+    set "TOK_GUARD=1"
+    echo.
+    echo [防护] 正在以保护模式启动脚本...
+    echo （若脚本遇到致命错误，本窗口不会自动关闭，可完整查看错误信息）
+    echo.
+    cmd /k ""%~f0""
+    exit /b 0
+)
 setlocal EnableDelayedExpansion
 rem ============================================================
 rem  Tokisaki 更新工具（使用者用，不推送 fork）

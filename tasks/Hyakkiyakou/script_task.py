@@ -219,7 +219,7 @@ class ScriptTask(GameUi, HyaSlave, SwitchOnmyoji):
         for idx, btn in enumerate(candidates):
             # 点一下第 idx 个候选，让它成为当前选中的式神
             self.click(btn, interval=0.1)
-            time.sleep(1)  # 给界面一点刷新时间
+            time.sleep(2)  # 给界面足够的刷新时间，动画结束再识别，避免截到半切换状态的糊帧
             score, cls = self._detect_current_rarity()
             scores.append(score)
             if score > best_score:
