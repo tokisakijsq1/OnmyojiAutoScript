@@ -19,6 +19,7 @@ from oashya.utils import draw_tracks
 from module.exception import TaskEnd
 from module.logger import logger
 from module.exception import RequestHumanTakeover
+from module.base.timer import Timer
 from tasks.Component.SwitchOnmyoji.switch_onmyoji import SwitchOnmyoji
 from tasks.GameUi.game_ui import GameUi
 from tasks.GameUi.page import page_hyakkiyakou, page_main, page_onmyodo
@@ -135,7 +136,8 @@ class ScriptTask(GameUi, HyaSlave, SwitchOnmyoji):
                 logger.info('Hyakkiyakou time limit out')
                 break
 
-            self.one()
+            if not self.one():
+                break  # 门票不足, 提前结束, 走下面的正常收尾流程(视作任务成功)
             hya_count += 1
             logger.info(f'count: {hya_count}/{self.limit_count}')
             logger.info(f'time: {(datetime.now() - self.start_time).total_seconds():.1f}s/{self.limit_time.total_seconds()}s')
@@ -236,14 +238,30 @@ class ScriptTask(GameUi, HyaSlave, SwitchOnmyoji):
         self.click(self._best_boss_button, interval=0.1)
         time.sleep(0.5)
 
-    def one(self):
+    def one(self) -> bool:
         self.reset_state()
         if not self.appear(self.I_HACCESS):
             logger.warning('Page Error')
         if self._config.hyakkiyakou_config.hya_invite_friend:
-            self.invite_friend()
+            self.invite_friend(self._config.hyakkiyakou_config.hya_invite_friend_name)
         # start
-        self.ui_click(self.I_HACCESS, self.I_HSTART, interval=2)
+        # 门票为0时点击进入无反应(游戏提示百鬼夜行门票不足)，连续点击5次仍未进入则视作门票不足
+        enter_count = 0
+        give_up_timer: Timer = None
+        while 1:
+            self.screenshot()
+            if self.appear(self.I_HSTART):
+                break
+            if enter_count >= 5 and self.appear(self.I_HACCESS):
+                # 再给8s缓冲，防止只是界面切换慢导致误判
+                if give_up_timer is None:
+                    give_up_timer = Timer(8)
+                    give_up_timer.start()
+                elif give_up_timer.reached():
+                    logger.warning('Hyakkiyakou ticket insufficient, finish task')
+                    return False
+            if self.appear_then_click(self.I_HACCESS, interval=2):
+                enter_count += 1
         self.wait_until_appear(self.I_HTITLE)
         # 这里改成：在三个候选中选择稀有度最高的作为鬼王
         self._best_boss_button = None
@@ -309,6 +327,7 @@ class ScriptTask(GameUi, HyaSlave, SwitchOnmyoji):
         del self.debugger
         # you maybe update oashya
         self.tracker.clear_tracks()
+        return True
 
     def do_action(self, action: list, state):
         x, y, throw, bean = action

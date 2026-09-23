@@ -147,5 +147,7 @@
   "enable_ap100_anti_detect": "100体爬塔防检测",
   "enable_ap100_anti_detect_help": "100体爬塔战斗过程是否随机点击或滑动",
   "costume_battle_15": "灵狐寄愿",
-  "costume_shikigami_12": "拾光之窗"
+  "costume_shikigami_12": "拾光之窗",
+  "hya_invite_friend_name": "指定好友名称",
+  "hya_invite_friend_name_help": "开启邀请好友后优先邀请该好友"
 }

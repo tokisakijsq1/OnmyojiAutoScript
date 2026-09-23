@@ -1,4 +1,8 @@
+import time
+
 import cv2
+
+from difflib import SequenceMatcher
 
 from cached_property import cached_property
 from pathlib import Path
@@ -7,6 +11,7 @@ from enum import Enum
 from module.logger import logger
 from module.base.timer import Timer
 from module.atom.image import RuleImage
+from module.atom.ocr import RuleOcr
 from module.exception import RequestHumanTakeover
 from tasks.Hyakkiyakou.slave.hya_device import HyaDevice
 from tasks.Hyakkiyakou.slave.hya_color import HyaColor
@@ -214,7 +219,21 @@ class HyaSlave(HyaDevice, HyaColor, HyakkiyakouAssets):
     # main process
     # ------------------------------------------------------------------------------------------------------------------
 
-    def invite_friend(self):
+    # 邀请面板好友列表左右两列的名字文字区域（避开头像和等级数字，防止数字混入导致匹配失败）
+    O_HYA_FRIEND_NAME_L = RuleOcr(roi=(450, 215, 182, 345), area=(450, 215, 182, 345),
+                                  mode='Full', method='Default', keyword='', name='hya_friend_name_l')
+    O_HYA_FRIEND_NAME_R = RuleOcr(roi=(725, 215, 178, 345), area=(725, 215, 178, 345),
+                                  mode='Full', method='Default', keyword='', name='hya_friend_name_r')
+    # 召回活动面板整体左移，名字区域随之偏移
+    O_HYA_FRIEND_NAME_L_RECALL = RuleOcr(roi=(238, 215, 182, 345), area=(238, 215, 182, 345),
+                                         mode='Full', method='Default', keyword='', name='hya_friend_name_l_recall')
+    O_HYA_FRIEND_NAME_R_RECALL = RuleOcr(roi=(516, 215, 178, 345), area=(516, 215, 178, 345),
+                                         mode='Full', method='Default', keyword='', name='hya_friend_name_r_recall')
+    # 好友被邀请次数达到今日上限的提示
+    O_HYA_INVITE_LIMIT = RuleOcr(roi=(385, 235, 520, 62), area=(385, 235, 520, 62),
+                                 mode='Full', method='Default', keyword='上限', name='hya_invite_limit')
+
+    def invite_friend(self, friend_name: str = ''):
         logger.hr('Invite friend', 2)
         self.ui_click(self.I_HINVITE, self.I_CHECK_INVITATION, interval=4)
         logger.info('Entry check invitation')
@@ -229,6 +248,18 @@ class HyaSlave(HyaDevice, HyaColor, HyakkiyakouAssets):
             hya_recall_activity = False
             friend_buttons1 = [self.I_FRIEND_SAME_1, self.I_FRIEND_REMOTE_1, self.I_FRIEND_RYOU_1]
             friend_buttons2 = [self.I_FRIEND_SAME_2, self.I_FRIEND_REMOTE_2, self.I_FRIEND_RYOU_2]
+
+        # 优先邀请指定好友，失败则退回默认邀请
+        if friend_name:
+            logger.info(f'Invite specific friend: {friend_name}')
+            if self._invite_specific_friend(friend_name, hya_recall_activity=hya_recall_activity):
+                return True
+            logger.warning('Invite specific friend failed, fallback to default invite')
+            # 面板可能已关闭，重新进入
+            self.screenshot()
+            if not self.appear(self.I_CHECK_INVITATION):
+                self.ui_click(self.I_HINVITE, self.I_CHECK_INVITATION, interval=4)
+
         # 依次邀请,
         self.friend_state = 0  # 不需要每一次都从0开始，可以固定一下
         while self.friend_state < 3:
@@ -280,6 +311,91 @@ class HyaSlave(HyaDevice, HyaColor, HyakkiyakouAssets):
                 return False
         logger.info('Invite friend done')
         return True
+
+    def _find_friend_click(self, rules: list[RuleOcr], friend_name: str) -> bool:
+        """
+        在左右两列OCR区域中查找好友名并点击。
+        OCR对单个汉字可能误识(如"欧欧Yuumi"识别成"欠欧Yuumi")，因此精确匹配优先，
+        否则取相似度最高且不低于0.8的候选；左右两列一起比较后再点击，避免模糊命中抢占精确命中
+        :return: 是否找到并点击
+        """
+        target = friend_name.replace(' ', '')
+        best = None  # (exact优先级, 相似度, x, y, 原文)
+        for rule in rules:
+            results = rule.detect_and_ocr(self.device.image)
+            for result in results:
+                text = (result.ocr_text or '').replace(' ', '')
+                if not text:
+                    continue
+                box = result.box
+                x = rule.roi[0] + (box[0, 0] + box[1, 0]) / 2
+                y = rule.roi[1] + (box[0, 1] + box[2, 1]) / 2
+                if target in text:
+                    best = (1, 1.0, x, y, result.ocr_text)
+                    break  # 精确命中，无需再看这一列的其他行
+                ratio = SequenceMatcher(None, target, text).ratio()
+                if ratio >= 0.8 and (best is None or (best[0] == 0 and ratio > best[1])):
+                    best = (0, ratio, x, y, result.ocr_text)
+            if best is not None and best[0] == 1:
+                break  # 精确命中，不再扫描另一列
+        if best is None:
+            return False
+        logger.info(f'Find friend {best[4]} (exact={bool(best[0])}, similarity {best[1]:.2f}), '
+                    f'click ({int(best[2])}, {int(best[3])})')
+        self._humanized_click_delay()
+        self.device.click(x=int(best[2]), y=int(best[3]), control_name='hya_friend_name')
+        return True
+
+    def _wait_invite_result(self) -> bool:
+        """
+        点击好友后等待邀请结果
+        :return: True 邀请成功(面板关闭且邀请好友按钮变为好友头像)；
+                 False 达到今日邀请上限或超时(需要回退默认邀请)
+        """
+        timer = Timer(8)
+        timer.start()
+        while 1:
+            self.screenshot()
+            if not self.appear(self.I_HINVITE) and not self.appear(self.I_CHECK_INVITATION):
+                logger.info('Invite specific friend done')
+                return True
+            if self.ocr_appear(self.O_HYA_INVITE_LIMIT):
+                logger.warning('Friend invite limit reached today')
+                return False
+            if timer.reached():
+                logger.warning('Invite specific friend result timeout')
+                return False
+            time.sleep(0.5)
+
+    def _invite_specific_friend(self, friend_name: str, hya_recall_activity: bool = False) -> bool:
+        """
+        在好友/寮友/跨区页签中查找指定好友并邀请，列表支持向下滑动
+        :return: True 邀请成功; False 失败(未找到/达到上限)，需要回退默认邀请
+        """
+        if hya_recall_activity:
+            rules = [self.O_HYA_FRIEND_NAME_L_RECALL, self.O_HYA_FRIEND_NAME_R_RECALL]
+            tabs = [(self.I_FRIEND_SAME_1_RECALL, self.I_FRIEND_SAME_2_RECALL),
+                    (self.I_FRIEND_REMOTE_1_RECALL, self.I_FRIEND_REMOTE_2_RECALL)]
+            scroll_x = 470
+        else:
+            rules = [self.O_HYA_FRIEND_NAME_L, self.O_HYA_FRIEND_NAME_R]
+            # 注意资产命名与游戏页签文字不一致(REMOTE对应寮友页签, RYOU对应跨区页签)，按面板位置依次切换
+            tabs = [(self.I_FRIEND_SAME_1, self.I_FRIEND_SAME_2),
+                    (self.I_FRIEND_REMOTE_1, self.I_FRIEND_REMOTE_2),
+                    (self.I_FRIEND_RYOU_1, self.I_FRIEND_RYOU_2)]
+            scroll_x = 620
+        for tab_off, tab_on in tabs:
+            self.ui_click(tab_off, tab_on, interval=1)
+            time.sleep(1.5)  # 等待好友列表加载完成
+            for _ in range(4):  # 每个页签最多向下滑动3次
+                self.screenshot()
+                if self._find_friend_click(rules, friend_name):
+                    return self._wait_invite_result()
+                # 当前屏幕没有该好友，向下滑动列表继续找
+                self.device.swipe(p1=(scroll_x, 550), p2=(scroll_x, 320), control_name='hya_friend_scroll')
+                time.sleep(1)
+        logger.warning(f'Not find friend {friend_name} in all tabs')
+        return False
 
     def update_state(self):
         res_bean = self.predict_bean(self.slave_state[0])
