@@ -11,7 +11,7 @@ echo.
 REM ---------- STEP 0: environment check ----------
 REM NOTE: STEP var must NOT contain parentheses, or %STEP% expansion
 REM inside an if-block would close the block early
-set "STEP=0/4 environment check"
+set "STEP=0/3 environment check"
 echo [STEP %STEP%] checking worktree...
 
 git rev-parse --is-inside-work-tree >nul 2>&1
@@ -46,7 +46,7 @@ echo [OK] worktree clean, starting update.
 echo.
 
 REM ---------- STEP 1: fetch upstream ----------
-set "STEP=1/4 fetch upstream - git fetch upstream master"
+set "STEP=1/3 fetch upstream - git fetch upstream master"
 echo [STEP %STEP%]
 git fetch upstream master
 if errorlevel 1 (
@@ -57,7 +57,7 @@ echo [OK] upstream master fetched.
 echo.
 
 REM ---------- STEP 2: rebase onto upstream master ----------
-set "STEP=2/4 rebase - git rebase upstream/master"
+set "STEP=2/3 rebase - git rebase upstream/master"
 echo [STEP %STEP%]
 git rebase upstream/master
 if errorlevel 1 (
@@ -70,7 +70,7 @@ if errorlevel 1 (
     echo        A. fix conflicts in the files above, then run:
     echo              git add .
     echo              git rebase --continue
-    echo           then run this script again to push.
+    echo           then run this script again.
     echo        B. discard this update, restore to previous state:
     echo              git rebase --abort
     goto :fail
@@ -78,21 +78,8 @@ if errorlevel 1 (
 echo [OK] rebase done, Tokisaki is now on top of latest upstream.
 echo.
 
-REM ---------- STEP 3: push to fork ----------
-set "STEP=3/4 push - git push --force-with-lease fork Tokisaki"
-echo [STEP %STEP%]
-git push --force-with-lease fork Tokisaki
-if errorlevel 1 (
-    echo [ERROR] push failed, stopped at: %STEP%
-    echo        possible reason: remote Tokisaki has commits not present locally.
-    echo        run git fetch fork to inspect, then retry this script.
-    goto :fail
-)
-echo [OK] pushed to fork/Tokisaki.
-echo.
-
-REM ---------- STEP 4: show result ----------
-set "STEP=4/4 done"
+REM ---------- STEP 3: show result ----------
+set "STEP=3/3 done"
 echo [STEP %STEP%] last 5 commits on current branch:
 echo.
 git log --oneline -5
