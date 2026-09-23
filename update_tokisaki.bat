@@ -78,17 +78,17 @@ if errorlevel 1 (
 echo [OK] rebase done, Tokisaki is now on top of latest upstream.
 echo.
 
-REM ---------- STEP 3: push to origin ----------
-set "STEP=3/4 push - git push --force-with-lease origin Tokisaki"
+REM ---------- STEP 3: push to fork ----------
+set "STEP=3/4 push - git push --force-with-lease fork Tokisaki"
 echo [STEP %STEP%]
-git push --force-with-lease origin Tokisaki
+git push --force-with-lease fork Tokisaki
 if errorlevel 1 (
     echo [ERROR] push failed, stopped at: %STEP%
     echo        possible reason: remote Tokisaki has commits not present locally.
-    echo        run git fetch origin to inspect, then retry this script.
+    echo        run git fetch fork to inspect, then retry this script.
     goto :fail
 )
-echo [OK] pushed to origin/Tokisaki.
+echo [OK] pushed to fork/Tokisaki.
 echo.
 
 REM ---------- STEP 4: show result ----------
