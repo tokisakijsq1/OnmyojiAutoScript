@@ -28,6 +28,10 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
     # 追踪界面(显示"前往"按钮的界面,左上角位置,神秘任务不好使)显示以下名称时,任务不再执行
     unwanted_boss_name_list: list = []
 
+    @cached_property
+    def battle_config(self) -> GeneralBattleConfig:
+        return self.config.model.wanted_quests.general_battle
+
     def run(self):
         con = self.config.model.wanted_quests
         unwanted_boss_names = con.wanted_quests_config.unwanted_boss_names
@@ -344,9 +348,8 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         self.ui_click(goto_btn, self.I_WQC_FIRE)
         self.ui_click(self.I_WQC_UNLOCK, self.I_WQC_LOCK)
         self.ui_click_until_disappear(self.I_WQC_FIRE)
-        # 锁定阵容进入战斗
-        wq_config = GeneralBattleConfig(lock_team_enable=True)
-        self.run_general_battle(config=wq_config)
+        # 进入战斗
+        self.run_general_battle(config=self.battle_config)
         self.wait_until_appear(self.I_WQC_FIRE, wait_time=4)
         # 关闭 挑战界面
         while 1:

@@ -41,7 +41,10 @@ xywh: ({self._cx}, {self._cy}, {self._w}, {self._h})
 velocity: {self._v}"""
 
     def omega(self, z):
-        __omega = z[self._cy, self._cx]
+        # 检测框中心可能超出画面(式神半出屏), 索引前裁剪到热力图范围内
+        _cx = min(max(self._cx, 0), z.shape[1] - 1)
+        _cy = min(max(self._cy, 0), z.shape[0] - 1)
+        __omega = z[_cy, _cx]
         self._omega = __omega
         return __omega
 
