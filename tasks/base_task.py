@@ -39,6 +39,7 @@ class BaseTask(GlobalGameAssets, CostumeBase):
     limit_time: timedelta = None  # 限制运行的时间，是软时间，不是硬时间
     limit_count: int = None  # 限制运行的次数
     current_count: int = None  # 当前运行的次数
+    humanized_click_delay_enable: bool = True  # 点击前拟人化延迟, 高频点击任务(如百鬼夜行)可关闭
 
     def __init__(self, config: Config, device: Device) -> None:
         """
@@ -488,6 +489,8 @@ class BaseTask(GlobalGameAssets, CostumeBase):
     def _humanized_click_delay(self) -> None:
         """Sleep a small log-normal delay before clicking, so the gap between
         clicks is right-skewed instead of hitting the interval floor exactly."""
+        if not self.humanized_click_delay_enable:
+            return
         sleep(random_lognormal_interval(median=0.2, sigma=0.4, floor=0.05, ceil=1.2))
 
     def click(self, click: Union[RuleClick, RuleLongClick, RuleImage, RuleOcr] = None, interval: float = None) -> bool:

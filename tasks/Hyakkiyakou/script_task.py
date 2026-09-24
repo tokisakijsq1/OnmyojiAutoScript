@@ -48,6 +48,7 @@ def plot_save(image, boxes):
 
 
 class ScriptTask(GameUi, HyaSlave, SwitchOnmyoji):
+    humanized_click_delay_enable = False  # 撒豆高频点击不吃拟人化延迟
 
     @property
     def _config(self):
