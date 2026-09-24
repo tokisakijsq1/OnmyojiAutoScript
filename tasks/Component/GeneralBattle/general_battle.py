@@ -49,6 +49,26 @@ class GeneralBattle(BattleWait, GeneralBuff):
         else:
             return False
 
+    def ensure_auto_battle(self, timeout: float = 5) -> bool:
+        """
+        进入战斗后检查左下角是否为"手动"，如果是则点击齿轮切换为"自动"。
+        手动模式下脚本不会自动开始战斗，会一直卡住等待。
+        :return: True 表示当前为自动（或成功切换为自动）
+        """
+        timer = Timer(timeout).start()
+        while not timer.reached():
+            if self.appear(self.O_BATTLE_HAND, interval=1.5):
+                logger.info('Battle is in manual mode, click to switch auto')
+                self.click(self.O_BATTLE_HAND, interval=1.5)
+                continue
+            if self.appear(self.O_BATTLE_AUTO):
+                return True
+            self.screenshot()
+        if self.appear(self.O_BATTLE_AUTO):
+            return True
+        logger.warning('Failed to switch battle to auto mode')
+        return False
+
     def battle_before(self, buff: BuffClass | list[BuffClass], config: GeneralBattleConfig, timeout: float = 5) -> bool:
         """战斗前设置
         :return: True:进入战斗或点击了准备按钮且识别不到准备按钮了 False:超过timeout s还没有进入战斗且没有点击过准备
@@ -58,6 +78,7 @@ class GeneralBattle(BattleWait, GeneralBuff):
         while not timeout_timer.reached():
             self.screenshot()
             if self.is_in_real_battle(False):  # 战斗阶段
+                self.ensure_auto_battle()
                 return True
             if self.appear_then_click(self.I_DISABLE_7DAYS_DIFF_SOUL, interval=0.6):  # 关闭御魂不一致提示
                 continue
