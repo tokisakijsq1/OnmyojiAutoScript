@@ -31,10 +31,12 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
     jade_max_num = 0
     first_utilize = True
     friend_search_exhausted = False
+    target_friend_no_card = False
 
     def run(self):
         con = self.config.kekkai_utilize.utilize_config
         self.friend_search_exhausted = False
+        self.target_friend_no_card = False
         self.ui_get_current_page()
         self.ui_goto(page_guild)
 
@@ -412,7 +414,7 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
 
     def _click_friend_card_in_row(self, name_area: tuple) -> bool:
         """在好友名字同一行的范围内找到结界卡图标并点击选中"""
-        cards = self.all_card_targets.find_everyone(self.device.image)
+        cards = self.all_card_targets.find_everyone(self.device.image) or []
         name_y = name_area[1] + name_area[3] / 2
         for _, _, card_area in cards:
             card_y = card_area[1] + card_area[3] / 2
@@ -447,14 +449,20 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
         # 优先点击同一行的结界卡图标（与常规选卡一致的手势）
         if self._click_friend_card_in_row(area):
             return True
-        # 该行没有识别到卡图标时，直接点击好友名字（名字应位于好友列表区域内）
+        # 游戏有时不刷新结界卡图标，点击名字触发刷新后再确认一次
         name_x = area[0] + area[2] / 2
         if 210 < name_x < 640:
             x = random_normal_distribution_int(area[0], area[0] + area[2])
             y = random_normal_distribution_int(area[1], area[1] + area[3])
             self.device.click(x=x, y=y, control_name=self.O_U_FRIEND_NAME.name)
             time.sleep(1.5)
-            return True
+            self.screenshot()
+            if self._click_friend_card_in_row(area):
+                logger.info('Friend realm card appeared after clicking name')
+                return True
+            logger.info(f'Target friend {name} has no realm card, fallback to normal utilize')
+            self.target_friend_no_card = True
+            return False
         logger.warning(f'Friend name area is unexpected, skip: {area}')
         return False
 
@@ -479,6 +487,9 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
             results = self._ocr_friend_names()
             if self._select_friend_in_screen(name, results):
                 return True
+            if self.target_friend_no_card:
+                logger.info(f'Target friend {name} has no realm card, stop searching')
+                return False
             # 连续两屏内容不变说明已经滑到列表末尾
             texts = tuple(sorted(res.ocr_text.strip() for res in results))
             if texts and texts == last_texts:
@@ -584,7 +595,7 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
 
         # --------------- 指定好友优先 ---------------
         friend_name = (friend_name or '').strip()
-        if friend_name and not self.friend_search_exhausted:
+        if friend_name and not self.friend_search_exhausted and not self.target_friend_no_card:
             logger.info(f'Try target friend utilize: {friend_name}')
             if self.try_target_friend(friend_name, shikigami_class, shikigami_order):
                 # 找到卡,重置次数
