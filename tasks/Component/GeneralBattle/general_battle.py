@@ -218,6 +218,10 @@ class GeneralBattle(BattleWait, GeneralBuff):
             if self.appear(self.I_REWARD_GOLD, threshold=0.8):
                 win = True
                 break
+            # 结算弹窗(如重复奖励转换)可能在胜利/奖励判定出现前就弹出并挡住判定,
+            # 必须在每个等待循环里都处理, 否则第一循环会空转到卡死
+            if self._hook_special_reward():
+                continue
             # 如果开启战斗过程随机滑动
             if random_click_swipt_enable:
                 self.random_click_swipt()
@@ -230,6 +234,9 @@ class GeneralBattle(BattleWait, GeneralBuff):
                 # 点击赢了
                 action_click = random.choice([self.C_WIN_1, self.C_WIN_2, self.C_WIN_3])
                 if self.appear_then_click(self.I_WIN, action=action_click, interval=0.5):
+                    continue
+                # 结算过程可能弹出奖励转换等确认弹窗, 挡住胜利界面导致 I_WIN 连点超限
+                if self._hook_special_reward():
                     continue
                 if not self.appear(self.I_WIN):
                     break
@@ -299,6 +306,9 @@ class GeneralBattle(BattleWait, GeneralBuff):
                 logger.warning('False battle')
                 self.ui_click_until_disappear(self.I_FALSE)
                 return False
+            # 结算弹窗可能在胜利/奖励判定出现前就弹出并挡住判定
+            if self._hook_special_reward():
+                continue
             appear_ghost, appear_reward, appear_gold = (
                 self.appear(self.I_GREED_GHOST),
                 self.appear(self.I_REWARD),
