@@ -124,5 +124,14 @@
     "method": "Template matching",
     "threshold": 0.8,
     "description": "排队横幅右上角X(排队中标志, 不可点击)"
+  },
+  {
+    "itemName": "confirm",
+    "imageName": "xy_confirm.png",
+    "roiFront": "578,446,120,53",
+    "roiBack": "380,150,520,420",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "结算重复奖励弹窗-确定按钮(内容不定, 只认按钮)"
   }
 ]

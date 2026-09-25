@@ -39,6 +39,8 @@ class XianShiYaoYueAssets:
 	I_XY_TEAM_CHALLENGE = RuleImage(roi_front=(1102,558,96,99), roi_back=(1040,520,240,200), threshold=0.8, method="Template matching", file="./tasks/XianShiYaoYue/xy/xy_team_challenge.png")
 	# description 队伍公开权限弹窗-创建按钮
 	I_XY_CREATE = RuleImage(roi_front=(578,481,124,60), roi_back=(430,130,440,460), threshold=0.8, method="Template matching", file="./tasks/XianShiYaoYue/xy/xy_create_team.png")
+	# description 结算重复奖励弹窗-确定按钮(内容不定, 只认按钮)
+	I_XY_CONFIRM = RuleImage(roi_front=(578,446,120,53), roi_back=(380,150,520,420), threshold=0.8, method="Template matching", file="./tasks/XianShiYaoYue/xy/xy_confirm.png")
 
 	# Ocr Rule Assets
 	# description 商店绿框区域现世祝福识别

@@ -30,6 +30,13 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
         return self.config.model.xian_shi_yao_yue
 
     def run(self) -> None:
+        # 上次异常退出可能残留结算弹窗, 先关掉再识别页面, 否则页面识别会失败
+        for _ in range(5):
+            self.screenshot()
+            if self.appear_then_click(self.I_XY_CONFIRM, interval=1):
+                logger.info('Close leftover confirm popup')
+                continue
+            break
         # 任务前切换御魂
         self.ui_get_current_page()
         self.ui_goto(page_main)
@@ -186,13 +193,21 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
                     self.appear_then_click(self.I_UI_BACK_YELLOW, interval=2.5)):
                 continue
 
+    def _hook_special_reward(self) -> bool:
+        """
+        战斗结算可能弹出重复奖励转换弹窗(内容不定, 统一检测确定按钮),
+        出现则点击确定并关闭; GeneralBattle.battle_wait 的结算循环会调用本钩子
+        """
+        return self.appear_then_click(self.I_XY_CONFIRM, interval=1)
+
     def _close_popup(self) -> None:
         """
         关闭可能残留的弹窗
         """
         for _ in range(3):
             self.screenshot()
-            if (self.appear_then_click(self.I_UI_CANCEL_SAMLL, interval=1) or
+            if (self.appear_then_click(self.I_XY_CONFIRM, interval=1) or
+                    self.appear_then_click(self.I_UI_CANCEL_SAMLL, interval=1) or
                     self.appear_then_click(self.I_UI_CONFIRM, interval=1) or
                     self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1)):
                 continue
@@ -212,7 +227,8 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
                 self.ui_goto(page_main)
                 self._goto_activity_from_main()
                 return
-            if (self.appear_then_click(self.I_UI_CONFIRM, interval=1) or
+            if (self.appear_then_click(self.I_XY_CONFIRM, interval=1) or
+                    self.appear_then_click(self.I_UI_CONFIRM, interval=1) or
                     self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1) or
                     self.appear_then_click(self.I_UI_BACK_YELLOW, interval=2)):
                 continue
