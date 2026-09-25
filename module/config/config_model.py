@@ -16,6 +16,7 @@ from module.logger import logger
 
 
 _ZH_CN_TRANSLATIONS: dict | None = None
+_ZH_CN_TRANSLATIONS_MTIME: float | None = None
 
 
 def _load_zh_cn_translations() -> dict:
@@ -23,12 +24,18 @@ def _load_zh_cn_translations() -> dict:
     加载附加中文翻译表（assets/i18n/zh-CN.json）。
     该文件只被 GET /home/additional_translate 读取，不会被 oasx 回写覆盖，
     用于在后端直接翻译字段的 title/description，兼容不拉取附加翻译的旧版 oasx。
+    按文件 mtime 热加载：新增翻译键后无需重启后端进程。
     """
-    global _ZH_CN_TRANSLATIONS
-    if _ZH_CN_TRANSLATIONS is None:
-        path = Path.cwd() / "assets" / "i18n" / "zh-CN.json"
+    global _ZH_CN_TRANSLATIONS, _ZH_CN_TRANSLATIONS_MTIME
+    path = Path.cwd() / "assets" / "i18n" / "zh-CN.json"
+    try:
+        mtime = path.stat().st_mtime
+    except OSError:
+        mtime = None
+    if _ZH_CN_TRANSLATIONS is None or mtime != _ZH_CN_TRANSLATIONS_MTIME:
         try:
             _ZH_CN_TRANSLATIONS = json.loads(path.read_text(encoding="utf-8"))
+            _ZH_CN_TRANSLATIONS_MTIME = mtime
         except (OSError, ValueError) as e:
             logger.warning(f"load zh-CN translations failed: {e}")
             _ZH_CN_TRANSLATIONS = {}
@@ -89,6 +96,7 @@ from tasks.Quiz.config import Quiz
 from tasks.KittyShop.config import KittyShop
 from tasks.DyeTrials.config import DyeTrials
 from tasks.BudokaiTournament.config import BudokaiTournament
+from tasks.XianShiYaoYue.config import XianShiYaoYue
 # ----------------------------------------------------------------------------------------------------------------------
 
 # 肝帝专属---------------------------------------------------------------------------------------------------------------
@@ -180,6 +188,7 @@ class ConfigModel(ConfigBase):
     demon_retreat: DemonRetreat = Field(default_factory=DemonRetreat)
     guild_activity_monitor: GuildActivityMonitor = Field(default_factory=GuildActivityMonitor)
     budokai_tournament: BudokaiTournament = Field(default_factory=BudokaiTournament)
+    xian_shi_yao_yue: XianShiYaoYue = Field(default_factory=XianShiYaoYue)
 
     def __init__(self, config_name: str=None) -> None:
         """
@@ -355,7 +364,15 @@ class ConfigModel(ConfigBase):
 
                 item = {}
                 item["name"] = key
-                item["title"] = _translate_text(value["title"] if "title" in value else inflection.underscore(key))
+                raw_title = value["title"] if "title" in value else inflection.underscore(key)
+                title = _translate_text(raw_title)
+                if title == raw_title and "title" in value:
+                    # pydantic v2 自动生成的 title(如 "Battle Count") 匹配不到翻译键,
+                    # 再用字段名本身(如 "battle_count")兜底翻译一次, 仍失败则保留原 title
+                    key_title = _translate_text(inflection.underscore(key))
+                    if key_title != inflection.underscore(key):
+                        title = key_title
+                item["title"] = title
                 if "description" in value:
                     item["description"] = _translate_text(value["description"])
                 item["default"] = value["default"]

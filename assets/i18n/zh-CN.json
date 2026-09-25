@@ -149,5 +149,13 @@
   "costume_battle_15": "灵狐寄愿",
   "costume_shikigami_12": "拾光之窗",
   "hya_invite_friend_name": "指定好友名称",
-  "hya_invite_friend_name_help": "开启邀请好友后优先邀请该好友"
+  "hya_invite_friend_name_help": "开启邀请好友后优先邀请该好友",
+  "XianShiYaoYue": "现世妖约",
+  "xian_shi_yao_yue_config": "现世妖约设置",
+  "battle_count": "战斗次数",
+  "xy_battle_count_help": "本次运行挑战的战斗场数（活动每日有挑战次数上限）",
+  "buy_blessing": "购买现世祝福",
+  "xy_buy_blessing_help": "进入商店后检测绿框位置，若识别到现世祝福(100勾玉)则自动购买；已购买则自动跳过",
+  "direct_challenge": "直接组队挑战(虚拟定位)",
+  "xy_direct_challenge_help": "开启虚拟定位并定位到活动城市后，可直接点击组队挑战，无需等待"
 }

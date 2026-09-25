@@ -1,0 +1,128 @@
+[
+  {
+    "itemName": "offline_celebration",
+    "imageName": "xy_offline_celebration.png",
+    "roiFront": "1184,379,44,45",
+    "roiBack": "1051,101,210,472",
+    "method": "Template matching",
+    "threshold": 0.75,
+    "description": "庭院右侧线下庆典入口(猫样式一)"
+  },
+  {
+    "itemName": "offline_celebration_2",
+    "imageName": "xy_offline_celebration_2.png",
+    "roiFront": "1176,290,52,60",
+    "roiBack": "1051,101,210,472",
+    "method": "Template matching",
+    "threshold": 0.75,
+    "description": "庭院右侧线下庆典入口(猫样式二)"
+  },
+  {
+    "itemName": "refresh",
+    "imageName": "xy_refresh.png",
+    "roiFront": "1186,523,40,38",
+    "roiBack": "1150,460,130,140",
+    "method": "Template matching",
+    "threshold": 0.75,
+    "description": "右侧活动栏刷新按钮"
+  },
+  {
+    "itemName": "check_activity",
+    "imageName": "xy_check_activity.png",
+    "roiFront": "178,134,160,42",
+    "roiBack": "100,100,400,150",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "活动页检查-挑战地点标签"
+  },
+  {
+    "itemName": "goto_shop",
+    "imageName": "xy_goto_shop.png",
+    "roiFront": "101,291,68,104",
+    "roiBack": "60,250,180,200",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "左侧商店灯笼"
+  },
+  {
+    "itemName": "goto_activity",
+    "imageName": "xy_goto_activity.png",
+    "roiFront": "88,132,92,120",
+    "roiBack": "60,100,180,220",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "左侧活动灯笼-切换回活动页"
+  },
+  {
+    "itemName": "goto_activity_2",
+    "imageName": "xy_goto_activity_2.png",
+    "roiFront": "102,143,81,114",
+    "roiBack": "60,100,180,220",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "左侧活动灯笼-商店页灰暗状态"
+  },
+  {
+    "itemName": "check_shop",
+    "imageName": "xy_check_shop.png",
+    "roiFront": "520,45,270,67",
+    "roiBack": "400,20,500,120",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "现世商店标题检查"
+  },
+  {
+    "itemName": "find_team",
+    "imageName": "xy_find_team.png",
+    "roiFront": "947,557,110,110",
+    "roiBack": "880,500,260,220",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "寻找队伍按钮"
+  },
+  {
+    "itemName": "auto_match",
+    "imageName": "xy_auto_match.png",
+    "roiFront": "701,622,176,61",
+    "roiBack": "640,590,300,110",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "自动匹配按钮"
+  },
+  {
+    "itemName": "challenge",
+    "imageName": "xy_challenge.png",
+    "roiFront": "1160,580,108,96",
+    "roiBack": "1080,530,200,190",
+    "method": "Template matching",
+    "threshold": 0.75,
+    "description": "协战队伍挑战按钮"
+  },
+  {
+    "itemName": "team_challenge",
+    "imageName": "xy_team_challenge.png",
+    "roiFront": "1102,558,96,99",
+    "roiBack": "1040,520,240,200",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "活动页组队挑战按钮(需虚拟定位)"
+  },
+  {
+    "itemName": "create",
+    "imageName": "xy_create_team.png",
+    "roiFront": "578,481,124,60",
+    "roiBack": "430,130,440,460",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "队伍公开权限弹窗-创建按钮"
+  },
+  {
+    "itemName": "queue_close",
+    "imageName": "xy_queue_close.png",
+    "roiFront": "824,20,60,60",
+    "roiBack": "340,5,560,95",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "排队横幅右上角X(排队中标志, 不可点击)"
+  }
+]
