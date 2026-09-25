@@ -256,12 +256,20 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
             # 弹窗与按钮都消失后进入协战队伍等待界面
             logger.info('Direct team challenge')
             click_timer = Timer(20).start()
+            blank_timer = None
             while 1:
                 self.screenshot()
                 team_challenge = self.appear(self.I_XY_TEAM_CHALLENGE)
                 create_popup = self.appear(self.I_XY_CREATE)
                 if not team_challenge and not create_popup:
-                    break
+                    # 注意: 点击后弹窗有淡入过渡期, 过渡帧里两个目标都可能短暂失配,
+                    # 连续3秒都检测不到才判定进入等待界面, 否则继续处理
+                    if blank_timer is None:
+                        blank_timer = Timer(3).start()
+                    if blank_timer.reached():
+                        break
+                    continue
+                blank_timer = None
                 if click_timer.reached():
                     # 点击无响应: 可能挑战次数已用完
                     self._raise_if_count_out()
@@ -317,6 +325,12 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
             # 可能出现的确认弹窗
             if (self.appear_then_click(self.I_UI_CONFIRM, interval=1) or
                     self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1)):
+                continue
+            # 防御: 直接组队挑战的权限弹窗可能因过渡帧竞态残留, 在此兜底关闭
+            if self.appear(self.I_XY_CREATE):
+                self.click(self.C_XY_RADIO_ALL, interval=1)
+                if self.appear_then_click(self.I_XY_CREATE, interval=1.5):
+                    continue
                 continue
             # 匹配失败回到组队界面, 重新点击自动匹配
             if self.appear(self.I_XY_AUTO_MATCH):
