@@ -54,9 +54,6 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
         win_count = 0
         for i in range(total):
             logger.hr(f'XianShiYaoYue battle {i + 1}/{total}', 1)
-            if not self._check_battle_count():
-                logger.warning('No battle count left, stop early')
-                break
             try:
                 if self._round():
                     win_count += 1
@@ -236,13 +233,15 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
     def _battle_count_remain(self) -> int | None:
         """
         返回剩余挑战次数, 识别失败返回 None(视为还有)
+        注意: 界面标签"挑战次数 x/40"中 x 是剩余次数,
+        ocr_digit_counter 会把 x/y 解析为 已用/上限, 所以剩余取 current 而不是 remain
         """
         self.screenshot()
         current, remain, limit = self.O_XY_BATTLE_COUNT.ocr_digit_counter(self.device.image)
         if limit <= 0:
             return None
         logger.info(f'XianShiYaoYue battle count: {current}/{limit}')
-        return remain
+        return current
 
     def _check_battle_count(self) -> bool:
         """
@@ -265,6 +264,11 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
         :return: 是否胜利
         """
         self._ensure_activity_page()
+        # 次数标签只在活动页可见, 必须在 _ensure_activity_page 之后再 OCR
+        # (run() 循环里此时是上一场的结算画面, OCR 必然为空)
+        if not self._check_battle_count():
+            logger.warning('No battle count left, stop early')
+            raise BattleCountOut
         if self.conf.xian_shi_yao_yue_config.direct_challenge:
             # 开启虚拟定位后直接点击组队挑战:
             # 点击后弹出"队伍公开权限"弹窗(弹窗居中, 不遮挡右下角的组队挑战按钮,
