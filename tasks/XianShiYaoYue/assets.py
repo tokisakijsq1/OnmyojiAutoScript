@@ -47,8 +47,8 @@ class XianShiYaoYueAssets:
 	O_XY_BLESSING = RuleOcr(roi=(440,138,230,50), area=(440,138,230,50), mode="Single", method="Default", keyword="现世祝福", name="xy_blessing")
 	# description 活动页挑战次数 38/40
 	O_XY_BATTLE_COUNT = RuleOcr(roi=(990,680,170,32), area=(990,680,170,32), mode="DigitCounter", method="Default", keyword="", name="xy_battle_count")
-	# description 排队横幅人数 前方约有1832排队
-	O_XY_QUEUE = RuleOcr(roi=(440,50,280,48), area=(440,50,280,48), mode="Digit", method="Default", keyword="", name="xy_queue")
+	# description 排队横幅人数 前方约有1832排队(数字位数不定位置浮动, 取整条横幅文本, 任务里自行抽数字)
+	O_XY_QUEUE = RuleOcr(roi=(350,8,460,84), area=(350,8,460,84), mode="Single", method="Default", keyword="", name="xy_queue")
 
 	# Click Rule Assets
 	# description 点击现世祝福卡片

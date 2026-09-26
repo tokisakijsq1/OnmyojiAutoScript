@@ -52,18 +52,27 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
         # 循环战斗
         total = int(self.conf.xian_shi_yao_yue_config.battle_count)
         win_count = 0
+        fail_streak = 0
         for i in range(total):
             logger.hr(f'XianShiYaoYue battle {i + 1}/{total}', 1)
             try:
                 if self._round():
                     win_count += 1
+                    fail_streak = 0
+                else:
+                    # 等待超时被取消恢复的失败轮: 连续多轮失败说明环境异常,
+                    # 抛 GameStuckError 交回调度器重启, 别空转到次数用完
+                    fail_streak += 1
+                    if fail_streak >= 3:
+                        raise GameStuckError('Too many failed rounds')
             except BattleCountOut:
                 logger.warning('Battle count exhausted during round, task complete')
                 break
 
-        # 战斗统计
+        # 战斗统计: 按实际开打的场数算, 配置的 total 是上限不是已打数
         logger.hr('XianShiYaoYue statistics', 1)
-        logger.info(f'Battle count: {total}, Win: {win_count}, Lose: {total - win_count}')
+        played = self.current_count
+        logger.info(f'Battles played: {played}, Win: {win_count}, Lose: {played - win_count}')
 
         # 返回庭院: 先点右上角粉色叉关闭页面(复用 I_UI_BACK_RED), 再点左上角黄色返回
         self._exit_to_main()
@@ -363,24 +372,35 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
                 logger.warning('Match reset, click auto match again')
                 self.click(self.I_XY_AUTO_MATCH, interval=2)
                 continue
-            # 排队横幅: 横幅右上角的X出现即说明排队中(X是取消按钮, 不可点击)
+            # 排队横幅: 横幅右上角的X出现即说明排队中(X平时是取消按钮, 不可点击;
+            # 只在下方整体超时需要撤离时才点它取消排队)
             if self.appear(self.I_XY_QUEUE_CLOSE):
                 if queue_ocr_timer.reached():
                     queue_ocr_timer.reset()
-                    queue = self.O_XY_QUEUE.ocr_digit(self.device.image)
-                    if queue and queue > 0:
-                        if queue != last_queue:
-                            last_queue = queue
-                            queue_change_timer.reset()
-                            logger.info(f'Queuing, {queue} players ahead')
-                        if queue_change_timer.reached():
-                            logger.warning(f'Queue number unchanged for 10 min: {queue}')
-                            queue_change_timer.reset()
+                    # 用原文而不是 ocr_digit: Digit 模式把读空强修成 0、全 0 串强修成 1,
+                    # 且数字位数不定导致固定 roi 频繁读空刷屏; 文本有变化即视为排队有进展
+                    text = self.O_XY_QUEUE.ocr_single_line(self.device.image)
+                    digits = ''.join(ch for ch in text if ch.isdigit())
+                    current = digits if digits else text
+                    if current and current != last_queue:
+                        last_queue = current
+                        queue_change_timer.reset()
+                        logger.info(f'Queuing: {text}')
+                    if last_queue is not None and queue_change_timer.reached():
+                        logger.warning(f'Queue unchanged for 10 min: {last_queue}')
+                        queue_change_timer.reset()
                 # 排队中, 重置整体等待计时, 不触发重启
                 wait_timer = Timer(180).start()
                 continue
             if wait_timer.reached():
-                raise GameStuckError('Waiting match timeout')
+                # 不直接重启: 先查次数(耗尽=任务完成), 再尝试取消排队并恢复到活动页,
+                # 把本轮作为失败轮交回外层循环
+                self._raise_if_count_out()
+                logger.warning('Waiting match timeout, cancel queue and back to activity')
+                if self.appear_then_click(self.I_XY_QUEUE_CLOSE, interval=1):
+                    sleep(1)
+                self._ensure_activity_page()
+                return False
             sleep(0.5)
         # 通用战斗: 准备 -> 战斗 -> 结算
         return self.run_general_battle(config=self.conf.general_battle)
