@@ -272,3 +272,7 @@ console.bat
 .vscode/*
 tasks/AutoCheckinBigGod/frida-server-17.6.2-android-x86_64
 oas.bat
+
+# ZCode 会话本地文件与 Flutter 构建产物（e7366c0d 曾误提交）
+.zcode/
+data/flutter_assets/
