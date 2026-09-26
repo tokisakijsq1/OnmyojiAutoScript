@@ -561,7 +561,8 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             case OcrMode.FULL:  # 全匹配
                 appear = result != (0, 0, 0, 0)
             case OcrMode.SINGLE:
-                appear = result == target.keyword
+                # OCR 结果可能带首尾空白(如 "现世祝福 "), strip 后再比较, 否则全串相等恒失败
+                appear = result.strip() == target.keyword
             case OcrMode.DIGIT:
                 appear = result == int(target.keyword)
             case OcrMode.DIGITCOUNTER:
