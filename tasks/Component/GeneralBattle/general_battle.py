@@ -565,7 +565,9 @@ class GeneralBattle(BattleWait, GeneralBuff):
                 case 2:
                     self.swipe(self.S_BATTLE_RANDOM_RIGHT, interval=20)
             # 重新设置为长战斗
-            # self.device.stuck_record_add('BATTLE_STATUS_S')
+            # 点击/滑动会经 handle_control_check 清空卡死白名单, 必须重新登记,
+            # 否则长战斗 60 秒内无状态匹配会误判 GameStuckError (上游 62533827 的回归)
+            self.device.stuck_record_add('BATTLE_STATUS_S')
         else:
             time.sleep(0.4)  # 这样的好像不对
 

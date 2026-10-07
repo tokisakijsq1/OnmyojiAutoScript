@@ -142,6 +142,15 @@ while 1:
   - 检测到排队横幅 → 重置等待计时，继续等（人数 10 分钟无变化只告警不重启）
   - 横幅消失后才启用有限等待窗（180 秒）
 - 战斗内长等待参考 `GeneralBattle.battle_wait`（stuck_record_add + 定期随机点击）
+- **坑：任何点击/滑动都会经 `handle_control_check` 清空卡死白名单**（2026-10-07
+  契灵之境长战斗反复 GameStuckError 的根因）：`random_click_swipt` 防封随机动作
+  触发一次后，`BATTLE_STATUS_S` 豁免被 `stuck_record_clear()` 抹掉，只剩 60 秒
+  普通计时器；只要战斗剩余时长 > 60 秒且期间没再触发下一次随机动作（约 0.8%/轮，
+  期望间隔一两分钟），就必死——日志特征是 `Waiting for set()`（空集合）+ 随机点击
+  后**正好 60 秒**报错，而错误截图里战斗正常进行。已修：恢复上游 62533827 注释掉的
+  `random_click_swipt` 尾部重新 `stuck_record_add('BATTLE_STATUS_S')`（原注释为
+  "重新设置为长战斗"）。自己写战斗循环时同理：凡循环内有点击动作，每轮点击后都要
+  重新登记长等待豁免
 
 ## 8. 点击无响应的检测与重试
 
