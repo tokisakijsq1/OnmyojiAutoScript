@@ -51,24 +51,31 @@ class GeneralBattle(BattleWait, GeneralBuff):
         else:
             return False
 
-    def ensure_auto_battle(self, timeout: float = 10) -> bool:
+    def ensure_auto_battle(self, timeout: float = 15) -> bool:
         """
-        进入战斗后检查左下角是否为"手动"，如果是则点击切换为"自动"。
-        手动模式下脚本不会自动开始战斗，会一直卡住等待。
+        进入战斗后先等左下角出现 手动/自动 齿轮（齿轮出现即为正式开打），再开始检测。
+        识别到"手动"后延迟 0.5s、重新截图复核仍是"手动"才点击，
+        避免开打瞬间状态抖动导致检测完立刻点击反而切成手动。
         :return: True 表示当前为自动（或成功切换为自动）
         """
         timer = Timer(timeout).start()
         while not timer.reached():
-            # NOTE: 此处不能写 appear(O_BATTLE_HAND, interval) + click(O_BATTLE_HAND, interval)：
-            # appear 与 click 共用同名 interval 计时器，appear 命中即 reset，
-            # 紧跟的 click 永远被同一计时器拦下静默不点（2026-10-04 oas3 切自动失效根因）。
-            # appear_then_click 内部直接 device.click，无此问题
-            if self.appear_then_click(self.O_BATTLE_HAND, interval=1.5):
-                logger.info('Battle is in manual mode, click to switch auto')
+            self.screenshot()
+            # 左下角齿轮（自动或手动）出现才认为正式开始战斗，之前不做任何检测与点击
+            if not (self.appear(self.O_BATTLE_AUTO) or self.appear(self.O_BATTLE_HAND)):
                 continue
             if self.appear(self.O_BATTLE_AUTO):
                 return True
+            # NOTE: 此处不能写 appear(O_BATTLE_HAND, interval) + click(O_BATTLE_HAND, interval)：
+            # appear 与 click 共用同名 interval 计时器，appear 命中即 reset，
+            # 紧跟的 click 永远被同一计时器拦下静默不点（2026-10-04 oas3 切自动失效根因）。
+            time.sleep(0.5)  # 识别到手后延迟 0.5s 再复核，不要检测完立刻点击
             self.screenshot()
+            if not self.appear(self.O_BATTLE_HAND):
+                # 0.5s 后已经不是手动（可能已是自动或界面变化），回循环重新判断
+                continue
+            self.appear_then_click(self.O_BATTLE_HAND)
+            logger.info('Battle is in manual mode, click to switch auto')
         if self.appear(self.O_BATTLE_AUTO):
             return True
         logger.error('Failed to switch battle to auto mode')
