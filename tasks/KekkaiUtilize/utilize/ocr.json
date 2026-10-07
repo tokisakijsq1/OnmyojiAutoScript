@@ -25,5 +25,14 @@
     "method": "Default",
     "keyword": "",
     "description": "斗鱼或太古寄养数目"
+  },
+  {
+    "itemName": "u_friend_name",
+    "roiFront": "240,165,400,440",
+    "roiBack": "240,165,400,440",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "蹭卡好友列表中的好友名称区域"
   }
 ]

@@ -59,7 +59,7 @@ class HyakkiyakouAssets:
 	# description 
 	I_HTITLE = RuleImage(roi_front=(578,21,134,48), roi_back=(578,21,134,48), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_htitle.png")
 	# description 
-	I_HCLOSE_RED = RuleImage(roi_front=(1056,177,54,54), roi_back=(1056,177,54,54), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_hclose_red.png")
+	I_HCLOSE_RED = RuleImage(roi_front=(1053,177,54,54), roi_back=(1044,168,74,72), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_hclose_red.png")
 	# 回归任务 
 	I_ENSURE_RECALL = RuleImage(roi_front=(1060,145,66,62), roi_back=(877,72,307,211), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_ensure_recall.png")
 
@@ -151,11 +151,11 @@ class HyakkiyakouAssets:
 	# description 
 	I_FRIEND_SAME_1 = RuleImage(roi_front=(349,124,83,50), roi_back=(349,124,83,50), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_same_1.png")
 	# description 
-	I_FRIEND_REMOTE_1 = RuleImage(roi_front=(444,127,81,46), roi_back=(444,127,81,46), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_remote_1.png")
+	I_FRIEND_REMOTE_1 = RuleImage(roi_front=(536,127,81,46), roi_back=(528,119,97,60), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_remote_1.png")
 	# description 
 	I_FRIEND_SAME_2 = RuleImage(roi_front=(355,125,80,47), roi_back=(355,125,80,47), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_same_2.png")
 	# description 
-	I_FRIEND_REMOTE_2 = RuleImage(roi_front=(440,122,89,56), roi_back=(440,122,89,56), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_remote_2.png")
+	I_FRIEND_REMOTE_2 = RuleImage(roi_front=(534,122,89,56), roi_back=(522,114,109,72), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_remote_2.png")
 	# 回归活动使用 
 	I_FRIEND_SAME_1_RECALL = RuleImage(roi_front=(137,123,106,62), roi_back=(124,105,132,94), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_same_1.png")
 	# 回归活动使用 
@@ -165,9 +165,9 @@ class HyakkiyakouAssets:
 	# 回归活动使用 
 	I_FRIEND_REMOTE_2_RECALL = RuleImage(roi_front=(226,122,100,56), roi_back=(208,115,131,81), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_remote_2.png")
 	# 寮 
-	I_FRIEND_RYOU_1 = RuleImage(roi_front=(537,126,80,45), roi_back=(537,126,80,45), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_ryou_1.png")
+	I_FRIEND_RYOU_1 = RuleImage(roi_front=(445,126,80,45), roi_back=(437,118,97,60), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_ryou_1.png")
 	# description 
-	I_FRIEND_RYOU_2 = RuleImage(roi_front=(536,127,80,45), roi_back=(536,127,80,45), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_ryou_2.png")
+	I_FRIEND_RYOU_2 = RuleImage(roi_front=(444,127,80,45), roi_back=(436,119,97,60), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_friend_ryou_2.png")
 	# 判断是否进入邀请页面 
 	I_CHECK_INVITATION = RuleImage(roi_front=(629,140,272,57), roi_back=(308,113,826,100), threshold=0.8, method="Template matching", file="./tasks/Hyakkiyakou/hya/hya_check_invitation.png")
 

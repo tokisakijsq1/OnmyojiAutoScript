@@ -85,6 +85,8 @@ class ScriptTask(GameUi, GuildActivityMonitorAssets):
                 self.device.stuck_record_add('PAUSE')
                 stuck_interval.reset()
 
+            self.yield_to_time_critical_tasks()
+
             if check_timer.reached():
                 logger.info("监控时间到，任务结束")
                 raise TaskEnd('GuildActivityMonitor')
@@ -117,6 +119,27 @@ class ScriptTask(GameUi, GuildActivityMonitorAssets):
         self.set_next_run(task='GuildActivityMonitor', success=False, finish=False, server=False,
                           target=datetime.now() + timedelta(minutes=monitor_config.recheck_interval))
         raise TaskEnd('GuildActivityMonitor')
+
+    def yield_to_time_critical_tasks(self):
+        """对弈竞猜下注时刻前后3分钟内让位，避免监控长跑挤掉下注窗口。
+        让位后监控3分钟恢复续跑，而不是等到下个运行日"""
+        try:
+            frog = self.config.model.frog_boss
+            if not frog.scheduler.enable:
+                return
+            nxt = frog.scheduler.next_run
+            now = datetime.now()
+            if not (now - timedelta(minutes=3) <= nxt <= now + timedelta(minutes=3)):
+                return
+            resume = max(nxt, now) + timedelta(minutes=3)
+            logger.info(f'FrogBoss bet window at {nxt}, monitor yields and resumes at {resume}')
+            self.set_next_run(task='GuildActivityMonitor', success=None, finish=False,
+                              server=False, target=resume)
+            raise TaskEnd('GuildActivityMonitor')
+        except TaskEnd:
+            raise
+        except Exception as e:
+            logger.warning(f'yield check error: {e}')
 
     def get_notification_info(self, keywords: list) -> tuple:
         """通过adb读取系统通知，返回最新活动通知的时间戳和关键字"""

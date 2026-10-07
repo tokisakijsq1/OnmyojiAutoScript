@@ -128,6 +128,8 @@ class KekkaiUtilizeAssets:
 	# Image Rule Assets
 	# 太阴6 
 	I_U_MOON_6 = RuleImage(roi_front=(548,194,54,54), roi_back=(540,189,68,404), threshold=0.8, method="Template matching", file="./tasks/KekkaiUtilize/utilize/utilize_u_moon_6.png")
+	# 结界卡已被占用标签 
+	I_U_OCCUPIED = RuleImage(roi_front=(925,255,85,100), roi_back=(900,240,140,140), threshold=0.8, method="Template matching", file="./tasks/KekkaiUtilize/utilize/utilize_u_occupied.png")
 	# description 
 	I_U_MOON_5 = RuleImage(roi_front=(548,205,48,46), roi_back=(540,196,66,407), threshold=0.8, method="Template matching", file="./tasks/KekkaiUtilize/utilize/utilize_u_moon_5.png")
 	# description 
@@ -151,6 +153,8 @@ class KekkaiUtilizeAssets:
 	O_BOX_EXP = RuleOcr(roi=(654,538,179,39), area=(654,538,179,39), mode="DigitCounter", method="Default", keyword="", name="box_exp")
 	# 斗鱼或太古寄养数目 
 	O_CARD_NUM = RuleOcr(roi=(800,421,150,33), area=(800,421,150,33), mode="Single", method="Default", keyword="", name="card_num")
+	# 蹭卡好友列表中的好友名称区域 
+	O_U_FRIEND_NAME = RuleOcr(roi=(240,165,400,440), area=(240,165,400,440), mode="Full", method="Default", keyword="", name="u_friend_name")
 
 
 	# Swipe Rule Assets

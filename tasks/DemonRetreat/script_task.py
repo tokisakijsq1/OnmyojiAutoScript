@@ -10,7 +10,7 @@ from module.logger import logger
 from module.base.timer import Timer
 
 from tasks.GameUi.game_ui import GameUi
-from tasks.GameUi.page import page_main, page_hunt, page_shikigami_records, page_guild
+from tasks.GameUi.page import page_main, page_town, page_hunt, page_shikigami_records, page_guild
 from tasks.Component.GeneralBattle.general_battle import GeneralBattle
 from tasks.Component.GeneralBattle.config_general_battle import GeneralBattleConfig
 from tasks.Component.GeneralInvite.general_invite import GeneralInvite
@@ -18,6 +18,14 @@ from tasks.Component.SwitchSoul.switch_soul import SwitchSoul
 from tasks.DemonRetreat.assets import DemonRetreatAssets
 from tasks.AbyssShadows.assets import AbyssShadowsAssets
 from tasks.DemonRetreat.config import DemonRetreat
+
+# 退治未开启时退避重进的次数与每次间隔。现场（09-26/10-03）：拉起时退治未开启，
+# 客户端停在等待界面且不会自动刷新，原实现在该分支无计数无出口、等待界面的返回箭头
+# 又点不到 I_DEMON_BACK_CHECK，导致每 23s 一轮无限空转，把整个调度器堵死 7 小时以上。
+# 开启窗口为周六 10:00~23:00、由会长/副会长手动开启，拉起时没开大概率是寮还没开，
+# 重进一次确认后即放弃当天（用户指定），之后由寮活动监控检测到开启通知再拉起
+NOT_OPEN_REENTER_COUNT = 2
+NOT_OPEN_REENTER_WAIT = 30
 
 class ScriptTask(GameUi, GeneralBattle, SwitchSoul, DemonRetreatAssets, AbyssShadowsAssets):
 
@@ -103,10 +111,12 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, DemonRetreatAssets, AbyssSha
         进入首领退治
         """
         cfg: DemonRetreat = self.config.demon_retreat
+        self.get_current_page()
         logger.info("Entering demon_retreat")
         self.goto_page(page_guild)
 
         goto_demon_retreat_num = 0
+        not_open_count = 0
         while 1:
             self.screenshot()
             # 进入神社
@@ -140,15 +150,54 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, DemonRetreatAssets, AbyssSha
                 raise TaskEnd
 
             if self.appear(self.I_RANK_LSIT):
-                logger.info("Enter demon_retreat false")
-                sleep(3)
-                if self.appear_then_click(self.I_DEMON_BACK_CHECK, interval=1):
-                    pass
-                sleep(20)
+                # 等待界面还没开启：客户端不会自动刷新开启状态，必须退回庭院重新进。
+                # 连续重进仍未开启则返回 False，交给 run() 的失败路径把 next_run 推到第二天
+                not_open_count += 1
+                if not_open_count >= NOT_OPEN_REENTER_COUNT:
+                    logger.warning(
+                        f"Demon retreat not open after {not_open_count} attempts, give up today")
+                    self._exit_demon_retreat()
+                    self.goto_main()
+                    return False
+                logger.info(
+                    f"Enter demon_retreat false, not open yet, "
+                    f"back to main and re-enter ({not_open_count}/{NOT_OPEN_REENTER_COUNT})")
+                self._exit_demon_retreat()
+                self.goto_main()
+                nap = Timer(NOT_OPEN_REENTER_WAIT).start()
+                while not nap.reached():
+                    self.screenshot()
+                    self.device.stuck_record_clear()
+                self.goto_page(page_guild)
+                continue
             # 超过五次没有进入进入认为失败
             if goto_demon_retreat_num >= 5:
                 break
         return False
+
+    def _exit_demon_retreat(self) -> None:
+        """从首领退治界面退回到已知页面（庭院/寮/町），供未开启退避重进使用。
+
+        等待界面的返回箭头与 I_DEMON_BACK_CHECK 模板不一致（09-26 现场空转 9 分钟
+        一次都没点到），因此依次尝试退治返回键和通用返回链（红叉/黄箭头/蓝箭头），
+        最久 60s，识别到任一已知页面即返回，后续由 goto_page 重新识别并导航；
+        超时则交给 goto_page 兜底（识别不出会抛错走重启，好过无限空转）。
+        """
+        logger.info("Exit demon retreat interface")
+        back_buttons = [self.I_DEMON_BACK_CHECK, self.I_UI_BACK_RED,
+                        self.I_UI_BACK_YELLOW, self.I_UI_BACK_BLUE]
+        back_timer = Timer(60).start()
+        while not back_timer.reached():
+            self.screenshot()
+            for page in (page_main, page_guild, page_town):
+                if self.match_page_once(page):
+                    logger.attr("UI", page.name)
+                    return
+            for back in back_buttons:
+                if self.appear_then_click(back, interval=1.5):
+                    break
+            self.device.stuck_record_clear()
+        logger.warning("Exit demon retreat timeout, fallback to goto_page")
 
     def demon_retreat(self):
         cfg: DemonRetreat = self.config.demon_retreat
@@ -259,6 +308,7 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, DemonRetreatAssets, AbyssSha
     def goto_main(self):
         ''' 保持好习惯，一个任务结束了就返回庭院，方便下一任务的开始或者是出错重启
         '''
+        self.get_current_page()
         logger.info("Exiting DemonRetreat")
         self.goto_page(page_main)
 

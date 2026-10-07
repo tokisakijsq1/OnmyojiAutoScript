@@ -9,6 +9,15 @@
     "description": "太阴6"
   },
   {
+    "itemName": "u_occupied",
+    "imageName": "utilize_u_occupied.png",
+    "roiFront": "925,255,85,100",
+    "roiBack": "900,240,140,140",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "结界卡已被占用标签"
+  },
+  {
     "itemName": "u_moon_5",
     "imageName": "utilize_u_moon_5.png",
     "roiFront": "548,205,48,46",
