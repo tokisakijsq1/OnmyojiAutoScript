@@ -19,6 +19,7 @@ from module.atom.long_click import RuleLongClick
 from module.atom.ocr import RuleOcr
 from module.atom.swipe import RuleSwipe
 from module.base.timer import Timer
+from module.base.utils import random_lognormal_interval
 from module.config.config import Config
 from module.device.device import Device
 from module.exception import ScriptError
@@ -43,6 +44,7 @@ class BaseTask(GlobalGameAssets, CostumeBase):
     limit_time: timedelta = None  # 限制运行的时间，是软时间，不是硬时间
     limit_count: int = None  # 限制运行的次数
     current_count: int = None  # 当前运行的次数
+    humanized_click_delay_enable: bool = True  # 点击前拟人化延迟, 高频点击任务(如百鬼夜行)可关闭
 
     def __init__(self, config: Config, device: Device) -> None:
         """
@@ -225,10 +227,12 @@ class BaseTask(GlobalGameAssets, CostumeBase):
         """
         appear = self.appear(target, interval=interval, threshold=threshold)
         if appear and not action:
+            self._humanized_click_delay()
             x, y = target.coord()
             self.device.click(x, y, control_name=target.name)
 
         elif appear and action:
+            self._humanized_click_delay()
             x, y = action.coord()
             if isinstance(action, RuleLongClick):
                 if duration is None:
@@ -293,9 +297,11 @@ class BaseTask(GlobalGameAssets, CostumeBase):
         appear = self.appear_multi_scale(target, interval=interval, threshold=threshold, scales=scales, scale_range=scale_range)
 
         if appear and not action:
+            self._humanized_click_delay()
             x, y = target.coord()
             self.device.click(x, y, control_name=target.name)
         elif appear and action:
+            self._humanized_click_delay()
             x, y = action.coord()
             if isinstance(action, RuleLongClick):
                 if duration is None:
@@ -348,6 +354,7 @@ class BaseTask(GlobalGameAssets, CostumeBase):
         """
         if not self.wait_until_appear(target, wait_time):
             return False
+        self._humanized_click_delay()
         click_x, click_y = target.coord()
         if action is None:
             self.device.click(click_x, click_y, control_name=target.name)
@@ -504,6 +511,13 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             # logger.info(f'Swipe {swipe.name}')
             self.interval_timer[swipe.name].reset()
 
+    def _humanized_click_delay(self) -> None:
+        """Sleep a small log-normal delay before clicking, so the gap between
+        clicks is right-skewed instead of hitting the interval floor exactly."""
+        if not self.humanized_click_delay_enable:
+            return
+        sleep(random_lognormal_interval(median=0.2, sigma=0.4, floor=0.05, ceil=1.2))
+
     def click(self, click: Union[RuleClick, RuleLongClick, RuleImage, RuleOcr] = None, interval: float = None) -> bool:
         """
         点击或者长按
@@ -526,6 +540,7 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             if not self.interval_timer[click.name].reached():
                 return False
 
+        self._humanized_click_delay()
         x, y = click.coord()
         if isinstance(click, RuleLongClick):
             self.device.long_click(x=x, y=y, duration=click.duration / 1000, control_name=click.name)
@@ -571,7 +586,8 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             case OcrMode.FULL:  # 全匹配
                 appear = result != (0, 0, 0, 0)
             case OcrMode.SINGLE:
-                appear = result == target.keyword
+                # OCR 结果可能带首尾空白(如 "现世祝福 "), strip 后再比较, 否则全串相等恒失败
+                appear = result.strip() == target.keyword
             case OcrMode.DIGIT:
                 appear = result == int(target.keyword)
             case OcrMode.DIGITCOUNTER:
@@ -605,9 +621,11 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             return False
 
         if action:
+            self._humanized_click_delay()
             x, y = action.coord()
             self.click(action, interval)
         else:
+            self._humanized_click_delay()
             x, y = target.coord()
             self.device.click(x=x, y=y, control_name=target.name)
         return True

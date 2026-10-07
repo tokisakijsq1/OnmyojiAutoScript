@@ -28,6 +28,26 @@ def random_normal_distribution_int(a, b, n=3):
         return b
 
 
+def random_lognormal_interval(median: float = 0.2, sigma: float = 0.4,
+                              floor: float = 0.05, ceil: float = 2.0) -> float:
+    """Sample a human-like delay with a log-normal (right-skewed) distribution.
+
+    Human reaction/operation gaps are right-skewed: mostly fast with occasional
+    stalls. A uniform interval reads as machine-like; the log-normal does not.
+
+    Args:
+        median: median of the distribution in seconds.
+        sigma: sigma on the log scale, larger means more jitter.
+        floor: minimum value in seconds.
+        ceil: maximum value in seconds.
+
+    Returns:
+        float: delay in seconds.
+    """
+    t = np.random.lognormal(np.log(median), sigma)
+    return float(min(ceil, max(floor, t)))
+
+
 def random_rectangle_point(area, n=3):
     """Choose a random point in an area.
 
