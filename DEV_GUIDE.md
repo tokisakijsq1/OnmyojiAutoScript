@@ -332,3 +332,37 @@ while 1:
   固定 roi + 阈值 0.8 的模板对动画中间帧尤其敏感。配套原则见第 6/7 节。
 - 相关文件：`tasks/Component/GeneralInvite/general_invite.py`（`check_and_invite`，
   6 个调用点：御魂×2、觉醒、永生之海、朽木之海、羁绊）。
+
+## 17. dev 基线迁移：重放自研修复到新版页面导航体系（2026-10-07）
+
+背景：Tokisaki 分支整体切换到上游 dev（fork/dev `5bc3f6e2`）为新基线，重放本地保留项。
+dev 自 09-18 起整替换了 `tasks/GameUi`（旧 `ui_goto/ui_goto_page/ui_get_current_page/
+ui_page_appear` 已全部删除），本次按"dev 文件为底 + 三方应用本地补丁 / 整体搬文件 + 机械
+换 API"两条路线完成 5 个提交（`1eb248a9..0f2c0739`，64 文件）。
+
+- **新 API 速查**：`ui_goto/ui_goto_page(X)`→`goto_page(X)`；`ui_get_current_page()`→
+  `get_current_page()`（失败返回 None 不抛错）；`ui_page_appear(p, skip_first_screenshot=False)`
+  →`match_page_once(p)`（用当前帧，不再截图）；`self.ui_current = p` 直接删（goto_page 自带
+  两帧识别+Dijkstra 寻路+未知页恢复，超时抛 `GamePageUnknownError`——旧 ui_goto 失败是静默
+  返回，**语义差别要看调用点是否依赖"失败继续"**）。`ui_click/ui_click_until_disappear/
+  ui_get_reward/ui_reward_appear_click` 仍在（移到 base_task.py），不用改。
+- **任务本地页面**：`page.link(button=X, destination=Y)` → `page.connect(Y, X, key="a->b")`
+  （连接方向=从本页出发；key 显式命名）。`Page.check`/`additional` 变为 recognizer 组合器
+  （any_of/all_of）与 `add_enter_success_hooks`。registry 自动扫描 `tasks/*/page.py`，无需
+  登记到门面（现世妖约 page.py 是现成范例）。
+- **手写资产清单（重跑 assets_extract 会洗掉，必须手工补回）**：
+  `tasks/GameUi/assets.py` 尾部的 `O_BATTLE_AUTO`/`O_BATTLE_HAND`（战斗自动/手动 OCR，
+  9236651f 重写时曾丢失导致引用方 AttributeError；ensure_auto_battle 与预设跳过依赖它们）；
+  `tasks/Hyakkiyakou/slave/hya_slave.py:223-` 的 5 条 `O_HYA_*` 是内联定义（跟文件走，不踩雷）。
+  新增资产判断是否会被 assets_extract 洗掉：定义不在任何 image.json/ocr.json 里的都算。
+- **三方应用补丁套路**：`git diff 37a884ef Tokisaki -- <file> | git apply --3way`，hunk 不
+  重叠即干净通过（本次 general_battle/battle_wait/base_task 全干净）；冲突手工并集。本地
+  fork/dev 引用名里的 `/dev:` 会被 MSYS 路径转换吃掉，需要时改用工作区文件或加引号。
+- **验证清单（本次全过）**：迁移文件旧 API 残留 grep=0；资产引用 hasattr 静态核查；
+  20 模块 import 冒烟（toolkit/python.exe，注意脚本要 `sys.path.insert(0, repo)`）；
+  SCHEDULER_PRIORITY 无重复且新旧任务都在；PageRegistry 出边核对；31+10 项 pytest。
+- **FrogBoss 决策**：本地重做版弃用，保留 dev 的 OAS 策略版（枚举 `Oas`，本地配置里的
+  `frog_dashen_specific` 首跑回落默认，需在 GUI 重配）；本地 i18n 的 frog_* 键保留（dev
+  策略枚举值 frog_majority/frog_dashen 正好复用）。
+- 遗留实机验证项：ensure_auto_battle 的 roi 在当前 UI 表现；goto_page 超时抛异常的新语义
+  在各任务的容错路径；对弈竞猜 dev 版全流程。
