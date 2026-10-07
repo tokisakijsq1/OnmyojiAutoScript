@@ -102,6 +102,14 @@ OAS 在其基础上进行了如下优化：
 - [安装教程](https://runhey.github.io/OnmyojiAutoScript-website/docs/user-manual/installation): 保姆式安装手册,多翻翻有惊喜
 - [开发文档](https://runhey.github.io/OnmyojiAutoScript-website/docs/development/preamble): 虽然迭代很多、年久失修，但入门开发必读，具体以源码为准
 
+## 本仓库开发必读（二次开发）
+
+- [DEV_GUIDE.md](./DEV_GUIDE.md): 开发要点与踩坑记录（任务注册清单、翻译两张表、素材规范、导航/弹窗/卡死检测、调试技巧）——**新增任务或改动现有任务前先读**
+- [I18N_GUIDE.md](./I18N_GUIDE.md): 新增配置字段的中文翻译添加指南（两张翻译表缺一不可）
+- 各任务目录下的 `README.md` 记录该任务的特殊流程与注意点；通用组件在 `tasks/Component/`
+
+踩到新的坑、验证出新的做法，开发结束时请补回 [DEV_GUIDE.md](./DEV_GUIDE.md)，让文档随开发持续维护。
+
 ## 鸣谢 Acknowledgements
 
 感谢所有参与到开发/测试中的朋友们

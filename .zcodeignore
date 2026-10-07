@@ -273,13 +273,26 @@ console.bat
 tasks/AutoCheckinBigGod/frida-server-17.6.2-android-x86_64
 oas.bat
 
-# ZCode 会话本地文件与 Flutter 构建产物（e7366c0d 曾误提交）
-.zcode/
-# 保留 flutter_assets 下的清单文件：FontManifest.json 丢失会导致 OASX 图标全部显示为方框
-data/flutter_assets/*
-!data/flutter_assets/FontManifest.json
-!data/flutter_assets/AssetManifest.json
-!data/flutter_assets/AssetManifest.bin
-
-# Per-instance FrogBoss prediction and result history
-data/frog_oas/
+# ===== ↑ 以上同步自 .gitignore（「从 .gitignore 同步」只重写以上部分）=====
+.git/
+.hg/
+.svn/
+node_modules/
+bower_components/
+jspm_packages/
+site-packages/
+coverage/
+lcov-report/
+cmakefiles/
+bazel-*/
+pods/
+deriveddata/
+storybook-static/
+playwright-report/
+test-results/
+allure-results/
+allure-report/
+cdk.out/
+*.dist-info/
+# ----- ↑ 以上为 ZCode 默认排除规则（自定义规则请写在本行下方，不会被同步/恢复改动）-----
+# 自定义规则写在下方（本行提示可删除）
