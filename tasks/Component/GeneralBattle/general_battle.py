@@ -10,6 +10,7 @@ import cv2
 from module.base.timer import Timer
 
 from module.base.utils import get_color, color_similar
+from module.exception import GameStuckError
 from tasks.base_task import BaseTask
 from tasks.Component.GeneralBattle.config_general_battle import GreenMarkType, GreenMarkEnum, GeneralBattleConfig
 from tasks.Component.GeneralBattle.assets import GeneralBattleAssets
@@ -50,6 +51,29 @@ class GeneralBattle(BattleWait, GeneralBuff):
         else:
             return False
 
+    def ensure_auto_battle(self, timeout: float = 10) -> bool:
+        """
+        进入战斗后检查左下角是否为"手动"，如果是则点击切换为"自动"。
+        手动模式下脚本不会自动开始战斗，会一直卡住等待。
+        :return: True 表示当前为自动（或成功切换为自动）
+        """
+        timer = Timer(timeout).start()
+        while not timer.reached():
+            # NOTE: 此处不能写 appear(O_BATTLE_HAND, interval) + click(O_BATTLE_HAND, interval)：
+            # appear 与 click 共用同名 interval 计时器，appear 命中即 reset，
+            # 紧跟的 click 永远被同一计时器拦下静默不点（2026-10-04 oas3 切自动失效根因）。
+            # appear_then_click 内部直接 device.click，无此问题
+            if self.appear_then_click(self.O_BATTLE_HAND, interval=1.5):
+                logger.info('Battle is in manual mode, click to switch auto')
+                continue
+            if self.appear(self.O_BATTLE_AUTO):
+                return True
+            self.screenshot()
+        if self.appear(self.O_BATTLE_AUTO):
+            return True
+        logger.error('Failed to switch battle to auto mode')
+        raise GameStuckError('Battle is in manual mode and switch to auto failed')
+
     def battle_before(self, buff: BuffClass | list[BuffClass], config: GeneralBattleConfig, timeout: float = 5) -> bool:
         """战斗前设置
         :return: True:进入战斗或点击了准备按钮且识别不到准备按钮了 False:超过timeout s还没有进入战斗且没有点击过准备
@@ -59,6 +83,7 @@ class GeneralBattle(BattleWait, GeneralBuff):
         while not timeout_timer.reached():
             self.screenshot()
             if self.is_in_real_battle(False):  # 战斗阶段
+                self.ensure_auto_battle()
                 return True
             if self.appear_then_click(self.I_DISABLE_7DAYS_DIFF_SOUL, interval=0.6):  # 关闭御魂不一致提示
                 continue
@@ -198,6 +223,10 @@ class GeneralBattle(BattleWait, GeneralBuff):
             if self.appear(self.I_REWARD_GOLD, threshold=0.8):
                 win = True
                 break
+            # 结算弹窗(如重复奖励转换)可能在胜利/奖励判定出现前就弹出并挡住判定,
+            # 必须在每个等待循环里都处理, 否则第一循环会空转到卡死
+            if self._hook_special_reward():
+                continue
             # 如果开启战斗过程随机滑动
             if random_click_swipt_enable:
                 self.random_click_swipt()
@@ -210,6 +239,9 @@ class GeneralBattle(BattleWait, GeneralBuff):
                 # 点击赢了
                 action_click = random.choice([self.C_WIN_1, self.C_WIN_2, self.C_WIN_3])
                 if self.appear_then_click(self.I_WIN, action=action_click, interval=0.5):
+                    continue
+                # 结算过程可能弹出奖励转换等确认弹窗, 挡住胜利界面导致 I_WIN 连点超限
+                if self._hook_special_reward():
                     continue
                 if not self.appear(self.I_WIN):
                     break
@@ -279,6 +311,9 @@ class GeneralBattle(BattleWait, GeneralBuff):
                 logger.warning('False battle')
                 self.ui_click_until_disappear(self.I_FALSE)
                 return False
+            # 结算弹窗可能在胜利/奖励判定出现前就弹出并挡住判定
+            if self._hook_special_reward():
+                continue
             appear_ghost, appear_reward, appear_gold = (
                 self.appear(self.I_GREED_GHOST),
                 self.appear(self.I_REWARD),
@@ -404,9 +439,21 @@ class GeneralBattle(BattleWait, GeneralBuff):
             return None
 
         logger.info("Preset is enable")
+        # 挑战类战斗没有准备阶段，点挑战后直接开战。战斗开始后左下角预设按钮的位置
+        # 会变成手动/自动切换按钮，OCR 永远读不到'预设'，此循环必须能退出，
+        # 否则无点击死循环 60 秒触发 GameStuckError（2026-09-26 悬赏式神挑战卡死重启的根因）
+        preset_timer = Timer(15).start()
         # 点击预设按钮
         while 1:
             self.screenshot()
+            if preset_timer.reached():
+                logger.warning('Preset button not found in 15s, skip preset team')
+                return
+            # 战斗已经开打（左下角是手动/自动切换按钮），预设无法进行，
+            # 直接返回让 battle_before 走 ensure_auto_battle 切回自动
+            if self.appear(self.O_BATTLE_HAND) or self.appear(self.O_BATTLE_AUTO):
+                logger.warning('Battle already started, skip preset team')
+                return
 
             if self.appear(self.I_PRESET_ENSURE):
                 break

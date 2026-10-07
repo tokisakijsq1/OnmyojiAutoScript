@@ -219,8 +219,15 @@ class GameUiAssets:
 
 
 	# List Rule Assets
-	# 活动列表页爬塔活动文字 
-	L_ACT_LIST_OCR = RuleList(folder="./tasks/GameUi/page", direction="vertical", mode="ocr", roi_back=(50,123,49,553), size=(45, 69), 
+	# 活动列表页爬塔活动文字
+	L_ACT_LIST_OCR = RuleList(folder="./tasks/GameUi/page", direction="vertical", mode="ocr", roi_back=(50,123,49,553), size=(45, 69),
 					 array=["版本"])
+
+	# Ocr Rule Assets —— 手写规则, 不在 image.json/ocr.json 里, 重跑 assets_extract 会洗掉, 必须手工补回
+	# (GameUi 9236651f 重写时丢失过, 导致 ensure_auto_battle 等引用方 AttributeError)
+	# 战斗界面自动标识
+	O_BATTLE_AUTO = RuleOcr(roi=(37,642,51,36), area=(0,589,133,128), mode="Single", method="Default", keyword="自动", name="battle_auto")
+	# 战斗页面手动标志
+	O_BATTLE_HAND = RuleOcr(roi=(35,644,52,34), area=(0,589,136,129), mode="Single", method="Default", keyword="手动", name="battle_hand")
 
 

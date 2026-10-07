@@ -1598,7 +1598,7 @@ class BattleWait(BaseTask, GeneralBattleAssets):
 
 
     # ------------------------------------------------------------------------------------------------------------------
-    def battle_wait_with_strategy(self, *args, **kwargs) -> bool:
+    def battle_wait_with_strategy(self, *args, battle_wait_plan=None, options=None, **kwargs) -> bool:
         """
         理解 event + strategy 概念： 把战斗过程抽象为一系列触发事件以及对应的实现函数，也称hook。
         event + strategy 拼成了一个hook, 一个 event 在一次战斗过程中只能挂载一个 strategy
@@ -1623,7 +1623,10 @@ class BattleWait(BaseTask, GeneralBattleAssets):
         三种自定义策略方法见 battle_wait_strategy 的 docstring。
         自定义options方法见 battle_wait_options 的 docstring
         """
-        battle_wait_plan = kwargs.get('battle_wait_plan')
+        # 装饰器以关键字传入 battle_wait_plan；旧的转发式 battle_wait(*args, **kwargs)
+        # 接不住这个关键字，所以这里显式声明。options 由 runtime 持有，此处仅接收以免 TypeError
+        if battle_wait_plan is None:
+            battle_wait_plan = kwargs.get('battle_wait_plan')
         if battle_wait_plan is None:
             battle_wait_plan = BattleWaitPlan()
 
