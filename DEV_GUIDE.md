@@ -259,7 +259,9 @@ while 1:
   两个工作分支是 `fork/dev`（上游 dev 镜像，只 fetch 不 push）和
   `fork/Tokisaki-dev`（本地 `Tokisaki-dev` 的远程，跟踪关系已修正为
   `Tokisaki-dev -> fork/Tokisaki-dev`）。推送一律 `git push fork Tokisaki-dev`，
-  写 `HEAD:dev` 是错的
+  写 `HEAD:dev` 是错的。本地已装 `.git/hooks/pre-push` 钩子：向任何远程的
+  dev/master 推送都会被直接拒绝并提示正确命令，误推从机制上杜绝
+  （注意：hooks 不随仓库同步，重装/换机后需按 `.git/hooks/pre-push` 重建）
 - **改动必须先 commit**：`update_tokisaki.bat` 更新时要做 rebase，未提交的改动会挡住
 - 用户手工改动过的文件（如 `tasks/Hyakkiyakou/*`）提交时注意区分，不要混入无关变更
 - 推送报 `TLS connect error: unexpected eof`（schannel + 7890 代理）时加
