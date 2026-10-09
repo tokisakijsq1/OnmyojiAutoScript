@@ -209,11 +209,11 @@ while 1:
   `GeneralBattle.ensure_auto_battle()` = `wait_real_battle()`（等左下角齿轮出现，
   齿轮出现才算正式开打，返回 bool 不抛异常）+ 切换自动（识别"手动"后延迟 0.5s 复核再点，
   失败抛 `GameStuckError`）。全仓只有这一处实现。
-  不走 `run_general_battle` 的自写战斗流程必须自己显式调用，已接入的有：
-  斗技 `Duel.wait_battle`（原来的 `ui_click(O_D_HAND, O_D_AUTO)` 是 OCR 命中即点且只试一次，
-  已替换，`O_D_HAND`/`O_D_AUTO` 资产保留但不再使用）、
+  不走 `run_general_battle` 且自身没有切自动的自写战斗流程要显式调用，已接入的有：
   首领退治 `DemonRetreat`（点准备循环结束后调用）、
   道馆 `Dokan` 的 `dokan_battle_1` 与 `dokan_battle`（等准备按钮出现后调用）。
+  斗技 `Duel.wait_battle` 保持 dev 原生的 `ui_click(O_D_HAND, O_D_AUTO)` 不动，
+  不接入本模块，避免和上游 dev rebase 时冲突。
   新写战斗流程时直接调 `self.ensure_auto_battle()`，不要再复制一套 OCR 点击
 - **坑：切自动必须等左下角齿轮出现（正式开打）再检测，且识别到"手动"后延迟复核再点**
   （2026-10-07 用户实机反馈"有时乱点反而切成手动"的根因）：开打瞬间界面仍在过渡，

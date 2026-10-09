@@ -191,10 +191,7 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, DuelAssets, SwitchOnmyoji):
                 self.duel_exit_battle()
                 continue
             if ret is None and not battle_operated:  # 进行战斗前的操作
-                # 统一走 GeneralBattle 的切自动模块：等左下角齿轮出现（正式开打）再检测，
-                # 识别到"手动"后延迟 0.5s 复核再点。原来的 ui_click(O_D_HAND, O_D_AUTO)
-                # 是 OCR 命中即点、且只尝试一次，开打瞬间状态抖动会反切成手动
-                self.ensure_auto_battle()
+                self.ui_click(self.O_D_HAND, self.O_D_AUTO, interval=0.8)
                 self.green_mark(self.conf.duel_config.green_enable, self.conf.duel_config.green_mark)
                 battle_operated = True
                 self.reset_device('BATTLE_STATUS_S')
