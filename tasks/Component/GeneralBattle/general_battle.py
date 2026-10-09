@@ -51,24 +51,37 @@ class GeneralBattle(BattleWait, GeneralBuff):
         else:
             return False
 
-    def ensure_auto_battle(self, timeout: float = 15) -> bool:
+    def wait_real_battle(self, timeout: float = 15) -> bool:
         """
-        进入战斗后先等左下角出现 手动/自动 齿轮（齿轮出现即为正式开打），再开始检测。
-        识别到"手动"后延迟 0.5s、重新截图复核仍是"手动"才点击，
-        避免开打瞬间状态抖动导致检测完立刻点击反而切成手动。
-        :return: True 表示当前为自动（或成功切换为自动）
+        检测战斗过程：等待左下角出现 手动/自动 齿轮，齿轮出现即为正式开始战斗。
+        与 is_in_real_battle（战斗信息图标）不同，齿轮只在正式开打后才渲染，
+        点准备后的过渡期、准备界面都不会命中。
+        :return: True 齿轮已出现（正式开打）；False 超时仍未出现
         """
         timer = Timer(timeout).start()
         while not timer.reached():
             self.screenshot()
+            if self.appear(self.O_BATTLE_AUTO) or self.appear(self.O_BATTLE_HAND):
+                return True
+        return False
+
+    def ensure_auto_battle(self, timeout: float = 15) -> bool:
+        """
+        切自动模块 = 检测战斗过程（wait_real_battle 等齿轮出现）+ 切换自动。
+        识别到"手动"后延迟 0.5s、重新截图复核仍是"手动"才点击，
+        避免开打瞬间状态抖动导致检测完立刻点击反而切成手动。
+        :return: True 表示当前为自动（或成功切换为自动）
+        """
+        # NOTE: 此处不能写 appear(O_BATTLE_HAND, interval) + click(O_BATTLE_HAND, interval)：
+        # appear 与 click 共用同名 interval 计时器，appear 命中即 reset，
+        # 紧跟的 click 永远被同一计时器拦下静默不点（2026-10-04 oas3 切自动失效根因）。
+        timer = Timer(timeout).start()
+        while not timer.reached():
             # 左下角齿轮（自动或手动）出现才认为正式开始战斗，之前不做任何检测与点击
-            if not (self.appear(self.O_BATTLE_AUTO) or self.appear(self.O_BATTLE_HAND)):
-                continue
+            if not self.wait_real_battle(timeout=timer.limit - timer.current()):
+                break
             if self.appear(self.O_BATTLE_AUTO):
                 return True
-            # NOTE: 此处不能写 appear(O_BATTLE_HAND, interval) + click(O_BATTLE_HAND, interval)：
-            # appear 与 click 共用同名 interval 计时器，appear 命中即 reset，
-            # 紧跟的 click 永远被同一计时器拦下静默不点（2026-10-04 oas3 切自动失效根因）。
             time.sleep(0.5)  # 识别到手后延迟 0.5s 再复核，不要检测完立刻点击
             self.screenshot()
             if not self.appear(self.O_BATTLE_HAND):

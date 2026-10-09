@@ -205,6 +205,16 @@ while 1:
   已开打"的守卫检测（准备界面必然读空），不是切自动。
   已修：点到 `I_PREPARE_HIGHLIGHT` 后立即调 `ensure_auto_battle` 再返回；循环超时退出前
   再兜底调一次（锁定阵容由游戏自动点准备、或准备按钮没识别到时走这条）
+- **切自动是一个模块，不要各写各的**（2026-10-09 全仓盘点后收拢）：
+  `GeneralBattle.ensure_auto_battle()` = `wait_real_battle()`（等左下角齿轮出现，
+  齿轮出现才算正式开打，返回 bool 不抛异常）+ 切换自动（识别"手动"后延迟 0.5s 复核再点，
+  失败抛 `GameStuckError`）。全仓只有这一处实现。
+  不走 `run_general_battle` 的自写战斗流程必须自己显式调用，已接入的有：
+  斗技 `Duel.wait_battle`（原来的 `ui_click(O_D_HAND, O_D_AUTO)` 是 OCR 命中即点且只试一次，
+  已替换，`O_D_HAND`/`O_D_AUTO` 资产保留但不再使用）、
+  首领退治 `DemonRetreat`（点准备循环结束后调用）、
+  道馆 `Dokan` 的 `dokan_battle_1` 与 `dokan_battle`（等准备按钮出现后调用）。
+  新写战斗流程时直接调 `self.ensure_auto_battle()`，不要再复制一套 OCR 点击
 - **坑：切自动必须等左下角齿轮出现（正式开打）再检测，且识别到"手动"后延迟复核再点**
   （2026-10-07 用户实机反馈"有时乱点反而切成手动"的根因）：开打瞬间界面仍在过渡，
   OCR 可能在一帧里读到"手动"，检测完立刻点击时游戏状态已变化（或点击落在过渡动画上），

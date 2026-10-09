@@ -257,6 +257,9 @@ class ScriptTask(GameUi, GeneralBattle, SwitchSoul, DemonRetreatAssets, AbyssSha
             # 照顾一下某些模拟器慢的
             sleep(0.1)
 
+        # 等左下角齿轮出现（正式开打）再切自动，识别到"手动"延迟 0.5s 复核再点
+        self.ensure_auto_battle()
+
         # 绿标
         self.wait_until_disappear(self.I_BUFF)
         if self.is_in_battle(False):

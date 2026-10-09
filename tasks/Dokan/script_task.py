@@ -340,6 +340,9 @@ class ScriptTask(ExtendGreenMark, GameUi, SwitchSoul, DokanSceneDetector):
 
         # 等待准备按钮的出现
         self.wait_until_appear(self.I_PREPARE_HIGHLIGHT)
+        # 点准备后等左下角齿轮出现（正式开打）再切自动；模块内部自带等待，
+        # 识别到"手动"延迟 0.5s 复核再点，开打瞬间不会反切
+        self.ensure_auto_battle()
 
         while count >= 0:
             self.screenshot()
@@ -1022,6 +1025,8 @@ class ScriptTask(ExtendGreenMark, GameUi, SwitchSoul, DokanSceneDetector):
 
         # 等待准备按钮的出现
         self.wait_until_appear(self.I_PREPARE_HIGHLIGHT)
+        # 点准备后等左下角齿轮出现（正式开打）再切自动，识别到"手动"延迟 0.5s 复核再点
+        self.ensure_auto_battle()
 
         # 战斗刚开始，需要添加绿标
         need_green_mark = battle_config.green_enable
