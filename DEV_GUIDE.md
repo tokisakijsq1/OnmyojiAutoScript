@@ -293,24 +293,14 @@ while 1:
   单模板得分上限约 0.85，0.8 太贴边；战斗地图截图误报上限仅 0.34，余量充足）。
   弹窗内目标区域已封印 → 点空白(360,300)关弹窗、跳过该区域；全部封印 → 抛
   AbyssShadowsAllSealed，run() 捕获后按 success=True 结束并排期到下个狭间日
-- **战斗计数必须如实上报**：`run_general_fight`/`run_elite_fight`/`run_boss_fight`/
-  `click_emeny_area` 必须返回"本轮是否真的发生了战斗"——次数已满、点击 3 次无响应
-  （目标已死）都要返回 False，绝不能虚报成功。虚报会误导上层调度（见下一条），
-  也曾是 oas1 只打 1 个 boss 就宣告完成的帮凶
-- **"找不到目标"必须区分"本区域打完"和"全部打完"**（2026-10-09 oas1 实机踩坑）：
-  旧 `fight_and_switch` 在 `find_enemy` 返回 False 时直接 return（本该切区域继续找），
-  而旧判定"当前区域 == LEOPARD 才允许切"又把神龙区打完一个 boss 后的换区堵死——
-  两个 bug 叠加成"打 1 个 boss 后全部区域被判封印，任务提前成功结束"。
-  重写后的 `fight_all_areas` 不再按次数驱动，而是**区域扫尾制**：当前区域三类目标
-  各打到"找不到"为止 → 次数打满才算完成 → 否则 `switch_area()` 换下一个未封印区域
-  （全封印抛 AbyssShadowsAllSealed）。find_enemy 返回 False 只是"本区域这类没了"的信号，
-  永远不等于任务结束
+- **战斗计数必须如实上报**：`run_general_fight`/`run_elite_fight` 原来无条件 return True，
+  目标全灭（点击 3 次无响应）时虚增计数掩盖"都击破"状态，导致流程继续切区域空转。
+  点击 3 次进不去 = 目标已死，此时应返回 False 让上层走"剩余目标不足→成功结束"路径
 - **select_boss 的弹窗指示器不能只认一个入口**：原来只认 I_ABYSS_DRAGON，神龙封印后
-  弹窗里神龙书不匹配 → 截图空转。改为"任一入口书籍可见或封印印记可见"，且目标区域
-  书籍不可见时先查 `_entrance_appear` 再决定点不点，避免对已封印区域盲点坐标
-- **切区域/选区域循环都要有边界**：change_area/select_boss 挂 Timer(120) 超时抛
-  GameStuckError、更换领域按钮点击计数 ≥5 抛 GameStuckError——任何"点了没反应"的
-  状态都必须有退出路径，否则 GameTooManyClickError 只是晚到一步
+  弹窗里神龙书不匹配 → 截图空转。改为"任一入口书籍可见或封印印记可见"
+- **切区域/选区域循环都要有边界**：change_area 挂 Timer(120) 超时抛 GameStuckError、
+  更换领域按钮点击计数 ≥5 抛 GameStuckError——任何"点了没反应"的状态都必须有退出路径，
+  否则 GameTooManyClickError 只是晚到一步
 
 ## 14. 对弈竞猜：活动改版模板失效与防重启时间驱动设计（2026-10-01）
 
