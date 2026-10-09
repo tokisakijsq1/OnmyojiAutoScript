@@ -290,11 +290,23 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
 
                 if self.appear(self.I_EXP_EXTRACT):
                     # 如果达到今日领取的最大，就不领取了
-                    cur, res, totol = self.O_BOX_EXP.ocr(self.device.image)
-                    if cur == res == totol == 0:
+                    # 界面是 "48000/40000+8000"（已领/基础上限+溢出加成）。
+                    # DigitCounter 的后处理会丢掉加号，把上限和溢出拼成一个数，
+                    # 所以这里直接识别裁剪区域，满额只看已领是否达到基础上限
+                    crop = self.O_BOX_EXP.crop(self.device.image, self.O_BOX_EXP.roi)
+                    raw, score = self.O_BOX_EXP.model.ocr_single_line(crop)
+                    logger.info(f'Exp box ocr: {raw} ({score:.2f})')
+                    if score < self.O_BOX_EXP.min_score:
                         continue
-                    if cur == totol and cur + res == totol:
-                        logger.info('Exp box reach max do not collect')
+                    match = re.search(r'(\d+)\s*/\s*(\d+)', raw)
+                    if not match:
+                        logger.warning(f'Exp box ocr unexpected: {raw}')
+                        continue
+                    cur, total = int(match.group(1)), int(match.group(2))
+                    if total > 0 and cur >= total:
+                        logger.info(f'Exp box reach max do not collect: {cur}/{total}')
+                        # 今日已领满，先关掉酒壶弹窗再回结界，否则会继续点提取
+                        self.appear_then_click(self.I_UI_BACK_RED, interval=1)
                         break
                 if self.appear_then_click(self.I_BOX_EXP, threshold=0.6, interval=1):
                     continue

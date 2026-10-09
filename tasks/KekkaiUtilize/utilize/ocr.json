@@ -10,8 +10,8 @@
   },
   {
     "itemName": "box_exp",
-    "roiFront": "654,538,179,39",
-    "roiBack": "654,538,179,39",
+    "roiFront": "600,538,260,39",
+    "roiBack": "600,538,260,39",
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
