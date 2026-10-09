@@ -104,11 +104,18 @@ class GeneralBattle(BattleWait, GeneralBuff):
                         confed = True
                     # 点击准备(锁定阵容自动点准备,不锁定阵容前面也已经配置完毕需要点准备)
                     if self.appear_then_click(self.I_PREPARE_HIGHLIGHT, interval=0.8):
-                        continue
+                        # 点准备后到正式开打之间 is_in_prepare/is_in_real_battle 都不成立，
+                        # 循环只会空转到超时，切自动检测必须在这里显式触发
+                        # （2026-10-09 结界突破实测：点准备后一直没有切自动检测）
+                        self.ensure_auto_battle()
+                        return True
                 continue
             # 未知界面, 既不是准备界面也不是战斗界面
             # logger.info('Wait for preparation page')  # 这玩意刷屏
             sleep(random.uniform(0.4, 0.8))
+        # 超时退出前补一次：锁定阵容由游戏自动点准备、或准备按钮识别失败时，
+        # 上面的点击分支不会走到，这里兜底等齿轮出现再切自动
+        self.ensure_auto_battle()
         return False
 
     def run_general_battle_back(self, config: GeneralBattleConfig = None, exit_four: bool = False) -> bool:
