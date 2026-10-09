@@ -255,8 +255,15 @@ while 1:
 ## 12. Git 工作流注意事项
 
 - 分支 `Tokisaki` 跟踪 `fork/Tokisaki`（origin 是作者的 gitcode，不要动）
+- **`dev` 是上游作者的分支，绝不能往上面推任何东西**（2026-10-09 误推已强制撤回）：
+  两个工作分支是 `fork/dev`（上游 dev 镜像，只 fetch 不 push）和
+  `fork/Tokisaki-dev`（本地 `Tokisaki-dev` 的远程，跟踪关系已修正为
+  `Tokisaki-dev -> fork/Tokisaki-dev`）。推送一律 `git push fork Tokisaki-dev`，
+  写 `HEAD:dev` 是错的
 - **改动必须先 commit**：`update_tokisaki.bat` 更新时要做 rebase，未提交的改动会挡住
 - 用户手工改动过的文件（如 `tasks/Hyakkiyakou/*`）提交时注意区分，不要混入无关变更
+- 推送报 `TLS connect error: unexpected eof`（schannel + 7890 代理）时加
+  `-c http.sslBackend=openssl`；curl 正常而 git 报错即此症状
 
 ---
 
