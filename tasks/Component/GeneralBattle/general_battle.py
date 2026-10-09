@@ -117,6 +117,18 @@ class GeneralBattle(BattleWait, GeneralBuff):
                         confed = True
                     # 点击准备(锁定阵容自动点准备,不锁定阵容前面也已经配置完毕需要点准备)
                     if self.appear_then_click(self.I_PREPARE_HIGHLIGHT, interval=0.8):
+                        # 点击可能落空(网络/动画吞掉点击)仍停留在准备界面，此时 is_in_prepare 与
+                        # is_in_real_battle 都不成立，上面的分支不会重试，只能空转到超时被判定卡死
+                        # （2026-10-09 逢魔小怪实测：卡死截图里准备按钮明明还在，代码却认为已点过）
+                        # 等一小段时间确认按钮消失（点击生效）或重新出现（点击落空需重试）
+                        confirm_timer = Timer(3).start()
+                        while not confirm_timer.reached():
+                            self.screenshot()
+                            if not self.is_in_prepare(False):  # 已离开准备界面(进入战斗/过渡动画)
+                                break
+                            if self.appear(self.I_PREPARE_HIGHLIGHT):
+                                # 按钮重新可点，再点一次
+                                self.appear_then_click(self.I_PREPARE_HIGHLIGHT, interval=0.8)
                         # 点准备后到正式开打之间 is_in_prepare/is_in_real_battle 都不成立，
                         # 循环只会空转到超时，切自动检测必须在这里显式触发
                         # （2026-10-09 结界突破实测：点准备后一直没有切自动检测）
