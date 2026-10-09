@@ -410,3 +410,16 @@ ui_page_appear` 已全部删除），本次按"dev 文件为底 + 三方应用�
   策略枚举值 frog_majority/frog_dashen 正好复用）。
 - 遗留实机验证项：ensure_auto_battle 的 roi 在当前 UI 表现；goto_page 超时抛异常的新语义
   在各任务的容错路径；对弈竞猜 dev 版全流程。
+
+## 18. 通用战斗：点准备可能落空，必须验证点击生效再认定进入战斗（2026-10-09）
+
+- **现象**：逢魔小怪（DemonEncounter `_battle` → `run_general_battle`）卡在准备界面，日志里
+  BATTLE_AUTO/BATTLE_HAND OCR 空转 8 秒后报 "Battle is in manual mode and switch to auto failed"，
+  卡死截图里右下角准备按钮（I_PREPARE_HIGHLIGHT 匹配 0.94）明明还在。
+- **根因**：`battle_before` 里 `appear_then_click(I_PREPARE_HIGHLIGHT)` 命中后**不验证点击是否
+  生效**，直接认为"已点过准备"并触发 `ensure_auto_battle`。点击被游戏吞掉（网络/动画落点偏移）
+  时仍停在准备界面：左下角是预设按钮，OCR 读不到"手动/自动"，15 秒超时 → GameStuckError。
+- **修复**：点准备后等最多 3 秒，`is_in_prepare` 持续为真且准备按钮重新可点则重试点击；
+  离开准备界面（过渡动画/开打）才退出确认循环。c84da812。
+- **通用教训**：任何 `appear_then_click` 之后如果后续状态机把"点过"当"生效"，都要补一次
+  状态回读验证——准备按钮、确认弹窗、领奖按钮这类点击落空后无报错只留原界面的，尤其要验。
