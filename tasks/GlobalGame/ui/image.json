@@ -2,8 +2,8 @@
   {
     "itemName": "ui_confirm",
     "imageName": "ui_ui_confirm.png",
-    "roiFront": "667,398,179,66",
-    "roiBack": "667,398,179,66",
+    "roiFront": "664,407,180,65",
+    "roiBack": "624,387,260,105",
     "method": "Template matching",
     "threshold": 0.8,
     "description": "长一点的确认"
