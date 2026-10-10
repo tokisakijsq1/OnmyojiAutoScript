@@ -45,6 +45,10 @@ class ActivityShikigamiAssets:
 	I_HOME_EXIT = RuleImage(roi_front=(94,19,40,38), roi_back=(0,0,250,100), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_home_exit.png")
 	# 2026-10 活动地图页左上角回退箭头(未知页面恢复用)
 	I_BACK_ARROW = RuleImage(roi_front=(28,22,34,35), roi_back=(0,0,200,100), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_back_arrow.png")
+	# 2026-10 地图页顶部正中"磐长故地"标题(退出链判据; roi_back限顶部中段, 备战页左上同款标题在x<400不会误判)
+	I_CHECK_BATTLE_MAP = RuleImage(roi_front=(592,4,137,33), roi_back=(400,0,480,60), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_map.png")
+	# 2026-10 活动主页左上"拾此一瞬"标题(退出链判据)
+	I_CHECK_ACT_MAIN = RuleImage(roi_front=(146,15,141,40), roi_back=(0,0,500,80), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_act_main.png")
 	# 右上跳过按钮 
 	I_SKIP_BUTTON = RuleImage(roi_front=(1159,37,51,22), roi_back=(1141,27,86,43), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_skip_button.png")
 	# 红色退出 

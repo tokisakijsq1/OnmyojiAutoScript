@@ -160,7 +160,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 method_func = getattr(self, f'_run_{climb_type}')
                 method_func()
             except LimitCountOut as e:
-                self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=2.8)
+                self.exit_activity()
             except LimitTimeOut as e:
                 break
             finally:
@@ -251,7 +251,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             if self.start_battle():
                 continue
 
-        self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=4.5)
+        self.exit_activity()
 
     def _run_ap(self):
         """
@@ -411,6 +411,28 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             logger.info(f'Lock {self.climb_type} team (blind toggle)')
             self.click(self.I_LOCK, interval=1)
         logger.warning('lock_team: toggle state not confirmed after 3 tries, continue anyway')
+
+    def exit_activity(self):
+        """
+        2026-10 改版退出链 (确定性走层, 不依赖页面导航):
+        备战页 --back_yellow--> 地图页(I_CHECK_BATTLE_MAP) --I_BACK_ARROW--> 活动主页(I_CHECK_ACT_MAIN) --back_yellow--> 庭院(I_CHECK_MAIN)
+        """
+        logger.hr('Exit climb activity', 2)
+        for _ in range(8):
+            self.screenshot()
+            if self.appear(self.I_CHECK_MAIN):
+                logger.info('Arrived main page')
+                return
+            if self.appear(self.I_CHECK_ACT_MAIN):
+                self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5)
+                continue
+            if self.appear(self.I_CHECK_BATTLE_MAP):
+                self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+                continue
+            # 其余层(备战页等): 左上黄色返回, 没有则试回退箭头
+            if not self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5):
+                self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+        logger.warning('exit_activity: main page not confirmed after 8 rounds')
 
     def check_tickets_enough(self) -> bool:
         """
