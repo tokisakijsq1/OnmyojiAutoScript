@@ -485,3 +485,11 @@ lock_team 点击后用另一态出现做确认，3 次未确认则带警告放�
 6. 相关联的既有约定：弹窗淡出动画会造成二次匹配（第 16 节）；长等待循环每轮
    `stuck_record_clear()`（第 7 节）；OCR/模板识别前先确认页面已稳定（等判据元素
    出现再识别，不要在转场帧上 OCR）。
+7. **卡死白名单会被任意点击清空**（2026-10-10 oas3 实测）：`stuck_record_add('BATTLE_STATUS_S')`
+   给的是 300 秒长窗口，但每次点击都经 `handle_control_check -> stuck_record_clear()`
+   把整个白名单连同记录一起清掉——登记后只要还有点击（点预设/点准备/绿标/随机滑动），
+   战斗中实际只剩"最后一次点击后 60 秒"的预算，长战斗（爬塔可达 5 分钟）必误判
+   GameStuckError。修法：battle_wait 主循环每轮守卫式补登
+   `if 'BATTLE_STATUS_S' not in self.device.detect_record: detect_record.add(...)`，
+   点完被洗掉 0.3 秒内自动补回（54b11854）。其他任务自己写的长战斗循环同理，
+   要么循环里补登，要么参考 SixRealms 在关键点击后手动 re-add。
