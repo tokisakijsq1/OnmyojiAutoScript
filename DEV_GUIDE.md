@@ -493,3 +493,30 @@ lock_team 点击后用另一态出现做确认，3 次未确认则带警告放�
    `if 'BATTLE_STATUS_S' not in self.device.detect_record: detect_record.add(...)`，
    点完被洗掉 0.3 秒内自动补回（54b11854）。其他任务自己写的长战斗循环同理，
    要么循环里补登，要么参考 SixRealms 在关键点击后手动 re-add。
+
+## 22. 弹窗按钮全面改版（2026-10-10）：确认/取消/勾选框模板批量失效（2026-10-10）
+
+**现象**：组队战后"是否邀请队友继续进行战斗?"弹窗按钮从圆角深红描边改成扁平等宽+
+两侧菱形新样式（确定文字也从"邀请"语义变为"确定"），`I_GI_SURE` 对新弹窗实测仅
+0.043，队长续邀请链路（check_and_invite/invite_again）完全失灵。同批失效的还有
+`I_GI_CANCEL`(0.153)、`I_I_DEFAULT`/`I_I_NO_DEFAULT` 勾选框两态（0.08~0.17，新样式
+为深色圆形底+米色对勾）。
+
+**修法**（用户裁新图替换，双边同步 roi）：
+- `gi_gi_sure.png`→(664,407,180,65)、`gi_cancel.png`→(436,407,180,65)（新按钮统一
+  180x65 规格，确定按钮与已更新的 `I_UI_CONFIRM` 同图源）；
+- `gi_i_default.png`→(546,345,31,32)、`gi_i_no_default.png`→(545,345,32,32)；
+- 验证口径：新图对全屏截图正向 ≥0.97，勾选两态互判 ≤0.63（0.8 阈值余量充足），
+  对无关旧截图全屏搜误报 ≤0.67。
+
+**教训**：
+- 按钮样式改版是全局性的，"点按钮→等弹窗→点确定"链路里任何一环模板失效都会空转
+  到 TooManyClick/GameStuck。再遇"点了按钮但确定没点到"先取最新报错截图离线跑
+  匹配分定位，别急着改流程逻辑。
+- 勾选框两态外形相近时裁剪尽量聚焦差异区（对勾本身），全圆裁剪互判 0.771 余量薄，
+  内圈 31x32 裁剪互判降到 0.61。
+- 尚未验证的同族嫌疑素材（改版全局扩散，实机报错再按同法换图）：`I_INVITE_ENSURE`
+  （好友列表"邀请"按钮）、队员端 `gi_i_accept*/gi_i_reject`（接受/拒绝弹窗）、以及
+  各任务目录下残余的旧圆角式 *_confirm/*_ensure 模板（AbyssShadows/BondlingFairyland/
+  DemonEncounter/Dokan×6/Exploration/FloatParade/Summon/HeroTest/RichMan/SixRealms/
+  TalismanPass/TrueOrochi/WantedQuests/WeeklyTrifles/XianShiYaoYue 等均有）。
