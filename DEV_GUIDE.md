@@ -363,11 +363,18 @@ ui_page_appear` 已全部删除），本次按"dev 文件为底 + 三方应用�
   （连接方向=从本页出发；key 显式命名）。`Page.check`/`additional` 变为 recognizer 组合器
   （any_of/all_of）与 `add_enter_success_hooks`。registry 自动扫描 `tasks/*/page.py`，无需
   登记到门面（现世妖约 page.py 是现成范例）。
-- **手写资产清单（重跑 assets_extract 会洗掉，必须手工补回）**：
-  `tasks/GameUi/assets.py` 尾部的 `O_BATTLE_AUTO`/`O_BATTLE_HAND`（战斗自动/手动 OCR，
-  9236651f 重写时曾丢失导致引用方 AttributeError；ensure_auto_battle 与预设跳过依赖它们）；
-  `tasks/Hyakkiyakou/slave/hya_slave.py:223-` 的 5 条 `O_HYA_*` 是内联定义（跟文件走，不踩雷）。
-  新增资产判断是否会被 assets_extract 洗掉：定义不在任何 image.json/ocr.json 里的都算。
+- **assets_extract 现已可安全重跑（2026-10-10，7e6ec531）**：全部任务（含 Component）的
+  image/click/ocr/swipe/long_click JSON 已按 assets.py 真值反向重建补齐，dry-run 对比
+  extractor 输出与现行 assets.py 完全一致（0 差异）。历史遗留的 OCR 字段混入 click、缺
+  mode/threshold、同名重复副本、图像+OCR 字段混写等污染已清理。注意两点：① 以 assets.py
+  为准手改时务必同步改 JSON（两边不一致时以 assets.py 为准，GUI 编辑则反向同步 assets.py）；
+  ② 大规模改 JSON 后跑 extract 前，先用 extractor 的 dry-run 对比脚本验证一遍（临时把
+  `AssetsExtractor.write_file` 置为 no-op 再对比解析结果）。
+- **（历史）手写资产清单曾会被 assets_extract 洗掉**：`tasks/GameUi/assets.py` 尾部的
+  `O_BATTLE_AUTO`/`O_BATTLE_HAND`（战斗自动/手动 OCR，9236651f 重写时曾丢失导致引用方
+  AttributeError；ensure_auto_battle 与预设跳过依赖它们）——现已补入
+  `tasks/GameUi/additional/ocr.json`，不再怕 extract；`tasks/Hyakkiyakou/slave/hya_slave.py:223-`
+  的 5 条 `O_HYA_*` 是内联定义（跟文件走，不踩雷）。
 - **三方应用补丁套路**：`git diff 37a884ef Tokisaki -- <file> | git apply --3way`，hunk 不
   重叠即干净通过（本次 general_battle/battle_wait/base_task 全干净）；冲突手工并集。本地
   fork/dev 引用名里的 `/dev:` 会被 MSYS 路径转换吃掉，需要时改用工作区文件或加引号。
