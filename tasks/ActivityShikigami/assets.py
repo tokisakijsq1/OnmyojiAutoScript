@@ -24,9 +24,9 @@ class ActivityShikigamiAssets:
 
 
 	# Image Rule Assets
-	# 上锁图标 
-	I_LOCK = RuleImage(roi_front=(825,657,28,25), roi_back=(739,432,440,266), threshold=0.5, method="Template matching", file="./tasks/ActivityShikigami/as/as_lock.png")
-	# 还未上锁图片 
+	# 上锁图标 (2026-10 磐长故地准备页底部"阵容"钻石开关, 锁定态; assets_extract会洗掉需重加)
+	I_LOCK = RuleImage(roi_front=(893,649,31,36), roi_back=(850,620,120,95), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_lock.png")
+	# 还未上锁图片 (2026-10 旧素材已过期, 待解锁态截图更新)
 	I_UNLOCK = RuleImage(roi_front=(884,648,28,25), roi_back=(733,426,444,276), threshold=0.5, method="Template matching", file="./tasks/ActivityShikigami/as/as_unlock.png")
 	# 活动爬塔标志 
 	I_CLIMB_MODE_PASS = RuleImage(roi_front=(1142,547,21,21), roi_back=(1129,516,45,74), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_climb_mode_pass.png")
