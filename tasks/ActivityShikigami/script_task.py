@@ -285,7 +285,8 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
                 break
             if self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=1):
                 continue
-            if self.appear_then_click(self.I_BATTLE_PLAQUE, interval=1.2):
+            if (self.appear_then_click(self.I_BATTLE_PLAQUE, interval=1.2)
+                    or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=1.2)):
                 continue
 
     def start_battle(self):
