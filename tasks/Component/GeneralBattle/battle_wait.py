@@ -1641,6 +1641,11 @@ class BattleWait(BaseTask, GeneralBattleAssets):
 
         while True:
             self.screenshot()
+            # 任意点击会经 handle_control_check -> stuck_record_clear 清空卡死白名单,
+            # 爬塔等长战斗可达5分钟, 不重新登记的话 60 秒无点击就误判 GameStuckError
+            # (BATTLE_STATUS_S 长等待窗口 300s, 见 device.stuck_timer_long)
+            if 'BATTLE_STATUS_S' not in self.device.detect_record:
+                self.device.detect_record.add('BATTLE_STATUS_S')
             hook_enabled = runtime.hook_enabled()
             # self.state_show()
             for handler in handlers:
