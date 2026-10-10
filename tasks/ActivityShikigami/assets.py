@@ -37,24 +37,24 @@ class ActivityShikigamiAssets:
 
 
 	# Image Rule Assets
-	# 进入活动 
-	I_SHI = RuleImage(roi_front=(1187,463,39,28), roi_back=(1165,128,83,393), threshold=0.7, method="Template matching", file="./tasks/ActivityShikigami/as/as_shi.png")
+	# 进入活动 (2026-10 拾此一瞬 活动入口图标)
+	I_SHI = RuleImage(roi_front=(1187,463,51,36), roi_back=(1165,128,83,393), threshold=0.7, method="Template matching", file="./tasks/ActivityShikigami/as/as_shi.png")
 	# 左上角返回 
 	I_BACK_GREEN = RuleImage(roi_front=(27,19,34,38), roi_back=(2,1,170,75), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_back_green.png")
 	# 右上跳过按钮 
 	I_SKIP_BUTTON = RuleImage(roi_front=(1159,37,51,22), roi_back=(1141,27,86,43), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_skip_button.png")
 	# 红色退出 
 	I_RED_EXIT = RuleImage(roi_front=(1162,96,39,38), roi_back=(1120,49,110,135), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_red_exit.png")
-	# 进入主要的战斗界面 
-	I_TO_BATTLE_MAIN = RuleImage(roi_front=(302,178,98,111), roi_back=(223,110,238,269), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_main.png")
+	# 进入主要的战斗界面 (2026-10 磐长故地=门票爬塔入口, 主页下方文字)
+	I_TO_BATTLE_MAIN = RuleImage(roi_front=(818,464,99,23), roi_back=(770,430,200,90), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_main.png")
 	# 点击进入boss战斗页面 
 	I_TO_BATTLE_BOSS = RuleImage(roi_front=(1111,248,37,136), roi_back=(979,142,234,327), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_boss.png")
 	# description 
 	I_CHECK_BATTLE_MAIN = RuleImage(roi_front=(50,642,62,58), roi_back=(1,510,415,203), threshold=0.65, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_main.png")
-	# description 
-	I_CHECK_BATTLE_BOSS = RuleImage(roi_front=(978,636,43,31), roi_back=(899,537,167,154), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_boss.png")
-	# 从main进入到式神录 
-	I_BATTLE_MAIN_TO_RECORDS = RuleImage(roi_front=(1001,558,39,42), roi_back=(966,534,140,100), threshold=0.7, method="Template matching", file="./tasks/ActivityShikigami/as/as_battle_main_to_records.png")
+	# description (2026-10 磐长故地战斗准备页判据=右下挑战钻石按钮文字区域; 原门票图标在地图页同位置也出现,不可用作判据)
+	I_CHECK_BATTLE_MAIN = RuleImage(roi_front=(1122,568,96,60), roi_back=(1090,540,180,180), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_main.png")
+	# description (2026-10 准备页底部式神录狐狸图标)
+	I_BATTLE_MAIN_TO_RECORDS = RuleImage(roi_front=(1014,565,43,40), roi_back=(980,540,100,90), threshold=0.7, method="Template matching", file="./tasks/ActivityShikigami/as/as_battle_main_to_records.png")
 	# description 
 	I_TO_BATTLE_MAIN_2 = RuleImage(roi_front=(15,94,247,38), roi_back=(2,68,311,100), threshold=0.65, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_main_2.png")
 	# 确认跳过 
@@ -91,12 +91,14 @@ class ActivityShikigamiAssets:
 
 
 	# Ocr Rule Assets
-	# 挑战 
-	O_FIRE = RuleOcr(roi=(1135,599,85,49), area=(1123,570,106,100), mode="Single", method="Default", keyword="挑战", name="fire")
+	# 挑战 (2026-10 磐长故地准备页右下挑战按钮)
+	O_FIRE = RuleOcr(roi=(1110,560,120,75), area=(1110,560,120,75), mode="Single", method="Default", keyword="挑战", name="fire")
+	# 地图上的战斗按钮 (2026-10 位置不固定, ocr识别"战斗"二字; roi避开主页古迹演武的战斗副标题和准备页战斗说明)
+	O_BATTLE_PLAQUE = RuleOcr(roi=(290,110,820,530), area=(290,110,820,530), mode="Single", method="Default", keyword="战斗", name="battle_plaque")
 	# 体力的数量检测 
 	O_REMAIN_AP = RuleOcr(roi=(584,17,63,27), area=(583,16,63,30), mode="Digit", method="Default", keyword="", name="remain_ap")
-	# 活动体力的剩余检测 
-	O_REMAIN_PASS = RuleOcr(roi=(791,18,50,29), area=(791,18,49,28), mode="Digit", method="Default", keyword="", name="remain_pass")
+	# 活动体力的剩余检测 (2026-10 准备页右上门票数)
+	O_REMAIN_PASS = RuleOcr(roi=(1138,15,60,45), area=(1138,15,60,45), mode="Digit", method="Default", keyword="", name="remain_pass")
 	# 还有多少次购买体力的机会 
 	O_REMAIN_BUY = RuleOcr(roi=(808,531,39,42), area=(808,531,39,42), mode="DigitCounter", method="Default", keyword="", name="remain_buy")
 	# 活动票数（没有百分比） 

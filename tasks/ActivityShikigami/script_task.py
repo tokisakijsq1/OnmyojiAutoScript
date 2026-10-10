@@ -178,10 +178,10 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
             更新前请先看 ./README.md
         """
         logger.hr(f'Start run climb type PASS', 1)
-        self.ui_clicks([self.I_TO_BATTLE_MAIN, self.I_TO_BATTLE_MAIN_2],
-                       stop=self.I_CHECK_BATTLE_MAIN, interval=1)
+        # 2026-10 改版: 主页点"磐长故地" -> 地图页ocr点"战斗" -> 准备页(右上门票标志为判据)
+        # 门票/体力不可在界面内直接切换, 无模式切换步骤
+        self.enter_climb_battle()
         self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
-        self.switch_climb_mode_in_game('pass')
 
         ocr_limit_timer = Timer(1).start()
         click_limit_timer = Timer(4).start()
@@ -275,6 +275,19 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
         """
         logger.hr(f'Start run climb type AP100')
 
+    def enter_climb_battle(self):
+        """
+        2026-10 改版后的进战路径: 活动主页 -> 磐长故地(图) -> 地图页"战斗"牌(ocr,位置不固定) -> 战斗准备页
+        """
+        while 1:
+            self.screenshot()
+            if self.appear(self.I_CHECK_BATTLE_MAIN):
+                break
+            if self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=1):
+                continue
+            if self.ocr_appear_click(self.O_BATTLE_PLAQUE, interval=1.2):
+                continue
+
     def start_battle(self):
         click_times, max_times = 0, random.randint(4, 8)
         while 1:
@@ -337,14 +350,18 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
     def lock_team(self, battle_conf: GeneralBattleConfig):
         """
         根据配置判断当前爬塔类型是否锁定阵容, 并执行锁定或解锁
+        2026-10 磐长故地准备页没有锁图标, 3秒内找不到直接跳过, 避免ui_click死等
         """
         enable_preset = getattr(battle_conf, f"enable_{self.climb_type}_preset", False)
+        target, stop = (self.I_UNLOCK, self.I_LOCK) if not enable_preset else (self.I_LOCK, self.I_UNLOCK)
+        if not self.wait_until_appear(target, wait_time=3):
+            logger.warning(f'{self.climb_type} prep page has no lock button, skip lock_team')
+            return
         if not enable_preset:
             logger.info(f'Lock {self.climb_type} team')
-            self.ui_click(self.I_UNLOCK, stop=self.I_LOCK, interval=1.5)
-            return
-        logger.info(f'Unlock {self.climb_type} team')
-        self.ui_click(self.I_LOCK, stop=self.I_UNLOCK, interval=1.5)
+        else:
+            logger.info(f'Unlock {self.climb_type} team')
+        self.ui_click(target, stop=stop, interval=1.5)
 
     def check_tickets_enough(self) -> bool:
         """
