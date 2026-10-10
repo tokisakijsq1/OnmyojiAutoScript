@@ -155,8 +155,8 @@
     {
         "itemName": "check_block",
         "imageName": "ss_check_block.png",
-        "roiFront": "664,407,180,65",
-        "roiBack": "664,407,180,65",
+        "roiFront": "572,408,137,49",
+        "roiBack": "572,408,137,49",
         "method": "Template matching",
         "threshold": 0.8,
         "description": "误触点到式神检查"
