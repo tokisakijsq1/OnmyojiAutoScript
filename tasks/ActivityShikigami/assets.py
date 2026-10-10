@@ -103,7 +103,7 @@ class ActivityShikigamiAssets:
 	# 体力的数量检测 
 	O_REMAIN_AP = RuleOcr(roi=(584,17,63,27), area=(583,16,63,30), mode="Digit", method="Default", keyword="", name="remain_ap")
 	# 活动体力的剩余检测 (2026-10 准备页右上门票数)
-	O_REMAIN_PASS = RuleOcr(roi=(1138,15,60,45), area=(1138,15,60,45), mode="Digit", method="Default", keyword="", name="remain_pass")
+	O_REMAIN_PASS = RuleOcr(roi=(1155,18,55,40), area=(1155,18,55,40), mode="Digit", method="Default", keyword="", name="remain_pass")
 	# 还有多少次购买体力的机会 
 	O_REMAIN_BUY = RuleOcr(roi=(808,531,39,42), area=(808,531,39,42), mode="DigitCounter", method="Default", keyword="", name="remain_buy")
 	# 活动票数（没有百分比） 
