@@ -41,6 +41,9 @@ class GameUi(BaseTask, GameUiAssets):
     # 全局未知页关闭动作，所有任务共享。
     DEFAULT_UNKNOWN_CLOSERS = [
         GlobalGameAssets.I_UI_BACK_RED,
+        # 2026-10 限时活动(拾此一瞬/磐长故地)内页: 左上返回庭院图标与回退箭头, 活动页不在已知页面表里时靠它退出
+        ActivityShikigamiAssets.I_HOME_EXIT,
+        ActivityShikigamiAssets.I_BACK_ARROW,
         GlobalGameAssets.I_CHAT_CLOSE_BUTTON,
         ActivityShikigamiAssets.I_SKIP_BUTTON,
         GlobalGameAssets.I_UI_CONFIRM_SAMLL,

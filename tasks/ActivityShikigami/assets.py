@@ -41,6 +41,10 @@ class ActivityShikigamiAssets:
 	I_SHI = RuleImage(roi_front=(1187,463,51,36), roi_back=(1165,128,83,393), threshold=0.7, method="Template matching", file="./tasks/ActivityShikigami/as/as_shi.png")
 	# 左上角返回 
 	I_BACK_GREEN = RuleImage(roi_front=(27,19,34,38), roi_back=(2,1,170,75), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_back_green.png")
+	# 2026-10 活动内左上角"返回庭院"图标(各活动子页面通用, 用于未知页面恢复退出活动)
+	I_HOME_EXIT = RuleImage(roi_front=(94,19,40,38), roi_back=(0,0,250,100), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_home_exit.png")
+	# 2026-10 活动地图页左上角回退箭头(未知页面恢复用)
+	I_BACK_ARROW = RuleImage(roi_front=(28,22,34,35), roi_back=(0,0,200,100), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_back_arrow.png")
 	# 右上跳过按钮 
 	I_SKIP_BUTTON = RuleImage(roi_front=(1159,37,51,22), roi_back=(1141,27,86,43), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_skip_button.png")
 	# 红色退出 
