@@ -235,8 +235,9 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 continue
             ocr_limit_timer.reset()
             if not self.ocr_appear(self.O_FIRE):
-                # 战斗后可能退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页
-                if (self.appear_then_click(self.I_BATTLE_PLAQUE, interval=4)
+                # 战斗后可能退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页; 公告弹窗先粉叉
+                if (self.appear_then_click(self.I_UI_BACK_RED, interval=2)
+                        or self.appear_then_click(self.I_BATTLE_PLAQUE, interval=4)
                         or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=4)
                         or self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=4)):
                     continue
@@ -325,6 +326,9 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             self.screenshot()
             if self.appear(self.I_CHECK_BATTLE_MAIN):
                 break
+            # 进图时可能弹"挑战开启"等公告弹窗, 粉叉关闭(复用通用素材)
+            if self.appear_then_click(self.I_UI_BACK_RED, interval=1):
+                continue
             if self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=1):
                 continue
             if (self.appear_then_click(self.I_BATTLE_PLAQUE, interval=1.2)
@@ -423,6 +427,9 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             if self.appear(self.I_CHECK_MAIN):
                 logger.info('Arrived main page')
                 return
+            # 任何带粉叉的公告弹窗先关掉(如进图时的"挑战开启")
+            if self.appear_then_click(self.I_UI_BACK_RED, interval=1.2):
+                continue
             if self.appear(self.I_CHECK_ACT_MAIN):
                 self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5)
                 continue
