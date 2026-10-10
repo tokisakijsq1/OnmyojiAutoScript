@@ -1554,11 +1554,13 @@ class BattleWait(BaseTask, GeneralBattleAssets):
     def _bw_success_activity(self, pub: PublicContext, pri: PrivateContext) -> HookSignal:
         """
         战斗结算是有 “获得奖励” 的适用
+        2026-10 兼容活动大奖励网格结算页(无"获得奖励"标题, 底部"点击屏幕继续"):
+        识别到网格页直接点提示文字本身, 不做随机点击, 避免点中奖励弹出详情
         """
-        if not self.appear(self.I_UI_REWARD):
+        if not (self.appear(self.I_UI_REWARD) or self.ocr_appear(self.O_CLICK_CONTINUE)):
             return HookSignal.CONTINUE
         self.screenshot()
-        if not self.appear(self.I_UI_REWARD):
+        if not (self.appear(self.I_UI_REWARD) or self.ocr_appear(self.O_CLICK_CONTINUE)):
             return HookSignal.CONTINUE
 
         logger.info('Win battle')
@@ -1573,6 +1575,9 @@ class BattleWait(BaseTask, GeneralBattleAssets):
                     self.click(self.C_REWARD_2, interval=2.5)
                 continue
 
+            if self.ocr_appear_click(self.O_CLICK_CONTINUE, interval=2):
+                # 活动大奖励网格页: 点"点击屏幕继续"翻页
+                continue
             if self.appear(self.I_UI_REWARD):
                 if random.random() < 0.02:
                     # 有一定的概率专门点击具体的奖励物品
@@ -1583,6 +1588,8 @@ class BattleWait(BaseTask, GeneralBattleAssets):
             elif not self.appear(self.I_END_FIX_2):
                 self.screenshot()
                 if any([self.appear(self.I_UI_REWARD), self.appear(self.I_END_FIX_1), self.appear(self.I_END_FIX_2), self.appear(self.I_END_FIX_3)]):
+                    continue
+                if self.ocr_appear(self.O_CLICK_CONTINUE):
                     continue
                 logger.info('Get all reward')
                 pub.per_battle.success = BattleResult.SUCCESS

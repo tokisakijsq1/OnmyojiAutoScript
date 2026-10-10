@@ -268,3 +268,7 @@ class GeneralBattleAssets:
 	I_END_FIX_3 = RuleImage(roi_front=(871,278,150,49), roi_back=(119,66,1136,620), threshold=0.85, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gw_end_fix_3.png")
 
 
+
+
+	# Ocr Rule Assets (2026-10 手写补充: 活动大奖励网格结算页的"点击屏幕继续", 横排文字OCR; assets_extract会洗掉需重加)
+	O_CLICK_CONTINUE = RuleOcr(roi=(450,655,420,60), area=(450,655,420,60), mode="Single", method="Default", keyword="点击屏幕继续", name="click_continue")
