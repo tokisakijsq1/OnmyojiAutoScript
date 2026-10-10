@@ -383,22 +383,34 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
     def lock_team(self, battle_conf: GeneralBattleConfig):
         """
         点挑战前检查阵容锁定状态 (2026-10 磐长故地准备页底部"阵容"钻石开关):
-        - 配置了使用预设 -> 需要解锁: 看到锁定图标就点一下
-        - 未配置预设 -> 需要锁定: 已锁定则不动; 未锁定(图标不匹配)则点图标位置切换
+        锁定态=I_LOCK(紫角挂锁), 解锁态=I_UNLOCK(黑底金锁), 同一位置二选一, 互斥验证
+        - 配置了使用预设 -> 需要解锁: 见锁就点, 点击后等解锁态出现确认
+        - 未配置预设 -> 需要锁定: 见解锁态就点, 点击后等锁定态出现确认
         """
         enable_preset = getattr(battle_conf, f"enable_{self.climb_type}_preset", False)
-        if self.wait_until_appear(self.I_LOCK, wait_time=2):
-            if enable_preset:
-                logger.info(f'Unlock {self.climb_type} team for preset')
-                self.appear_then_click(self.I_LOCK, interval=1)
-            else:
+        for _ in range(3):
+            self.screenshot()
+            if self.appear(self.I_UNLOCK):
+                if enable_preset:
+                    logger.info(f'{self.climb_type} team already unlocked')
+                    return
+                logger.info(f'Lock {self.climb_type} team')
+                self.appear_then_click(self.I_UNLOCK, interval=1)
+                continue
+            if self.appear(self.I_LOCK):
+                if enable_preset:
+                    logger.info(f'Unlock {self.climb_type} team for preset')
+                    self.appear_then_click(self.I_LOCK, interval=1)
+                    continue
                 logger.info(f'{self.climb_type} team already locked')
-        else:
+                return
+            # 两态都未识别(可能被遮挡/动画中): 开预设时按已解锁跳过, 否则按位置盲切
             if enable_preset:
-                logger.info(f'{self.climb_type} team already unlocked')
-            else:
-                logger.info(f'Lock {self.climb_type} team (blind toggle)')
-                self.click(self.I_LOCK, interval=1)
+                logger.warning(f'Lock icon not identified, assume {self.climb_type} team unlocked')
+                return
+            logger.info(f'Lock {self.climb_type} team (blind toggle)')
+            self.click(self.I_LOCK, interval=1)
+        logger.warning('lock_team: toggle state not confirmed after 3 tries, continue anyway')
 
     def check_tickets_enough(self) -> bool:
         """
