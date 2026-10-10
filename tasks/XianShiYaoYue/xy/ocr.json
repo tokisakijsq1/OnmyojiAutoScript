@@ -1,0 +1,29 @@
+[
+  {
+    "itemName": "xy_blessing",
+    "roiFront": "440,138,230,50",
+    "roiBack": "440,138,230,50",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "现世祝福",
+    "description": "xy_blessing"
+  },
+  {
+    "itemName": "xy_battle_count",
+    "roiFront": "990,680,170,32",
+    "roiBack": "990,680,170,32",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "xy_battle_count"
+  },
+  {
+    "itemName": "xy_queue",
+    "roiFront": "350,8,460,84",
+    "roiBack": "350,8,460,84",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "xy_queue"
+  }
+]

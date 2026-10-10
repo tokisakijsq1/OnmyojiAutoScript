@@ -1,38 +1,38 @@
 [
   {
     "itemName": "bm_enter",
-    "imageName": "broken_amulet_bm_enter.png",
     "roiFront": "437,600,62,68",
     "roiBack": "437,600,62,68",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入普通召唤"
+    "imageName": "broken_amulet_bm_enter.png",
+    "description": "bm_enter"
   },
   {
     "itemName": "bm_confirm",
-    "imageName": "broken_amulet_bm_confirm.png",
     "roiFront": "418,620,173,59",
     "roiBack": "418,620,173,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "确定"
+    "imageName": "broken_amulet_bm_confirm.png",
+    "description": "bm_confirm"
   },
   {
     "itemName": "bm_again",
-    "imageName": "broken_amulet_bm_again.png",
     "roiFront": "686,617,178,60",
     "roiBack": "686,617,178,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "再次召唤"
+    "imageName": "broken_amulet_bm_again.png",
+    "description": "bm_again"
   },
   {
     "itemName": "bmt_check",
-    "imageName": "broken_amulet_bmt_check.png",
     "roiFront": "742,571,32,33",
     "roiBack": "644,565,276,41",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "破碎符咒召唤次数选择标志"
+    "imageName": "broken_amulet_bmt_check.png",
+    "description": "bmt_check"
   }
 ]

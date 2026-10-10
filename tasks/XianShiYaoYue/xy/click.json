@@ -1,0 +1,20 @@
+[
+  {
+    "itemName": "xy_blessing",
+    "roiFront": "480,200,120,110",
+    "roiBack": "480,200,120,110",
+    "description": "xy_blessing"
+  },
+  {
+    "itemName": "xy_team_challenge",
+    "roiFront": "1102,558,96,99",
+    "roiBack": "1102,558,96,99",
+    "description": "xy_team_challenge"
+  },
+  {
+    "itemName": "xy_radio_all",
+    "roiFront": "506,262,44,46",
+    "roiBack": "506,262,44,46",
+    "description": "xy_radio_all"
+  }
+]

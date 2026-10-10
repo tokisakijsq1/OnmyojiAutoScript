@@ -1,92 +1,218 @@
 [
   {
     "itemName": "de_red_dharma",
-    "imageName": "demon_de_red_dharma.png",
     "roiFront": "1216,215,32,33",
     "roiBack": "1209,208,51,50",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "红色达摩"
+    "imageName": "demon_de_red_dharma.png",
+    "description": "de_red_dharma"
   },
   {
     "itemName": "de_find",
-    "imageName": "demon_de_find.png",
     "roiFront": "1136,593,100,100",
     "roiBack": "1136,593,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击右下角的寻找封魔"
+    "imageName": "demon_de_find.png",
+    "description": "de_find"
   },
   {
     "itemName": "de_boss",
-    "imageName": "demon_de_boss.png",
     "roiFront": "1001,645,45,45",
     "roiBack": "1001,645,45,45",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击首领"
+    "imageName": "demon_de_boss.png",
+    "description": "de_boss"
   },
   {
     "itemName": "de_boss_best",
-    "imageName": "demon_de_boss_best.png",
     "roiFront": "900,644,45,50",
     "roiBack": "900,644,45,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击封魔极"
+    "imageName": "demon_de_boss_best.png",
+    "description": "de_boss_best"
   },
   {
     "itemName": "de_shi_records",
-    "imageName": "demon_de_shi_records.png",
     "roiFront": "789,639,48,48",
     "roiBack": "789,639,48,48",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "式神录"
+    "imageName": "demon_de_shi_records.png",
+    "description": "de_shi_records"
   },
   {
     "itemName": "de_location",
-    "imageName": "demon_de_location.png",
     "roiFront": "26,653,44,47",
     "roiBack": "26,653,44,47",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左下角小指针"
+    "imageName": "demon_de_location.png",
+    "description": "de_location"
   },
   {
     "itemName": "mystery_amulet",
-    "imageName": "demon_mystery_amulet.png",
     "roiFront": "596,314,84,82",
     "roiBack": "581,294,115,116",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "逢魔蓝票"
+    "imageName": "demon_mystery_amulet.png",
+    "description": "mystery_amulet"
   },
   {
     "itemName": "sushi",
-    "imageName": "demon_sushi.png",
     "roiFront": "602,318,72,54",
     "roiBack": "581,294,115,116",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "逢魔体力"
+    "imageName": "demon_sushi.png",
+    "description": "sushi"
   },
   {
     "itemName": "jade_50",
-    "imageName": "demon_jade_50.png",
     "roiFront": "593,425,84,46",
     "roiBack": "548,405,182,83",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "50勾玉购买"
+    "imageName": "demon_jade_50.png",
+    "description": "jade_50"
+  },
+  {
+    "itemName": "de_balloon",
+    "roiFront": "1214,295,28,27",
+    "roiBack": "1198,269,81,266",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_de_balloon.png",
+    "description": "de_balloon"
+  },
+  {
+    "itemName": "de_box",
+    "roiFront": "1210,295,34,33",
+    "roiBack": "1183,278,96,277",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_de_box.png",
+    "description": "de_box"
   },
   {
     "itemName": "de_box_center",
-    "imageName": "demon_de_box_center.png",
     "roiFront": "618,325,45,34",
     "roiBack": "547,264,190,157",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "地图中央未购买的宝箱展示"
+    "imageName": "demon_de_box_center.png",
+    "description": "de_box_center"
+  },
+  {
+    "itemName": "de_defeat_2",
+    "roiFront": "1211,422,28,35",
+    "roiBack": "1211,422,28,35",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "demon_de_defeat_2.png",
+    "description": "de_defeat_2"
+  },
+  {
+    "itemName": "de_defeat_1",
+    "roiFront": "1223,489,42,41",
+    "roiBack": "1223,489,42,41",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "demon_de_defeat_1.png",
+    "description": "de_defeat_1"
+  },
+  {
+    "itemName": "de_defeat_3",
+    "roiFront": "1231,358,38,35",
+    "roiBack": "1231,358,38,35",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "demon_de_defeat_3.png",
+    "description": "de_defeat_3"
+  },
+  {
+    "itemName": "de_defeat_4",
+    "roiFront": "1215,295,35,35",
+    "roiBack": "1215,295,35,35",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "demon_de_defeat_4.png",
+    "description": "de_defeat_4"
+  },
+  {
+    "itemName": "de_award",
+    "roiFront": "1216,214,42,36",
+    "roiBack": "1195,198,74,67",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_de_award.png",
+    "description": "de_award"
+  },
+  {
+    "itemName": "de_letter",
+    "roiFront": "1236,358,33,35",
+    "roiBack": "1177,261,100,294",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_de_letter.png",
+    "description": "de_letter"
+  },
+  {
+    "itemName": "letter_close",
+    "roiFront": "851,43,45,45",
+    "roiBack": "851,43,45,45",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_letter_close.png",
+    "description": "letter_close"
+  },
+  {
+    "itemName": "de_small_fire",
+    "roiFront": "1064,549,100,100",
+    "roiBack": "1064,549,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_de_small_fire.png",
+    "description": "de_small_fire"
+  },
+  {
+    "itemName": "de_mystery",
+    "roiFront": "1216,296,27,29",
+    "roiBack": "1192,278,85,261",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_de_mystery.png",
+    "description": "de_mystery"
+  },
+  {
+    "itemName": "de_realm",
+    "roiFront": "1209,431,30,22",
+    "roiBack": "1190,274,88,273",
+    "threshold": "0.75",
+    "method": "Template matching",
+    "imageName": "demon_de_realm.png",
+    "description": "de_realm"
+  },
+  {
+    "itemName": "de_realm_fire",
+    "roiFront": "696,421,129,63",
+    "roiBack": "162,99,1106,610",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "demon_de_realm_fire.png",
+    "description": "de_realm_fire"
+  },
+  {
+    "itemName": "de_find_boss",
+    "roiFront": "1210,425,29,36",
+    "roiBack": "1182,279,93,266",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "demon_de_find_boss.png",
+    "description": "de_find_boss"
   }
 ]

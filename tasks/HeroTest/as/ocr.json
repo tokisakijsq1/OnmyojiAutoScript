@@ -6,7 +6,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "投喂的体力"
+    "description": "remain_ap"
   },
   {
     "itemName": "art_war_card",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "兵藏秘境兵道帖"
+    "description": "art_war_card"
   },
   {
     "itemName": "art_war_card_plus",
@@ -24,7 +24,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "兵道帖机密"
+    "description": "art_war_card_plus"
   },
   {
     "itemName": "fire",
@@ -33,6 +33,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "挑战",
-    "description": "挑战按钮"
+    "description": "fire"
   }
 ]

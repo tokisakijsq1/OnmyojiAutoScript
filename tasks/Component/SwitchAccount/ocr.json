@@ -6,7 +6,7 @@
     "mode": "SINGLE",
     "method": "Default",
     "keyword": "",
-    "description": "登录页面服务器名称"
+    "description": "sa_login_form_svr_name"
   },
   {
     "itemName": "sa_select_svr_svr_list",
@@ -15,7 +15,7 @@
     "mode": "FULL",
     "method": "Default",
     "keyword": "",
-    "description": "选择服务器界面 底部角色所属服务器名 列表"
+    "description": "sa_select_svr_svr_list"
   },
   {
     "itemName": "sa_select_svr_character_list",
@@ -24,7 +24,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "选择服务器界面 底部角色名 列表"
+    "description": "sa_select_svr_character_list"
   },
   {
     "itemName": "sa_account_account_list",
@@ -33,7 +33,7 @@
     "mode": "FULL",
     "method": "Default",
     "keyword": "",
-    "description": "选择账号界面 账号列表"
+    "description": "sa_account_account_list"
   },
   {
     "itemName": "sa_account_account_selected",
@@ -42,7 +42,7 @@
     "mode": "SINGLE",
     "method": "Default",
     "keyword": "",
-    "description": "选择账号界面 已选择的账号"
+    "description": "sa_account_account_selected"
   },
   {
     "itemName": "sa_login_form_user_center_account",
@@ -51,7 +51,7 @@
     "mode": "SINGLE",
     "method": "Default",
     "keyword": "",
-    "description": "登录界面 用户中心(区别于游戏内用户中心) 账户名"
+    "description": "sa_login_form_user_center_account"
   },
   {
     "itemName": "sa_check_select_svr",
@@ -60,6 +60,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "已有角色",
-    "description": "判断是否在 选择服务器 界面的文本特质"
+    "description": "sa_check_select_svr"
   }
 ]

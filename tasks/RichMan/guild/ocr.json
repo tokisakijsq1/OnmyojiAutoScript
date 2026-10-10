@@ -6,7 +6,7 @@
     "mode": "Quantity",
     "method": "Default",
     "keyword": "",
-    "description": "总的功勋"
+    "description": "guild_total"
   },
   {
     "itemName": "guild_number_blue",
@@ -15,7 +15,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "guild_number_blue"
   },
   {
     "itemName": "guild_number_black",
@@ -24,7 +24,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "guild_number_black"
   },
   {
     "itemName": "guild_number_skin",
@@ -33,7 +33,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "guild_number_skin"
   },
   {
     "itemName": "guild_remain",
@@ -42,6 +42,366 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "本周剩余数量x"
+    "description": "guild_remain"
+  },
+  {
+    "itemName": "bl_res_souls",
+    "roiFront": "90,281,31,34",
+    "roiBack": "90,281,31,34",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "bl_res_souls"
+  },
+  {
+    "itemName": "bl_res_stone",
+    "roiFront": "357,284,29,34",
+    "roiBack": "357,284,29,34",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "bl_res_stone"
+  },
+  {
+    "itemName": "bl_res_high",
+    "roiFront": "642,284,29,31",
+    "roiBack": "642,284,29,31",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "bl_res_high"
+  },
+  {
+    "itemName": "bl_res_medium",
+    "roiFront": "918,285,28,27",
+    "roiBack": "918,285,28,27",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "bl_res_medium"
+  },
+  {
+    "itemName": "bl_check_money",
+    "roiFront": "1137,12,125,33",
+    "roiBack": "1137,12,125,33",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "bl_check_money"
+  },
+  {
+    "itemName": "con_number",
+    "roiFront": "813,140,34,38",
+    "roiBack": "813,140,34,38",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "con_number"
+  },
+  {
+    "itemName": "honor_blue",
+    "roiFront": "973,113,22,26",
+    "roiBack": "973,113,22,26",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "honor_blue"
+  },
+  {
+    "itemName": "honor_black",
+    "roiFront": "749,358,24,34",
+    "roiBack": "749,358,24,34",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "honor_black"
+  },
+  {
+    "itemName": "honor_white",
+    "roiFront": "527,359,25,28",
+    "roiBack": "527,359,25,28",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "honor_white"
+  },
+  {
+    "itemName": "sold_out",
+    "roiFront": "0,100,1280,500",
+    "roiBack": "0,100,1280,500",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "售",
+    "description": "sold_out"
+  },
+  {
+    "itemName": "mall_resource_1",
+    "roiFront": "208,7,100,43",
+    "roiBack": "208,7,100,43",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "mall_resource_1"
+  },
+  {
+    "itemName": "mall_resource_2",
+    "roiFront": "382,8,124,39",
+    "roiBack": "382,8,124,39",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "mall_resource_2"
+  },
+  {
+    "itemName": "mall_resource_3",
+    "roiFront": "574,9,127,38",
+    "roiBack": "574,9,127,38",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "mall_resource_3"
+  },
+  {
+    "itemName": "mall_resource_4",
+    "roiFront": "755,9,128,39",
+    "roiBack": "755,9,128,39",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "mall_resource_4"
+  },
+  {
+    "itemName": "mall_resource_5",
+    "roiFront": "943,9,116,37",
+    "roiBack": "943,9,116,37",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "mall_resource_5"
+  },
+  {
+    "itemName": "mall_resource_6",
+    "roiFront": "1129,6,100,41",
+    "roiBack": "1129,6,100,41",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "mall_resource_6"
+  },
+  {
+    "itemName": "mall_resource_7",
+    "roiFront": "1100,54,150,38",
+    "roiBack": "1100,54,150,38",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "mall_resource_7"
+  },
+  {
+    "itemName": "legacy_mall_resource_1",
+    "roiFront": "533,9,107,38",
+    "roiBack": "533,9,107,38",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "legacy_mall_resource_1"
+  },
+  {
+    "itemName": "legacy_mall_resource_2",
+    "roiFront": "739,8,100,39",
+    "roiBack": "739,8,100,39",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "legacy_mall_resource_2"
+  },
+  {
+    "itemName": "legacy_mall_resource_3",
+    "roiFront": "935,11,100,37",
+    "roiBack": "935,11,100,37",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "legacy_mall_resource_3"
+  },
+  {
+    "itemName": "legacy_mall_resource_4",
+    "roiFront": "1129,6,100,41",
+    "roiBack": "1129,6,100,41",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "legacy_mall_resource_4"
+  },
+  {
+    "itemName": "sca_number_orochi",
+    "roiFront": "41,318,34,25",
+    "roiBack": "41,318,34,25",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "sca_number_orochi"
+  },
+  {
+    "itemName": "sca_number_demon",
+    "roiFront": "627,319,30,25",
+    "roiBack": "627,319,30,25",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "sca_number_demon"
+  },
+  {
+    "itemName": "sca_number_sea",
+    "roiFront": "920,320,36,22",
+    "roiBack": "920,320,36,22",
+    "mode": "Quantity",
+    "method": "Default",
+    "keyword": "",
+    "description": "sca_number_sea"
+  },
+  {
+    "itemName": "sca_demon_postion",
+    "roiFront": "960,244,88,41",
+    "roiBack": "960,244,88,41",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "sca_demon_postion"
+  },
+  {
+    "itemName": "sca_res_orochi",
+    "roiFront": "547,8,127,37",
+    "roiBack": "547,9,127,37",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "sca_res_orochi"
+  },
+  {
+    "itemName": "sca_res_demon",
+    "roiFront": "968,11,102,35",
+    "roiBack": "968,11,102,35",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "sca_res_demon"
+  },
+  {
+    "itemName": "sca_res_sea",
+    "roiFront": "1134,11,100,38",
+    "roiBack": "1134,11,100,38",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "sca_res_sea"
+  },
+  {
+    "itemName": "sp_res_number",
+    "roiFront": "376,183,192,40",
+    "roiBack": "376,183,192,40",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "sp_res_number"
+  },
+  {
+    "itemName": "s_total",
+    "roiFront": "1134,11,112,36",
+    "roiBack": "1134,11,112,36",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "s_total"
+  },
+  {
+    "itemName": "s_black",
+    "roiFront": "582,179,84,48",
+    "roiBack": "582,179,84,48",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "s_black"
+  },
+  {
+    "itemName": "s_white_five",
+    "roiFront": "774,174,69,44",
+    "roiBack": "774,174,69,44",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "s_white_five"
+  },
+  {
+    "itemName": "s_white_four",
+    "roiFront": "952,168,74,60",
+    "roiBack": "952,168,74,60",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "s_white_four"
+  },
+  {
+    "itemName": "s_four_number",
+    "roiFront": "581,414,46,45",
+    "roiBack": "581,414,46,45",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "2",
+    "description": "s_four_number"
+  },
+  {
+    "itemName": "tt_totol",
+    "roiFront": "1121,10,116,35",
+    "roiBack": "1121,10,116,35",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "tt_totol"
+  },
+  {
+    "itemName": "tt_blue_ticket",
+    "roiFront": "509,307,531,92",
+    "roiBack": "509,307,531,92",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "2000",
+    "description": "tt_blue_ticket"
+  },
+  {
+    "itemName": "tt_black",
+    "roiFront": "498,313,528,89",
+    "roiBack": "498,313,528,89",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "350",
+    "description": "tt_black"
+  },
+  {
+    "itemName": "tt_ap",
+    "roiFront": "502,311,535,91",
+    "roiBack": "502,311,535,91",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "300",
+    "description": "tt_ap"
+  },
+  {
+    "itemName": "tt_buy",
+    "roiFront": "602,509,104,61",
+    "roiBack": "602,509,104,61",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "tt_buy"
+  },
+  {
+    "itemName": "tt_number",
+    "roiFront": "576,415,58,49",
+    "roiBack": "576,415,58,49",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "tt_number"
   }
 ]

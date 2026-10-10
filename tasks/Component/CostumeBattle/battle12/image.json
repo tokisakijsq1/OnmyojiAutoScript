@@ -1,65 +1,65 @@
 [
   {
     "itemName": "exit_12",
-    "imageName": "battle12_exit_12.png",
     "roiFront": "16,15,22,25",
     "roiBack": "16,15,40,40",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左上角退出"
+    "imageName": "battle12_exit_12.png",
+    "description": "exit_12"
   },
   {
     "itemName": "friends_12",
-    "imageName": "battle12_friends_12.png",
     "roiFront": "90,14,22,30",
     "roiBack": "90,14,40,40",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左上角好友"
+    "imageName": "battle12_friends_12.png",
+    "description": "friends_12"
   },
   {
     "itemName": "local_12",
-    "imageName": "battle12_local_12.png",
     "roiFront": "29,566,28,28",
     "roiBack": "29,566,40,40",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "指针"
+    "imageName": "battle12_local_12.png",
+    "description": "local_12"
   },
   {
     "itemName": "win_12",
-    "imageName": "battle12_win_12.png",
     "roiFront": "390,30,46,88",
     "roiBack": "390,30,510,290",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "战斗胜利"
+    "imageName": "battle12_win_12.png",
+    "description": "win_12"
   },
   {
     "itemName": "de_win_12",
-    "imageName": "battle12_de_win_12.png",
     "roiFront": "390,30,46,88",
     "roiBack": "390,30,510,290",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "针对封魔的特殊"
+    "imageName": "battle12_de_win_12.png",
+    "description": "de_win_12"
   },
   {
     "itemName": "false_12",
-    "imageName": "battle12_false_12.png",
     "roiFront": "390,30,58,86",
     "roiBack": "390,30,510,290",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "失败"
+    "imageName": "battle12_false_12.png",
+    "description": "false_12"
   },
   {
     "itemName": "battle_info_12",
-    "imageName": "battle12_battle_info_12.png",
     "roiFront": "234,17,32,32",
     "roiBack": "215,0,142,58",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "战斗信息标识"
+    "imageName": "battle12_battle_info_12.png",
+    "description": "battle_info_12"
   }
 ]

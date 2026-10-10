@@ -6,7 +6,7 @@
     "mode": "Duration",
     "method": "Default",
     "keyword": "",
-    "description": "这个寄养的剩余时间"
+    "description": "utilize_res_time"
   },
   {
     "itemName": "box_exp",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "今日已领取经验"
+    "description": "box_exp"
   },
   {
     "itemName": "card_num",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "斗鱼或太古寄养数目"
+    "description": "card_num"
   },
   {
     "itemName": "u_friend_name",
@@ -33,6 +33,6 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "蹭卡好友列表中的好友名称区域"
+    "description": "u_friend_name"
   }
 ]

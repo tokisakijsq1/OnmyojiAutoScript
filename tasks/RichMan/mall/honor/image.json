@@ -1,29 +1,29 @@
 [
   {
     "itemName": "honor_blue",
-    "imageName": "honor_honor_blue.png",
     "roiFront": "868,152,100,100",
     "roiBack": "154,113,864,476",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "蓝票"
+    "imageName": "honor_honor_blue.png",
+    "description": "honor_blue"
   },
   {
     "itemName": "honor_black",
-    "imageName": "honor_honor_black.png",
     "roiFront": "645,406,100,100",
     "roiBack": "145,96,883,491",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "黑蛋碎片"
+    "imageName": "honor_honor_black.png",
+    "description": "honor_black"
   },
   {
     "itemName": "honor_white",
-    "imageName": "honor_honor_white.png",
     "roiFront": "424,399,100,100",
     "roiBack": "155,127,841,388",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "三星白蛋"
+    "imageName": "honor_honor_white.png",
+    "description": "honor_white"
   }
 ]

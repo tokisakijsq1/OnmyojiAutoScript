@@ -1,29 +1,29 @@
 [
   {
     "itemName": "nw",
-    "imageName": "netherworld_nw.png",
     "roiFront": "1060,602,100,100",
     "roiBack": "1060,602,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击阴界之门"
+    "imageName": "netherworld_nw.png",
+    "description": "nw"
   },
   {
     "itemName": "nw_challage",
-    "imageName": "netherworld_nw_challage.png",
     "roiFront": "306,590,171,63",
     "roiBack": "306,590,171,63",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "点击挑战"
+    "imageName": "netherworld_nw_challage.png",
+    "description": "nw_challage"
   },
   {
     "itemName": "nw_done",
-    "imageName": "netherworld_nw_done.png",
     "roiFront": "308,600,156,41",
     "roiBack": "308,600,156,41",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "今日已挑战"
+    "imageName": "netherworld_nw_done.png",
+    "description": "nw_done"
   }
 ]

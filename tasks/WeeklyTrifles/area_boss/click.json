@@ -3,6 +3,12 @@
     "itemName": "wt_ab_click",
     "roiFront": "168,362,68,72",
     "roiBack": "168,362,68,72",
-    "description": "进入已经挑战的第一个"
+    "description": "wt_ab_click"
+  },
+  {
+    "itemName": "wt_wechat",
+    "roiFront": "470,111,337,44",
+    "roiBack": "470,111,337,44",
+    "description": "wt_wechat"
   }
 ]

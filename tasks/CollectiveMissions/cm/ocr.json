@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_1"
   },
   {
     "itemName": "cm_2",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_2"
   },
   {
     "itemName": "cm_3",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_3"
   },
   {
     "itemName": "cm_4",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_4"
   },
   {
     "itemName": "cm_5",
@@ -42,7 +42,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_5"
   },
   {
     "itemName": "cm_6",
@@ -51,7 +51,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_6"
   },
   {
     "itemName": "cm_number",
@@ -60,7 +60,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "记录已完成的数量"
+    "description": "cm_number"
   },
   {
     "itemName": "cm_1_matter",
@@ -69,7 +69,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "材料的数量"
+    "description": "cm_1_matter"
   },
   {
     "itemName": "cm_2_matter",
@@ -78,7 +78,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_2_matter"
   },
   {
     "itemName": "cm_3_matter",
@@ -87,7 +87,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_3_matter"
   },
   {
     "itemName": "cm_4_matter",
@@ -96,6 +96,24 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "cm_4_matter"
+  },
+  {
+    "itemName": "sl_level",
+    "roiFront": "174,139,30,24",
+    "roiBack": "174,139,30,24",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "古",
+    "description": "sl_level"
+  },
+  {
+    "itemName": "sl_number",
+    "roiFront": "813,94,187,39",
+    "roiBack": "813,94,187,39",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "sl_number"
   }
 ]

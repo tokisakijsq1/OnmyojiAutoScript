@@ -1,119 +1,119 @@
 [
   {
     "itemName": "ms_enter",
-    "imageName": "ms_ms_enter.png",
     "roiFront": "1169,155,24,55",
     "roiBack": "1169,155,24,55",
+    "threshold": "0.5",
     "method": "Template matching",
-    "threshold": 0.5,
-    "description": "进入绘卷主界面"
+    "imageName": "ms_ms_enter.png",
+    "description": "ms_enter"
   },
   {
     "itemName": "ms_main",
-    "imageName": "ms_ms_main.png",
     "roiFront": "151,390,40,50",
     "roiBack": "151,390,40,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "判断是否处于绘卷主界面"
+    "imageName": "ms_ms_main.png",
+    "description": "ms_main"
   },
   {
     "itemName": "ms_contribute",
-    "imageName": "ms_ms_contribute.png",
     "roiFront": "1015,537,125,35",
     "roiBack": "1015,537,125,35",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "贡献碎片"
+    "imageName": "ms_ms_contribute.png",
+    "description": "ms_contribute"
   },
   {
     "itemName": "ms_contributed",
-    "imageName": "ms_ms_contributed.png",
     "roiFront": "493,232,63,40",
     "roiBack": "493,232,63,40",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "贡献碎片完成"
+    "imageName": "ms_ms_contributed.png",
+    "description": "ms_contributed"
   },
   {
     "itemName": "ms_complete",
-    "imageName": "ms_ms_complete.png",
     "roiFront": "418,560,100,21",
     "roiBack": "418,560,100,21",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "绘卷100%"
+    "imageName": "ms_ms_complete.png",
+    "description": "ms_complete"
   },
   {
     "itemName": "ms_zero_s",
-    "imageName": "ms_ms_zero_s.png",
     "roiFront": "981,124,51,27",
     "roiBack": "981,124,51,27",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "小绘卷不足"
+    "imageName": "ms_ms_zero_s.png",
+    "description": "ms_zero_s"
   },
   {
     "itemName": "ms_zero_m",
-    "imageName": "ms_ms_zero_m.png",
     "roiFront": "981,266,54,26",
     "roiBack": "981,266,54,26",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "中绘卷不足"
+    "imageName": "ms_ms_zero_m.png",
+    "description": "ms_zero_m"
   },
   {
     "itemName": "ms_zero_l",
-    "imageName": "ms_ms_zero_l.png",
     "roiFront": "982,408,51,27",
     "roiBack": "982,408,51,27",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "大绘卷不足"
+    "imageName": "ms_ms_zero_l.png",
+    "description": "ms_zero_l"
   },
   {
     "itemName": "ms_complete_95",
-    "imageName": "ms_ms_complete_100.png",
     "roiFront": "654,562,8,18",
     "roiBack": "654,562,8,18",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "绘卷到达95%进度"
+    "imageName": "ms_ms_complete_100.png",
+    "description": "ms_complete_95"
   },
   {
     "itemName": "ms_fragment_s",
-    "imageName": "ms_ms_fragment_s.png",
     "roiFront": "651,25,26,23",
     "roiBack": "640,0,58,63",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "小碎片"
+    "imageName": "ms_ms_fragment_s.png",
+    "description": "ms_fragment_s"
   },
   {
     "itemName": "ms_fragment_s_50",
-    "imageName": "ms_ms_fragment_s_50.png",
     "roiFront": "540,314,60,25",
     "roiBack": "507,302,104,45",
+    "threshold": "0.95",
     "method": "Template matching",
-    "threshold": 0.95,
-    "description": "小碎片满50"
+    "imageName": "ms_ms_fragment_s_50.png",
+    "description": "ms_fragment_s_50"
   },
   {
     "itemName": "ms_fragment_s_verification",
-    "imageName": "ms_ms_fragment_s_verification.png",
     "roiFront": "615,137,44,39",
     "roiBack": "598,115,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ms_ms_fragment_s_verification.png",
+    "description": "ms_fragment_s_verification"
   },
   {
     "itemName": "ms_double_scrolls_enter",
-    "imageName": "ms_ms_double_scrolls_enter.png",
     "roiFront": "565,586,154,40",
     "roiBack": "565,586,154,40",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "双绘卷进入按钮"
+    "imageName": "ms_ms_double_scrolls_enter.png",
+    "description": "ms_double_scrolls_enter"
   }
 ]

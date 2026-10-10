@@ -1,0 +1,227 @@
+[
+  {
+    "itemName": "mall_consignment",
+    "roiFront": "207,639,56,59",
+    "roiBack": "175,610,120,103",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "navbar_mall_consignment.png",
+    "description": "mall_consignment"
+  },
+  {
+    "itemName": "mall_consignment_check",
+    "roiFront": "12,166,100,390",
+    "roiBack": "12,166,100,390",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "navbar_mall_consignment_check.png",
+    "description": "mall_consignment_check"
+  },
+  {
+    "itemName": "mall_sccales",
+    "roiFront": "470,647,68,37",
+    "roiBack": "427,621,147,92",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "navbar_mall_sccales.png",
+    "description": "mall_sccales"
+  },
+  {
+    "itemName": "mall_sccales_check",
+    "roiFront": "409,253,100,100",
+    "roiBack": "409,253,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "navbar_mall_sccales_check.png",
+    "description": "mall_sccales_check"
+  },
+  {
+    "itemName": "mall_scales_sure",
+    "roiFront": "1195,100,62,85",
+    "roiBack": "1195,100,62,85",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "navbar_mall_scales_sure.png",
+    "description": "mall_scales_sure"
+  },
+  {
+    "itemName": "mall_bondlings_sure",
+    "roiFront": "1194,421,69,74",
+    "roiBack": "1194,421,69,74",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_mall_bondlings_sure.png",
+    "description": "mall_bondlings_sure"
+  },
+  {
+    "itemName": "mall_bondlings_on",
+    "roiFront": "99,417,1021,37",
+    "roiBack": "99,417,1021,37",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "navbar_mall_bondlings_on.png",
+    "description": "mall_bondlings_on"
+  },
+  {
+    "itemName": "mall_bondlings_check",
+    "roiFront": "355,186,34,104",
+    "roiBack": "355,186,34,104",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "navbar_mall_bondlings_check.png",
+    "description": "mall_bondlings_check"
+  },
+  {
+    "itemName": "mall_sundry",
+    "roiFront": "880,646,53,54",
+    "roiBack": "834,621,116,90",
+    "threshold": "0.65",
+    "method": "Template matching",
+    "imageName": "navbar_mall_sundry.png",
+    "description": "mall_sundry"
+  },
+  {
+    "itemName": "mall_sundry_check",
+    "roiFront": "1093,10,31,44",
+    "roiBack": "1093,10,150,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_mall_sundry_check.png",
+    "description": "mall_sundry_check"
+  },
+  {
+    "itemName": "mall_resource_ap",
+    "roiFront": "155,7,45,43",
+    "roiBack": "155,7,1115,90",
+    "threshold": "0.7",
+    "method": "Default",
+    "imageName": "navbar_mall_resource_ap.png",
+    "description": "mall_resource_ap"
+  },
+  {
+    "itemName": "mall_resource_honor",
+    "roiFront": "722,11,41,42",
+    "roiBack": "155,7,1115,90",
+    "threshold": "0.7",
+    "method": "Default",
+    "imageName": "navbar_mall_resource_honor.png",
+    "description": "mall_resource_honor"
+  },
+  {
+    "itemName": "mall_resource_friends",
+    "roiFront": "908,8,39,43",
+    "roiBack": "155,7,1115,90",
+    "threshold": "0.7",
+    "method": "Default",
+    "imageName": "navbar_mall_resource_friends.png",
+    "description": "mall_resource_friends"
+  },
+  {
+    "itemName": "mall_resource_medal",
+    "roiFront": "535,9,40,44",
+    "roiBack": "155,7,1115,90",
+    "threshold": "0.7",
+    "method": "Default",
+    "imageName": "navbar_mall_resource_medal.png",
+    "description": "mall_resource_medal"
+  },
+  {
+    "itemName": "mall_resource_charisma",
+    "roiFront": "906,5,48,46",
+    "roiBack": "155,7,1115,90",
+    "threshold": "0.7",
+    "method": "Default",
+    "imageName": "navbar_mall_resource_charisma.png",
+    "description": "mall_resource_charisma"
+  },
+  {
+    "itemName": "side_sure_special",
+    "roiFront": "1172,91,70,74",
+    "roiBack": "1172,91,70,74",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_sure_special.png",
+    "description": "side_sure_special"
+  },
+  {
+    "itemName": "side_check_special",
+    "roiFront": "0,0,26,34",
+    "roiBack": "1075,0,100,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_check_special.png",
+    "description": "side_check_special"
+  },
+  {
+    "itemName": "side_suer_honor",
+    "roiFront": "1180,191,59,60",
+    "roiBack": "1150,159,103,132",
+    "threshold": "0.6",
+    "method": "Template matching",
+    "imageName": "navbar_side_suer_honor.png",
+    "description": "side_suer_honor"
+  },
+  {
+    "itemName": "side_check_honor",
+    "roiFront": "722,11,41,42",
+    "roiBack": "722,11,41,42",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_check_honor.png",
+    "description": "side_check_honor"
+  },
+  {
+    "itemName": "side_sure_friends",
+    "roiFront": "1190,287,43,52",
+    "roiBack": "1159,258,97,296",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_sure_friends.png",
+    "description": "side_sure_friends"
+  },
+  {
+    "itemName": "side_check_friends",
+    "roiFront": "908,8,39,43",
+    "roiBack": "9,8,1266,43",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_check_friends.png",
+    "description": "side_check_friends"
+  },
+  {
+    "itemName": "side_sure_medal",
+    "roiFront": "1190,404,39,62",
+    "roiBack": "1156,352,112,128",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_sure_medal.png",
+    "description": "side_sure_medal"
+  },
+  {
+    "itemName": "side_check_medal",
+    "roiFront": "535,9,40,44",
+    "roiBack": "453,1,476,58",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_check_medal.png",
+    "description": "side_check_medal"
+  },
+  {
+    "itemName": "side_sure_charisma",
+    "roiFront": "1181,502,59,58",
+    "roiBack": "1158,475,101,112",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_sure_charisma.png",
+    "description": "side_sure_charisma"
+  },
+  {
+    "itemName": "side_check_charisma",
+    "roiFront": "906,5,48,46",
+    "roiBack": "886,1,114,80",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "navbar_side_check_charisma.png",
+    "description": "side_check_charisma"
+  }
+]

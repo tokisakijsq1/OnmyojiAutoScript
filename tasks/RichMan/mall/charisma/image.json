@@ -1,29 +1,29 @@
 [
   {
     "itemName": "ch_blue",
-    "imageName": "charisma_ch_blue.png",
     "roiFront": "623,142,145,111",
     "roiBack": "623,142,145,111",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "蓝票"
+    "imageName": "charisma_ch_blue.png",
+    "description": "ch_blue"
   },
   {
     "itemName": "ch_black",
-    "imageName": "charisma_ch_black.png",
     "roiFront": "848,393,141,110",
     "roiBack": "848,393,141,110",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "charisma_ch_black.png",
+    "description": "ch_black"
   },
   {
     "itemName": "ch_check_blue",
-    "imageName": "charisma_ch_check_blue.png",
     "roiFront": "587,243,100,100",
     "roiBack": "587,243,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "蓝票购买确认"
+    "imageName": "charisma_ch_check_blue.png",
+    "description": "ch_check_blue"
   }
 ]

@@ -3,24 +3,24 @@
     "itemName": "gr_c_1",
     "roiFront": "107,98,213,409",
     "roiBack": "107,98,213,409",
-    "description": "description"
+    "description": "gr_c_1"
   },
   {
     "itemName": "gr_c_2",
     "roiFront": "405,98,228,325",
     "roiBack": "405,98,228,325",
-    "description": "description"
+    "description": "gr_c_2"
   },
   {
     "itemName": "gr_c_3",
     "roiFront": "708,118,232,367",
     "roiBack": "708,118,232,367",
-    "description": "description"
+    "description": "gr_c_3"
   },
   {
     "itemName": "gr_c_4",
     "roiFront": "1017,112,222,316",
     "roiBack": "1017,112,222,316",
-    "description": "description"
+    "description": "gr_c_4"
   }
 ]

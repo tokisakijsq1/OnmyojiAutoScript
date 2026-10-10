@@ -6,7 +6,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "左上角的数量"
+    "description": "ba_amount_1"
   },
   {
     "itemName": "ba_amount_2",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "召唤的时候的数量"
+    "description": "ba_amount_2"
   },
   {
     "itemName": "ba_times",
@@ -24,6 +24,24 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "破碎符咒召唤次数"
+    "description": "ba_times"
+  },
+  {
+    "itemName": "wt_lucky_tickets",
+    "roiFront": "1145,16,95,32",
+    "roiBack": "1145,16,95,32",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "wt_lucky_tickets"
+  },
+  {
+    "itemName": "wt_save_cost",
+    "roiFront": "1162,676,35,24",
+    "roiBack": "1156,670,52,40",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "wt_save_cost"
   }
 ]

@@ -1,0 +1,29 @@
+[
+  {
+    "itemName": "paper_doll_close",
+    "roiFront": "1253,102,25,62",
+    "roiBack": "1238,58,40,153",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "additional_paper_doll_close.png",
+    "description": "paper_doll_close"
+  },
+  {
+    "itemName": "act_list_expand",
+    "roiFront": "1186,141,40,41",
+    "roiBack": "1162,110,92,103",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "additional_act_list_expand.png",
+    "description": "act_list_expand"
+  },
+  {
+    "itemName": "ad_close_red",
+    "roiFront": "993,130,33,36",
+    "roiBack": "953,91,215,121",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "additional_ad_close_red.png",
+    "description": "ad_close_red"
+  }
+]

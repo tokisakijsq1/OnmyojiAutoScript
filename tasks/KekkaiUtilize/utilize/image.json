@@ -1,209 +1,290 @@
 [
   {
     "itemName": "utilize_add",
-    "imageName": "utilize_utilize_add.png",
     "roiFront": "1149,54,74,67",
     "roiBack": "1149,54,74,67",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "右上角的放置好友寄养"
+    "imageName": "utilize_utilize_add.png",
+    "description": "utilize_add"
   },
   {
     "itemName": "utilize_friend_group",
-    "imageName": "utilize_utilize_friend_group.png",
     "roiFront": "216,92,109,70",
     "roiBack": "216,92,109,70",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "好友这组"
+    "imageName": "utilize_utilize_friend_group.png",
+    "description": "utilize_friend_group"
   },
   {
     "itemName": "utilize_zones_group",
-    "imageName": "utilize_utilize_zones_group.png",
     "roiFront": "337,92,109,66",
     "roiBack": "337,92,109,66",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "跨区"
+    "imageName": "utilize_utilize_zones_group.png",
+    "description": "utilize_zones_group"
   },
   {
     "itemName": "u_taiko_3",
-    "imageName": "utilize_u_taiko_3.png",
     "roiFront": "548,424,47,44",
     "roiBack": "541,183,75,398",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_taiko_3.png",
+    "description": "u_taiko_3"
   },
   {
     "itemName": "u_taiko_4",
-    "imageName": "utilize_u_taiko_4.png",
     "roiFront": "543,316,60,43",
     "roiBack": "541,171,73,438",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_taiko_4.png",
+    "description": "u_taiko_4"
   },
   {
     "itemName": "u_taiko_5",
-    "imageName": "utilize_u_taiko_5.png",
     "roiFront": "543,201,62,54",
     "roiBack": "538,179,79,426",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_taiko_5.png",
+    "description": "u_taiko_5"
   },
   {
     "itemName": "u_taiko_6",
-    "imageName": "utilize_u_taiko_6.png",
     "roiFront": "543,521,62,54",
     "roiBack": "533,156,87,450",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_taiko_6.png",
+    "description": "u_taiko_6"
   },
   {
     "itemName": "u_fish_3",
-    "imageName": "utilize_u_fish_3.png",
     "roiFront": "552,216,41,33",
     "roiBack": "543,178,69,412",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_fish_3.png",
+    "description": "u_fish_3"
   },
   {
     "itemName": "u_fish_4",
-    "imageName": "utilize_u_fish_4.png",
     "roiFront": "549,310,51,50",
     "roiBack": "542,177,73,401",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_fish_4.png",
+    "description": "u_fish_4"
   },
   {
     "itemName": "u_fish_5",
-    "imageName": "utilize_u_fish_5.png",
     "roiFront": "543,412,62,54",
     "roiBack": "541,183,71,403",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_fish_5.png",
+    "description": "u_fish_5"
   },
   {
     "itemName": "u_fish_6",
-    "imageName": "utilize_u_fish_6.png",
     "roiFront": "542,197,62,54",
     "roiBack": "530,184,82,416",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_fish_6.png",
+    "description": "u_fish_6"
   },
   {
     "itemName": "u_enter_realm",
-    "imageName": "utilize_u_enter_realm.png",
     "roiFront": "792,531,178,67",
     "roiBack": "792,531,178,67",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入结界"
+    "imageName": "utilize_u_enter_realm.png",
+    "description": "u_enter_realm"
   },
   {
     "itemName": "u_big_3",
-    "imageName": "utilize_u_big_3.png",
     "roiFront": "835,321,100,25",
     "roiBack": "835,321,100,25",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "右侧大的图片"
+    "imageName": "utilize_u_big_3.png",
+    "description": "u_big_3"
   },
   {
     "itemName": "u_big_4",
-    "imageName": "utilize_u_big_4.png",
     "roiFront": "836,322,100,25",
     "roiBack": "836,322,100,25",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_big_4.png",
+    "description": "u_big_4"
   },
   {
     "itemName": "u_big_5",
-    "imageName": "utilize_u_big_5.png",
     "roiFront": "834,320,100,26",
     "roiBack": "834,320,100,26",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_big_5.png",
+    "description": "u_big_5"
   },
   {
     "itemName": "u_big_6",
-    "imageName": "utilize_u_big_6.png",
     "roiFront": "833,320,100,27",
     "roiBack": "833,320,100,27",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_big_6.png",
+    "description": "u_big_6"
   },
   {
     "itemName": "u_add_1",
-    "imageName": "utilize_u_add_1.png",
     "roiFront": "1144,59,86,69",
     "roiBack": "1144,59,86,69",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "右上，右数第一个"
+    "imageName": "utilize_u_add_1.png",
+    "description": "u_add_1"
   },
   {
     "itemName": "u_add_2",
-    "imageName": "utilize_u_add_2.png",
     "roiFront": "979,52,76,69",
     "roiBack": "979,52,76,69",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "右上，右数第二个"
+    "imageName": "utilize_u_add_2.png",
+    "description": "u_add_2"
   },
   {
     "itemName": "u_confirm_small",
-    "imageName": "utilize_u_confirm_small.png",
     "roiFront": "672,513,131,60",
     "roiBack": "672,513,131,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "utilize_u_confirm_small.png",
+    "description": "u_confirm_small"
   },
   {
     "itemName": "select_realm_on_1",
-    "imageName": "select_realm_on_1.png",
     "roiFront": "608,191,21,59",
     "roiBack": "608,191,21,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "select_realm_on_1.png",
+    "description": "select_realm_on_1"
   },
   {
     "itemName": "select_realm_on_2",
-    "imageName": "select_realm_on_2.png",
     "roiFront": "606,298,21,59",
     "roiBack": "606,298,21,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "select_realm_on_2.png",
+    "description": "select_realm_on_2"
   },
   {
     "itemName": "select_realm_on_3",
-    "imageName": "select_realm_on_3.png",
     "roiFront": "607,404,21,59",
     "roiBack": "607,404,21,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "select_realm_on_3.png",
+    "description": "select_realm_on_3"
   },
   {
     "itemName": "select_realm_on_4",
-    "imageName": "select_realm_on_4.png",
     "roiFront": "607,516,21,59",
     "roiBack": "607,516,21,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "select_realm_on_4.png",
+    "description": "select_realm_on_4"
+  },
+  {
+    "itemName": "u_moon_6",
+    "roiFront": "548,194,54,54",
+    "roiBack": "540,189,68,404",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_u_moon_6.png",
+    "description": "u_moon_6"
+  },
+  {
+    "itemName": "u_occupied",
+    "roiFront": "925,255,85,100",
+    "roiBack": "900,240,140,140",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_u_occupied.png",
+    "description": "u_occupied"
+  },
+  {
+    "itemName": "u_moon_5",
+    "roiFront": "548,205,48,46",
+    "roiBack": "540,196,66,407",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_u_moon_5.png",
+    "description": "u_moon_5"
+  },
+  {
+    "itemName": "u_moon_4",
+    "roiFront": "548,309,49,50",
+    "roiBack": "533,167,81,437",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_u_moon_4.png",
+    "description": "u_moon_4"
+  },
+  {
+    "itemName": "u_moon_3",
+    "roiFront": "549,305,53,53",
+    "roiBack": "535,173,77,430",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_u_moon_3.png",
+    "description": "u_moon_3"
+  },
+  {
+    "itemName": "u_moon_2",
+    "roiFront": "552,313,46,44",
+    "roiBack": "542,174,81,437",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_u_moon_2.png",
+    "description": "u_moon_2"
+  },
+  {
+    "itemName": "check_friend_realm_1",
+    "roiFront": "1059,17,90,21",
+    "roiBack": "844,4,421,65",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_check_friend_realm_1.png",
+    "description": "check_friend_realm_1"
+  },
+  {
+    "itemName": "check_friend_realm_2",
+    "roiFront": "590,143,44,52",
+    "roiBack": "538,106,161,158",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_check_friend_realm_2.png",
+    "description": "check_friend_realm_2"
+  },
+  {
+    "itemName": "check_friend_realm_3",
+    "roiFront": "900,23,22,120",
+    "roiBack": "884,11,271,160",
+    "threshold": "0.9",
+    "method": "Template matching",
+    "imageName": "utilize_check_friend_realm_3.png",
+    "description": "check_friend_realm_3"
   }
 ]

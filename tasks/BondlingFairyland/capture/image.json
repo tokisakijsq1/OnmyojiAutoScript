@@ -1,146 +1,236 @@
 [
   {
+    "itemName": "tomb_guard",
+    "roiFront": "847,518,30,31",
+    "roiBack": "832,501,64,60",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "capture_tomb_guard.png",
+    "description": "tomb_guard"
+  },
+  {
+    "itemName": "snowball",
+    "roiFront": "532,375,44,48",
+    "roiBack": "512,353,94,93",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "capture_snowball.png",
+    "description": "snowball"
+  },
+  {
+    "itemName": "little_kuro",
+    "roiFront": "478,334,77,70",
+    "roiBack": "462,318,108,102",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "capture_little_kuro.png",
+    "description": "little_kuro"
+  },
+  {
+    "itemName": "azure_basan",
+    "roiFront": "654,260,48,46",
+    "roiBack": "631,235,91,92",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "capture_azure_basan.png",
+    "description": "azure_basan"
+  },
+  {
+    "itemName": "cap_success",
+    "roiFront": "210,445,22,21",
+    "roiBack": "210,445,22,21",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "capture_cap_success.png",
+    "description": "cap_success"
+  },
+  {
+    "itemName": "cap_failure",
+    "roiFront": "1192,608,30,39",
+    "roiBack": "1192,608,30,39",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "capture_cap_failure.png",
+    "description": "cap_failure"
+  },
+  {
+    "itemName": "battle_fail",
+    "roiFront": "740,267,79,84",
+    "roiBack": "740,267,79,84",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "battle_fail.png",
+    "description": "battle_fail"
+  },
+  {
+    "itemName": "battle_fail_abandon",
+    "roiFront": "436,606,115,36",
+    "roiBack": "436,606,115,36",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "battle_fail_abandon.png",
+    "description": "battle_fail_abandon"
+  },
+  {
+    "itemName": "battle_success",
+    "roiFront": "651,203,70,81",
+    "roiBack": "651,203,70,81",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "battle_success.png",
+    "description": "battle_success"
+  },
+  {
+    "itemName": "cap_again",
+    "roiFront": "730,598,113,53",
+    "roiBack": "693,572,176,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "capture_cap_again.png",
+    "description": "cap_again"
+  },
+  {
     "itemName": "c_auto_true",
-    "imageName": "capture_c_auto_true.png",
     "roiFront": "765,200,50,24",
     "roiBack": "749,187,79,51",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "启用自动结契"
+    "imageName": "capture_c_auto_true.png",
+    "description": "c_auto_true"
   },
   {
     "itemName": "c_auto_false",
-    "imageName": "capture_c_auto_false.png",
     "roiFront": "766,200,43,25",
     "roiBack": "745,189,88,44",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "关闭自动结契"
+    "imageName": "capture_c_auto_false.png",
+    "description": "c_auto_false"
   },
   {
     "itemName": "c_low_true",
-    "imageName": "capture_c_low_true.png",
     "roiFront": "523,284,30,32",
     "roiBack": "514,274,51,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "启用低级盘子"
+    "imageName": "capture_c_low_true.png",
+    "description": "c_low_true"
   },
   {
     "itemName": "c_low_false",
-    "imageName": "capture_c_low_false.png",
     "roiFront": "521,282,33,35",
     "roiBack": "513,275,48,47",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "禁用低级盘子"
+    "imageName": "capture_c_low_false.png",
+    "description": "c_low_false"
   },
   {
     "itemName": "c_midum_true",
-    "imageName": "capture_c_midum_true.png",
     "roiFront": "663,283,31,31",
     "roiBack": "653,277,49,46",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "启用中级盘子"
+    "imageName": "capture_c_midum_true.png",
+    "description": "c_midum_true"
   },
   {
     "itemName": "c_midum_false",
-    "imageName": "capture_c_midum_false.png",
     "roiFront": "662,283,31,32",
     "roiBack": "654,276,49,45",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "禁用中级盘子"
+    "imageName": "capture_c_midum_false.png",
+    "description": "c_midum_false"
   },
   {
     "itemName": "c_high_true",
-    "imageName": "capture_c_high_true.png",
     "roiFront": "800,283,33,36",
     "roiBack": "792,273,49,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "启用高级盘子"
+    "imageName": "capture_c_high_true.png",
+    "description": "c_high_true"
   },
   {
     "itemName": "c_high_false",
-    "imageName": "capture_c_high_false.png",
     "roiFront": "801,283,32,34",
     "roiBack": "792,273,51,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "禁用高级盘子"
+    "imageName": "capture_c_high_false.png",
+    "description": "c_high_false"
   },
   {
     "itemName": "c_first_enable",
-    "imageName": "capture_c_first_enable.png",
     "roiFront": "507,563,33,31",
     "roiBack": "500,553,49,47",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "启用优先连接羁绊式神"
+    "imageName": "capture_c_first_enable.png",
+    "description": "c_first_enable"
   },
   {
     "itemName": "c_first_disable",
-    "imageName": "capture_c_first_disable.png",
     "roiFront": "708,560,38,34",
     "roiBack": "702,553,49,49",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "禁用优先连接羁绊式神"
+    "imageName": "capture_c_first_disable.png",
+    "description": "c_first_disable"
   },
   {
     "itemName": "caption_ensure",
-    "imageName": "capture_caption_ensure.png",
     "roiFront": "665,610,129,56",
     "roiBack": "652,601,153,77",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "结契设置确定"
+    "imageName": "capture_caption_ensure.png",
+    "description": "caption_ensure"
   },
   {
     "itemName": "click_caption",
-    "imageName": "capture_click_caption.png",
     "roiFront": "68,414,54,42",
     "roiBack": "48,398,97,81",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "结契设置按钮"
+    "imageName": "capture_click_caption.png",
+    "description": "click_caption"
   },
   {
     "itemName": "c_continuous_disable",
-    "imageName": "capture_c_continuous_disable.png",
     "roiFront": "709,468,33,36",
     "roiBack": "702,462,50,52",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "禁用连续使用盘子"
+    "imageName": "capture_c_continuous_disable.png",
+    "description": "c_continuous_disable"
   },
   {
     "itemName": "c_continuous_enable",
-    "imageName": "capture_c_continuous_enable.png",
     "roiFront": "508,468,32,34",
     "roiBack": "500,461,47,48",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "启用连续使用盘子"
+    "imageName": "capture_c_continuous_enable.png",
+    "description": "c_continuous_enable"
   },
   {
     "itemName": "c_minimal_mode_enable",
-    "imageName": "capture_c_minimal_mode_enable.png",
     "roiFront": "764,155,48,24",
     "roiBack": "757,149,63,39",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "启用结契极简模式"
+    "imageName": "capture_c_minimal_mode_enable.png",
+    "description": "c_minimal_mode_enable"
   },
   {
     "itemName": "c_minimal_mode_disable",
-    "imageName": "capture_c_minimal_mode_disable.png",
     "roiFront": "764,156,46,23",
     "roiBack": "758,148,62,39",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "禁用结契极简模式"
+    "imageName": "capture_c_minimal_mode_disable.png",
+    "description": "c_minimal_mode_disable"
   }
 ]

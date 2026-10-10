@@ -6,7 +6,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "万",
-    "description": "道馆地图里找文字：万"
+    "description": "dokan_map"
   },
   {
     "itemName": "dokan_gathering",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "开战",
-    "description": "道馆里找文字：后开战"
+    "description": "dokan_gathering"
   },
   {
     "itemName": "dokan_attacking",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "剩余",
-    "description": "道馆里找文字：剩余突破时间"
+    "description": "dokan_attacking"
   },
   {
     "itemName": "dokan_boss_waiting",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "馆主",
-    "description": "道馆里找文字：后挑战馆主"
+    "description": "dokan_boss_waiting"
   },
   {
     "itemName": "dokan_rightpad_bounty",
@@ -42,7 +42,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "查找道馆时,右侧边栏中的赏金"
+    "description": "dokan_rightpad_bounty"
   },
   {
     "itemName": "dokan_center_people_number",
@@ -51,7 +51,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "查找道馆时,中间卡片上防守人数"
+    "description": "dokan_center_people_number"
   },
   {
     "itemName": "doken_fail_cd",
@@ -60,6 +60,6 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "道馆失败CD"
+    "description": "doken_fail_cd"
   }
 ]

@@ -1,47 +1,182 @@
 [
   {
     "itemName": "me_enter",
-    "imageName": "ms_me_enter.png",
     "roiFront": "52,494,59,44",
     "roiBack": "52,494,59,44",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入"
+    "imageName": "ms_me_enter.png",
+    "description": "me_enter"
   },
   {
     "itemName": "ms_share",
-    "imageName": "ms_ms_share.png",
     "roiFront": "24,571,100,100",
     "roiBack": "24,571,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击分享"
+    "imageName": "ms_ms_share.png",
+    "description": "ms_share"
   },
   {
     "itemName": "ms_before",
-    "imageName": "ms_ms_before.png",
     "roiFront": "25,317,39,52",
     "roiBack": "25,317,39,52",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "上一个"
+    "imageName": "ms_ms_before.png",
+    "description": "ms_before"
   },
   {
     "itemName": "ms_next",
-    "imageName": "ms_ms_next.png",
     "roiFront": "1226,315,36,53",
     "roiBack": "1226,315,36,53",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "下一个"
+    "imageName": "ms_ms_next.png",
+    "description": "ms_next"
   },
   {
     "itemName": "invite_ensure",
-    "imageName": "ms_invite_ensure.png",
     "roiFront": "711,545,127,60",
     "roiBack": "711,545,127,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "分享"
+    "imageName": "ms_invite_ensure.png",
+    "description": "invite_ensure"
+  },
+  {
+    "itemName": "ms_blue",
+    "roiFront": "850,379,117,98",
+    "roiBack": "179,81,829,471",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "ms_ms_blue.png",
+    "description": "ms_blue"
+  },
+  {
+    "itemName": "ms_black",
+    "roiFront": "851,353,114,102",
+    "roiBack": "170,64,850,448",
+    "threshold": "0.6",
+    "method": "Template matching",
+    "imageName": "ms_ms_black.png",
+    "description": "ms_black"
+  },
+  {
+    "itemName": "ms_taiko_3",
+    "roiFront": "176,353,140,104",
+    "roiBack": "144,50,866,494",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_taiko_3.png",
+    "description": "ms_taiko_3"
+  },
+  {
+    "itemName": "ms_taiko_4",
+    "roiFront": "204,372,90,88",
+    "roiBack": "156,81,874,473",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_taiko_4.png",
+    "description": "ms_taiko_4"
+  },
+  {
+    "itemName": "ms_taiko_6",
+    "roiFront": "0,0,100,100",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_taiko_6.png",
+    "description": "ms_taiko_6"
+  },
+  {
+    "itemName": "ms_exp",
+    "roiFront": "0,0,100,100",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_exp.png",
+    "description": "ms_exp"
+  },
+  {
+    "itemName": "ms_check_blue",
+    "roiFront": "592,241,88,94",
+    "roiBack": "455,235,261,146",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_check_blue.png",
+    "description": "ms_check_blue"
+  },
+  {
+    "itemName": "ms_check_black",
+    "roiFront": "598,258,86,92",
+    "roiBack": "455,238,273,123",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_check_black.png",
+    "description": "ms_check_black"
+  },
+  {
+    "itemName": "ms_check_taiko_3",
+    "roiFront": "567,259,70,81",
+    "roiBack": "465,245,252,124",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_check_taiko_3.png",
+    "description": "ms_check_taiko_3"
+  },
+  {
+    "itemName": "ms_check_taiko_4",
+    "roiFront": "591,277,66,73",
+    "roiBack": "453,235,280,146",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_check_taiko_4.png",
+    "description": "ms_check_taiko_4"
+  },
+  {
+    "itemName": "ms_check_taiko_6",
+    "roiFront": "580,253,100,100",
+    "roiBack": "430,220,334,171",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_check_taiko_6.png",
+    "description": "ms_check_taiko_6"
+  },
+  {
+    "itemName": "ms_check_exp",
+    "roiFront": "589,255,100,100",
+    "roiBack": "472,225,243,149",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ms_ms_check_exp.png",
+    "description": "ms_check_exp"
+  },
+  {
+    "itemName": "ms_reward_3",
+    "roiFront": "511,630,48,47",
+    "roiBack": "511,630,48,47",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "ms_ms_reward_3.png",
+    "description": "ms_reward_3"
+  },
+  {
+    "itemName": "ms_reward_5",
+    "roiFront": "682,632,48,42",
+    "roiBack": "682,632,48,42",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "ms_ms_reward_5.png",
+    "description": "ms_reward_5"
+  },
+  {
+    "itemName": "ms_reward_10",
+    "roiFront": "851,637,47,32",
+    "roiBack": "851,637,47,32",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "ms_ms_reward_10.png",
+    "description": "ms_reward_10"
   }
 ]

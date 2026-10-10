@@ -6,7 +6,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "人数"
+    "description": "de_boss_people"
   },
   {
     "itemName": "de_best_boss_people",
@@ -15,6 +15,69 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "de_best_boss_people"
+  },
+  {
+    "itemName": "de_counter",
+    "roiFront": "1204,685,48,34",
+    "roiBack": "1204,685,48,34",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "de_counter"
+  },
+  {
+    "itemName": "de_challenge_count",
+    "roiFront": "705,68,45,36",
+    "roiBack": "705,68,45,36",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "de_challenge_count"
+  },
+  {
+    "itemName": "letter_count",
+    "roiFront": "480,133,55,34",
+    "roiBack": "480,133,55,34",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "letter_count"
+  },
+  {
+    "itemName": "letter_question",
+    "roiFront": "427,164,447,100",
+    "roiBack": "427,164,447,100",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "letter_question"
+  },
+  {
+    "itemName": "letter_answer_1",
+    "roiFront": "424,261,450,74",
+    "roiBack": "424,261,450,74",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "letter_answer_1"
+  },
+  {
+    "itemName": "letter_answer_2",
+    "roiFront": "428,350,438,74",
+    "roiBack": "428,350,438,74",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "letter_answer_2"
+  },
+  {
+    "itemName": "letter_answer_3",
+    "roiFront": "428,439,443,72",
+    "roiBack": "428,439,443,72",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "letter_answer_3"
   }
 ]

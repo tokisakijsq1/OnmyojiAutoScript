@@ -1,47 +1,209 @@
 [
   {
     "itemName": "lock",
-    "imageName": "as_lock.png",
-    "roiFront": "825,657,28,25",
-    "roiBack": "739,432,440,266",
+    "roiFront": "893,649,31,36",
+    "roiBack": "850,620,120,95",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.5,
-    "description": "上锁图标"
+    "imageName": "as_lock.png",
+    "description": "lock"
   },
   {
     "itemName": "unlock",
-    "imageName": "as_unlock.png",
     "roiFront": "884,648,28,25",
     "roiBack": "733,426,444,276",
+    "threshold": "0.5",
     "method": "Template matching",
-    "threshold": 0.5,
-    "description": "还未上锁图片"
+    "imageName": "as_unlock.png",
+    "description": "unlock"
   },
   {
     "itemName": "climb_mode_pass",
-    "imageName": "as_climb_mode_pass.png",
     "roiFront": "1142,547,21,21",
     "roiBack": "1129,516,45,74",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "活动爬塔标志"
+    "imageName": "as_climb_mode_pass.png",
+    "description": "climb_mode_pass"
   },
   {
     "itemName": "climb_mode_ap",
-    "imageName": "as_climb_mode_ap.png",
     "roiFront": "1093,544,20,20",
     "roiBack": "1055,495,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "体力爬塔标志"
+    "imageName": "as_climb_mode_ap.png",
+    "description": "climb_mode_ap"
   },
   {
     "itemName": "climb_mode_switch",
-    "imageName": "as_climb_mode_switch.png",
     "roiFront": "1236,543,25,26",
     "roiBack": "1174,511,104,82",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "切换按键"
+    "imageName": "as_climb_mode_switch.png",
+    "description": "climb_mode_switch"
+  },
+  {
+    "itemName": "shi",
+    "roiFront": "1187,463,51,36",
+    "roiBack": "1165,128,83,393",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "as_shi.png",
+    "description": "shi"
+  },
+  {
+    "itemName": "back_green",
+    "roiFront": "27,19,34,38",
+    "roiBack": "2,1,170,75",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_back_green.png",
+    "description": "back_green"
+  },
+  {
+    "itemName": "home_exit",
+    "roiFront": "94,19,40,38",
+    "roiBack": "0,0,250,100",
+    "threshold": "0.85",
+    "method": "Template matching",
+    "imageName": "as_home_exit.png",
+    "description": "home_exit"
+  },
+  {
+    "itemName": "back_arrow",
+    "roiFront": "28,22,34,35",
+    "roiBack": "0,0,200,100",
+    "threshold": "0.85",
+    "method": "Template matching",
+    "imageName": "as_back_arrow.png",
+    "description": "back_arrow"
+  },
+  {
+    "itemName": "skip_button",
+    "roiFront": "1159,37,51,22",
+    "roiBack": "1141,27,86,43",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_skip_button.png",
+    "description": "skip_button"
+  },
+  {
+    "itemName": "red_exit",
+    "roiFront": "1162,96,39,38",
+    "roiBack": "1120,49,110,135",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_red_exit.png",
+    "description": "red_exit"
+  },
+  {
+    "itemName": "to_battle_main",
+    "roiFront": "818,464,99,23",
+    "roiBack": "770,430,200,90",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_to_battle_main.png",
+    "description": "to_battle_main"
+  },
+  {
+    "itemName": "to_battle_boss",
+    "roiFront": "1111,248,37,136",
+    "roiBack": "979,142,234,327",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_to_battle_boss.png",
+    "description": "to_battle_boss"
+  },
+  {
+    "itemName": "check_battle_main",
+    "roiFront": "1122,568,96,60",
+    "roiBack": "1090,540,180,180",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_check_battle_main.png",
+    "description": "check_battle_main"
+  },
+  {
+    "itemName": "check_battle_boss",
+    "roiFront": "978,636,43,31",
+    "roiBack": "899,537,167,154",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_check_battle_boss.png",
+    "description": "check_battle_boss"
+  },
+  {
+    "itemName": "battle_main_to_records",
+    "roiFront": "1014,565,43,40",
+    "roiBack": "980,540,100,90",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "as_battle_main_to_records.png",
+    "description": "battle_main_to_records"
+  },
+  {
+    "itemName": "to_battle_main_2",
+    "roiFront": "15,94,247,38",
+    "roiBack": "2,68,311,100",
+    "threshold": "0.65",
+    "method": "Template matching",
+    "imageName": "as_to_battle_main_2.png",
+    "description": "to_battle_main_2"
+  },
+  {
+    "itemName": "confirm_skip",
+    "roiFront": "707,442,137,38",
+    "roiBack": "656,397,231,124",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_confirm_skip.png",
+    "description": "confirm_skip"
+  },
+  {
+    "itemName": "battle_plaque",
+    "roiFront": "609,278,12,27",
+    "roiBack": "0,0,1280,720",
+    "threshold": "0.75",
+    "method": "Template matching",
+    "imageName": "as_battle_plaque.png",
+    "description": "battle_plaque"
+  },
+  {
+    "itemName": "battle_plaque_2",
+    "roiFront": "667,388,12,27",
+    "roiBack": "0,0,1280,720",
+    "threshold": "0.75",
+    "method": "Template matching",
+    "imageName": "as_battle_plaque_2.png",
+    "description": "battle_plaque_2"
+  },
+  {
+    "itemName": "grid_anchor_1",
+    "roiFront": "107,24,50,31",
+    "roiBack": "0,0,1280,720",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_grid_anchor_1.png",
+    "description": "grid_anchor_1"
+  },
+  {
+    "itemName": "grid_anchor_2",
+    "roiFront": "711,501,76,64",
+    "roiBack": "0,0,1280,720",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_grid_anchor_2.png",
+    "description": "grid_anchor_2"
+  },
+  {
+    "itemName": "grid_anchor_3",
+    "roiFront": "561,680,160,26",
+    "roiBack": "0,0,1280,720",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_grid_anchor_3.png",
+    "description": "grid_anchor_3"
   }
 ]

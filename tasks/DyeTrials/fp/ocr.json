@@ -6,6 +6,6 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "战斗次数"
+    "description": "battle_num"
   }
 ]

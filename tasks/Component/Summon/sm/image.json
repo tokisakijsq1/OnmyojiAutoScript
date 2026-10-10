@@ -1,47 +1,47 @@
 [
   {
     "itemName": "blue_ticket",
-    "imageName": "sm_blue_ticket.png",
     "roiFront": "595,586,65,76",
     "roiBack": "523,563,211,111",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击蓝票"
+    "imageName": "sm_blue_ticket.png",
+    "description": "blue_ticket"
   },
   {
     "itemName": "low_ticket",
-    "imageName": "sm_low_ticket.png",
     "roiFront": "436,605,63,65",
     "roiBack": "378,577,157,99",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击厕所票"
+    "imageName": "sm_low_ticket.png",
+    "description": "low_ticket"
   },
   {
     "itemName": "one_ticket",
-    "imageName": "sm_one_ticket.png",
     "roiFront": "396,599,76,76",
     "roiBack": "396,599,76,76",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "单抽"
+    "imageName": "sm_one_ticket.png",
+    "description": "one_ticket"
   },
   {
     "itemName": "sm_confirm",
-    "imageName": "sm_sm_confirm.png",
     "roiFront": "419,617,174,61",
     "roiBack": "419,617,174,61",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "sm_sm_confirm.png",
+    "description": "sm_confirm"
   },
   {
     "itemName": "sm_confirm_2",
-    "imageName": "sm_sm_confirm_2.png",
     "roiFront": "377,630,206,62",
     "roiBack": "377,630,206,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "抽到的时候出现的"
+    "imageName": "sm_sm_confirm_2.png",
+    "description": "sm_confirm_2"
   }
 ]

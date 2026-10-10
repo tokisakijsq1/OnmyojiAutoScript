@@ -1,38 +1,38 @@
 [
   {
     "itemName": "recall_ticket",
-    "imageName": "recall_ticket.png",
     "roiFront": "595,586,65,76",
     "roiBack": "595,586,65,76",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击今忆召唤票"
+    "imageName": "recall_ticket.png",
+    "description": "recall_ticket"
   },
   {
     "itemName": "recall_one_ticket",
-    "imageName": "recall_one_ticket.png",
     "roiFront": "459,604,76,76",
     "roiBack": "459,604,76,76",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "今忆召唤单抽"
+    "imageName": "recall_one_ticket.png",
+    "description": "recall_one_ticket"
   },
   {
     "itemName": "recall_sm_confirm",
-    "imageName": "recall_sm_confirm.png",
     "roiFront": "424,628,174,61",
     "roiBack": "424,628,174,61",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "recall_sm_confirm.png",
+    "description": "recall_sm_confirm"
   },
   {
     "itemName": "sm_confirm_2",
-    "imageName": "sm_sm_confirm_2.png",
     "roiFront": "377,630,206,62",
     "roiBack": "377,630,206,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "抽到的时候出现的"
+    "imageName": "sm_sm_confirm_2.png",
+    "description": "sm_confirm_2"
   }
 ]

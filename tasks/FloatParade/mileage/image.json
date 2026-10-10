@@ -1,0 +1,20 @@
+[
+  {
+    "itemName": "claim_mileage",
+    "roiFront": "794,515,142,44",
+    "roiBack": "731,493,264,89",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mileage_claim_mileage.png",
+    "description": "claim_mileage"
+  },
+  {
+    "itemName": "entry_mileage",
+    "roiFront": "97,76,19,21",
+    "roiBack": "84,69,56,51",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mileage_entry_mileage.png",
+    "description": "entry_mileage"
+  }
+]

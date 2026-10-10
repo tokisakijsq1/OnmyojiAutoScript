@@ -54,9 +54,9 @@ class XianShiYaoYueAssets:
 
 	# Click Rule Assets
 	# description 点击现世祝福卡片
-	C_XY_BLESSING = RuleClick(roi_front=(480,200,120,110), roi_back=(480,200,120,110), name="xy_blessing_click")
+	C_XY_BLESSING = RuleClick(roi_front=(480,200,120,110), roi_back=(480,200,120,110), name="xy_blessing")
 	# description 直接点击组队挑战
-	C_XY_TEAM_CHALLENGE = RuleClick(roi_front=(1102,558,96,99), roi_back=(1102,558,96,99), name="xy_team_challenge_click")
+	C_XY_TEAM_CHALLENGE = RuleClick(roi_front=(1102,558,96,99), roi_back=(1102,558,96,99), name="xy_team_challenge")
 	# description 勾选队伍公开权限-所有人
-	C_XY_RADIO_ALL = RuleClick(roi_front=(506,262,44,46), roi_back=(506,262,44,46), name="xy_radio_all_click")
+	C_XY_RADIO_ALL = RuleClick(roi_front=(506,262,44,46), roi_back=(506,262,44,46), name="xy_radio_all")
 

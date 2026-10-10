@@ -1,0 +1,13 @@
+{
+  "name": "goto_cheering",
+  "direction": "vertical",
+  "type": "ocr",
+  "roiBack": "950,172,54,324",
+  "description": "应援列表前往按钮",
+  "list": [
+    {
+      "itemName": "前往",
+      "roiFront": "0,0,53,62"
+    }
+  ]
+}

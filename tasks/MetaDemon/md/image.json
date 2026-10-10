@@ -1,155 +1,308 @@
 [
   {
     "itemName": "md_enter",
-    "imageName": "md_md_enter.png",
     "roiFront": "426,463,60,80",
     "roiBack": "239,369,547,215",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "md_md_enter.png",
+    "description": "md_enter"
   },
   {
     "itemName": "md_main",
-    "imageName": "md_md_main.png",
     "roiFront": "658,156,41,139",
     "roiBack": "636,133,100,245",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "md_md_main.png",
+    "description": "md_main"
   },
   {
     "itemName": "md_find",
-    "imageName": "md_md_find.png",
     "roiFront": "1112,581,100,100",
     "roiBack": "1112,581,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "md_md_find.png",
+    "description": "md_find"
   },
   {
     "itemName": "md_hard",
-    "imageName": "md_md_hard.png",
     "roiFront": "513,515,26,27",
     "roiBack": "513,515,26,27",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "高"
+    "imageName": "md_md_hard.png",
+    "description": "md_hard"
   },
   {
     "itemName": "md_fire",
-    "imageName": "md_md_fire.png",
     "roiFront": "1107,563,109,113",
     "roiBack": "1107,563,109,113",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "md_md_fire.png",
+    "description": "md_fire"
   },
   {
     "itemName": "md_gift_box",
-    "imageName": "md_md_gift_box.png",
     "roiFront": "1184,182,42,50",
     "roiBack": "1184,182,42,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "md_md_gift_box.png",
+    "description": "md_gift_box"
   },
   {
     "itemName": "md_extreme",
-    "imageName": "md_md_extreme.png",
     "roiFront": "512,516,30,25",
     "roiBack": "512,516,30,25",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "难度"
+    "imageName": "md_md_extreme.png",
+    "description": "md_extreme"
   },
   {
     "itemName": "md_fire_common",
-    "imageName": "md_md_fire_common.png",
     "roiFront": "1065,499,100,36",
     "roiBack": "1065,499,100,36",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "md_md_fire_common.png",
+    "description": "md_fire_common"
   },
   {
     "itemName": "md_fire_power",
-    "imageName": "md_md_fire_power.png",
     "roiFront": "1159,498,100,37",
     "roiBack": "1159,498,100,37",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "md_md_fire_power.png",
+    "description": "md_fire_power"
   },
   {
     "itemName": "md_battle_failure",
-    "imageName": "md_md_battle_failure.png",
     "roiFront": "412,105,100,100",
     "roiBack": "412,105,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "失败"
+    "imageName": "md_md_battle_failure.png",
+    "description": "md_battle_failure"
   },
   {
     "itemName": "a2",
-    "imageName": "Screenshots_a2.png",
     "roiFront": "751,137,41,149",
     "roiBack": "751,137,41,149",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入鬼王界面"
+    "imageName": "Screenshots_a2.png",
+    "description": "a2"
   },
   {
     "itemName": "a3",
-    "imageName": "Screenshots_a3.png",
     "roiFront": "1137,581,100,100",
     "roiBack": "1137,581,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "召唤鬼王"
+    "imageName": "Screenshots_a3.png",
+    "description": "a3"
   },
   {
     "itemName": "a4",
-    "imageName": "Screenshots_a4.png",
     "roiFront": "1137,581,100,100",
     "roiBack": "1137,581,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "挑战"
+    "imageName": "Screenshots_a4.png",
+    "description": "a4"
   },
   {
     "itemName": "a5",
-    "imageName": "Screenshots_a5.png",
     "roiFront": "1129,536,100,100",
     "roiBack": "1129,536,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "准备"
+    "imageName": "Screenshots_a5.png",
+    "description": "a5"
   },
   {
     "itemName": "a6",
-    "imageName": "Screenshots_a6.png",
     "roiFront": "435,147,100,100",
     "roiBack": "435,147,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "Screenshots_a6.png",
+    "description": "a6"
   },
   {
     "itemName": "back_check",
-    "imageName": "md_back_check.png",
     "roiFront": "378,257,68,32",
     "roiBack": "378,257,68,32",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "超鬼王打完了"
+    "imageName": "md_back_check.png",
+    "description": "back_check"
   },
   {
     "itemName": "red_back",
-    "imageName": "md_red_back.png",
     "roiFront": "925,181,47,48",
     "roiBack": "925,181,47,48",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "红色的叉叉"
+    "imageName": "md_red_back.png",
+    "description": "red_back"
+  },
+  {
+    "itemName": "right_enter",
+    "roiFront": "1183,314,46,34",
+    "roiBack": "1150,131,100,360",
+    "threshold": "0.75",
+    "method": "Template matching",
+    "imageName": "md_right_enter.png",
+    "description": "right_enter"
+  },
+  {
+    "itemName": "enter2",
+    "roiFront": "461,265,44,156",
+    "roiBack": "428,220,100,258",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_enter2.png",
+    "description": "enter2"
+  },
+  {
+    "itemName": "find_demon",
+    "roiFront": "1140,582,86,81",
+    "roiBack": "1102,546,132,133",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_find_demon.png",
+    "description": "find_demon"
+  },
+  {
+    "itemName": "battle_demon",
+    "roiFront": "1131,573,100,100",
+    "roiBack": "1085,536,165,161",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "md_battle_demon.png",
+    "description": "battle_demon"
+  },
+  {
+    "itemName": "boss_empty",
+    "roiFront": "44,134,88,85",
+    "roiBack": "44,134,88,85",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "md_boss_empty.png",
+    "description": "boss_empty"
+  },
+  {
+    "itemName": "boss_convene",
+    "roiFront": "247,146,47,52",
+    "roiBack": "228,127,88,85",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "md_boss_convene.png",
+    "description": "boss_convene"
+  },
+  {
+    "itemName": "boss_empty_1",
+    "roiFront": "46,372,87,90",
+    "roiBack": "46,372,87,90",
+    "threshold": "0.5",
+    "method": "Template matching",
+    "imageName": "md_boss_empty_1.png",
+    "description": "boss_empty_1"
+  },
+  {
+    "itemName": "boss_empty_2",
+    "roiFront": "46,501,88,88",
+    "roiBack": "46,501,88,88",
+    "threshold": "0.5",
+    "method": "Template matching",
+    "imageName": "md_boss_empty_2.png",
+    "description": "boss_empty_2"
+  },
+  {
+    "itemName": "crafting_1",
+    "roiFront": "1202,222,36,45",
+    "roiBack": "1167,199,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_crafting_1.png",
+    "description": "crafting_1"
+  },
+  {
+    "itemName": "crafting_empty",
+    "roiFront": "939,460,75,81",
+    "roiBack": "922,447,108,111",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_crafting_empty.png",
+    "description": "crafting_empty"
+  },
+  {
+    "itemName": "crafting_card_star_1",
+    "roiFront": "217,156,87,92",
+    "roiBack": "191,127,140,137",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_crafting_card_star_1.png",
+    "description": "crafting_card_star_1"
+  },
+  {
+    "itemName": "crafting_start",
+    "roiFront": "889,561,140,39",
+    "roiBack": "840,521,231,100",
+    "threshold": "0.75",
+    "method": "Template matching",
+    "imageName": "md_crafting_start.png",
+    "description": "crafting_start"
+  },
+  {
+    "itemName": "crafting_empty_new",
+    "roiFront": "787,307,100,100",
+    "roiBack": "772,299,128,117",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_crafting_empty_new.png",
+    "description": "crafting_empty_new"
+  },
+  {
+    "itemName": "star56_pos_1",
+    "roiFront": "100,205,8,11",
+    "roiBack": "100,205,8,11",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_star56_pos_1.png",
+    "description": "star56_pos_1"
+  },
+  {
+    "itemName": "star56_hp_threshold_t",
+    "roiFront": "630,518,58,18",
+    "roiBack": "630,518,58,18",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_star56_hp_threshold_t.png",
+    "description": "star56_hp_threshold_t"
+  },
+  {
+    "itemName": "star56_hp_threshold_f",
+    "roiFront": "659,517,26,19",
+    "roiBack": "659,517,26,19",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_star56_hp_threshold_f.png",
+    "description": "star56_hp_threshold_f"
+  },
+  {
+    "itemName": "enter_ensure",
+    "roiFront": "541,578,186,48",
+    "roiBack": "443,555,370,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "md_enter_ensure.png",
+    "description": "enter_ensure"
   }
 ]

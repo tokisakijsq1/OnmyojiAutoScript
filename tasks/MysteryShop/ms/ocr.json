@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "好友名字"
+    "description": "ms_friend"
   },
   {
     "itemName": "ms_records",
@@ -15,6 +15,6 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "记录购买多少个的"
+    "description": "ms_records"
   }
 ]

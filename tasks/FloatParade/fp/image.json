@@ -1,173 +1,173 @@
 [
   {
     "itemName": "fp_access",
-    "imageName": "fp_fp_access.png",
     "roiFront": "1184,385,41,34",
     "roiBack": "1051,101,210,472",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "从庭院进入花车活动"
+    "imageName": "fp_fp_access.png",
+    "description": "fp_access"
   },
   {
     "itemName": "fp_getall0",
-    "imageName": "fp_fp_getall0.png",
     "roiFront": "1027,655,37,40",
     "roiBack": "1003,572,267,134",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fp_fp_getall0.png",
+    "description": "fp_getall0"
   },
   {
     "itemName": "fp_getall1",
-    "imageName": "fp_fp_getall1.png",
     "roiFront": "1198,555,53,54",
     "roiBack": "1163,506,113,164",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fp_fp_getall1.png",
+    "description": "fp_getall1"
   },
   {
     "itemName": "fp_batch",
-    "imageName": "fp_fp_batch.png",
     "roiFront": "985,520,94,31",
     "roiBack": "978,507,112,64",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fp_fp_batch.png",
+    "description": "fp_batch"
   },
   {
     "itemName": "fp_batch_true",
-    "imageName": "fp_fp_batch_true.png",
     "roiFront": "938,518,35,37",
     "roiBack": "924,506,64,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fp_fp_batch_true.png",
+    "description": "fp_batch_true"
   },
   {
     "itemName": "fp_batch_false",
-    "imageName": "fp_fp_batch_false.png",
     "roiFront": "936,515,40,45",
     "roiBack": "924,505,63,65",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fp_fp_batch_false.png",
+    "description": "fp_batch_false"
   },
   {
     "itemName": "fp_tasks",
-    "imageName": "fp_fp_tasks.png",
     "roiFront": "1184,553,68,66",
     "roiBack": "1167,532,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "右下角的任务"
+    "imageName": "fp_fp_tasks.png",
+    "description": "fp_tasks"
   },
   {
     "itemName": "fp_upgrade",
-    "imageName": "fp_fp_upgrade.png",
     "roiFront": "57,180,39,35",
     "roiBack": "19,153,169,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "升级"
+    "imageName": "fp_fp_upgrade.png",
+    "description": "fp_upgrade"
   },
   {
     "itemName": "fp_red_close",
-    "imageName": "fp_fp_red_close.png",
     "roiFront": "1170,109,43,44",
     "roiBack": "1157,101,72,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "红色关闭"
+    "imageName": "fp_fp_red_close.png",
+    "description": "fp_red_close"
   },
   {
     "itemName": "toggle_button",
-    "imageName": "fp_toggle_button.png",
     "roiFront": "1193,462,21,23",
     "roiBack": "1116,127,150,377",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "寻找花车的切换按钮"
+    "imageName": "fp_toggle_button.png",
+    "description": "toggle_button"
   },
   {
     "itemName": "batch_selection",
-    "imageName": "fp_batch_selection.png",
     "roiFront": "933,517,44,40",
     "roiBack": "933,517,44,40",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "批量选择"
+    "imageName": "fp_batch_selection.png",
+    "description": "batch_selection"
   },
   {
     "itemName": "batch_selection_confirm",
-    "imageName": "fp_batch_selection_confirm.png",
     "roiFront": "676,392,130,63",
     "roiBack": "676,392,130,63",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "批量选择确认"
+    "imageName": "fp_batch_selection_confirm.png",
+    "description": "batch_selection_confirm"
   },
   {
     "itemName": "fp_gift_close",
-    "imageName": "fp_fp_gift_close.png",
     "roiFront": "1056,96,36,38",
     "roiBack": "1046,89,60,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "礼包关闭"
+    "imageName": "fp_fp_gift_close.png",
+    "description": "fp_gift_close"
   },
   {
     "itemName": "fp_gift_flag1",
-    "imageName": "fp_fp_gift_flag1.png",
     "roiFront": "559,295,55,44",
     "roiBack": "559,295,55,44",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "礼包类型1"
+    "imageName": "fp_fp_gift_flag1.png",
+    "description": "fp_gift_flag1"
   },
   {
     "itemName": "fp_gift_flag2",
-    "imageName": "fp_fp_gift_flag2.png",
     "roiFront": "557,293,58,47",
     "roiBack": "557,293,58,47",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "礼包类型2"
+    "imageName": "fp_fp_gift_flag2.png",
+    "description": "fp_gift_flag2"
   },
   {
     "itemName": "fp_select_1",
-    "imageName": "fp_fp_select_1.png",
     "roiFront": "238,443,110,41",
     "roiBack": "217,420,179,92",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": ""
+    "imageName": "fp_fp_select_1.png",
+    "description": "fp_select_1"
   },
   {
     "itemName": "fp_select_2",
-    "imageName": "fp_fp_select_2.png",
     "roiFront": "570,438,116,52",
     "roiBack": "541,418,177,85",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": ""
+    "imageName": "fp_fp_select_2.png",
+    "description": "fp_select_2"
   },
   {
     "itemName": "fp_select_3",
-    "imageName": "fp_fp_select_3.png",
     "roiFront": "938,435,104,54",
     "roiBack": "917,415,154,98",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": ""
+    "imageName": "fp_fp_select_3.png",
+    "description": "fp_select_3"
   },
   {
     "itemName": "red_point_0",
-    "imageName": "fp_red_point_0.png",
     "roiFront": "1244,216,19,17",
     "roiBack": "1217,157,59,415",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": ""
+    "imageName": "fp_red_point_0.png",
+    "description": "red_point_0"
   }
 ]

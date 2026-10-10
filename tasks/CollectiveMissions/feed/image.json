@@ -1,0 +1,20 @@
+[
+  {
+    "itemName": "feed_heap",
+    "roiFront": "20,543,42,59",
+    "roiBack": "20,543,42,59",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "feed_feed_heap.png",
+    "description": "feed_heap"
+  },
+  {
+    "itemName": "feed_submit",
+    "roiFront": "703,340,114,54",
+    "roiBack": "703,340,114,54",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "feed_feed_submit.png",
+    "description": "feed_submit"
+  }
+]

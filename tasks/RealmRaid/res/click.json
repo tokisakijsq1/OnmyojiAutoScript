@@ -1,0 +1,56 @@
+[
+  {
+    "itemName": "partition_1",
+    "roiFront": "233,147,229,120",
+    "roiBack": "233,147,229,120",
+    "description": "partition_1"
+  },
+  {
+    "itemName": "partition_2",
+    "roiFront": "566,148,237,115",
+    "roiBack": "566,148,237,115",
+    "description": "partition_2"
+  },
+  {
+    "itemName": "partition_3",
+    "roiFront": "900,147,222,116",
+    "roiBack": "900,147,222,116",
+    "description": "partition_3"
+  },
+  {
+    "itemName": "partition_4",
+    "roiFront": "236,283,229,124",
+    "roiBack": "236,283,229,124",
+    "description": "partition_4"
+  },
+  {
+    "itemName": "partition_5",
+    "roiFront": "564,280,237,120",
+    "roiBack": "564,280,237,120",
+    "description": "partition_5"
+  },
+  {
+    "itemName": "partition_6",
+    "roiFront": "900,282,222,120",
+    "roiBack": "900,282,222,120",
+    "description": "partition_6"
+  },
+  {
+    "itemName": "partition_7",
+    "roiFront": "233,416,236,121",
+    "roiBack": "233,416,236,121",
+    "description": "partition_7"
+  },
+  {
+    "itemName": "partition_8",
+    "roiFront": "567,413,230,124",
+    "roiBack": "567,413,230,124",
+    "description": "partition_8"
+  },
+  {
+    "itemName": "partition_9",
+    "roiFront": "900,418,222,116",
+    "roiBack": "900,418,222,116",
+    "description": "partition_9"
+  }
+]

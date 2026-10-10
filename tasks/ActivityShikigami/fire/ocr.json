@@ -1,12 +1,12 @@
 [
   {
     "itemName": "fire",
-    "roiFront": "1135,599,85,49",
-    "roiBack": "1123,570,106,100",
+    "roiFront": "1110,560,120,75",
+    "roiBack": "1110,560,120,75",
     "mode": "Single",
     "method": "Default",
     "keyword": "挑战",
-    "description": "挑战"
+    "description": "fire"
   },
   {
     "itemName": "remain_ap",
@@ -15,16 +15,16 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "体力的数量检测"
+    "description": "remain_ap"
   },
   {
     "itemName": "remain_pass",
-    "roiFront": "791,18,50,29",
-    "roiBack": "791,18,49,28",
+    "roiFront": "1155,18,55,40",
+    "roiBack": "1155,18,55,40",
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "活动体力的剩余检测"
+    "description": "remain_pass"
   },
   {
     "itemName": "remain_buy",
@@ -33,7 +33,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "还有多少次购买体力的机会"
+    "description": "remain_buy"
   },
   {
     "itemName": "remain_pass2",
@@ -42,7 +42,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "活动票数（没有百分比）"
+    "description": "remain_pass2"
   },
   {
     "itemName": "remain_boss",
@@ -51,7 +51,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "boss剩余攻击次数"
+    "description": "remain_boss"
   },
   {
     "itemName": "remain_ap100",
@@ -60,7 +60,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "100体活动门票检测"
+    "description": "remain_ap100"
   },
   {
     "itemName": "enter_ap100",
@@ -69,6 +69,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "将魂试炼",
-    "description": "进入100体活动标识"
+    "description": "enter_ap100"
   }
 ]

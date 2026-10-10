@@ -6,7 +6,7 @@
     "mode": "Duration",
     "method": "Default",
     "keyword": "",
-    "description": "这张卡一共有多少小时"
+    "description": "card_all_time"
   },
   {
     "itemName": "check_card_number",
@@ -15,6 +15,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "识别结界卡每小时收益"
+    "description": "check_card_number"
   }
 ]

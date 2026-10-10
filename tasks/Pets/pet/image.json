@@ -1,74 +1,74 @@
 [
   {
     "itemName": "pet_house",
-    "imageName": "pet_pet_house.png",
     "roiFront": "1012,414,56,25",
     "roiBack": "952,412,144,60",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "宠物小屋"
+    "imageName": "pet_pet_house.png",
+    "description": "pet_house"
   },
   {
     "itemName": "pet_claw",
-    "imageName": "pet_pet_claw.png",
     "roiFront": "1171,625,55,56",
     "roiBack": "1171,625,55,56",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "爪印"
+    "imageName": "pet_pet_claw.png",
+    "description": "pet_claw"
   },
   {
     "itemName": "pet_happy",
-    "imageName": "pet_pet_happy.png",
     "roiFront": "853,614,67,70",
     "roiBack": "853,614,67,70",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "其乐融融"
+    "imageName": "pet_pet_happy.png",
+    "description": "pet_happy"
   },
   {
     "itemName": "pet_feast",
-    "imageName": "pet_pet_feast.png",
     "roiFront": "849,624,69,49",
     "roiBack": "849,624,69,49",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "快速喂养"
+    "imageName": "pet_pet_feast.png",
+    "description": "pet_feast"
   },
   {
     "itemName": "pet_play",
-    "imageName": "pet_pet_play.png",
     "roiFront": "788,500,75,75",
     "roiBack": "788,500,75,75",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "玩耍"
+    "imageName": "pet_pet_play.png",
+    "description": "pet_play"
   },
   {
     "itemName": "pet_feed",
-    "imageName": "pet_pet_feed.png",
     "roiFront": "899,511,79,68",
     "roiBack": "884,485,127,123",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "喂食"
+    "imageName": "pet_pet_feed.png",
+    "description": "pet_feed"
   },
   {
     "itemName": "pet_skip",
-    "imageName": "pet_pet_skip.png",
     "roiFront": "1089,119,72,41",
     "roiBack": "999,42,242,147",
+    "threshold": "0.65",
     "method": "Template matching",
-    "threshold": 0.65,
-    "description": "跳过"
+    "imageName": "pet_pet_skip.png",
+    "description": "pet_skip"
   },
   {
     "itemName": "pet_exit",
-    "imageName": "pet_pet_exit.png",
     "roiFront": "30,25,39,33",
     "roiBack": "30,25,39,33",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "退出"
+    "imageName": "pet_pet_exit.png",
+    "description": "pet_exit"
   }
 ]

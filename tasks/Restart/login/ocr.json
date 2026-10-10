@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "正在连接服务器",
-    "description": "正在连接服务器"
+    "description": "login_network"
   },
   {
     "itemName": "login_enter_game",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "进入",
-    "description": "Ocr-description"
+    "description": "login_enter_game"
   },
   {
     "itemName": "login_enter_game_origin",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "进入游戏",
-    "description": "兼容原先的进入游戏"
+    "description": "login_enter_game_origin"
   },
   {
     "itemName": "login_skip_1",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "点击屏幕跳过",
-    "description": "点击屏幕跳过"
+    "description": "login_skip_1"
   },
   {
     "itemName": "login_specific_serve",
@@ -42,6 +42,6 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "登录指定角色，默认第一个"
+    "description": "login_specific_serve"
   }
 ]

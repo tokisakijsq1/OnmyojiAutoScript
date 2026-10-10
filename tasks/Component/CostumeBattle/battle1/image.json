@@ -1,38 +1,38 @@
 [
   {
     "itemName": "local_1",
-    "imageName": "battle1_local_1.png",
     "roiFront": "119,493,23,25",
     "roiBack": "119,493,23,25",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "指针"
+    "imageName": "battle1_local_1.png",
+    "description": "local_1"
   },
   {
     "itemName": "exit_1",
-    "imageName": "battle1_exit_1.png",
     "roiFront": "21,20,27,31",
     "roiBack": "21,20,27,31",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左上角退出"
+    "imageName": "battle1_exit_1.png",
+    "description": "exit_1"
   },
   {
     "itemName": "friends_1",
-    "imageName": "battle1_friends_1.png",
     "roiFront": "88,18,35,34",
     "roiBack": "88,18,35,34",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左上角好友"
+    "imageName": "battle1_friends_1.png",
+    "description": "friends_1"
   },
   {
     "itemName": "battle_info_1",
-    "imageName": "battle1_battle_info_1.png",
     "roiFront": "231,14,37,39",
     "roiBack": "210,1,147,72",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "战斗信息标识"
+    "imageName": "battle1_battle_info_1.png",
+    "description": "battle_info_1"
   }
 ]

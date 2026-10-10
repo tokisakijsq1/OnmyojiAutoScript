@@ -6,7 +6,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "队伍预设分组"
+    "description": "ss_group_name"
   },
   {
     "itemName": "ss_team_name",
@@ -15,6 +15,6 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "阵容匹配"
+    "description": "ss_team_name"
   }
 ]

@@ -6,7 +6,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "战斗胜利获得的金币增加50%",
-    "description": "Ocr-description"
+    "description": "gold_50"
   },
   {
     "itemName": "gold_100",
@@ -15,7 +15,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "战斗胜利获得的金币增加100%",
-    "description": "Ocr-description"
+    "description": "gold_100"
   },
   {
     "itemName": "exp_50",
@@ -24,7 +24,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "战斗胜利获得的经验增加50%",
-    "description": "Ocr-description"
+    "description": "exp_50"
   },
   {
     "itemName": "exp_100",
@@ -33,7 +33,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "战斗胜利获得的经验增加100%",
-    "description": "Ocr-description"
+    "description": "exp_100"
   },
   {
     "itemName": "gb_buff_2",
@@ -42,6 +42,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "加成",
-    "description": "打开buff加成"
+    "description": "gb_buff_2"
   }
 ]

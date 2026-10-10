@@ -1,218 +1,227 @@
 [
   {
     "itemName": "a_harvest_fish4",
-    "imageName": "a_a_harvest_fish4.png",
     "roiFront": "897,159,48,40",
     "roiBack": "872,128,140,181",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "斗鱼收获奖励4星"
+    "imageName": "a_a_harvest_fish4.png",
+    "description": "a_harvest_fish4"
   },
   {
     "itemName": "a_harvest_exp",
-    "imageName": "a_a_harvest_exp.png",
     "roiFront": "891,153,49,43",
     "roiBack": "865,121,152,183",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "一般的收获奖励"
+    "imageName": "a_a_harvest_exp.png",
+    "description": "a_harvest_exp"
   },
   {
     "itemName": "a_cards_realm",
-    "imageName": "a_a_cards_realm.png",
     "roiFront": "0,0,100,100",
     "roiBack": "0,0,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "\"结界卡\""
+    "imageName": "a_a_cards_realm.png",
+    "description": "a_cards_realm"
   },
   {
     "itemName": "a_card_all",
-    "imageName": "a_a_card_all.png",
     "roiFront": "357,175,167,59",
     "roiBack": "357,175,167,59",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "description"
+    "imageName": "a_a_card_all.png",
+    "description": "a_card_all"
   },
   {
     "itemName": "a_card_kaiko",
-    "imageName": "a_a_card_kaiko.png",
     "roiFront": "392,251,112,38",
     "roiBack": "392,251,112,38",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "description"
+    "imageName": "a_a_card_kaiko.png",
+    "description": "a_card_kaiko"
   },
   {
     "itemName": "a_card_fish",
-    "imageName": "a_a_card_fish.png",
     "roiFront": "388,318,118,37",
     "roiBack": "388,318,118,37",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "description"
+    "imageName": "a_a_card_fish.png",
+    "description": "a_card_fish"
   },
   {
     "itemName": "a_card_room",
-    "imageName": "a_a_card_room.png",
     "roiFront": "355,370,167,59",
     "roiBack": "355,370,167,59",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "description"
+    "imageName": "a_a_card_room.png",
+    "description": "a_card_room"
   },
   {
     "itemName": "a_card_moon",
-    "imageName": "a_a_card_moon.png",
     "roiFront": "354,439,171,59",
     "roiBack": "354,439,171,59",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "description"
+    "imageName": "a_a_card_moon.png",
+    "description": "a_card_moon"
   },
   {
     "itemName": "a_card_other",
-    "imageName": "a_a_card_other.png",
     "roiFront": "353,502,173,61",
     "roiBack": "353,502,173,61",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "其他变异"
+    "imageName": "a_a_card_other.png",
+    "description": "a_card_other"
   },
   {
     "itemName": "a_invite",
-    "imageName": "a_a_invite.png",
     "roiFront": "1045,559,100,100",
     "roiBack": "1014,538,182,162",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "邀请"
+    "imageName": "a_a_invite.png",
+    "description": "a_invite"
   },
   {
     "itemName": "a_auto_invite",
-    "imageName": "a_a_auto_invite.png",
     "roiFront": "1071,456,53,51",
     "roiBack": "1071,456,53,51",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "自动邀请"
+    "imageName": "a_a_auto_invite.png",
+    "description": "a_auto_invite"
   },
   {
     "itemName": "a_friend_1",
-    "imageName": "a_a_friend_1.png",
     "roiFront": "590,573,64,73",
     "roiBack": "590,573,64,73",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "a_a_friend_1.png",
+    "description": "a_friend_1"
   },
   {
     "itemName": "a_friend_2",
-    "imageName": "a_a_friend_2.png",
     "roiFront": "741,572,70,69",
     "roiBack": "741,572,70,69",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "位置2，空人的"
+    "imageName": "a_a_friend_2.png",
+    "description": "a_friend_2"
   },
   {
     "itemName": "a_activate_yellow",
-    "imageName": "a_a_activate_yellow.png",
     "roiFront": "1047,560,100,100",
     "roiBack": "1047,560,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "激活, 黄色的可以激活"
+    "imageName": "a_a_activate_yellow.png",
+    "description": "a_activate_yellow"
   },
   {
     "itemName": "a_activate_gray",
-    "imageName": "a_a_activate_gray.png",
     "roiFront": "1046,556,100,100",
     "roiBack": "1046,556,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "激活, 灰色不可激活"
+    "imageName": "a_a_activate_gray.png",
+    "description": "a_activate_gray"
   },
   {
     "itemName": "a_empty",
-    "imageName": "a_a_empty.png",
     "roiFront": "677,255,353,128",
     "roiBack": "677,255,353,128",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "空着的表示没有卡在里面"
+    "imageName": "a_a_empty.png",
+    "description": "a_empty"
   },
   {
     "itemName": "a_check_card",
-    "imageName": "a_a_check_card.png",
     "roiFront": "513,32,260,49",
     "roiBack": "513,32,260,49",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "a_a_check_card.png",
+    "description": "a_check_card"
   },
   {
     "itemName": "a_harvest_kaiko_4",
-    "imageName": "a_a_harvest_kaiko_4.png",
     "roiFront": "894,164,48,41",
     "roiBack": "867,132,148,187",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "太鼓4"
+    "imageName": "a_a_harvest_kaiko_4.png",
+    "description": "a_harvest_kaiko_4"
   },
   {
     "itemName": "a_harvest_kaiko_3",
-    "imageName": "a_a_harvest_kaiko_3.png",
     "roiFront": "893,163,47,42",
     "roiBack": "865,136,148,178",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "a_a_harvest_kaiko_3.png",
+    "description": "a_harvest_kaiko_3"
   },
   {
     "itemName": "a_harvest_kaiko_6",
-    "imageName": "a_a_harvest_kaiko_6.png",
     "roiFront": "898,160,45,38",
     "roiBack": "868,129,146,184",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "太鼓6"
+    "imageName": "a_a_harvest_kaiko_6.png",
+    "description": "a_harvest_kaiko_6"
   },
   {
     "itemName": "a_harvest_fish_6",
-    "imageName": "a_a_harvest_fish_6.png",
     "roiFront": "898,159,45,38",
     "roiBack": "869,131,165,184",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "斗鱼6"
+    "imageName": "a_a_harvest_fish_6.png",
+    "description": "a_harvest_fish_6"
   },
   {
     "itemName": "a_harvest_moon_3",
-    "imageName": "a_a_harvest_moon_3.png",
     "roiFront": "897,159,46,40",
     "roiBack": "869,127,155,184",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "太阴3"
+    "imageName": "a_a_harvest_moon_3.png",
+    "description": "a_harvest_moon_3"
   },
   {
     "itemName": "a_demount",
-    "imageName": "a_a_demount.png",
     "roiFront": "939,575,55,47",
     "roiBack": "903,551,107,91",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "卸下"
+    "imageName": "a_a_demount.png",
+    "description": "a_demount"
   },
   {
     "itemName": "a_harvest_fish_3",
-    "imageName": "a_a_harvest_fish_3.png",
     "roiFront": "891,165,57,39",
     "roiBack": "854,128,160,174",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "斗鱼3"
+    "imageName": "a_a_harvest_fish_3.png",
+    "description": "a_harvest_fish_3"
+  },
+  {
+    "itemName": "aa_swipe_block",
+    "roiFront": "124,622,35,32",
+    "roiBack": "117,612,50,51",
+    "threshold": "0.9",
+    "method": "Template matching",
+    "imageName": "a_aa_swipe_block.png",
+    "description": "aa_swipe_block"
   }
 ]

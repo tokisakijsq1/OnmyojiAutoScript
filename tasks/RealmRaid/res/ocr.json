@@ -6,7 +6,7 @@
     "mode": "Duration",
     "method": "Default",
     "keyword": "",
-    "description": "刷新的时间"
+    "description": "fresh_time"
   },
   {
     "itemName": "number",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "右上角 突破卷的数量"
+    "description": "number"
   },
   {
     "itemName": "frog_1",
@@ -24,7 +24,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_1"
   },
   {
     "itemName": "frog_2",
@@ -33,7 +33,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_2"
   },
   {
     "itemName": "frog_3",
@@ -42,7 +42,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_3"
   },
   {
     "itemName": "frog_4",
@@ -51,7 +51,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_4"
   },
   {
     "itemName": "frog_5",
@@ -60,7 +60,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_5"
   },
   {
     "itemName": "frog_6",
@@ -69,7 +69,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_6"
   },
   {
     "itemName": "frog_7",
@@ -78,7 +78,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_7"
   },
   {
     "itemName": "frog_8",
@@ -87,7 +87,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_8"
   },
   {
     "itemName": "frog_9",
@@ -96,7 +96,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "frog_9"
   },
   {
     "itemName": "text",
@@ -106,5 +106,5 @@
     "method": "Default",
     "keyword": "",
     "description": "text"
-    }
+  }
 ]

@@ -6,7 +6,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "喂食的体力"
+    "description": "pet_feed_ap"
   },
   {
     "itemName": "pet_play_gold",
@@ -15,6 +15,6 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "玩耍的体力"
+    "description": "pet_play_gold"
   }
 ]

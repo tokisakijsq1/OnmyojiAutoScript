@@ -6,7 +6,7 @@
     "mode": "FULL",
     "method": "Default",
     "keyword": "",
-    "description": "邀请好友界面 好友列表第一列"
+    "description": "wq_invite_column_1"
   },
   {
     "itemName": "wq_invite_column_2",
@@ -15,6 +15,168 @@
     "mode": "FULL",
     "method": "Default",
     "keyword": "",
-    "description": "邀请好友界面 好友列表第二列"
+    "description": "wq_invite_column_2"
+  },
+  {
+    "itemName": "wq_number",
+    "roiFront": "569,13,50,32",
+    "roiBack": "569,13,50,32",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_number"
+  },
+  {
+    "itemName": "wq_wanted",
+    "roiFront": "15,116,85,401",
+    "roiBack": "15,116,85,401",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_wanted"
+  },
+  {
+    "itemName": "wq_text_1",
+    "roiFront": "67,233,52,32",
+    "roiBack": "67,233,52,32",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "封印",
+    "description": "wq_text_1"
+  },
+  {
+    "itemName": "wq_text_2",
+    "roiFront": "66,377,52,32",
+    "roiBack": "66,377,52,32",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "封印",
+    "description": "wq_text_2"
+  },
+  {
+    "itemName": "wq_num_1",
+    "roiFront": "32,260,72,27",
+    "roiBack": "32,260,72,27",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_num_1"
+  },
+  {
+    "itemName": "wq_num_2",
+    "roiFront": "34,406,65,24",
+    "roiBack": "34,406,65,24",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_num_2"
+  },
+  {
+    "itemName": "wq_num_unknown_1",
+    "roiFront": "32,260,72,27",
+    "roiBack": "32,260,72,27",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_num_unknown_1"
+  },
+  {
+    "itemName": "wq_num_unknown_2",
+    "roiFront": "34,406,65,24",
+    "roiBack": "34,406,65,24",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_num_unknown_2"
+  },
+  {
+    "itemName": "wq_type_1",
+    "roiFront": "544,248,55,36",
+    "roiBack": "544,248,55,36",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_type_1"
+  },
+  {
+    "itemName": "wq_type_2",
+    "roiFront": "544,321,55,30",
+    "roiBack": "544,321,55,30",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_type_2"
+  },
+  {
+    "itemName": "wq_type_3",
+    "roiFront": "544,392,54,30",
+    "roiBack": "544,392,54,30",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_type_3"
+  },
+  {
+    "itemName": "wq_type_4",
+    "roiFront": "545,462,52,32",
+    "roiBack": "545,462,52,32",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_type_4"
+  },
+  {
+    "itemName": "wq_info_1",
+    "roiFront": "609,246,309,45",
+    "roiBack": "609,246,309,45",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_info_1"
+  },
+  {
+    "itemName": "wq_info_2",
+    "roiFront": "612,318,298,41",
+    "roiBack": "612,318,298,41",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_info_2"
+  },
+  {
+    "itemName": "wq_info_3",
+    "roiFront": "612,386,305,44",
+    "roiBack": "612,386,305,44",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_info_3"
+  },
+  {
+    "itemName": "wq_info_4",
+    "roiFront": "613,456,315,44",
+    "roiBack": "613,456,315,44",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_info_4"
+  },
+  {
+    "itemName": "wq_monster_type",
+    "roiFront": "165,215,45,175",
+    "roiBack": "165,215,45,175",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_monster_type"
+  },
+  {
+    "itemName": "wq_text_all",
+    "roiFront": "12,119,88,393",
+    "roiBack": "12,119,88,393",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "wq_text_all"
   }
 ]

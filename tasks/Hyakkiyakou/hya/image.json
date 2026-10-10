@@ -1,0 +1,515 @@
+[
+  {
+    "itemName": "hinvite",
+    "roiFront": "139,593,63,39",
+    "roiBack": "105,535,129,147",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hinvite.png",
+    "description": "hinvite"
+  },
+  {
+    "itemName": "haccess",
+    "roiFront": "1059,554,100,100",
+    "roiBack": "1059,554,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_haccess.png",
+    "description": "haccess"
+  },
+  {
+    "itemName": "hstart",
+    "roiFront": "1119,555,100,100",
+    "roiBack": "1119,555,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hstart.png",
+    "description": "hstart"
+  },
+  {
+    "itemName": "hselected",
+    "roiFront": "980,265,41,44",
+    "roiBack": "226,53,836,348",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hselected.png",
+    "description": "hselected"
+  },
+  {
+    "itemName": "hend",
+    "roiFront": "81,164,86,299",
+    "roiBack": "81,164,86,299",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hend.png",
+    "description": "hend"
+  },
+  {
+    "itemName": "hfreeze",
+    "roiFront": "1092,665,187,54",
+    "roiBack": "1092,665,187,54",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hfreeze.png",
+    "description": "hfreeze"
+  },
+  {
+    "itemName": "htitle",
+    "roiFront": "578,21,134,48",
+    "roiBack": "578,21,134,48",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_htitle.png",
+    "description": "htitle"
+  },
+  {
+    "itemName": "hclose_red",
+    "roiFront": "1053,177,54,54",
+    "roiBack": "1044,168,74,72",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hclose_red.png",
+    "description": "hclose_red"
+  },
+  {
+    "itemName": "ensure_recall",
+    "roiFront": "1060,145,66,62",
+    "roiBack": "877,72,307,211",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_ensure_recall.png",
+    "description": "ensure_recall"
+  },
+  {
+    "itemName": "hya_state_buff06",
+    "roiFront": "331,7,126,41",
+    "roiBack": "137,1,342,66",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hya_state_buff06.png",
+    "description": "hya_state_buff06"
+  },
+  {
+    "itemName": "hya_state_buff05",
+    "roiFront": "158,5,127,45",
+    "roiBack": "147,0,322,62",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hya_state_buff05.png",
+    "description": "hya_state_buff05"
+  },
+  {
+    "itemName": "hya_state_buff07",
+    "roiFront": "157,7,127,43",
+    "roiBack": "143,0,347,80",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hya_state_buff07.png",
+    "description": "hya_state_buff07"
+  },
+  {
+    "itemName": "hya_state_buff02",
+    "roiFront": "157,6,128,39",
+    "roiBack": "146,1,348,55",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hya_state_buff02.png",
+    "description": "hya_state_buff02"
+  },
+  {
+    "itemName": "hya_state_buff03",
+    "roiFront": "326,4,129,44",
+    "roiBack": "143,3,326,59",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_hya_state_buff03.png",
+    "description": "hya_state_buff03"
+  },
+  {
+    "itemName": "resf_0",
+    "roiFront": "615,13,30,46",
+    "roiBack": "606,11,43,51",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_0.png",
+    "description": "resf_0"
+  },
+  {
+    "itemName": "resf_1",
+    "roiFront": "617,13,31,46",
+    "roiBack": "610,11,42,50",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_1.png",
+    "description": "resf_1"
+  },
+  {
+    "itemName": "resf_2",
+    "roiFront": "611,14,33,47",
+    "roiBack": "602,10,47,57",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_2.png",
+    "description": "resf_2"
+  },
+  {
+    "itemName": "resf_3",
+    "roiFront": "619,14,28,45",
+    "roiBack": "610,12,40,49",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_3.png",
+    "description": "resf_3"
+  },
+  {
+    "itemName": "resf_4",
+    "roiFront": "611,14,37,47",
+    "roiBack": "608,14,43,47",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_4.png",
+    "description": "resf_4"
+  },
+  {
+    "itemName": "resf_5",
+    "roiFront": "612,10,35,48",
+    "roiBack": "612,10,35,48",
+    "threshold": "0.9",
+    "method": "Template matching",
+    "imageName": "hya_resf_5.png",
+    "description": "resf_5"
+  },
+  {
+    "itemName": "resf_6",
+    "roiFront": "616,10,29,49",
+    "roiBack": "616,10,29,49",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_6.png",
+    "description": "resf_6"
+  },
+  {
+    "itemName": "resf_7",
+    "roiFront": "611,14,38,44",
+    "roiBack": "611,14,38,44",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_7.png",
+    "description": "resf_7"
+  },
+  {
+    "itemName": "resf_8",
+    "roiFront": "615,10,32,50",
+    "roiBack": "615,10,32,50",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_8.png",
+    "description": "resf_8"
+  },
+  {
+    "itemName": "resf_9",
+    "roiFront": "612,12,38,49",
+    "roiBack": "612,12,38,49",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resf_9.png",
+    "description": "resf_9"
+  },
+  {
+    "itemName": "resr_0",
+    "roiFront": "636,11,34,47",
+    "roiBack": "636,11,34,47",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_0.png",
+    "description": "resr_0"
+  },
+  {
+    "itemName": "resr_1",
+    "roiFront": "638,13,29,48",
+    "roiBack": "638,13,29,48",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_1.png",
+    "description": "resr_1"
+  },
+  {
+    "itemName": "resr_2",
+    "roiFront": "639,15,30,39",
+    "roiBack": "639,15,30,39",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_2.png",
+    "description": "resr_2"
+  },
+  {
+    "itemName": "resr_3",
+    "roiFront": "639,14,30,41",
+    "roiBack": "639,14,30,41",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_3.png",
+    "description": "resr_3"
+  },
+  {
+    "itemName": "resr_4",
+    "roiFront": "636,13,32,46",
+    "roiBack": "636,13,32,46",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_4.png",
+    "description": "resr_4"
+  },
+  {
+    "itemName": "resr_5",
+    "roiFront": "639,13,31,46",
+    "roiBack": "639,13,31,46",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_5.png",
+    "description": "resr_5"
+  },
+  {
+    "itemName": "resr_6",
+    "roiFront": "638,12,32,44",
+    "roiBack": "638,12,32,44",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_6.png",
+    "description": "resr_6"
+  },
+  {
+    "itemName": "resr_7",
+    "roiFront": "638,15,34,42",
+    "roiBack": "638,15,34,42",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_7.png",
+    "description": "resr_7"
+  },
+  {
+    "itemName": "resr_8",
+    "roiFront": "638,13,33,47",
+    "roiBack": "638,13,33,47",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_8.png",
+    "description": "resr_8"
+  },
+  {
+    "itemName": "resr_9",
+    "roiFront": "638,12,32,47",
+    "roiBack": "638,12,32,47",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_resr_9.png",
+    "description": "resr_9"
+  },
+  {
+    "itemName": "bean0",
+    "roiFront": "150,648,13,22",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean0.png",
+    "description": "bean0"
+  },
+  {
+    "itemName": "bean1",
+    "roiFront": "134,648,11,22",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean1.png",
+    "description": "bean1"
+  },
+  {
+    "itemName": "bean2",
+    "roiFront": "134,649,14,21",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean2.png",
+    "description": "bean2"
+  },
+  {
+    "itemName": "bean3",
+    "roiFront": "134,649,14,21",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean3.png",
+    "description": "bean3"
+  },
+  {
+    "itemName": "bean4",
+    "roiFront": "135,647,13,23",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean4.png",
+    "description": "bean4"
+  },
+  {
+    "itemName": "bean5",
+    "roiFront": "135,649,13,22",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean5.png",
+    "description": "bean5"
+  },
+  {
+    "itemName": "bean6",
+    "roiFront": "132,649,15,21",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean6.png",
+    "description": "bean6"
+  },
+  {
+    "itemName": "bean7",
+    "roiFront": "133,648,15,22",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean7.png",
+    "description": "bean7"
+  },
+  {
+    "itemName": "bean8",
+    "roiFront": "132,646,14,23",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean8.png",
+    "description": "bean8"
+  },
+  {
+    "itemName": "bean9",
+    "roiFront": "133,649,15,21",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean9.png",
+    "description": "bean9"
+  },
+  {
+    "itemName": "bean05",
+    "roiFront": "387,640,32,35",
+    "roiBack": "371,631,86,52",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean05.png",
+    "description": "bean05"
+  },
+  {
+    "itemName": "bean10",
+    "roiFront": "560,640,32,35",
+    "roiBack": "531,634,72,47",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_bean10.png",
+    "description": "bean10"
+  },
+  {
+    "itemName": "friend_same_1",
+    "roiFront": "349,124,83,50",
+    "roiBack": "349,124,83,50",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_same_1.png",
+    "description": "friend_same_1"
+  },
+  {
+    "itemName": "friend_remote_1",
+    "roiFront": "536,127,81,46",
+    "roiBack": "528,119,97,60",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_remote_1.png",
+    "description": "friend_remote_1"
+  },
+  {
+    "itemName": "friend_same_2",
+    "roiFront": "355,125,80,47",
+    "roiBack": "355,125,80,47",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_same_2.png",
+    "description": "friend_same_2"
+  },
+  {
+    "itemName": "friend_remote_2",
+    "roiFront": "534,122,89,56",
+    "roiBack": "522,114,109,72",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_remote_2.png",
+    "description": "friend_remote_2"
+  },
+  {
+    "itemName": "friend_same_1_recall",
+    "roiFront": "137,123,106,62",
+    "roiBack": "124,105,132,94",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_same_1.png",
+    "description": "friend_same_1_recall"
+  },
+  {
+    "itemName": "friend_remote_1_recall",
+    "roiFront": "218,123,106,56",
+    "roiBack": "199,106,159,91",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_remote_1.png",
+    "description": "friend_remote_1_recall"
+  },
+  {
+    "itemName": "friend_same_2_recall",
+    "roiFront": "138,126,100,60",
+    "roiBack": "122,112,133,80",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_same_2.png",
+    "description": "friend_same_2_recall"
+  },
+  {
+    "itemName": "friend_remote_2_recall",
+    "roiFront": "226,122,100,56",
+    "roiBack": "208,115,131,81",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_remote_2.png",
+    "description": "friend_remote_2_recall"
+  },
+  {
+    "itemName": "friend_ryou_1",
+    "roiFront": "445,126,80,45",
+    "roiBack": "437,118,97,60",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_ryou_1.png",
+    "description": "friend_ryou_1"
+  },
+  {
+    "itemName": "friend_ryou_2",
+    "roiFront": "444,127,80,45",
+    "roiBack": "436,119,97,60",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_friend_ryou_2.png",
+    "description": "friend_ryou_2"
+  },
+  {
+    "itemName": "check_invitation",
+    "roiFront": "629,140,272,57",
+    "roiBack": "308,113,826,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "hya_check_invitation.png",
+    "description": "check_invitation"
+  }
+]

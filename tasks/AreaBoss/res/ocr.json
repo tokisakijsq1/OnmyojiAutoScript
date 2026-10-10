@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "击杀最多",
-    "description": "击杀最多"
+    "description": "ab_kill_best"
   },
   {
     "itemName": "ab_my_collect",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "我的收藏",
-    "description": "我的收藏"
+    "description": "ab_my_collect"
   },
   {
     "itemName": "ab_famous",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "热门",
-    "description": "热门"
+    "description": "ab_famous"
   },
   {
     "itemName": "ab_collecting",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "收藏",
-    "description": "收藏"
+    "description": "ab_collecting"
   },
   {
     "itemName": "ab_num_of_challenge",
@@ -42,7 +42,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "挑战人数"
+    "description": "ab_num_of_challenge"
   },
   {
     "itemName": "ab_boss_name",
@@ -51,7 +51,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "地鬼名字"
+    "description": "ab_boss_name"
   },
   {
     "itemName": "ab_reputation",
@@ -60,6 +60,6 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "声望值"
+    "description": "ab_reputation"
   }
 ]

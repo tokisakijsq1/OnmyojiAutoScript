@@ -1,173 +1,371 @@
 [
   {
+    "itemName": "boss_fire",
+    "roiFront": "1128,576,100,100",
+    "roiBack": "1091,557,156,147",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_fire.png",
+    "description": "boss_fire"
+  },
+  {
+    "itemName": "boss_team_lock",
+    "roiFront": "1139,493,21,21",
+    "roiBack": "1130,487,38,43",
+    "threshold": "0.95",
+    "method": "Template matching",
+    "imageName": "gate1_boss_team_lock.png",
+    "description": "boss_team_lock"
+  },
+  {
+    "itemName": "boss_team_unlock",
+    "roiFront": "1138,497,22,21",
+    "roiBack": "1127,491,40,41",
+    "threshold": "0.95",
+    "method": "Template matching",
+    "imageName": "gate1_boss_team_unlock.png",
+    "description": "boss_team_unlock"
+  },
+  {
+    "itemName": "boss_skip",
+    "roiFront": "1131,13,100,42",
+    "roiBack": "1113,5,136,62",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_skip.png",
+    "description": "boss_skip"
+  },
+  {
+    "itemName": "boss_use_double",
+    "roiFront": "669,417,126,53",
+    "roiBack": "651,407,164,71",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_use_double.png",
+    "description": "boss_use_double"
+  },
+  {
+    "itemName": "boss_get_exp",
+    "roiFront": "561,109,171,45",
+    "roiBack": "492,86,281,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_get_exp.png",
+    "description": "boss_get_exp"
+  },
+  {
+    "itemName": "boss_share",
+    "roiFront": "1090,604,70,74",
+    "roiBack": "1074,587,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_share.png",
+    "description": "boss_share"
+  },
+  {
+    "itemName": "boss_shutu",
+    "roiFront": "108,141,173,122",
+    "roiBack": "108,141,173,122",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_shutu.png",
+    "description": "boss_shutu"
+  },
+  {
+    "itemName": "boss_battle_again",
+    "roiFront": "435,403,173,64",
+    "roiBack": "409,390,212,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_battle_again.png",
+    "description": "boss_battle_again"
+  },
+  {
+    "itemName": "boss_battle_giveup",
+    "roiFront": "671,399,175,59",
+    "roiBack": "649,381,219,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_boss_battle_giveup.png",
+    "description": "boss_battle_giveup"
+  },
+  {
     "itemName": "menter",
-    "imageName": "gate1_menter.png",
     "roiFront": "346,167,30,100",
     "roiBack": "346,167,30,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gate1_menter.png",
+    "description": "menter"
   },
   {
     "itemName": "mshuten",
-    "imageName": "gate1_mshuten.png",
     "roiFront": "46,609,70,65",
     "roiBack": "46,609,70,65",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "酒吞"
+    "imageName": "gate1_mshuten.png",
+    "description": "mshuten"
   },
   {
     "itemName": "mshouzu_select",
-    "imageName": "gate1_mshouzu_select.png",
     "roiFront": "544,179,199,438",
     "roiBack": "544,179,199,438",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "椒图选中"
+    "imageName": "gate1_mshouzu_select.png",
+    "description": "mshouzu_select"
   },
   {
     "itemName": "mshouzu",
-    "imageName": "gate1_mshouzu.png",
     "roiFront": "43,608,73,67",
     "roiBack": "43,608,73,67",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "椒图"
+    "imageName": "gate1_mshouzu.png",
+    "description": "mshouzu"
   },
   {
     "itemName": "mstart",
-    "imageName": "gate1_mstart.png",
     "roiFront": "1136,575,100,100",
     "roiBack": "1043,527,215,167",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "开启"
+    "imageName": "gate1_mstart.png",
+    "description": "mstart"
   },
   {
     "itemName": "mstart_confirm",
-    "imageName": "gate1_mstart_confirm.png",
     "roiFront": "1136,575,100,100",
     "roiBack": "1080,548,182,150",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gate1_mstart_confirm.png",
+    "description": "mstart_confirm"
   },
   {
     "itemName": "mstart_uncheck",
-    "imageName": "gate1_mstart_uncheck.png",
     "roiFront": "543,340,38,40",
     "roiBack": "543,340,38,40",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gate1_mstart_uncheck.png",
+    "description": "mstart_uncheck"
   },
   {
     "itemName": "mstart_check",
-    "imageName": "gate1_mstart_check.png",
     "roiFront": "542,340,39,41",
     "roiBack": "542,340,39,41",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gate1_mstart_check.png",
+    "description": "mstart_check"
   },
   {
     "itemName": "mskip",
-    "imageName": "gate1_mskip.png",
     "roiFront": "1117,28,58,36",
     "roiBack": "1117,28,58,36",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": ""
+    "imageName": "gate1_mskip.png",
+    "description": "mskip"
   },
   {
     "itemName": "prepare_battle",
-    "imageName": "gate1_prepare_battle.png",
     "roiFront": "33,640,48,54",
     "roiBack": "33,640,48,54",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左下角备战"
+    "imageName": "gate1_prepare_battle.png",
+    "description": "prepare_battle"
   },
   {
     "itemName": "mconinue",
-    "imageName": "gate1_mconinue.png",
     "roiFront": "1121,578,100,100",
     "roiBack": "1121,578,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "继续执行"
+    "imageName": "gate1_mconinue.png",
+    "description": "mconinue"
   },
   {
     "itemName": "mfirst_skill",
-    "imageName": "gate1_mfirst_skill.png",
     "roiFront": "255,577,141,39",
     "roiBack": "206,550,227,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "选第一个柔风"
+    "imageName": "gate1_mfirst_skill.png",
+    "description": "mfirst_skill"
   },
   {
     "itemName": "m_store",
-    "imageName": "gate1_m_store.png",
     "roiFront": "1124,594,61,57",
     "roiBack": "1103,576,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "唤息"
+    "imageName": "gate1_m_store.png",
+    "description": "m_store"
   },
   {
     "itemName": "back_exit",
-    "imageName": "gate1_back_exit.png",
     "roiFront": "11,18,51,47",
     "roiBack": "0,0,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左上角退出"
+    "imageName": "gate1_back_exit.png",
+    "description": "back_exit"
   },
   {
     "itemName": "m_store_activity",
-    "imageName": "gate1_m_store_activity.png",
     "roiFront": "1121,596,72,57",
     "roiBack": "1107,573,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "可以购买的幻息"
+    "imageName": "gate1_m_store_activity.png",
+    "description": "m_store_activity"
   },
   {
     "itemName": "mstart_confirm2",
-    "imageName": "gate1_mstart_confirm2.png",
     "roiFront": "1154,581,74,85",
     "roiBack": "1079,535,196,177",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gate1_mstart_confirm2.png",
+    "description": "mstart_confirm2"
   },
   {
     "itemName": "island_tag_flag",
-    "imageName": "gate1_island_tag_flag.png",
     "roiFront": "543,601,100,100",
     "roiBack": "543,601,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "动画完了就有这个东西"
+    "imageName": "gate1_island_tag_flag.png",
+    "description": "island_tag_flag"
   },
   {
     "itemName": "exit_sixrealms",
-    "imageName": "gate1_exit_sixrealms.png",
     "roiFront": "507.5,308,100,100",
     "roiBack": "507.5,308,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "暂时离开六道之门"
+    "imageName": "gate1_exit_sixrealms.png",
+    "description": "exit_sixrealms"
   },
   {
     "itemName": "select_shikigami_and_confirm",
-    "imageName": "gate1_select_shikigami_and_confirm.png",
     "roiFront": "499,238,151,57",
     "roiBack": "479,213,199,113",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "选择一个式神加入征伐队伍"
+    "imageName": "gate1_select_shikigami_and_confirm.png",
+    "description": "select_shikigami_and_confirm"
+  },
+  {
+    "itemName": "skill101",
+    "roiFront": "440,181,100,69",
+    "roiBack": "139,167,722,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_skill101.png",
+    "description": "skill101"
+  },
+  {
+    "itemName": "skill102",
+    "roiFront": "456,186,76,63",
+    "roiBack": "136,151,709,128",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_skill102.png",
+    "description": "skill102"
+  },
+  {
+    "itemName": "skill103",
+    "roiFront": "0,0,100,100",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_skill103.png",
+    "description": "skill103"
+  },
+  {
+    "itemName": "skill104",
+    "roiFront": "0,0,100,100",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_skill104.png",
+    "description": "skill104"
+  },
+  {
+    "itemName": "skill_refresh",
+    "roiFront": "1196,625,44,39",
+    "roiBack": "1171,586,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_skill_refresh.png",
+    "description": "skill_refresh"
+  },
+  {
+    "itemName": "select_0",
+    "roiFront": "152,572,132,44",
+    "roiBack": "140,542,163,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_select_0.png",
+    "description": "select_0"
+  },
+  {
+    "itemName": "select_1",
+    "roiFront": "424,573,137,46",
+    "roiBack": "382,544,196,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_select_1.png",
+    "description": "select_1"
+  },
+  {
+    "itemName": "select_2",
+    "roiFront": "696,572,140,47",
+    "roiBack": "666,546,196,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_select_2.png",
+    "description": "select_2"
+  },
+  {
+    "itemName": "select_3",
+    "roiFront": "1016,581,145,43",
+    "roiBack": "1000,550,173,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_select_3.png",
+    "description": "select_3"
+  },
+  {
+    "itemName": "coin",
+    "roiFront": "612,345,66,53",
+    "roiBack": "405,229,561,270",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_coin.png",
+    "description": "coin"
+  },
+  {
+    "itemName": "coin2",
+    "roiFront": "612,345,66,53",
+    "roiBack": "405,229,561,270",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_coin.png",
+    "description": "coin2"
+  },
+  {
+    "itemName": "skill105",
+    "roiFront": "178,187,80,69",
+    "roiBack": "112,149,779,151",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gate1_skill105.png",
+    "description": "skill105"
   }
 ]

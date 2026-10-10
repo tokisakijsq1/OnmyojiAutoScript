@@ -1,38 +1,38 @@
 [
   {
     "itemName": "local_2",
-    "imageName": "battle2_local_2.png",
     "roiFront": "30,569,21,22",
     "roiBack": "30,569,21,22",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "battle2_local_2.png",
+    "description": "local_2"
   },
   {
     "itemName": "exit_2",
-    "imageName": "battle2_exit_2.png",
     "roiFront": "17,16,35,34",
     "roiBack": "17,16,35,34",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "battle2_exit_2.png",
+    "description": "exit_2"
   },
   {
     "itemName": "friends_2",
-    "imageName": "battle2_friends_2.png",
     "roiFront": "88,15,34,39",
     "roiBack": "88,15,34,39",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "battle2_friends_2.png",
+    "description": "friends_2"
   },
   {
     "itemName": "battle_info_2",
-    "imageName": "battle2_battle_info_2.png",
     "roiFront": "232,17,34,36",
     "roiBack": "211,0,145,61",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "战斗信息标识"
+    "imageName": "battle2_battle_info_2.png",
+    "description": "battle_info_2"
   }
 ]

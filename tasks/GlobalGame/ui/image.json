@@ -1,119 +1,119 @@
 [
   {
     "itemName": "ui_confirm",
-    "imageName": "ui_ui_confirm.png",
     "roiFront": "664,407,180,65",
     "roiBack": "624,387,260,105",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "长一点的确认"
+    "imageName": "ui_ui_confirm.png",
+    "description": "ui_confirm"
   },
   {
     "itemName": "ui_cancel",
-    "imageName": "ui_ui_cancel.png",
     "roiFront": "432,403,177,62",
     "roiBack": "432,403,177,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "长一点的取消"
+    "imageName": "ui_ui_cancel.png",
+    "description": "ui_cancel"
   },
   {
     "itemName": "ui_reward",
-    "imageName": "ui_ui_reward.png",
-    "roiFront": "481,185,317,42",
+    "roiFront": "521,239,237,36",
     "roiBack": "464,142,350,145",
+    "threshold": "0.73",
     "method": "Template matching",
-    "threshold": 0.73,
-    "description": "'获得奖励' 四个大字"
+    "imageName": "ui_ui_reward.png",
+    "description": "ui_reward"
   },
   {
     "itemName": "ui_back_red",
-    "imageName": "ui_ui_back_red.png",
     "roiFront": "1041,111,34,38",
     "roiBack": "877,15,383,254",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ui_ui_back_red.png",
+    "description": "ui_back_red"
   },
   {
     "itemName": "ui_back_yellow",
-    "imageName": "ui_ui_back_yellow.png",
     "roiFront": "26,17,47,46",
     "roiBack": "0,0,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ui_ui_back_yellow.png",
+    "description": "ui_back_yellow"
   },
   {
     "itemName": "ui_back_blue",
-    "imageName": "ui_ui_back_blue.png",
     "roiFront": "32,37,51,45",
     "roiBack": "2,1,133,119",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
-  },
-  {
-    "itemName": "ui_award",
-    "imageName": "ui_ui_award.png",
-    "roiFront": "577,499,100,100",
-    "roiBack": "530,408,199,220",
-    "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
-  },
-  {
-    "itemName": "ui_confirm_samll",
-    "imageName": "ui_ui_confirm_samll.png",
-    "roiFront": "681,392,130,62",
-    "roiBack": "558,380,265,99",
-    "method": "Template matching",
-    "threshold": 0.8,
-    "description": "短一点的确认"
-  },
-  {
-    "itemName": "ui_cancel_samll",
-    "imageName": "ui_ui_cancel_samll.png",
-    "roiFront": "472,389,128,62",
-    "roiBack": "360,377,272,185",
-    "method": "Template matching",
-    "threshold": 0.8,
-    "description": "短一点的取消"
-  },
-  {
-    "itemName": "ui_uncheck",
-    "imageName": "ui_ui_uncheck.png",
-    "roiFront": "567,343,33,36",
-    "roiBack": "497,303,216,100",
-    "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
-  },
-  {
-    "itemName": "ui_check",
-    "imageName": "ui_ui_check.png",
-    "roiFront": "564,341,40,38",
-    "roiBack": "512,329,164,78",
-    "method": "Template matching",
-    "threshold": 0.8,
-    "description": "勾选"
-  },
-  {
-    "itemName": "ui_gotit_small",
-    "imageName": "ui_ui_gotit_small.png",
-    "roiFront": "678,396,127,60",
-    "roiBack": "622,371,242,100",
-    "method": "Template matching",
-    "threshold": 0.8,
-    "description": "知道了"
+    "imageName": "ui_ui_back_blue.png",
+    "description": "ui_back_blue"
   },
   {
     "itemName": "ui_back_circle",
-    "imageName": "ui_ui_back_circle.png",
     "roiFront": "24,21,36,39",
     "roiBack": "0,0,95,101",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "圆形返回按钮(移植自mine)"
+    "imageName": "ui_ui_back_circle.png",
+    "description": "ui_back_circle"
+  },
+  {
+    "itemName": "ui_award",
+    "roiFront": "577,499,100,100",
+    "roiBack": "530,408,199,220",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ui_ui_award.png",
+    "description": "ui_award"
+  },
+  {
+    "itemName": "ui_confirm_samll",
+    "roiFront": "681,392,130,62",
+    "roiBack": "558,380,265,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ui_ui_confirm_samll.png",
+    "description": "ui_confirm_samll"
+  },
+  {
+    "itemName": "ui_cancel_samll",
+    "roiFront": "472,389,128,62",
+    "roiBack": "360,377,272,185",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ui_ui_cancel_samll.png",
+    "description": "ui_cancel_samll"
+  },
+  {
+    "itemName": "ui_uncheck",
+    "roiFront": "567,343,33,36",
+    "roiBack": "497,303,216,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ui_ui_uncheck.png",
+    "description": "ui_uncheck"
+  },
+  {
+    "itemName": "ui_check",
+    "roiFront": "564,341,40,38",
+    "roiBack": "512,329,164,78",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ui_ui_check.png",
+    "description": "ui_check"
+  },
+  {
+    "itemName": "ui_gotit_small",
+    "roiFront": "678,396,127,60",
+    "roiBack": "622,371,242,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ui_ui_gotit_small.png",
+    "description": "ui_gotit_small"
   }
 ]

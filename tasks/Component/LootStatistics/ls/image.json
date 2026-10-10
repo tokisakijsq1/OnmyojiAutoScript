@@ -1,0 +1,11 @@
+[
+  {
+    "itemName": "realm_raid_pass",
+    "roiFront": "402,175,100,100",
+    "roiBack": "251,161,809,128",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ls_realm_raid_pass.png",
+    "description": "realm_raid_pass"
+  }
+]

@@ -4,13 +4,27 @@
     "roiFront": "390,648,21,22",
     "roiBack": "577,647,21,23",
     "mode": "default",
-    "description": "description"
+    "description": "bean_05to10"
   },
   {
     "itemName": "bean_10to05",
     "roiFront": "565,647,24,24",
     "roiBack": "390,647,22,22",
     "mode": "default",
-    "description": "description"
+    "description": "bean_10to05"
+  },
+  {
+    "itemName": "tswipe",
+    "roiFront": "421,521,21,91",
+    "roiBack": "273,516,23,100",
+    "mode": "default",
+    "description": "tswipe"
+  },
+  {
+    "itemName": "tback",
+    "roiFront": "259,515,21,100",
+    "roiBack": "993,521,22,100",
+    "mode": "default",
+    "description": "tback"
   }
 ]

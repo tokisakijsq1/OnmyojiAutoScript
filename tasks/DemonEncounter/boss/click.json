@@ -3,6 +3,72 @@
     "itemName": "dm_boss_click",
     "roiFront": "593,274,100,100",
     "roiBack": "593,274,100,100",
-    "description": "description"
+    "description": "dm_boss_click"
+  },
+  {
+    "itemName": "de_1",
+    "roiFront": "1222,497,39,25",
+    "roiBack": "1222,497,39,25",
+    "description": "de_1"
+  },
+  {
+    "itemName": "de_2",
+    "roiFront": "1204,424,39,31",
+    "roiBack": "1204,424,39,31",
+    "description": "de_2"
+  },
+  {
+    "itemName": "de_3",
+    "roiFront": "1234,364,32,22",
+    "roiBack": "1234,364,32,22",
+    "description": "de_3"
+  },
+  {
+    "itemName": "de_4",
+    "roiFront": "1214,297,34,27",
+    "roiBack": "1214,297,34,27",
+    "description": "de_4"
+  },
+  {
+    "itemName": "de_match_1",
+    "roiFront": "1211,478,61,58",
+    "roiBack": "1211,478,61,58",
+    "description": "de_match_1"
+  },
+  {
+    "itemName": "de_match_2",
+    "roiFront": "1196,409,55,56",
+    "roiBack": "1196,409,55,56",
+    "description": "de_match_2"
+  },
+  {
+    "itemName": "de_match_3",
+    "roiFront": "1225,344,53,55",
+    "roiBack": "1225,344,53,55",
+    "description": "de_match_3"
+  },
+  {
+    "itemName": "de_match_4",
+    "roiFront": "1200,282,56,53",
+    "roiBack": "1200,282,56,53",
+    "description": "de_match_4"
+  },
+  {
+    "itemName": "answer_1",
+    "roiFront": "430,264,440,67",
+    "roiBack": "430,264,440,67",
+    "description": "answer_1"
+  },
+  {
+    "itemName": "answer_2",
+    "roiFront": "428,351,438,70",
+    "roiBack": "428,351,438,70",
+    "description": "answer_2"
+  },
+  {
+    "itemName": "answer_3",
+    "roiFront": "434,435,437,65",
+    "roiBack": "434,435,437,65",
+    "description": "answer_3"
   }
 ]

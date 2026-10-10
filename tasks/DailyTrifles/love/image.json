@@ -1,74 +1,74 @@
 [
   {
     "itemName": "l_friends",
-    "imageName": "love_l_friends.png",
     "roiFront": "67,625,70,72",
     "roiBack": "67,625,70,72",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "description"
+    "imageName": "love_l_friends.png",
+    "description": "l_friends"
   },
   {
     "itemName": "l_love",
-    "imageName": "love_l_love.png",
     "roiFront": "123,625,67,72",
     "roiBack": "123,625,67,72",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "description"
+    "imageName": "love_l_love.png",
+    "description": "l_love"
   },
   {
     "itemName": "l_collect",
-    "imageName": "love_l_collect.png",
     "roiFront": "47,537,129,56",
     "roiBack": "47,537,129,56",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "一键收取"
+    "imageName": "love_l_collect.png",
+    "description": "l_collect"
   },
   {
     "itemName": "one_click_bless",
-    "imageName": "Screenshots_one_click_bless.png",
     "roiFront": "1115,500,93,33",
     "roiBack": "1115,500,93,33",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "一键祝福"
+    "imageName": "Screenshots_one_click_bless.png",
+    "description": "one_click_bless"
   },
   {
     "itemName": "click_bless",
-    "imageName": "Screenshots_click_bless.png",
     "roiFront": "617,442,92,39",
     "roiBack": "617,442,92,39",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击祝福"
+    "imageName": "Screenshots_click_bless.png",
+    "description": "click_bless"
   },
   {
     "itemName": "luck_title",
-    "imageName": "Screenshots_luck_title.png",
     "roiFront": "600,52,131,67",
     "roiBack": "600,52,131,67",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "吉闻页"
+    "imageName": "Screenshots_luck_title.png",
+    "description": "luck_title"
   },
   {
     "itemName": "friendship_up",
-    "imageName": "friendship_up.png",
     "roiFront": "1147,80,27,28",
     "roiBack": "1147,80,27,28",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "好友羁绊提升弹窗"
+    "imageName": "friendship_up.png",
+    "description": "friendship_up"
   },
   {
     "itemName": "friend_tab",
-    "imageName": "love_friend_tab.png",
     "roiFront": "143,95,97,49",
     "roiBack": "119,82,151,70",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": ""
+    "imageName": "love_friend_tab.png",
+    "description": "friend_tab"
   }
 ]

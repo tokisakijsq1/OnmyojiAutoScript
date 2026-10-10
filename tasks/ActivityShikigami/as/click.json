@@ -3,30 +3,42 @@
     "itemName": "random_left",
     "roiFront": "17,84,104,356",
     "roiBack": "17,81,106,365",
-    "description": "description"
+    "description": "random_left"
   },
   {
     "itemName": "random_right",
     "roiFront": "1133,88,131,361",
     "roiBack": "1131,84,133,363",
-    "description": "description"
+    "description": "random_right"
   },
   {
     "itemName": "random_top",
     "roiFront": "126,66,989,58",
     "roiBack": "123,65,991,58",
-    "description": "description"
+    "description": "random_top"
   },
   {
     "itemName": "random_bottom",
     "roiFront": "196,598,581,78",
     "roiBack": "194,597,583,81",
-    "description": "description"
+    "description": "random_bottom"
   },
   {
     "itemName": "random_all",
     "roiFront": "42,94,1207,543",
     "roiBack": "42,94,1207,543",
-    "description": "description"
+    "description": "random_all"
+  },
+  {
+    "itemName": "grid_reward_area",
+    "roiFront": "223,56,867,599",
+    "roiBack": "223,56,867,599",
+    "description": "grid_reward_area"
+  },
+  {
+    "itemName": "grid_continue",
+    "roiFront": "560,670,160,40",
+    "roiBack": "560,670,160,40",
+    "description": "grid_continue"
   }
 ]

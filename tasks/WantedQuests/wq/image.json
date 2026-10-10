@@ -1,146 +1,173 @@
 [
   {
     "itemName": "wq_seal",
-    "imageName": "wq_wq_seal.png",
     "roiFront": "174,184,20,29",
     "roiBack": "56,93,664,455",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "封印"
+    "imageName": "wq_wq_seal.png",
+    "description": "wq_seal"
   },
   {
     "itemName": "wq_done",
-    "imageName": "wq_wq_done.png",
     "roiFront": "248,183,37,39",
     "roiBack": "63,134,624,401",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "勾号"
+    "imageName": "wq_wq_done.png",
+    "description": "wq_done"
   },
   {
     "itemName": "trace_enable",
-    "imageName": "wq_trace_enable.png",
     "roiFront": "1097,588,101,70",
     "roiBack": "1097,588,101,70",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "一键追踪"
+    "imageName": "wq_trace_enable.png",
+    "description": "trace_enable"
   },
   {
     "itemName": "trace_disable",
-    "imageName": "wq_trace_disable.png",
     "roiFront": "1091,586,108,70",
     "roiBack": "1091,586,108,70",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "取消追踪"
+    "imageName": "wq_trace_disable.png",
+    "description": "trace_disable"
   },
   {
     "itemName": "wq_box",
-    "imageName": "wq_wq_box.png",
     "roiFront": "48,187,43,38",
     "roiBack": "12,78,108,496",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "奖励宝箱"
+    "imageName": "wq_wq_box.png",
+    "description": "wq_box"
   },
   {
     "itemName": "trace_true",
-    "imageName": "wq_trace_true.png",
     "roiFront": "173,187,28,29",
     "roiBack": "173,187,28,29",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "小号追踪"
+    "imageName": "wq_trace_true.png",
+    "description": "trace_true"
   },
   {
     "itemName": "trace_false",
-    "imageName": "wq_trace_false.png",
     "roiFront": "170,186,31,32",
     "roiBack": "170,186,31,32",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "小号不追踪"
+    "imageName": "wq_trace_false.png",
+    "description": "trace_false"
   },
   {
     "itemName": "goto_1",
-    "imageName": "wq_goto_1.png",
     "roiFront": "978,234,87,45",
     "roiBack": "978,234,87,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "wq_goto_1.png",
+    "description": "goto_1"
   },
   {
     "itemName": "goto_2",
-    "imageName": "wq_goto_2.png",
     "roiFront": "979,305,88,43",
     "roiBack": "979,305,88,58",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "wq_goto_2.png",
+    "description": "goto_2"
   },
   {
     "itemName": "goto_3",
-    "imageName": "wq_goto_3.png",
     "roiFront": "994,396,58,30",
     "roiBack": "979,373,88,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "wq_goto_3.png",
+    "description": "goto_3"
   },
   {
     "itemName": "goto_4",
-    "imageName": "wq_goto_4.png",
     "roiFront": "979,447,87,42",
     "roiBack": "979,447,87,57",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "wq_goto_4.png",
+    "description": "goto_4"
   },
   {
     "itemName": "wq_check_task",
-    "imageName": "wq_wq_check_task.png",
     "roiFront": "110,154,21,125",
     "roiBack": "73,122,69,459",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "判断是否还有任务"
+    "imageName": "wq_wq_check_task.png",
+    "description": "wq_check_task"
   },
   {
     "itemName": "wq_trace_one_enable",
-    "imageName": "wq_trace_one_enable.png",
     "roiFront": "160,175,120,60",
     "roiBack": "160,175,120,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "庭院悬赏任务界面 单个任务点开后 左上角是否追踪"
+    "imageName": "wq_trace_one_enable.png",
+    "description": "wq_trace_one_enable"
   },
   {
     "itemName": "wq_trace_one_disable",
-    "imageName": "wq_trace_one_disable.png",
     "roiFront": "160,175,120,60",
     "roiBack": "160,175,120,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "庭院悬赏任务界面 单个任务点开后 左上角是否追踪"
+    "imageName": "wq_trace_one_disable.png",
+    "description": "wq_trace_one_disable"
   },
   {
     "itemName": "wq_trace_one_check_opened",
-    "imageName": "wq_trace_one_check_opened.png",
     "roiFront": "510,175,210,60",
     "roiBack": "510,175,210,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "庭院悬赏任务界面 单个任务点开后的界面 是否打开的 标志"
+    "imageName": "wq_trace_one_check_opened.png",
+    "description": "wq_trace_one_check_opened"
   },
   {
     "itemName": "wq_trace_one_realworld",
-    "imageName": "wq_trace_one_realworld.png",
     "roiFront": "850,470,180,180",
     "roiBack": "850,470,180,180",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "庭院悬赏任务界面 单个任务点开后的界面 是否为现世任务标志"
+    "imageName": "wq_trace_one_realworld.png",
+    "description": "wq_trace_one_realworld"
+  },
+  {
+    "itemName": "wqse_fire",
+    "roiFront": "1041,556,100,100",
+    "roiBack": "1016,534,147,138",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "wq_wqse_fire.png",
+    "description": "wqse_fire"
+  },
+  {
+    "itemName": "wq_d1111",
+    "roiFront": "20,171,99,105",
+    "roiBack": "6,148,150,299",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "wq_wq_d1111.png",
+    "description": "wq_d1111"
+  },
+  {
+    "itemName": "wq_nian",
+    "roiFront": "19,176,100,100",
+    "roiBack": "0,153,166,273",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "wq_wq_nian.png",
+    "description": "wq_nian"
   }
 ]

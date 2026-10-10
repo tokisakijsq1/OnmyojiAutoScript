@@ -6,7 +6,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "荣誉"
+    "description": "d_honor"
   },
   {
     "itemName": "d_score",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "分数"
+    "description": "d_score"
   },
   {
     "itemName": "d_celeb_star",
@@ -24,7 +24,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "名士星星数"
+    "description": "d_celeb_star"
   },
   {
     "itemName": "d_hand",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "手动",
-    "description": "手动"
+    "description": "d_hand"
   },
   {
     "itemName": "d_auto",
@@ -42,7 +42,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "自动",
-    "description": "自动"
+    "description": "d_auto"
   },
   {
     "itemName": "d_ban_name",
@@ -51,6 +51,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "被办式神名称"
+    "description": "d_ban_name"
   }
 ]

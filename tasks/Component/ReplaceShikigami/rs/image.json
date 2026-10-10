@@ -1,164 +1,254 @@
 [
   {
+    "itemName": "detect_empty_1",
+    "roiFront": "64,262,100,100",
+    "roiBack": "38,227,158,177",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_detect_empty_1.png",
+    "description": "detect_empty_1"
+  },
+  {
+    "itemName": "detect_empty_2",
+    "roiFront": "281,263,100,100",
+    "roiBack": "238,234,178,168",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_detect_empty_2.png",
+    "description": "detect_empty_2"
+  },
+  {
+    "itemName": "detect_empty_3",
+    "roiFront": "495,263,100,100",
+    "roiBack": "470,234,150,150",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_detect_empty_3.png",
+    "description": "detect_empty_3"
+  },
+  {
+    "itemName": "detect_empty_4",
+    "roiFront": "703,256,100,100",
+    "roiBack": "681,229,157,174",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_detect_empty_4.png",
+    "description": "detect_empty_4"
+  },
+  {
+    "itemName": "detect_empty_5",
+    "roiFront": "914,257,100,100",
+    "roiBack": "872,221,198,190",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_detect_empty_5.png",
+    "description": "detect_empty_5"
+  },
+  {
+    "itemName": "detect_empty_6",
+    "roiFront": "1135,253,100,100",
+    "roiBack": "1091,229,156,159",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_detect_empty_6.png",
+    "description": "detect_empty_6"
+  },
+  {
+    "itemName": "new",
+    "roiFront": "0,0,100,100",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "image_name.png",
+    "description": "new"
+  },
+  {
     "itemName": "rs_no_add",
-    "imageName": "rs_rs_no_add.png",
     "roiFront": "276,222,100,212",
     "roiBack": "28,181,1232,293",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_no_add.png",
+    "description": "rs_no_add"
   },
   {
     "itemName": "rs_material",
-    "imageName": "rs_rs_material.png",
     "roiFront": "38,286,54,52",
     "roiBack": "0,265,1072,454",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "素材"
+    "imageName": "rs_rs_material.png",
+    "description": "rs_material"
   },
   {
     "itemName": "rs_n",
-    "imageName": "rs_rs_n.png",
     "roiFront": "129,298,47,49",
     "roiBack": "0,265,1072,454",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_n.png",
+    "description": "rs_n"
   },
   {
     "itemName": "rs_r",
-    "imageName": "rs_rs_r.png",
     "roiFront": "209,335,48,47",
     "roiBack": "0,265,1072,454",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_r.png",
+    "description": "rs_r"
   },
   {
     "itemName": "rs_sr",
-    "imageName": "rs_rs_sr.png",
     "roiFront": "279,388,48,47",
     "roiBack": "0,265,1072,454",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_sr.png",
+    "description": "rs_sr"
   },
   {
     "itemName": "rs_ssr",
-    "imageName": "rs_rs_ssr.png",
     "roiFront": "331,457,53,46",
     "roiBack": "0,265,1072,454",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_ssr.png",
+    "description": "rs_ssr"
   },
   {
     "itemName": "rs_sp",
-    "imageName": "rs_rs_sp.png",
     "roiFront": "368,537,48,47",
     "roiBack": "0,265,1072,454",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_sp.png",
+    "description": "rs_sp"
   },
   {
     "itemName": "rs_material_selected",
-    "imageName": "rs_rs_material_selected.png",
     "roiFront": "27,620,68,65",
     "roiBack": "27,620,68,65",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_material_selected.png",
+    "description": "rs_material_selected"
   },
   {
     "itemName": "rs_n_selected",
-    "imageName": "rs_rs_n_selected.png",
     "roiFront": "30,620,66,60",
     "roiBack": "30,620,66,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_n_selected.png",
+    "description": "rs_n_selected"
   },
   {
     "itemName": "rs_r_selected",
-    "imageName": "rs_rs_r_selected.png",
     "roiFront": "26,617,72,60",
     "roiBack": "26,617,72,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_r_selected.png",
+    "description": "rs_r_selected"
   },
   {
     "itemName": "rs_sr_selected",
-    "imageName": "rs_rs_sr_selected.png",
     "roiFront": "32,623,59,55",
     "roiBack": "32,623,59,55",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_sr_selected.png",
+    "description": "rs_sr_selected"
   },
   {
     "itemName": "rs_ssr_selected",
-    "imageName": "rs_rs_ssr_selected.png",
     "roiFront": "29,622,66,59",
     "roiBack": "29,622,66,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_ssr_selected.png",
+    "description": "rs_ssr_selected"
   },
   {
     "itemName": "rs_sp_selected",
-    "imageName": "rs_rs_sp_selected.png",
     "roiFront": "31,622,62,59",
     "roiBack": "31,622,62,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_sp_selected.png",
+    "description": "rs_sp_selected"
   },
   {
     "itemName": "rs_records_shiki",
-    "imageName": "rs_rs_records_shiki.png",
     "roiFront": "1148,548,49,43",
     "roiBack": "1145,548,55,90",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "式神录按钮"
+    "imageName": "rs_rs_records_shiki.png",
+    "description": "rs_records_shiki"
   },
   {
     "itemName": "rs_level_max",
-    "imageName": "rs_rs_level_max.png",
     "roiFront": "487,248,23,21",
     "roiBack": "52,238,1118,37",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "检测到已经满级了"
+    "imageName": "rs_rs_level_max.png",
+    "description": "rs_level_max"
   },
   {
     "itemName": "rs_smart_exchange",
-    "imageName": "rs_rs_smart_exchange.png",
     "roiFront": "1150,507,40,44",
     "roiBack": "1128,488,86,162",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "智能放入"
+    "imageName": "rs_rs_smart_exchange.png",
+    "description": "rs_smart_exchange"
   },
   {
     "itemName": "rs_ur",
-    "imageName": "rs_rs_ur.png",
     "roiFront": "377,627,49,46",
     "roiBack": "0,265,1072,454",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_ur.png",
+    "description": "rs_ur"
   },
   {
     "itemName": "rs_ur_selected",
-    "imageName": "rs_rs_ur_selected.png",
     "roiFront": "36,620,54,58",
     "roiBack": "14,601,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "rs_rs_ur_selected.png",
+    "description": "rs_ur_selected"
+  },
+  {
+    "itemName": "u_confirm_small",
+    "roiFront": "672,513,131,60",
+    "roiBack": "672,513,131,60",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "utilize_u_confirm_small.png",
+    "description": "u_confirm_small"
+  },
+  {
+    "itemName": "u_confirm_alternate",
+    "roiFront": "692,407,134,47",
+    "roiBack": "692,407,134,47",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_u_confirm_alternate.png",
+    "description": "u_confirm_alternate"
+  },
+  {
+    "itemName": "u_circle_alternate",
+    "roiFront": "535,339,41,43",
+    "roiBack": "535,339,41,43",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "rs_u_circle_alternate.png",
+    "description": "u_circle_alternate"
   }
 ]

@@ -1,191 +1,191 @@
 [
   {
     "itemName": "st_souls",
-    "imageName": "simple_st_souls.png",
     "roiFront": "1170,226,70,80",
     "roiBack": "1170,226,70,80",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击御魂"
+    "imageName": "simple_st_souls.png",
+    "description": "st_souls"
   },
   {
     "itemName": "st_replace",
-    "imageName": "simple_st_replace.png",
     "roiFront": "856,170,100,100",
     "roiBack": "856,170,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "更换"
+    "imageName": "simple_st_replace.png",
+    "description": "st_replace"
   },
   {
     "itemName": "st_bongna",
-    "imageName": "simple_st_bongna.png",
     "roiFront": "1154,202,77,97",
     "roiBack": "1154,202,77,97",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "奉纳"
+    "imageName": "simple_st_bongna.png",
+    "description": "st_bongna"
   },
   {
     "itemName": "st_greed",
-    "imageName": "simple_st_greed.png",
     "roiFront": "1157,611,65,60",
     "roiBack": "1157,611,65,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "贪吃鬼"
+    "imageName": "simple_st_greed.png",
+    "description": "st_greed"
   },
   {
     "itemName": "st_tidy",
-    "imageName": "simple_st_tidy.png",
     "roiFront": "1155,328,74,100",
     "roiBack": "1155,328,74,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "整理"
+    "imageName": "simple_st_tidy.png",
+    "description": "st_tidy"
   },
   {
     "itemName": "st_greed_habit",
-    "imageName": "simple_st_greed_habit.png",
     "roiFront": "817,529,165,61",
     "roiBack": "817,529,165,61",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进食习惯"
+    "imageName": "simple_st_greed_habit.png",
+    "description": "st_greed_habit"
   },
   {
     "itemName": "st_feed_now",
-    "imageName": "simple_st_feed_now.png",
     "roiFront": "929,593,73,65",
     "roiBack": "929,593,73,65",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "立即进食"
+    "imageName": "simple_st_feed_now.png",
+    "description": "st_feed_now"
   },
   {
     "itemName": "st_unselected",
-    "imageName": "simple_st_unselected.png",
     "roiFront": "542,342,38,37",
     "roiBack": "542,342,38,37",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "未选中"
+    "imageName": "simple_st_unselected.png",
+    "description": "st_unselected"
   },
   {
     "itemName": "st_greed_close",
-    "imageName": "simple_st_greed_close.png",
     "roiFront": "933,211,35,37",
     "roiBack": "933,211,35,37",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "关闭贪吃鬼"
+    "imageName": "simple_st_greed_close.png",
+    "description": "st_greed_close"
   },
   {
     "itemName": "st_cat",
-    "imageName": "simple_st_cat.png",
     "roiFront": "799,269,147,133",
     "roiBack": "799,269,147,133",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "招财猫"
+    "imageName": "simple_st_cat.png",
+    "description": "st_cat"
   },
   {
     "itemName": "st_donate",
-    "imageName": "simple_st_donate.png",
     "roiFront": "813,628,126,68",
     "roiBack": "813,628,126,68",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "奉纳"
+    "imageName": "simple_st_donate.png",
+    "description": "st_donate"
   },
   {
     "itemName": "st_god_present",
-    "imageName": "simple_st_god_present.png",
     "roiFront": "578,234,131,73",
     "roiBack": "542,117,204,219",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "神赐"
+    "imageName": "simple_st_god_present.png",
+    "description": "st_god_present"
   },
   {
     "itemName": "st_abandoned_selected",
-    "imageName": "simple_st_abandoned_selected.png",
     "roiFront": "32,112,107,52",
     "roiBack": "15,89,139,87",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "已弃置被选中"
+    "imageName": "simple_st_abandoned_selected.png",
+    "description": "st_abandoned_selected"
   },
   {
     "itemName": "st_level_0",
-    "imageName": "simple_st_level_0.png",
     "roiFront": "85,235,45,30",
     "roiBack": "85,235,45,30",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "第一个御魂是+0的"
+    "imageName": "simple_st_level_0.png",
+    "description": "st_level_0"
   },
   {
     "itemName": "st_gold",
-    "imageName": "simple_st_gold.png",
     "roiFront": "170,100,950,500",
     "roiBack": "170,100,950,500",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "御魂奉纳后获得的金币"
+    "imageName": "simple_st_gold.png",
+    "description": "st_gold"
   },
   {
     "itemName": "st_soul_overflow",
-    "imageName": "simple_st_soul_overflow.png",
     "roiFront": "447,260,384,42",
     "roiBack": "447,260,384,42",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "御魂溢出"
+    "imageName": "simple_st_soul_overflow.png",
+    "description": "st_soul_overflow"
   },
   {
     "itemName": "st_soul_stack",
-    "imageName": "simple_st_soul_stack.png",
     "roiFront": "142,234,20,16",
     "roiBack": "142,234,20,16",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "5星御魂的堆叠标识_大于1个"
+    "imageName": "simple_st_soul_stack.png",
+    "description": "st_soul_stack"
   },
   {
     "itemName": "st_souls_close",
-    "imageName": "simple_st_souls_close.png",
     "roiFront": "1180,227,56,83",
     "roiBack": "1166,215,84,107",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "御魂关闭状态"
+    "imageName": "simple_st_souls_close.png",
+    "description": "st_souls_close"
   },
   {
     "itemName": "st_soul_stack_1",
-    "imageName": "simple_st_soul_stack_1.png",
     "roiFront": "89,239,105,19",
     "roiBack": "89,239,105,19",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "5星御魂堆叠标识_1个"
+    "imageName": "simple_st_soul_stack_1.png",
+    "description": "st_soul_stack_1"
   },
   {
     "itemName": "st_luck",
-    "imageName": "simple_st_luck.png",
     "roiFront": "596,236,110,56",
     "roiBack": "596,236,110,56",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "吉运"
+    "imageName": "simple_st_luck.png",
+    "description": "st_luck"
   },
   {
     "itemName": "st_small_luck",
-    "imageName": "simple_st_small_luck.png",
     "roiFront": "549,236,201,35",
     "roiBack": "549,236,201,35",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "小吉运"
+    "imageName": "simple_st_small_luck.png",
+    "description": "st_small_luck"
   }
 ]

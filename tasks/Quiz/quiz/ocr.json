@@ -6,7 +6,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "question"
   },
   {
     "itemName": "answer1",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "answer1"
   },
   {
     "itemName": "answer2",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "answer2"
   },
   {
     "itemName": "answer3",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "answer3"
   },
   {
     "itemName": "answer4",
@@ -42,7 +42,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "answer4"
   },
   {
     "itemName": "countdown",
@@ -51,7 +51,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "4",
-    "description": "倒计时"
+    "description": "countdown"
   },
   {
     "itemName": "countdown3",
@@ -60,7 +60,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "3",
-    "description": "倒计时"
+    "description": "countdown3"
   },
   {
     "itemName": "question_and_answer",
@@ -69,6 +69,6 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "question_and_answer"
   }
 ]

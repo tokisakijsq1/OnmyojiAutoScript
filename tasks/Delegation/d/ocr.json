@@ -6,6 +6,15 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "弥助的画",
-    "description": "委派的名字"
+    "description": "d_name"
+  },
+  {
+    "itemName": "d_done",
+    "roiFront": "675,129,441,517",
+    "roiBack": "675,129,441,517",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "完成",
+    "description": "d_done"
   }
 ]

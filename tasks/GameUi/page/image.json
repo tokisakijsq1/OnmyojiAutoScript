@@ -1,0 +1,803 @@
+[
+  {
+    "itemName": "act_list_goto_act",
+    "roiFront": "1063,627,156,60",
+    "roiBack": "1007,552,272,166",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_act_list_goto_act.png",
+    "description": "act_list_goto_act"
+  },
+  {
+    "itemName": "check_act_list",
+    "roiFront": "112,13,125,44",
+    "roiBack": "75,3,205,66",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_act_list.png",
+    "description": "check_act_list"
+  },
+  {
+    "itemName": "check_exploration",
+    "roiFront": "1152,148,21,22",
+    "roiBack": "1152,148,21,22",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_exploration.png",
+    "description": "check_exploration"
+  },
+  {
+    "itemName": "exploration_goto_awake_zone",
+    "roiFront": "161,633,47,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_awake_zone.png",
+    "description": "exploration_goto_awake_zone"
+  },
+  {
+    "itemName": "exploration_goto_soul_zone",
+    "roiFront": "69,633,46,39",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_soul_zone.png",
+    "description": "exploration_goto_soul_zone"
+  },
+  {
+    "itemName": "exploration_goto_realm_raid",
+    "roiFront": "354,636,49,38",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_realm_raid.png",
+    "description": "exploration_goto_realm_raid"
+  },
+  {
+    "itemName": "exploration_goto_goryou_realm",
+    "roiFront": "353,639,47,45",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_goryou_realm.png",
+    "description": "exploration_goto_goryou_realm"
+  },
+  {
+    "itemName": "exploration_goto_delegation",
+    "roiFront": "448,634,54,39",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_delegation.png",
+    "description": "exploration_goto_delegation"
+  },
+  {
+    "itemName": "exploration_goto_secret_zones",
+    "roiFront": "546,635,51,42",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_secret_zones.png",
+    "description": "exploration_goto_secret_zones"
+  },
+  {
+    "itemName": "exploration_goto_hero_test",
+    "roiFront": "829,634,58,56",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_hero_test.png",
+    "description": "exploration_goto_hero_test"
+  },
+  {
+    "itemName": "exploration_goto_area_boss",
+    "roiFront": "642,638,50,38",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_area_boss.png",
+    "description": "exploration_goto_area_boss"
+  },
+  {
+    "itemName": "exploration_goto_heian_kitan",
+    "roiFront": "739,643,52,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_heian_kitan.png",
+    "description": "exploration_goto_heian_kitan"
+  },
+  {
+    "itemName": "exploration_goto_bondling_fairyland",
+    "roiFront": "1024,635,52,47",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_goto_bondling_fairyland.png",
+    "description": "exploration_goto_bondling_fairyland"
+  },
+  {
+    "itemName": "check_awake",
+    "roiFront": "165,533,39,45",
+    "roiBack": "115,521,201,120",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_awake.png",
+    "description": "check_awake"
+  },
+  {
+    "itemName": "check_soul_zones",
+    "roiFront": "1188,635,48,46",
+    "roiBack": "1158,616,103,93",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_soul_zones.png",
+    "description": "check_soul_zones"
+  },
+  {
+    "itemName": "check_realm_raid",
+    "roiFront": "129,632,52,48",
+    "roiBack": "66,526,233,188",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_check_realm_raid.png",
+    "description": "check_realm_raid"
+  },
+  {
+    "itemName": "check_hero_test",
+    "roiFront": "148,10,133,48",
+    "roiBack": "137,0,157,71",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_hero_test.png",
+    "description": "check_hero_test"
+  },
+  {
+    "itemName": "check_goryou",
+    "roiFront": "880,8,30,39",
+    "roiBack": "880,8,30,39",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_goryou.png",
+    "description": "check_goryou"
+  },
+  {
+    "itemName": "check_delegation",
+    "roiFront": "839,132,49,45",
+    "roiBack": "839,132,49,45",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_delegation.png",
+    "description": "check_delegation"
+  },
+  {
+    "itemName": "check_secret_zones",
+    "roiFront": "1145,592,110,119",
+    "roiBack": "1145,592,110,119",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_secret_zones.png",
+    "description": "check_secret_zones"
+  },
+  {
+    "itemName": "check_area_boss",
+    "roiFront": "20,320,150,130",
+    "roiBack": "20,320,150,130",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_area_boss.png",
+    "description": "check_area_boss"
+  },
+  {
+    "itemName": "check_heian_kitan",
+    "roiFront": "27,48,47,39",
+    "roiBack": "27,48,47,39",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_heian_kitan.png",
+    "description": "check_heian_kitan"
+  },
+  {
+    "itemName": "check_bondling_fairyland",
+    "roiFront": "614,660,56,49",
+    "roiBack": "582,630,130,90",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_bondling_fairyland.png",
+    "description": "check_bondling_fairyland"
+  },
+  {
+    "itemName": "ryoutoppa_goto_realmraid",
+    "roiFront": "1201,234,62,105",
+    "roiBack": "1201,234,62,105",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_ryoutoppa_goto_realmraid.png",
+    "description": "ryoutoppa_goto_realmraid"
+  },
+  {
+    "itemName": "kekkai_toppa",
+    "roiFront": "1065,3,203,61",
+    "roiBack": "1065,3,203,61",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_kekkai_toppa.png",
+    "description": "kekkai_toppa"
+  },
+  {
+    "itemName": "realm_raid_goto_shikigami_records",
+    "roiFront": "1208,610,45,44",
+    "roiBack": "1166,520,112,198",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_realm_raid_goto_shikigami_records.png",
+    "description": "realm_raid_goto_shikigami_records"
+  },
+  {
+    "itemName": "exploration_to_moon_sea",
+    "roiFront": "930,635,49,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_to_moon_sea.png",
+    "description": "exploration_to_moon_sea"
+  },
+  {
+    "itemName": "exploration_to_incense_realm",
+    "roiFront": "930,635,49,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_to_incense_realm.png",
+    "description": "exploration_to_incense_realm"
+  },
+  {
+    "itemName": "exploration_to_seasonrift_forest",
+    "roiFront": "930,635,49,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_to_seasonrift_forest.png",
+    "description": "exploration_to_seasonrift_forest"
+  },
+  {
+    "itemName": "exploration_to_pure_buddha_realm",
+    "roiFront": "930,635,49,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_to_pure_buddha_realm.png",
+    "description": "exploration_to_pure_buddha_realm"
+  },
+  {
+    "itemName": "exploration_to_mantra_tower",
+    "roiFront": "930,635,49,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_to_mantra_tower.png",
+    "description": "exploration_to_mantra_tower"
+  },
+  {
+    "itemName": "exploration_to_peacock_kingdom",
+    "roiFront": "930,635,49,44",
+    "roiBack": "33,619,1150,99",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_exploration_to_peacock_kingdom.png",
+    "description": "exploration_to_peacock_kingdom"
+  },
+  {
+    "itemName": "check_moon_sea",
+    "roiFront": "347,163,29,106",
+    "roiBack": "296,117,165,256",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_moon_sea.png",
+    "description": "check_moon_sea"
+  },
+  {
+    "itemName": "check_incense_realm",
+    "roiFront": "347,163,29,106",
+    "roiBack": "296,117,165,256",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_incense_realm.png",
+    "description": "check_incense_realm"
+  },
+  {
+    "itemName": "check_seasonrift_forest",
+    "roiFront": "348,158,30,106",
+    "roiBack": "296,117,165,256",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_seasonrift_forest.png",
+    "description": "check_seasonrift_forest"
+  },
+  {
+    "itemName": "check_pure_buddha_realm",
+    "roiFront": "348,158,30,106",
+    "roiBack": "296,117,165,256",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_pure_buddha_realm.png",
+    "description": "check_pure_buddha_realm"
+  },
+  {
+    "itemName": "check_mantra_tower",
+    "roiFront": "348,158,30,106",
+    "roiBack": "296,117,165,256",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_mantra_tower.png",
+    "description": "check_mantra_tower"
+  },
+  {
+    "itemName": "check_peacock_kingdom",
+    "roiFront": "348,158,30,106",
+    "roiBack": "296,117,165,256",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_peacock_kingdom.png",
+    "description": "check_peacock_kingdom"
+  },
+  {
+    "itemName": "check_six_gates",
+    "roiFront": "411,297,21,21",
+    "roiBack": "395,262,54,85",
+    "threshold": "0.85",
+    "method": "Template matching",
+    "imageName": "page_check_six_gates.png",
+    "description": "check_six_gates"
+  },
+  {
+    "itemName": "check_main",
+    "roiFront": "807,108,76,45",
+    "roiBack": "49,98,1033,74",
+    "threshold": "0.95",
+    "method": "Template matching",
+    "imageName": "page_check_main.png",
+    "description": "check_main"
+  },
+  {
+    "itemName": "main_scroll_close",
+    "roiFront": "1181,634,28,39",
+    "roiBack": "1162,595,77,112",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_main_scroll_close.png",
+    "description": "main_scroll_close"
+  },
+  {
+    "itemName": "main_goto_exploration",
+    "roiFront": "493,116,45,75",
+    "roiBack": "243,100,933,211",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_main_goto_exploration.png",
+    "description": "main_goto_exploration"
+  },
+  {
+    "itemName": "main_goto_town",
+    "roiFront": "706,249,61,57",
+    "roiBack": "200,120,951,298",
+    "threshold": "0.6",
+    "method": "Template matching",
+    "imageName": "page_main_goto_town.png",
+    "description": "main_goto_town"
+  },
+  {
+    "itemName": "main_goto_shikigami_records",
+    "roiFront": "1080,590,56,64",
+    "roiBack": "1080,590,120,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_shikigami_records.png",
+    "description": "main_goto_shikigami_records"
+  },
+  {
+    "itemName": "main_goto_onmyodo",
+    "roiFront": "960,590,39,36",
+    "roiBack": "960,590,120,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_onmyodo.png",
+    "description": "main_goto_onmyodo"
+  },
+  {
+    "itemName": "main_goto_friends",
+    "roiFront": "845,590,55,55",
+    "roiBack": "845,590,120,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_friends.png",
+    "description": "main_goto_friends"
+  },
+  {
+    "itemName": "main_goto_daily",
+    "roiFront": "790,618,49,40",
+    "roiBack": "735,590,120,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_daily.png",
+    "description": "main_goto_daily"
+  },
+  {
+    "itemName": "main_goto_mall",
+    "roiFront": "664,661,40,18",
+    "roiBack": "601,613,163,78",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_mall.png",
+    "description": "main_goto_mall"
+  },
+  {
+    "itemName": "main_goto_guild",
+    "roiFront": "495,590,50,22",
+    "roiBack": "495,590,120,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_guild.png",
+    "description": "main_goto_guild"
+  },
+  {
+    "itemName": "main_goto_team",
+    "roiFront": "395,590,38,48",
+    "roiBack": "395,590,120,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_team.png",
+    "description": "main_goto_team"
+  },
+  {
+    "itemName": "main_goto_collection",
+    "roiFront": "70,590,36,41",
+    "roiBack": "70,590,120,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_collection.png",
+    "description": "main_goto_collection"
+  },
+  {
+    "itemName": "main_goto_travel",
+    "roiFront": "170,590,64,61",
+    "roiBack": "170,590,120,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_main_goto_travel.png",
+    "description": "main_goto_travel"
+  },
+  {
+    "itemName": "check_travel",
+    "roiFront": "1134,583,78,77",
+    "roiBack": "1134,583,78,77",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_travel.png",
+    "description": "check_travel"
+  },
+  {
+    "itemName": "check_records",
+    "roiFront": "269,71,55,50",
+    "roiBack": "269,71,55,50",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_records.png",
+    "description": "check_records"
+  },
+  {
+    "itemName": "check_onmyodo",
+    "roiFront": "1166,117,84,547",
+    "roiBack": "1166,117,84,547",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_onmyodo.png",
+    "description": "check_onmyodo"
+  },
+  {
+    "itemName": "check_friends",
+    "roiFront": "27,251,29,47",
+    "roiBack": "5,216,86,106",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_check_friends.png",
+    "description": "check_friends"
+  },
+  {
+    "itemName": "check_daily",
+    "roiFront": "28,515,58,62",
+    "roiBack": "1,487,154,145",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_daily.png",
+    "description": "check_daily"
+  },
+  {
+    "itemName": "check_mall",
+    "roiFront": "231,455,131,78",
+    "roiBack": "201,432,185,121",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_mall.png",
+    "description": "check_mall"
+  },
+  {
+    "itemName": "check_mall_recommend",
+    "roiFront": "930,12,42,37",
+    "roiBack": "905,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_mall_recommend.png",
+    "description": "check_mall_recommend"
+  },
+  {
+    "itemName": "check_guild",
+    "roiFront": "1072,630,49,46",
+    "roiBack": "1072,630,49,46",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_guild.png",
+    "description": "check_guild"
+  },
+  {
+    "itemName": "check_team",
+    "roiFront": "32,585,82,65",
+    "roiBack": "0,563,148,139",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_team.png",
+    "description": "check_team"
+  },
+  {
+    "itemName": "check_collection",
+    "roiFront": "380,620,100,100",
+    "roiBack": "371,608,880,112",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_collection.png",
+    "description": "check_collection"
+  },
+  {
+    "itemName": "back_daily",
+    "roiFront": "33,13,39,50",
+    "roiBack": "33,13,39,50",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_back_daily.png",
+    "description": "back_daily"
+  },
+  {
+    "itemName": "main_goto_summon",
+    "roiFront": "1073,174,57,65",
+    "roiBack": "571,153,586,124",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_main_goto_summon.png",
+    "description": "main_goto_summon"
+  },
+  {
+    "itemName": "check_summon",
+    "roiFront": "750,580,30,28",
+    "roiBack": "578,516,419,204",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_summon.png",
+    "description": "check_summon"
+  },
+  {
+    "itemName": "check_shrin",
+    "roiFront": "80,92,33,97",
+    "roiBack": "56,73,84,138",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_shrin.png",
+    "description": "check_shrin"
+  },
+  {
+    "itemName": "guild_to_shrin",
+    "roiFront": "877,629,49,53",
+    "roiBack": "840,602,302,113",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_guild_to_shrin.png",
+    "description": "guild_to_shrin"
+  },
+  {
+    "itemName": "back_y",
+    "roiFront": "15,4,57,52",
+    "roiBack": "1,2,100,91",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_back_y.png",
+    "description": "back_y"
+  },
+  {
+    "itemName": "back_yollow",
+    "roiFront": "24,16,48,55",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_back_yollow.png",
+    "description": "back_yollow"
+  },
+  {
+    "itemName": "summon_goto_main",
+    "roiFront": "27,5,49,51",
+    "roiBack": "0,0,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_summon_goto_main.png",
+    "description": "summon_goto_main"
+  },
+  {
+    "itemName": "check_town",
+    "roiFront": "1026,106,68,82",
+    "roiBack": "765,98,402,96",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_town.png",
+    "description": "check_town"
+  },
+  {
+    "itemName": "town_goto_main",
+    "roiFront": "1017,231,78,73",
+    "roiBack": "302,216,868,127",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_town_goto_main.png",
+    "description": "town_goto_main"
+  },
+  {
+    "itemName": "town_goto_duel",
+    "roiFront": "756,142,48,68",
+    "roiBack": "357,126,657,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_town_goto_duel.png",
+    "description": "town_goto_duel"
+  },
+  {
+    "itemName": "town_goto_demon_encounter",
+    "roiFront": "617,135,51,75",
+    "roiBack": "232,121,873,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_town_goto_demon_encounter.png",
+    "description": "town_goto_demon_encounter"
+  },
+  {
+    "itemName": "town_goto_hunt",
+    "roiFront": "475,138,46,69",
+    "roiBack": "275,122,520,100",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_town_goto_hunt.png",
+    "description": "town_goto_hunt"
+  },
+  {
+    "itemName": "town_goto_draft_duel",
+    "roiFront": "335,159,55,72",
+    "roiBack": "170,145,567,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_town_goto_draft_duel.png",
+    "description": "town_goto_draft_duel"
+  },
+  {
+    "itemName": "town_goto_hyakkisen",
+    "roiFront": "192,145,48,67",
+    "roiBack": "86,130,447,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_town_goto_hyakkisen.png",
+    "description": "town_goto_hyakkisen"
+  },
+  {
+    "itemName": "check_duel",
+    "roiFront": "149,16,64,38",
+    "roiBack": "133,0,110,74",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_duel.png",
+    "description": "check_duel"
+  },
+  {
+    "itemName": "check_demon_encounter",
+    "roiFront": "26,658,42,43",
+    "roiBack": "2,619,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_demon_encounter.png",
+    "description": "check_demon_encounter"
+  },
+  {
+    "itemName": "check_hunt",
+    "roiFront": "575,30,46,25",
+    "roiBack": "553,1,81,68",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_check_hunt.png",
+    "description": "check_hunt"
+  },
+  {
+    "itemName": "check_hunt_kirin",
+    "roiFront": "353,240,30,54",
+    "roiBack": "328,234,81,68",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "page_check_hunt_kirin.png",
+    "description": "check_hunt_kirin"
+  },
+  {
+    "itemName": "check_draft_duel",
+    "roiFront": "1051,612,56,58",
+    "roiBack": "1029,594,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_draft_duel.png",
+    "description": "check_draft_duel"
+  },
+  {
+    "itemName": "town_goto_hyakkiyakou",
+    "roiFront": "880,165,53,69",
+    "roiBack": "827,149,148,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_town_goto_hyakkiyakou.png",
+    "description": "town_goto_hyakkiyakou"
+  },
+  {
+    "itemName": "check_kyakkiyakou",
+    "roiFront": "1062,564,84,73",
+    "roiBack": "68,519,1185,141",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_kyakkiyakou.png",
+    "description": "check_kyakkiyakou"
+  },
+  {
+    "itemName": "check_demon_encounter_2",
+    "roiFront": "501,441,53,122",
+    "roiBack": "358,326,370,288",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_demon_encounter_2.png",
+    "description": "check_demon_encounter_2"
+  },
+  {
+    "itemName": "town_goto_entertainment",
+    "roiFront": "201,144,35,26",
+    "roiBack": "201,144,35,26",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_town_goto_entertainment.png",
+    "description": "town_goto_entertainment"
+  },
+  {
+    "itemName": "check_entertainment",
+    "roiFront": "151,18,102,40",
+    "roiBack": "151,18,102,40",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_entertainment.png",
+    "description": "check_entertainment"
+  },
+  {
+    "itemName": "check_demon_encounter_realworld",
+    "roiFront": "26,658,42,43",
+    "roiBack": "2,619,100,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_demon_encounter_realworld.png",
+    "description": "check_demon_encounter_realworld"
+  },
+  {
+    "itemName": "demon_encounter_realworld_goto",
+    "roiFront": "994,485,106,30",
+    "roiBack": "994,485,106,30",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_demon_encounter_realworld.png",
+    "description": "demon_encounter_realworld_goto"
+  }
+]

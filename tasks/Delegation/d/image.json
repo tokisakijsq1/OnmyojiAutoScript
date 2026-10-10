@@ -1,92 +1,92 @@
 [
   {
     "itemName": "d_confirm",
-    "imageName": "d_d_confirm.png",
     "roiFront": "979,302,152,62",
     "roiBack": "979,302,152,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "委派式神"
+    "imageName": "d_d_confirm.png",
+    "description": "d_confirm"
   },
   {
     "itemName": "d_cancel",
-    "imageName": "d_d_cancel.png",
     "roiFront": "945,413,130,56",
     "roiBack": "945,413,130,56",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "再考虑下"
+    "imageName": "d_d_cancel.png",
+    "description": "d_cancel"
   },
   {
     "itemName": "d_start",
-    "imageName": "d_d_start.png",
     "roiFront": "1101,534,120,129",
     "roiBack": "1101,534,120,129",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "出发"
+    "imageName": "d_d_start.png",
+    "description": "d_start"
   },
   {
     "itemName": "d_skip",
-    "imageName": "d_d_skip.png",
     "roiFront": "661,518,70,39",
     "roiBack": "661,518,70,39",
+    "threshold": "0.67",
     "method": "Template matching",
-    "threshold": 0.67,
-    "description": "跳过"
+    "imageName": "d_d_skip.png",
+    "description": "d_skip"
   },
   {
     "itemName": "d_select_1",
-    "imageName": "d_d_select_1.png",
     "roiFront": "230,593,44,41",
     "roiBack": "216,553,71,106",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "d_d_select_1.png",
+    "description": "d_select_1"
   },
   {
     "itemName": "d_select_2",
-    "imageName": "d_d_select_2.png",
     "roiFront": "363,595,40,41",
     "roiBack": "327,547,97,98",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "d_d_select_2.png",
+    "description": "d_select_2"
   },
   {
     "itemName": "d_select_3",
-    "imageName": "d_d_select_3.png",
     "roiFront": "497,595,38,41",
     "roiBack": "456,548,105,102",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "d_d_select_3.png",
+    "description": "d_select_3"
   },
   {
     "itemName": "d_select_4",
-    "imageName": "d_d_select_4.png",
     "roiFront": "632,595,42,40",
     "roiBack": "579,556,111,85",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "d_d_select_4.png",
+    "description": "d_select_4"
   },
   {
     "itemName": "d_select_5",
-    "imageName": "d_d_select_5.png",
     "roiFront": "767,593,41,40",
     "roiBack": "721,556,103,86",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "d_d_select_5.png",
+    "description": "d_select_5"
   },
   {
     "itemName": "d_back",
-    "imageName": "d_d_back.png",
     "roiFront": "940,415,138,51",
     "roiBack": "940,415,138,51",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "返回"
+    "imageName": "d_d_back.png",
+    "description": "d_back"
   }
 ]

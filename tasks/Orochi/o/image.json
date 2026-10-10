@@ -1,101 +1,101 @@
 [
   {
     "itemName": "orochi",
-    "imageName": "o_orochi.png",
     "roiFront": "260,274,66,66",
     "roiBack": "55,104,295,406",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "八级大蛇进入"
+    "imageName": "o_orochi.png",
+    "description": "orochi"
   },
   {
     "itemName": "form_team",
-    "imageName": "o_form_team.png",
     "roiFront": "957,582,100,100",
     "roiBack": "957,582,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "组队"
+    "imageName": "o_form_team.png",
+    "description": "form_team"
   },
   {
     "itemName": "orochi_lock",
-    "imageName": "o_orochi_lock.png",
     "roiFront": "706,659,19,20",
     "roiBack": "628,646,262,60",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "o_orochi_lock.png",
+    "description": "orochi_lock"
   },
   {
     "itemName": "orochi_unlock",
-    "imageName": "o_orochi_unlock.png",
     "roiFront": "707,659,15,18",
     "roiBack": "624,645,271,59",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "o_orochi_unlock.png",
+    "description": "orochi_unlock"
   },
   {
     "itemName": "orochi_fire",
-    "imageName": "o_orochi_fire.png",
     "roiFront": "1133,584,110,59",
     "roiBack": "1122,572,131,124",
+    "threshold": "0.6",
     "method": "Template matching",
-    "threshold": 0.6,
-    "description": "点击挑战"
+    "imageName": "o_orochi_fire.png",
+    "description": "orochi_fire"
   },
   {
     "itemName": "shi_records",
-    "imageName": "o_shi_records.png",
     "roiFront": "842,569,48,45",
     "roiBack": "842,569,48,45",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "式神录"
+    "imageName": "o_shi_records.png",
+    "description": "shi_records"
   },
   {
     "itemName": "pet_present",
-    "imageName": "o_pet_present.png",
     "roiFront": "873,184,62,147",
     "roiBack": "873,184,62,147",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "小小宠物，发现宝藏"
+    "imageName": "o_pet_present.png",
+    "description": "pet_present"
   },
   {
     "itemName": "orochi_check_10",
-    "imageName": "o_orochi_check_10.png",
     "roiFront": "929,123,203,39",
     "roiBack": "896,100,269,84",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "八岐大蛇标志"
+    "imageName": "o_orochi_check_10.png",
+    "description": "orochi_check_10"
   },
   {
     "itemName": "orochi_check_11",
-    "imageName": "o_orochi_check_11.png",
     "roiFront": "929,123,203,39",
     "roiBack": "896,100,269,84",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "巫女大蛇标志"
+    "imageName": "o_orochi_check_11.png",
+    "description": "orochi_check_11"
   },
   {
     "itemName": "orochi_check_12",
-    "imageName": "o_orochi_check_12.png",
     "roiFront": "929,116,100,46",
     "roiBack": "896,100,269,84",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "神罚标志"
+    "imageName": "o_orochi_check_12.png",
+    "description": "orochi_check_12"
   },
   {
     "itemName": "orochi_check_13",
-    "imageName": "o_orochi_check_13.png",
     "roiFront": "929,121,211,41",
     "roiBack": "896,100,269,84",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "虚无大蛇标志"
+    "imageName": "o_orochi_check_13.png",
+    "description": "orochi_check_13"
   }
 ]

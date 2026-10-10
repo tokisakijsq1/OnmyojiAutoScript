@@ -6,7 +6,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "识别当前显示的章节"
+    "description": "e_exploration_level_number"
   },
   {
     "itemName": "e_alternate_number",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "候补出战的数量"
+    "description": "e_alternate_number"
   },
   {
     "itemName": "realm_raid_number",
@@ -24,7 +24,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "探索右上角 突破卷的数量"
+    "description": "realm_raid_number"
   },
   {
     "itemName": "realm_raid_number1",
@@ -33,6 +33,6 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "（点出困难28时候）探索右上角 突破卷的数量"
+    "description": "realm_raid_number1"
   }
 ]

@@ -1,182 +1,218 @@
 [
   {
     "itemName": "realm_raid",
-    "imageName": "res_realm_raid.png",
     "roiFront": "246,628,63,64",
     "roiBack": "246,628,63,64",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击结界突破的图片"
+    "imageName": "res_realm_raid.png",
+    "description": "realm_raid"
   },
   {
     "itemName": "medal_5",
-    "imageName": "res_medal_5.png",
     "roiFront": "238,205,212,53",
     "roiBack": "216,187,919,364",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "五个勋章"
+    "imageName": "res_medal_5.png",
+    "description": "medal_5"
   },
   {
     "itemName": "medal_4",
-    "imageName": "res_medal_4.png",
     "roiFront": "241,483,193,46",
     "roiBack": "228,178,899,362",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "res_medal_4.png",
+    "description": "medal_4"
   },
   {
     "itemName": "medal_3",
-    "imageName": "res_medal_3.png",
     "roiFront": "240,210,193,41",
     "roiBack": "229,189,894,345",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "res_medal_3.png",
+    "description": "medal_3"
   },
   {
     "itemName": "medal_2",
-    "imageName": "res_medal_2.png",
     "roiFront": "572,478,198,48",
     "roiBack": "217,193,923,354",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "res_medal_2.png",
+    "description": "medal_2"
   },
   {
     "itemName": "medal_1",
-    "imageName": "res_medal_1.png",
     "roiFront": "570,206,199,52",
     "roiBack": "237,198,892,336",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "res_medal_1.png",
+    "description": "medal_1"
   },
   {
     "itemName": "medal_0",
-    "imageName": "res_medal_0.png",
     "roiFront": "536,336,176,51",
     "roiBack": "231,200,898,336",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "没有勋章的"
+    "imageName": "res_medal_0.png",
+    "description": "medal_0"
   },
   {
     "itemName": "back_red",
-    "imageName": "res_back_red.png",
     "roiFront": "1178,101,57,64",
     "roiBack": "1178,101,57,64",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "右上角红色的关闭"
+    "imageName": "res_back_red.png",
+    "description": "back_red"
   },
   {
     "itemName": "unlock",
-    "imageName": "res_unlock.png",
     "roiFront": "818,579,38,42",
     "roiBack": "818,579,38,42",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "没有锁的状态图标"
+    "imageName": "res_unlock.png",
+    "description": "unlock"
   },
   {
     "itemName": "lock",
-    "imageName": "res_lock.png",
     "roiFront": "818,579,36,41",
     "roiBack": "818,579,36,41",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "以锁的状态图片"
+    "imageName": "res_lock.png",
+    "description": "lock"
   },
   {
     "itemName": "fresh",
-    "imageName": "res_fresh.png",
     "roiFront": "957,564,182,66",
     "roiBack": "957,564,182,66",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "刷新按钮"
+    "imageName": "res_fresh.png",
+    "description": "fresh"
   },
   {
     "itemName": "shikigami",
-    "imageName": "res_shikigami.png",
     "roiFront": "1206,608,54,51",
     "roiBack": "1206,608,54,51",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击的式神录"
+    "imageName": "res_shikigami.png",
+    "description": "shikigami"
   },
   {
     "itemName": "fire",
-    "imageName": "res_fire.png",
     "roiFront": "982,494,136,63",
     "roiBack": "140,129,1024,584",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进攻"
+    "imageName": "res_fire.png",
+    "description": "fire"
   },
   {
     "itemName": "soul_raid",
-    "imageName": "res_soul_raid.png",
     "roiFront": "577,502,100,100",
     "roiBack": "577,502,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "打完个后出现的领取奖励"
+    "imageName": "res_soul_raid.png",
+    "description": "soul_raid"
   },
   {
     "itemName": "fresh_ensure",
-    "imageName": "res_fresh_ensure.png",
-    "roiFront": "672,403,173,59",
-    "roiBack": "672,403,173,59",
+    "roiFront": "667,411,173,55",
+    "roiBack": "667,411,173,55",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "刷新确认"
+    "imageName": "res_fresh_ensure.png",
+    "description": "fresh_ensure"
   },
   {
     "itemName": "unlock_2",
-    "imageName": "res_unlock_2.png",
     "roiFront": "1002,643,30,41",
     "roiBack": "1002,643,30,41",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "没有锁图片，适配呱太入侵"
+    "imageName": "res_unlock_2.png",
+    "description": "unlock_2"
   },
   {
     "itemName": "lock_2",
-    "imageName": "res_lock_2.png",
     "roiFront": "1002,645,34,38",
     "roiBack": "1002,645,34,38",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "以锁图片，适配呱太"
+    "imageName": "res_lock_2.png",
+    "description": "lock_2"
   },
   {
     "itemName": "medal_5_frog",
-    "imageName": "res_medal_5_frog.png",
     "roiFront": "903,479,201,49",
     "roiBack": "189,182,967,376",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "res_medal_5_frog.png",
+    "description": "medal_5_frog"
   },
   {
     "itemName": "medal_3_2",
-    "imageName": "res_medal_3_2.png",
     "roiFront": "575,489,188,32",
     "roiBack": "575,489,188,32",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "3徽章新图2号"
+    "imageName": "res_medal_3_2.png",
+    "description": "medal_3_2"
   },
   {
     "itemName": "medal_3_3",
-    "imageName": "res_medal_3_3.png",
     "roiFront": "902,479,201,50",
     "roiBack": "902,479,201,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "res_medal_3_3.png",
+    "description": "medal_3_3"
+  },
+  {
+    "itemName": "frog_medal",
+    "roiFront": "912,12,32,35",
+    "roiBack": "912,12,32,35",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "res_frog_medal.png",
+    "description": "frog_medal"
+  },
+  {
+    "itemName": "rr_three",
+    "roiFront": "346,584,42,44",
+    "roiBack": "346,584,42,44",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "res_rr_three.png",
+    "description": "rr_three"
+  },
+  {
+    "itemName": "frog_raid",
+    "roiFront": "511,301,282,100",
+    "roiBack": "511,301,282,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "res_frog_raid.png",
+    "description": "frog_raid"
+  },
+  {
+    "itemName": "rr_person",
+    "roiFront": "1203,236,56,100",
+    "roiBack": "1203,236,56,155",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "res_rr_person.png",
+    "description": "rr_person"
   }
 ]

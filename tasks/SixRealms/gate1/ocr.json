@@ -6,7 +6,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "ocr_map"
   },
   {
     "itemName": "island_name",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "island_name"
   },
   {
     "itemName": "coin_num",
@@ -24,7 +24,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "有多少钱"
+    "description": "coin_num"
   },
   {
     "itemName": "skill_refresh",
@@ -33,6 +33,15 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "skill_refresh"
+  },
+  {
+    "itemName": "store_refresh_time",
+    "roiFront": "538,661,110,27",
+    "roiBack": "538,661,110,27",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "store_refresh_time"
   }
 ]

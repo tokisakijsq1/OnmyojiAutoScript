@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "b_bondling_class"
   },
   {
     "itemName": "b_low_number",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "小盘子"
+    "description": "b_low_number"
   },
   {
     "itemName": "b_medium_number",
@@ -24,7 +24,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "中盘子"
+    "description": "b_medium_number"
   },
   {
     "itemName": "b_high_number",
@@ -33,7 +33,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "大盘子"
+    "description": "b_high_number"
   },
   {
     "itemName": "b_stone_number",
@@ -42,7 +42,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "鸣契石"
+    "description": "b_stone_number"
   },
   {
     "itemName": "b_summon_ball_number",
@@ -51,7 +51,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "召唤契灵数量"
+    "description": "b_summon_ball_number"
   },
   {
     "itemName": "b_ball_number",
@@ -60,7 +60,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "抓捕契灵剩余数量"
+    "description": "b_ball_number"
   },
   {
     "itemName": "friend",
@@ -69,7 +69,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "好友邀请"
+    "description": "friend"
   },
   {
     "itemName": "kuaqu",
@@ -78,6 +78,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "跨区邀请"
+    "description": "kuaqu"
   }
 ]

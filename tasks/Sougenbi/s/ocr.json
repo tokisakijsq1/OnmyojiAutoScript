@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "s_greed"
   },
   {
     "itemName": "s_anger",
@@ -15,7 +15,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "s_anger"
   },
   {
     "itemName": "s_foolery",
@@ -24,6 +24,6 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "s_foolery"
   }
 ]

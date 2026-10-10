@@ -1,389 +1,425 @@
 [
   {
     "itemName": "add_1",
-    "imageName": "gi_add_1.png",
     "roiFront": "596,241,114,51",
     "roiBack": "569,196,186,161",
+    "threshold": "0.9",
     "method": "Template matching",
-    "threshold": 0.9,
-    "description": "中间的邀请图片"
+    "imageName": "gi_add_1.png",
+    "description": "add_1"
   },
   {
     "itemName": "add_2",
-    "imageName": "gi_add_2.png",
     "roiFront": "1013,203,100,100",
     "roiBack": "970,151,193,220",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "最右边的邀请"
+    "imageName": "gi_add_2.png",
+    "description": "add_2"
   },
   {
     "itemName": "fire_fail",
-    "imageName": "gi_fire_fail.png",
     "roiFront": "1177,604,81,74",
     "roiBack": "1177,604,81,74",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_fire_fail.png",
+    "description": "fire_fail"
   },
   {
     "itemName": "fire",
-    "imageName": "gi_fire.png",
     "roiFront": "1179,602,81,74",
     "roiBack": "1179,602,81,74",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_fire.png",
+    "description": "fire"
   },
   {
     "itemName": "lock",
-    "imageName": "gi_lock.png",
     "roiFront": "49,645,29,32",
     "roiBack": "29,633,287,61",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "锁定阵容的图片"
+    "imageName": "gi_lock.png",
+    "description": "lock"
   },
   {
     "itemName": "unlock",
-    "imageName": "gi_unlock.png",
     "roiFront": "31,647,23,27",
     "roiBack": "26,633,285,57",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "还没有锁定阵容"
+    "imageName": "gi_unlock.png",
+    "description": "unlock"
   },
   {
     "itemName": "matching",
-    "imageName": "gi_matching.png",
     "roiFront": "51,574,52,114",
     "roiBack": "51,574,52,114",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "如果是到时间会退出房间，这个右边显示一个匹配的图片"
+    "imageName": "gi_matching.png",
+    "description": "matching"
   },
   {
     "itemName": "fire_fail_sea",
-    "imageName": "gi_fire_fail_sea.png",
     "roiFront": "1160,585,100,70",
     "roiBack": "1160,585,100,70",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "永生之海挑战（还未有队友的图片）"
+    "imageName": "gi_fire_fail_sea.png",
+    "description": "fire_fail_sea"
   },
   {
     "itemName": "fire_sea",
-    "imageName": "gi_fire_sea.png",
     "roiFront": "1160,586,100,68",
     "roiBack": "1160,586,100,68",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_fire_sea.png",
+    "description": "fire_sea"
   },
   {
     "itemName": "lock_sea",
-    "imageName": "gi_lock_sea.png",
     "roiFront": "781,658,27,28",
     "roiBack": "781,658,27,28",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_lock_sea.png",
+    "description": "lock_sea"
   },
   {
     "itemName": "unlock_sea",
-    "imageName": "gi_unlock_sea.png",
     "roiFront": "781,656,27,30",
     "roiBack": "781,656,27,30",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "永生之海 没有锁定队伍的图片"
+    "imageName": "gi_unlock_sea.png",
+    "description": "unlock_sea"
   },
   {
     "itemName": "add_5_1",
-    "imageName": "gi_add_5_1.png",
     "roiFront": "370,243,100,100",
     "roiBack": "370,243,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "五人的队伍的第一个加号"
+    "imageName": "gi_add_5_1.png",
+    "description": "add_5_1"
   },
   {
     "itemName": "add_5_2",
-    "imageName": "gi_add_5_2.png",
     "roiFront": "612,263,100,100",
     "roiBack": "612,263,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_add_5_2.png",
+    "description": "add_5_2"
   },
   {
     "itemName": "add_5_3",
-    "imageName": "gi_add_5_3.png",
     "roiFront": "862,243,100,100",
     "roiBack": "862,243,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_add_5_3.png",
+    "description": "add_5_3"
   },
   {
     "itemName": "add_5_4",
-    "imageName": "gi_add_5_4.png",
     "roiFront": "1118,228,100,100",
     "roiBack": "1118,228,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_add_5_4.png",
+    "description": "add_5_4"
   },
   {
     "itemName": "load_friend",
-    "imageName": "gi_load_friend.png",
     "roiFront": "709,546,134,60",
     "roiBack": "709,546,134,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "游戏服务器获取在线好友时等待的图片"
+    "imageName": "gi_load_friend.png",
+    "description": "load_friend"
   },
   {
     "itemName": "back_yellow",
-    "imageName": "gi_back_yellow.png",
     "roiFront": "19,13,58,55",
     "roiBack": "19,13,58,55",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左上角退出"
+    "imageName": "gi_back_yellow.png",
+    "description": "back_yellow"
   },
   {
     "itemName": "invite_ensure",
-    "imageName": "gi_invite_ensure.png",
     "roiFront": "710,544,132,60",
     "roiBack": "710,544,132,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击邀请"
+    "imageName": "gi_invite_ensure.png",
+    "description": "invite_ensure"
   },
   {
     "itemName": "selected",
-    "imageName": "gi_selected.png",
     "roiFront": "895,373,33,32",
     "roiBack": "895,373,33,32",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "判断是否点中好友了"
+    "imageName": "gi_selected.png",
+    "description": "selected"
   },
   {
     "itemName": "flag_1_on",
-    "imageName": "gi_flag_1_on.png",
     "roiFront": "354,126,62,21",
     "roiBack": "354,126,62,21",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "用来判断当前的列表是哪儿的"
+    "imageName": "gi_flag_1_on.png",
+    "description": "flag_1_on"
   },
   {
     "itemName": "flag_1_off",
-    "imageName": "gi_flag_1_off.png",
     "roiFront": "353,126,58,22",
     "roiBack": "353,126,58,22",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_flag_1_off.png",
+    "description": "flag_1_off"
   },
   {
     "itemName": "flag_2_on",
-    "imageName": "gi_flag_2_on.png",
     "roiFront": "472,82,32,11",
     "roiBack": "454,74,56,26",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_flag_2_on.png",
+    "description": "flag_2_on"
   },
   {
     "itemName": "flag_2_off",
-    "imageName": "gi_flag_2_off.png",
     "roiFront": "469,127,58,21",
     "roiBack": "469,127,58,21",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_flag_2_off.png",
+    "description": "flag_2_off"
   },
   {
     "itemName": "flag_3_on",
-    "imageName": "gi_flag_3_on.png",
     "roiFront": "588,126,48,22",
     "roiBack": "588,126,48,22",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_flag_3_on.png",
+    "description": "flag_3_on"
   },
   {
     "itemName": "flag_3_off",
-    "imageName": "gi_flag_3_off.png",
     "roiFront": "590,126,41,22",
     "roiBack": "590,126,41,22",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_flag_3_off.png",
+    "description": "flag_3_off"
   },
   {
     "itemName": "flag_4_on",
-    "imageName": "gi_flag_4_on.png",
     "roiFront": "713,128,34,21",
     "roiBack": "713,128,34,21",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_flag_4_on.png",
+    "description": "flag_4_on"
   },
   {
     "itemName": "flag_4_off",
-    "imageName": "gi_flag_4_off.png",
     "roiFront": "703,128,53,21",
     "roiBack": "703,128,53,21",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_flag_4_off.png",
+    "description": "flag_4_off"
   },
   {
     "itemName": "add_sea",
-    "imageName": "gi_add_sea.png",
     "roiFront": "836,231,100,100",
     "roiBack": "836,231,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "永生之海添加好友"
+    "imageName": "gi_add_sea.png",
+    "description": "add_sea"
   },
   {
     "itemName": "i_reject",
-    "imageName": "gi_i_reject.png",
     "roiFront": "12,226,64,61",
     "roiBack": "12,226,64,275",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "队员不接受邀请"
+    "imageName": "gi_i_reject.png",
+    "description": "i_reject"
   },
   {
     "itemName": "i_reject_1",
-    "imageName": "gi_i_reject.png",
     "roiFront": "5,210,110,95",
     "roiBack": "5,210,110,95",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "队员不接受邀请"
+    "imageName": "gi_i_reject.png",
+    "description": "i_reject_1"
   },
   {
     "itemName": "i_reject_2",
-    "imageName": "gi_i_reject.png",
     "roiFront": "5,320,110,95",
     "roiBack": "5,320,110,95",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "队员不接受邀请"
+    "imageName": "gi_i_reject.png",
+    "description": "i_reject_2"
   },
   {
     "itemName": "i_reject_3",
-    "imageName": "gi_i_reject.png",
     "roiFront": "5,430,110,95",
     "roiBack": "5,430,110,95",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "队员不接受邀请"
+    "imageName": "gi_i_reject.png",
+    "description": "i_reject_3"
   },
   {
     "itemName": "i_accept",
-    "imageName": "gi_i_accept.png",
     "roiFront": "113,225,63,72",
     "roiBack": "113,225,63,280",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "队员接受邀请"
+    "imageName": "gi_i_accept.png",
+    "description": "i_accept"
   },
   {
     "itemName": "i_accept_default",
-    "imageName": "gi_i_accept_default.png",
     "roiFront": "205,223,61,68",
     "roiBack": "205,223,61,297",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "队员默认接受邀请"
+    "imageName": "gi_i_accept_default.png",
+    "description": "i_accept_default"
   },
   {
     "itemName": "i_no_default",
-    "imageName": "gi_i_no_default.png",
     "roiFront": "542,343,36,35",
     "roiBack": "542,343,36,35",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "不勾选 默认邀请"
+    "imageName": "gi_i_no_default.png",
+    "description": "i_no_default"
   },
   {
     "itemName": "i_default",
-    "imageName": "gi_i_default.png",
     "roiFront": "541,342,41,39",
     "roiBack": "541,342,41,39",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "勾选 默认邀请"
+    "imageName": "gi_i_default.png",
+    "description": "i_default"
   },
   {
     "itemName": "gi_cancel",
-    "imageName": "gi_cancel.png",
     "roiFront": "438,407,171,55",
     "roiBack": "438,407,171,55",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_cancel.png",
+    "description": "gi_cancel"
   },
   {
     "itemName": "gi_sure",
-    "imageName": "gi_gi_sure.png",
     "roiFront": "670,402,175,60",
     "roiBack": "670,402,175,60",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "队长邀请 确定"
+    "imageName": "gi_gi_sure.png",
+    "description": "gi_sure"
   },
   {
     "itemName": "gi_buff",
-    "imageName": "gi_gi_buff.png",
     "roiFront": "794,38,46,42",
     "roiBack": "794,38,46,42",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "所有的组队界面都有加成"
+    "imageName": "gi_gi_buff.png",
+    "description": "gi_buff"
   },
   {
     "itemName": "gi_in_room",
-    "imageName": "gi_gi_in_room.png",
     "roiFront": "92,17,213,64",
     "roiBack": "92,17,213,64",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "三人御魂组队左上角的协站队伍"
+    "imageName": "gi_gi_in_room.png",
+    "description": "gi_in_room"
   },
   {
     "itemName": "back_yellow_sea",
-    "imageName": "gi_back_yellow_sea.png",
     "roiFront": "31,16,42,42",
     "roiBack": "31,16,42,42",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gi_back_yellow_sea.png",
+    "description": "back_yellow_sea"
   },
   {
     "itemName": "i_accept_jy",
-    "imageName": "gi_i_accept_jy.png",
     "roiFront": "248,258,46,25",
     "roiBack": "231,205,75,326",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "识别到寄养邀请"
+    "imageName": "gi_i_accept_jy.png",
+    "description": "i_accept_jy"
   },
   {
     "itemName": "gi_speak",
-    "imageName": "gi_gi_speak.png",
     "roiFront": "23,503,82,85",
     "roiBack": "23,503,82,85",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "房间左下角发言按钮(永生之海房间无表情按钮, 用此图识别)"
+    "imageName": "gi_gi_speak.png",
+    "description": "gi_speak"
+  },
+  {
+    "itemName": "gi_emoji_1",
+    "roiFront": "27,526,55,51",
+    "roiBack": "27,526,55,51",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gi_gi_emoji_1.png",
+    "description": "gi_emoji_1"
+  },
+  {
+    "itemName": "gi_emoji_2",
+    "roiFront": "27,622,55,51",
+    "roiBack": "27,622,55,51",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gi_gi_emoji_1.png",
+    "description": "gi_emoji_2"
+  },
+  {
+    "itemName": "gi_home",
+    "roiFront": "361,34,34,46",
+    "roiBack": "361,34,34,46",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gi_gi_home.png",
+    "description": "gi_home"
+  },
+  {
+    "itemName": "gi_explore",
+    "roiFront": "690,16,28,28",
+    "roiBack": "688,8,33,46",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "gi_gi_explore.png",
+    "description": "gi_explore"
   }
 ]

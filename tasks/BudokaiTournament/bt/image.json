@@ -1,0 +1,65 @@
+[
+  {
+    "itemName": "img2",
+    "roiFront": "225,70,60,54",
+    "roiBack": "187,48,152,432",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "bt_img2.png",
+    "description": "img2"
+  },
+  {
+    "itemName": "img3",
+    "roiFront": "1108,530,70,82",
+    "roiBack": "1068,500,161,139",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "bt_img3.png",
+    "description": "img3"
+  },
+  {
+    "itemName": "img4",
+    "roiFront": "1106,541,72,72",
+    "roiBack": "1076,414,170,234",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "bt_img4.png",
+    "description": "img4"
+  },
+  {
+    "itemName": "item_5",
+    "roiFront": "1186,215,42,37",
+    "roiBack": "1164,122,80,434",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "bt_item_5.png",
+    "description": "item_5"
+  },
+  {
+    "itemName": "item_6",
+    "roiFront": "1186,215,42,37",
+    "roiBack": "1164,122,80,434",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "bt_item_6.png",
+    "description": "item_6"
+  },
+  {
+    "itemName": "item_7",
+    "roiFront": "1186,215,42,37",
+    "roiBack": "1164,122,80,434",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "bt_item_7.png",
+    "description": "item_7"
+  },
+  {
+    "itemName": "img1",
+    "roiFront": "1102,590,86,73",
+    "roiBack": "1059,547,161,139",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "bt_img1.png",
+    "description": "img1"
+  }
+]

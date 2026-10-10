@@ -3,60 +3,60 @@
     "itemName": "dokan_random_click_area",
     "roiFront": "142,294,107,150",
     "roiBack": "142,294,107,150",
-    "description": "道馆随机点击安全区域"
+    "description": "dokan_random_click_area"
   },
   {
     "itemName": "dokan_random_click_area1",
     "roiFront": "42,594,10,30",
     "roiBack": "42,594,10,30",
-    "description": "道馆随机点击安全区域1：竂友突破信息"
+    "description": "dokan_random_click_area1"
   },
   {
     "itemName": "dokan_random_click_area2",
     "roiFront": "1122,360,10,40",
     "roiBack": "1122,360,10,40",
-    "description": "道馆随机点击安全区域2：切换查看队伍模式。初步测试下来这个地方最安全，除了庭院、町中、逢魔外其他各场景都可用。"
+    "description": "dokan_random_click_area2"
   },
   {
     "itemName": "dokan_random_click_area3",
     "roiFront": "333,44,107,20",
     "roiBack": "333,44,107,20",
-    "description": "道馆随机点击安全区域3"
+    "description": "dokan_random_click_area3"
   },
   {
     "itemName": "dokan_toppa_rank_close_area",
     "roiFront": "1150,380,100,150",
     "roiBack": "1150,380,100,150",
-    "description": "道馆突破排名弹出时,点击此区域关闭"
+    "description": "dokan_toppa_rank_close_area"
   },
   {
     "itemName": "dokan_ready_for_battle",
     "roiFront": "42,94,1207,543",
     "roiBack": "42,94,1207,543",
-    "description": "准备战斗"
+    "description": "dokan_ready_for_battle"
   },
   {
     "itemName": "dokan_cancel_select_dokan",
     "roiFront": "1070,610,30,90",
     "roiBack": "1070,610,30,90",
-    "description": "查找道馆时 点击此区域 隐藏道馆详情(显示防守人数,馆主等级等的卡片)"
+    "description": "dokan_cancel_select_dokan"
   },
   {
     "itemName": "dokan_cancel_select_dokan_check_animate",
     "roiFront": "600,330,80,60",
     "roiBack": "600,330,80,60",
-    "description": "ruleanimate 用作检测选择道馆时,确定地图区域稳定无动作"
+    "description": "dokan_cancel_select_dokan_check_animate"
   },
   {
     "itemName": "dokan_refresh",
     "roiFront": "1140,630,40,30",
     "roiBack": "1140,630,40,30",
-    "description": "查找道馆时 刷新道馆列表"
+    "description": "dokan_refresh"
   },
   {
     "itemName": "dokan_battle_quit_area",
     "roiFront": "10,36,50,14",
     "roiBack": "10,36,50,14",
-    "description": "道馆战斗时,左上角 退出按钮区域"
+    "description": "dokan_battle_quit_area"
   }
 ]

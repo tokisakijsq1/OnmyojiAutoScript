@@ -4,6 +4,13 @@
     "roiFront": "947,290,46,25",
     "roiBack": "947,200,46,24",
     "mode": "default",
-    "description": "description"
+    "description": "guild_store"
+  },
+  {
+    "itemName": "sp_down",
+    "roiFront": "249,419,486,22",
+    "roiBack": "339,300,301,22",
+    "mode": "default",
+    "description": "sp_down"
   }
 ]

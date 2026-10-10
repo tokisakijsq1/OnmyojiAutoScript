@@ -3,90 +3,90 @@
     "itemName": "boss_click_area",
     "roiFront": "679,164,83,54",
     "roiBack": "679,164,83,54",
-    "description": "首领"
+    "description": "boss_click_area"
   },
   {
     "itemName": "general_1_click_area",
     "roiFront": "539,306,64,56",
     "roiBack": "539,306,64,56",
-    "description": "副将1"
+    "description": "general_1_click_area"
   },
   {
     "itemName": "general_2_click_area",
     "roiFront": "856,293,58,50",
     "roiBack": "856,293,58,50",
-    "description": "副将2"
+    "description": "general_2_click_area"
   },
   {
     "itemName": "elite_1_click_area",
     "roiFront": "453,418,54,45",
     "roiBack": "453,418,54,45",
-    "description": "精英1"
+    "description": "elite_1_click_area"
   },
   {
     "itemName": "elite_2_click_area",
     "roiFront": "694,420,58,44",
     "roiBack": "694,420,58,44",
-    "description": "精英2"
+    "description": "elite_2_click_area"
   },
   {
     "itemName": "elite_3_click_area",
     "roiFront": "938,413,60,44",
     "roiBack": "938,413,60,44",
-    "description": "精英3"
+    "description": "elite_3_click_area"
   },
   {
     "itemName": "change_zone",
     "roiFront": "1000,606,54,54",
     "roiBack": "1000,606,54,54",
-    "description": "前往阵眼"
+    "description": "change_zone"
   },
   {
     "itemName": "dragon_area",
     "roiFront": "123,150,75,66",
     "roiBack": "123,150,75,66",
-    "description": "神龙暗域"
+    "description": "dragon_area"
   },
   {
     "itemName": "peacock_area",
     "roiFront": "125,278,74,62",
     "roiBack": "125,278,74,62",
-    "description": "孔雀暗域"
+    "description": "peacock_area"
   },
   {
     "itemName": "fox_area",
     "roiFront": "126,409,79,74",
     "roiBack": "126,409,79,74",
-    "description": "白藏主暗域"
+    "description": "fox_area"
   },
   {
     "itemName": "leopard_area",
     "roiFront": "122,537,81,76",
     "roiBack": "122,537,81,76",
-    "description": "黑豹暗域"
+    "description": "leopard_area"
   },
   {
     "itemName": "abyss_dragon",
     "roiFront": "232.5,196,55,151",
     "roiBack": "190,147,140,283",
-    "description": "狭间_神龙入口"
+    "description": "abyss_dragon"
   },
   {
     "itemName": "abyss_peacock",
     "roiFront": "526,189,48,165",
     "roiBack": "476,138,145,312",
-    "description": "狭间_孔雀入口"
+    "description": "abyss_peacock"
   },
   {
     "itemName": "abyss_fox",
     "roiFront": "822,184,49,144",
     "roiBack": "789,130,148,249",
-    "description": "狭间_白藏主入口"
+    "description": "abyss_fox"
   },
   {
     "itemName": "abyss_leopard",
     "roiFront": "1140,190,50,162",
     "roiBack": "1093,143,138,297",
-    "description": "狭间_黑豹入口"
+    "description": "abyss_leopard"
   }
 ]

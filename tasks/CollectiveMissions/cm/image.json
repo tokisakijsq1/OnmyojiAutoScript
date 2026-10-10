@@ -1,101 +1,101 @@
 [
   {
     "itemName": "cm_shrine",
-    "imageName": "cm_cm_shrine.png",
     "roiFront": "875,628,55,60",
     "roiBack": "853,604,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "神社"
+    "imageName": "cm_cm_shrine.png",
+    "description": "cm_shrine"
   },
   {
     "itemName": "cm_cm",
-    "imageName": "cm_cm_cm.png",
     "roiFront": "157,169,210,161",
     "roiBack": "137,131,246,235",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "集体任务"
+    "imageName": "cm_cm_cm.png",
+    "description": "cm_cm"
   },
   {
     "itemName": "cm_present",
-    "imageName": "cm_cm_present.png",
     "roiFront": "559,594,160,66",
     "roiBack": "559,594,160,66",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "提交"
+    "imageName": "cm_cm_present.png",
+    "description": "cm_present"
   },
   {
     "itemName": "cm_records",
-    "imageName": "cm_cm_records.png",
     "roiFront": "1032,617,54,63",
     "roiBack": "960,562,193,138",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "判断是否到达"
+    "imageName": "cm_cm_records.png",
+    "description": "cm_records"
   },
   {
     "itemName": "cm_matter",
-    "imageName": "cm_cm_matter.png",
     "roiFront": "860,396,36,37",
     "roiBack": "843,119,66,459",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "将材料拉满的按钮，用来判断是否拉满"
+    "imageName": "cm_cm_matter.png",
+    "description": "cm_matter"
   },
   {
     "itemName": "cm_add_1",
-    "imageName": "cm_cm_add_1.png",
     "roiFront": "904,142,48,48",
     "roiBack": "904,142,48,48",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "cm_cm_add_1.png",
+    "description": "cm_add_1"
   },
   {
     "itemName": "cm_add_2",
-    "imageName": "cm_cm_add_2.png",
     "roiFront": "903,262,52,53",
     "roiBack": "903,262,52,53",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "cm_cm_add_2.png",
+    "description": "cm_add_2"
   },
   {
     "itemName": "cm_add_3",
-    "imageName": "cm_cm_add_3.png",
     "roiFront": "904,389,48,45",
     "roiBack": "904,389,48,45",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "cm_cm_add_3.png",
+    "description": "cm_add_3"
   },
   {
     "itemName": "cm_add_4",
-    "imageName": "cm_cm_add_4.png",
     "roiFront": "904,510,47,47",
     "roiBack": "904,510,47,47",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "cm_cm_add_4.png",
+    "description": "cm_add_4"
   },
   {
     "itemName": "cm_rewards",
-    "imageName": "cm_cm_rewards.png",
     "roiFront": "567,463,145,60",
     "roiBack": "200,458,914,88",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "领取奖励"
+    "imageName": "cm_cm_rewards.png",
+    "description": "cm_rewards"
   },
   {
     "itemName": "cm_switch",
-    "imageName": "cm_cm_switch.png",
     "roiFront": "414,478,43,58",
     "roiBack": "401,470,72,77",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "cm_cm_switch.png",
+    "description": "cm_switch"
   }
 ]

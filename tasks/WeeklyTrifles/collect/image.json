@@ -1,47 +1,47 @@
 [
   {
     "itemName": "wt_shikiagmi",
-    "imageName": "collect_wt_shikiagmi.png",
     "roiFront": "280,620,920,100",
     "roiBack": "280,620,920,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击“式神”"
+    "imageName": "collect_wt_shikiagmi.png",
+    "description": "wt_shikiagmi"
   },
   {
     "itemName": "wt_share",
-    "imageName": "collect_wt_share.png",
     "roiFront": "336,280,50,48",
     "roiBack": "266,241,199,141",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击式神绘卷"
+    "imageName": "collect_wt_share.png",
+    "description": "wt_share"
   },
   {
     "itemName": "wt_logo",
-    "imageName": "collect_wt_logo.png",
     "roiFront": "1106,72,34,111",
     "roiBack": "1065,11,117,207",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "百鬼夜行图"
+    "imageName": "collect_wt_logo.png",
+    "description": "wt_logo"
   },
   {
     "itemName": "wt_collect_wechat",
-    "imageName": "collect_wt_collect_wechat.png",
     "roiFront": "325,645,50,45",
     "roiBack": "119,594,1045,126",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "微信分享"
+    "imageName": "collect_wt_collect_wechat.png",
+    "description": "wt_collect_wechat"
   },
   {
     "itemName": "wt_qr_code",
-    "imageName": "collect_wt_qr_code.png",
     "roiFront": "473,161,336,96",
     "roiBack": "404,112,483,168",
+    "threshold": "0.65",
     "method": "Template matching",
-    "threshold": 0.65,
-    "description": "二维码"
+    "imageName": "collect_wt_qr_code.png",
+    "description": "wt_qr_code"
   }
 ]

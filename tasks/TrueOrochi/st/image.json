@@ -1,137 +1,137 @@
 [
   {
     "itemName": "find_ts",
-    "imageName": "st_find_ts.png",
     "roiFront": "259,635,96,79",
     "roiBack": "183,585,331,135",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "出现真蛇"
+    "imageName": "st_find_ts.png",
+    "description": "find_ts"
   },
   {
     "itemName": "st_fire",
-    "imageName": "st_st_fire.png",
     "roiFront": "960,485,100,100",
     "roiBack": "960,485,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击挑战60体力"
+    "imageName": "st_st_fire.png",
+    "description": "st_fire"
   },
   {
     "itemName": "st_fire_confirm",
-    "imageName": "st_st_fire_confirm.png",
     "roiFront": "671,406,176,53",
     "roiBack": "671,406,176,53",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "确认挑战"
+    "imageName": "st_st_fire_confirm.png",
+    "description": "st_fire_confirm"
   },
   {
     "itemName": "st_fire_prepare",
-    "imageName": "st_st_fire_prepare.png",
     "roiFront": "1118,548,100,100",
     "roiBack": "1118,548,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "十个式神的准备"
+    "imageName": "st_st_fire_prepare.png",
+    "description": "st_fire_prepare"
   },
   {
     "itemName": "st_auto_false",
-    "imageName": "st_st_auto_false.png",
     "roiFront": "1112,463,33,34",
     "roiBack": "1112,463,33,34",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_auto_false.png",
+    "description": "st_auto_false"
   },
   {
     "itemName": "st_auto_true",
-    "imageName": "st_st_auto_true.png",
     "roiFront": "1112,461,34,37",
     "roiBack": "1112,461,34,37",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_auto_true.png",
+    "description": "st_auto_true"
   },
   {
     "itemName": "st_green_1",
-    "imageName": "st_st_green_1.png",
     "roiFront": "209,216,22,48",
     "roiBack": "188,192,69,87",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_green_1.png",
+    "description": "st_green_1"
   },
   {
     "itemName": "st_green_2",
-    "imageName": "st_st_green_2.png",
     "roiFront": "294,311,21,46",
     "roiBack": "273,282,70,91",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_green_2.png",
+    "description": "st_green_2"
   },
   {
     "itemName": "st_green_3",
-    "imageName": "st_st_green_3.png",
     "roiFront": "473,269,21,49",
     "roiBack": "457,245,56,89",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_green_3.png",
+    "description": "st_green_3"
   },
   {
     "itemName": "st_green_4",
-    "imageName": "st_st_green_4.png",
     "roiFront": "690,258,27,49",
     "roiBack": "662,235,83,83",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_green_4.png",
+    "description": "st_green_4"
   },
   {
     "itemName": "st_green_5",
-    "imageName": "st_st_green_5.png",
     "roiFront": "841,335,26,44",
     "roiBack": "814,302,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_green_5.png",
+    "description": "st_green_5"
   },
   {
     "itemName": "st_green_6",
-    "imageName": "st_st_green_6.png",
     "roiFront": "930,247,24,47",
     "roiBack": "894,224,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "st_st_green_6.png",
+    "description": "st_green_6"
   },
   {
     "itemName": "st_create_room",
-    "imageName": "st_st_create_room.png",
     "roiFront": "528,482,223,62",
     "roiBack": "528,482,223,62",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "60体力创建"
+    "imageName": "st_st_create_room.png",
+    "description": "st_create_room"
   },
   {
     "itemName": "st_frame",
-    "imageName": "st_st_frame.png",
     "roiFront": "571,442,135,65",
     "roiBack": "571,442,135,65",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "头像框"
+    "imageName": "st_st_frame.png",
+    "description": "st_frame"
   },
   {
     "itemName": "st_module",
-    "imageName": "st_module.png",
     "roiFront": "1111,322,84,22",
     "roiBack": "1068,210,191,313",
+    "threshold": "0.85",
     "method": "Template matching",
-    "threshold": 0.85,
-    "description": "玩法tab八岐大蛇模块，在场说明本周还有次数"
+    "imageName": "st_module.png",
+    "description": "st_module"
   }
 ]

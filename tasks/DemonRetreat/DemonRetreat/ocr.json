@@ -6,6 +6,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "检查是否迟到"
+    "description": "later_enter_check"
   }
 ]

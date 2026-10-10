@@ -1,128 +1,218 @@
 [
   {
     "itemName": "bet_left",
-    "imageName": "fb_bet_left.png",
     "roiFront": "288,301,120,102",
     "roiBack": "222,251,245,195",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左边竞猜"
+    "imageName": "fb_bet_left.png",
+    "description": "bet_left"
   },
   {
     "itemName": "bet_right",
-    "imageName": "fb_bet_right.png",
     "roiFront": "1093,307,118,94",
     "roiBack": "1048,248,187,208",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "右边竞猜"
+    "imageName": "fb_bet_right.png",
+    "description": "bet_right"
   },
   {
     "itemName": "bet_success_box",
-    "imageName": "fb_bet_success_box.png",
     "roiFront": "713,399,80,45",
     "roiBack": "661,331,193,182",
+    "threshold": "0.75",
     "method": "Template matching",
-    "threshold": 0.75,
-    "description": "description"
+    "imageName": "fb_bet_success_box.png",
+    "description": "bet_success_box"
   },
   {
     "itemName": "success_left",
-    "imageName": "fb_success_left.png",
     "roiFront": "292,306,100,100",
     "roiBack": "238,243,202,221",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "左边赢了"
+    "imageName": "fb_success_left.png",
+    "description": "success_left"
   },
   {
     "itemName": "failure_right",
-    "imageName": "fb_failure_right.png",
     "roiFront": "1097,303,100,100",
     "roiBack": "1029,256,224,199",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "右边输了"
+    "imageName": "fb_failure_right.png",
+    "description": "failure_right"
   },
   {
     "itemName": "next_competition",
-    "imageName": "fb_next_competition.png",
     "roiFront": "783,492,28,22",
     "roiBack": "692,437,157,147",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "开始下一局"
+    "imageName": "fb_next_competition.png",
+    "description": "next_competition"
   },
   {
     "itemName": "gold_30",
-    "imageName": "fb_gold_30.png",
     "roiFront": "862,499,78,76",
     "roiBack": "831,441,147,187",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "30万金币"
+    "imageName": "fb_gold_30.png",
+    "description": "gold_30"
   },
   {
     "itemName": "bet_sure",
-    "imageName": "fb_bet_sure.png",
     "roiFront": "1025,402,100,100",
     "roiBack": "972,340,200,226",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "确认竞猜"
+    "imageName": "fb_bet_sure.png",
+    "description": "bet_sure"
   },
   {
     "itemName": "gold_30_check",
-    "imageName": "fb_gold_30_check.png",
     "roiFront": "513,196,58,53",
     "roiBack": "495,195,104,111",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "获胜奖励说明弹窗中的竞猜金币"
+    "imageName": "fb_gold_30_check.png",
+    "description": "gold_30_check"
   },
   {
     "itemName": "betted",
-    "imageName": "fb_betted.png",
     "roiFront": "1093,313,125,54",
     "roiBack": "207,240,1058,312",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fb_betted.png",
+    "description": "betted"
   },
   {
     "itemName": "success_right",
-    "imageName": "fb_success_right.png",
     "roiFront": "1098,289,122,116",
     "roiBack": "1040,250,201,260",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fb_success_right.png",
+    "description": "success_right"
   },
   {
     "itemName": "failure_left",
-    "imageName": "fb_failure_left.png",
     "roiFront": "296,303,100,100",
     "roiBack": "243,245,212,259",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fb_failure_left.png",
+    "description": "failure_left"
   },
   {
     "itemName": "bet_failure",
-    "imageName": "fb_bet_failure.png",
     "roiFront": "625,277,269,72",
     "roiBack": "496,222,447,211",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fb_bet_failure.png",
+    "description": "bet_failure"
   },
   {
     "itemName": "bet_success",
-    "imageName": "fb_bet_success.png",
     "roiFront": "625,278,260,73",
     "roiBack": "482,243,521,225",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "fb_bet_success.png",
+    "description": "bet_success"
+  },
+  {
+    "itemName": "frog_boss_enter",
+    "roiFront": "1188,303,36,38",
+    "roiBack": "1169,203,78,320",
+    "threshold": "0.7",
+    "method": "Template matching",
+    "imageName": "fb_frog_boss_enter.png",
+    "description": "frog_boss_enter"
+  },
+  {
+    "itemName": "frog_boss_rest",
+    "roiFront": "627,284,169,64",
+    "roiBack": "601,259,220,113",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_boss_rest.png",
+    "description": "frog_boss_rest"
+  },
+  {
+    "itemName": "frog_check",
+    "roiFront": "664,31,148,65",
+    "roiBack": "551,4,371,145",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_check.png",
+    "description": "frog_check"
+  },
+  {
+    "itemName": "frog_log",
+    "roiFront": "1171,624,43,41",
+    "roiBack": "1157,601,83,89",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_log.png",
+    "description": "frog_log"
+  },
+  {
+    "itemName": "frog_log_check",
+    "roiFront": "549,31,192,52",
+    "roiBack": "469,0,371,145",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_log_check.png",
+    "description": "frog_log_check"
+  },
+  {
+    "itemName": "frog_last_win",
+    "roiFront": "178,210,61,49",
+    "roiBack": "148,147,114,123",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_last_win.png",
+    "description": "frog_last_win"
+  },
+  {
+    "itemName": "frog_last_lose",
+    "roiFront": "178,210,61,49",
+    "roiBack": "148,147,114,123",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_last_lose.png",
+    "description": "frog_last_lose"
+  },
+  {
+    "itemName": "frog_log_close",
+    "roiFront": "1188,99,43,41",
+    "roiBack": "1166,73,83,89",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_log_close.png",
+    "description": "frog_log_close"
+  },
+  {
+    "itemName": "frog_last_select_red",
+    "roiFront": "342,149,36,38",
+    "roiBack": "327,120,70,77",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_last_select_red.png",
+    "description": "frog_last_select_red"
+  },
+  {
+    "itemName": "frog_last_select_blue",
+    "roiFront": "342,149,36,38",
+    "roiBack": "327,120,70,77",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "fb_frog_last_select_blue.png",
+    "description": "frog_last_select_blue"
   }
 ]

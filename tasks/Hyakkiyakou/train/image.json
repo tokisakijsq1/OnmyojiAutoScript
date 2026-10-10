@@ -1,146 +1,146 @@
 [
   {
     "itemName": "tpage_1",
-    "imageName": "train_tpage_1.png",
     "roiFront": "238,504,221,123",
     "roiBack": "121,480,950,166",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "缘结之庭"
+    "imageName": "train_tpage_1.png",
+    "description": "tpage_1"
   },
   {
     "itemName": "tpage_2",
-    "imageName": "train_tpage_2.png",
     "roiFront": "411,506,231,120",
     "roiBack": "132,479,933,171",
+    "threshold": "0.5",
     "method": "Template matching",
-    "threshold": 0.5,
-    "description": "本丸御殿"
+    "imageName": "train_tpage_2.png",
+    "description": "tpage_2"
   },
   {
     "itemName": "tpage_3",
-    "imageName": "train_tpage_3.png",
     "roiFront": "748,504,240,118",
     "roiBack": "125,482,937,166",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "之境"
+    "imageName": "train_tpage_3.png",
+    "description": "tpage_3"
   },
   {
     "itemName": "tpage_4",
-    "imageName": "train_tpage_4.png",
     "roiFront": "281,507,233,120",
     "roiBack": "124,484,933,163",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "鲸歌潜岸"
+    "imageName": "train_tpage_4.png",
+    "description": "tpage_4"
   },
   {
     "itemName": "tpage_5",
-    "imageName": "train_tpage_5.png",
     "roiFront": "539,506,238,120",
     "roiBack": "130,483,940,166",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "杨帆远航"
+    "imageName": "train_tpage_5.png",
+    "description": "tpage_5"
   },
   {
     "itemName": "tpage_6",
-    "imageName": "train_tpage_6.png",
     "roiFront": "801,505,232,118",
     "roiBack": "128,493,937,153",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "繁影留住"
+    "imageName": "train_tpage_6.png",
+    "description": "tpage_6"
   },
   {
     "itemName": "tcheck_1",
-    "imageName": "train_tcheck_1.png",
     "roiFront": "19,246,100,100",
     "roiBack": "2,218,135,215",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "train_tcheck_1.png",
+    "description": "tcheck_1"
   },
   {
     "itemName": "tcheck_2",
-    "imageName": "train_tcheck_2.png",
     "roiFront": "9,216,157,226",
     "roiBack": "0,197,186,263",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "train_tcheck_2.png",
+    "description": "tcheck_2"
   },
   {
     "itemName": "tcheck_3",
-    "imageName": "train_tcheck_3.png",
     "roiFront": "5,126,138,299",
     "roiBack": "2,110,147,345",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "train_tcheck_3.png",
+    "description": "tcheck_3"
   },
   {
     "itemName": "tcheck_4",
-    "imageName": "train_tcheck_4.png",
     "roiFront": "7,108,100,332",
     "roiBack": "0,101,120,347",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "train_tcheck_4.png",
+    "description": "tcheck_4"
   },
   {
     "itemName": "tcheck_5",
-    "imageName": "train_tcheck_5.png",
     "roiFront": "132,28,77,103",
     "roiBack": "94,13,152,234",
+    "threshold": "0.4",
     "method": "Template matching",
-    "threshold": 0.4,
-    "description": "description"
+    "imageName": "train_tcheck_5.png",
+    "description": "tcheck_5"
   },
   {
     "itemName": "tcheck_6",
-    "imageName": "train_tcheck_6.png",
     "roiFront": "9,107,100,350",
     "roiBack": "3,97,113,369",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "train_tcheck_6.png",
+    "description": "tcheck_6"
   },
   {
     "itemName": "switch_background",
-    "imageName": "train_switch_background.png",
     "roiFront": "992,649,105,36",
     "roiBack": "969,627,152,72",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "train_switch_background.png",
+    "description": "switch_background"
   },
   {
     "itemName": "tcheck_22",
-    "imageName": "train_tcheck_22.png",
     "roiFront": "14,150,100,100",
     "roiBack": "5,139,124,127",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "train_tcheck_22.png",
+    "description": "tcheck_22"
   },
   {
     "itemName": "tcheck_32",
-    "imageName": "train_tcheck_32.png",
     "roiFront": "35,175,100,100",
     "roiBack": "26,155,123,141",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "description"
+    "imageName": "train_tcheck_32.png",
+    "description": "tcheck_32"
   },
   {
     "itemName": "check_run",
-    "imageName": "train_check_run.png",
     "roiFront": "95,598,92,45",
     "roiBack": "68,578,143,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "检查是否在砸豆子"
+    "imageName": "train_check_run.png",
+    "description": "check_run"
   }
 ]

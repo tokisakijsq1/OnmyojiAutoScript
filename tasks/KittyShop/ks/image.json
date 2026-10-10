@@ -1,146 +1,146 @@
 [
   {
     "itemName": "go1",
-    "imageName": "ks_go1.png",
     "roiFront": "350,136,46,185",
     "roiBack": "315,76,100,342",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入经营"
+    "imageName": "ks_go1.png",
+    "description": "go1"
   },
   {
     "itemName": "start_farming",
-    "imageName": "ks_start_farming.png",
     "roiFront": "1131,579,100,100",
     "roiBack": "995,484,279,234",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击经营"
+    "imageName": "ks_start_farming.png",
+    "description": "start_farming"
   },
   {
     "itemName": "start_ensure",
-    "imageName": "ks_start_ensure.png",
     "roiFront": "1094,583,82,78",
     "roiBack": "954,522,322,196",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "开启"
+    "imageName": "ks_start_ensure.png",
+    "description": "start_ensure"
   },
   {
     "itemName": "unselected",
-    "imageName": "ks_unselected.png",
     "roiFront": "247,562,76,70",
     "roiBack": "143,524,941,127",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "没有选择"
+    "imageName": "ks_unselected.png",
+    "description": "unselected"
   },
   {
     "itemName": "main_flag",
-    "imageName": "ks_main_flag.png",
     "roiFront": "13,102,61,50",
     "roiBack": "1,34,279,247",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "里面的"
+    "imageName": "ks_main_flag.png",
+    "description": "main_flag"
   },
   {
     "itemName": "main_add",
-    "imageName": "ks_main_add.png",
     "roiFront": "159,178,46,50",
     "roiBack": "125,50,1078,491",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "加号"
+    "imageName": "ks_main_add.png",
+    "description": "main_add"
   },
   {
     "itemName": "main_gift",
-    "imageName": "ks_main_gift.png",
     "roiFront": "155,185,55,46",
     "roiBack": "89,52,1184,506",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "收菜按钮"
+    "imageName": "ks_main_gift.png",
+    "description": "main_gift"
   },
   {
     "itemName": "main_busy",
-    "imageName": "ks_main_busy.png",
     "roiFront": "452,626,64,24",
     "roiBack": "237,549,832,170",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "营业中，不可使用"
+    "imageName": "ks_main_busy.png",
+    "description": "main_busy"
   },
   {
     "itemName": "main_share",
-    "imageName": "ks_main_share.png",
     "roiFront": "1156,595,68,77",
     "roiBack": "839,474,440,245",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "结束后的分享"
+    "imageName": "ks_main_share.png",
+    "description": "main_share"
   },
   {
     "itemName": "main_flag1",
-    "imageName": "ks_main_flag1.png",
     "roiFront": "1065,681,89,37",
     "roiBack": "1065,681,89,37",
+    "threshold": "0.95",
     "method": "Template matching",
-    "threshold": 0.95,
-    "description": "里面没有选猫咪"
+    "imageName": "ks_main_flag1.png",
+    "description": "main_flag1"
   },
   {
     "itemName": "main_busy_1",
-    "imageName": "ks_main_busy_1.png",
     "roiFront": "292,633,64,24",
     "roiBack": "240,571,154,143",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ks_main_busy_1.png",
+    "description": "main_busy_1"
   },
   {
     "itemName": "main_busy_2",
-    "imageName": "ks_main_busy_2.png",
     "roiFront": "452,626,64,24",
     "roiBack": "394,569,169,148",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ks_main_busy_2.png",
+    "description": "main_busy_2"
   },
   {
     "itemName": "main_busy_3",
-    "imageName": "ks_main_busy_3.png",
     "roiFront": "630,623,64,24",
     "roiBack": "563,567,171,141",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ks_main_busy_3.png",
+    "description": "main_busy_3"
   },
   {
     "itemName": "main_busy_4",
-    "imageName": "ks_main_busy_4.png",
     "roiFront": "781,634,64,24",
     "roiBack": "731,572,170,142",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ks_main_busy_4.png",
+    "description": "main_busy_4"
   },
   {
     "itemName": "main_busy_5",
-    "imageName": "ks_main_busy_5.png",
     "roiFront": "961,626,64,24",
     "roiBack": "900,571,165,136",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ks_main_busy_5.png",
+    "description": "main_busy_5"
   },
   {
     "itemName": "main_finsh",
-    "imageName": "ks_main_finsh.png",
     "roiFront": "764,16,52,42",
     "roiBack": "740,1,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "结算"
+    "imageName": "ks_main_finsh.png",
+    "description": "main_finsh"
   }
 ]

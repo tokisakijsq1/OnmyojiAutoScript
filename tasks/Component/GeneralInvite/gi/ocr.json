@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "time_1"
   },
   {
     "itemName": "time_2",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "永生之海判断时间"
+    "description": "time_2"
   },
   {
     "itemName": "f_list_1",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "上方好友列表的左边第一个（一般是好友）"
+    "description": "f_list_1"
   },
   {
     "itemName": "f_list_2",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "f_list_2"
   },
   {
     "itemName": "f_list_3",
@@ -42,7 +42,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "f_list_3"
   },
   {
     "itemName": "f_list_4",
@@ -51,7 +51,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "f_list_4"
   },
   {
     "itemName": "friend_name_1",
@@ -60,7 +60,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "寻找左侧的好友"
+    "description": "friend_name_1"
   },
   {
     "itemName": "friend_name_2",
@@ -69,7 +69,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "寻找右侧的好友"
+    "description": "friend_name_2"
   },
   {
     "itemName": "online",
@@ -78,6 +78,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "online"
   }
 ]

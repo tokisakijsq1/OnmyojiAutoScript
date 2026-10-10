@@ -1,38 +1,38 @@
 [
   {
     "itemName": "fs_red",
-    "imageName": "friendship_points_fs_red.png",
     "roiFront": "400,138,141,135",
     "roiBack": "400,138,141,135",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "红蛋"
+    "imageName": "friendship_points_fs_red.png",
+    "description": "fs_red"
   },
   {
     "itemName": "fs_broken",
-    "imageName": "friendship_points_fs_broken.png",
     "roiFront": "173,142,149,129",
     "roiBack": "173,142,149,129",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "破碎的咒符"
+    "imageName": "friendship_points_fs_broken.png",
+    "description": "fs_broken"
   },
   {
     "itemName": "fs_white_click",
-    "imageName": "friendship_points_fs_white_click.png",
     "roiFront": "627,140,138,132",
     "roiBack": "627,140,138,132",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "friendship_points_fs_white_click.png",
+    "description": "fs_white_click"
   },
   {
     "itemName": "fs_white_check",
-    "imageName": "friendship_points_fs_white_check.png",
     "roiFront": "591,228,100,100",
     "roiBack": "534,181,201,183",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "白蛋确认"
+    "imageName": "friendship_points_fs_white_check.png",
+    "description": "fs_white_check"
   }
 ]

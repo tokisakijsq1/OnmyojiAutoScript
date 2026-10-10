@@ -6,7 +6,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "left_count"
   },
   {
     "itemName": "right_count",
@@ -15,7 +15,7 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "right_count"
   },
   {
     "itemName": "time_remain",
@@ -24,7 +24,7 @@
     "mode": "Duration",
     "method": "Default",
     "keyword": "",
-    "description": "Ocr-description"
+    "description": "time_remain"
   },
   {
     "itemName": "frog_last_time",
@@ -33,6 +33,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "上一句对局时间"
+    "description": "frog_last_time"
   }
 ]

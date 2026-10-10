@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "再次挑战",
-    "description": "再次挑战"
+    "description": "n_battle_again"
   },
   {
     "itemName": "n_cd",
@@ -15,6 +15,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "",
-    "description": "冷却的时间"
+    "description": "n_cd"
   }
 ]

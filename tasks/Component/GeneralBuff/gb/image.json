@@ -1,92 +1,92 @@
 [
   {
     "itemName": "buff_1",
-    "imageName": "gb_buff_1.png",
     "roiFront": "363,32,32,46",
     "roiBack": "344,14,128,76",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "庭院左上角的加成"
+    "imageName": "gb_buff_1.png",
+    "description": "buff_1"
   },
   {
     "itemName": "awake",
-    "imageName": "gb_awake.png",
     "roiFront": "381,130,35,45",
     "roiBack": "360,107,80,447",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gb_awake.png",
+    "description": "awake"
   },
   {
     "itemName": "soul",
-    "imageName": "gb_soul.png",
     "roiFront": "377,203,39,40",
     "roiBack": "361,121,71,388",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "御魂加成"
+    "imageName": "gb_soul.png",
+    "description": "soul"
   },
   {
     "itemName": "gold_50",
-    "imageName": "gb_gold_50.png",
     "roiFront": "373,269,52,36",
     "roiBack": "367,120,64,391",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gb_gold_50.png",
+    "description": "gold_50"
   },
   {
     "itemName": "gold_100",
-    "imageName": "gb_gold_100.png",
     "roiFront": "378,338,43,39",
     "roiBack": "365,121,74,407",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gb_gold_100.png",
+    "description": "gold_100"
   },
   {
     "itemName": "exp_50",
-    "imageName": "gb_exp_50.png",
     "roiFront": "379,406,44,43",
     "roiBack": "365,127,70,393",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gb_exp_50.png",
+    "description": "exp_50"
   },
   {
     "itemName": "exp_100",
-    "imageName": "gb_exp_100.png",
     "roiFront": "383,406,30,40",
     "roiBack": "368,126,58,386",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gb_exp_100.png",
+    "description": "exp_100"
   },
   {
     "itemName": "open_yellow",
-    "imageName": "gb_open_yellow.png",
     "roiFront": "774,299,13,18",
     "roiBack": "766,133,35,366",
+    "threshold": "0.6",
     "method": "Template matching",
-    "threshold": 0.6,
-    "description": "description"
+    "imageName": "gb_open_yellow.png",
+    "description": "open_yellow"
   },
   {
     "itemName": "close_red",
-    "imageName": "gb_close_red.png",
     "roiFront": "773,365,12,20",
     "roiBack": "764,134,38,369",
+    "threshold": "0.6",
     "method": "Template matching",
-    "threshold": 0.6,
-    "description": "description"
+    "imageName": "gb_close_red.png",
+    "description": "close_red"
   },
   {
     "itemName": "cloud",
-    "imageName": "gb_cloud.png",
     "roiFront": "357,505,65,38",
     "roiBack": "313,484,158,75",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "用来判定是否点击的那个"
+    "imageName": "gb_cloud.png",
+    "description": "cloud"
   }
 ]

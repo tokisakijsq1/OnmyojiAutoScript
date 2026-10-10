@@ -1,29 +1,29 @@
 [
   {
     "itemName": "ra_open",
-    "imageName": "ra_ra_open.png",
     "roiFront": "1257,78,22,58",
     "roiBack": "1257,78,22,58",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ra_ra_open.png",
+    "description": "ra_open"
   },
   {
     "itemName": "ra_close",
-    "imageName": "ra_ra_close.png",
     "roiFront": "1256,123,23,44",
     "roiBack": "1256,123,23,44",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "ra_ra_close.png",
+    "description": "ra_close"
   },
   {
     "itemName": "toggle_button",
-    "imageName": "as_toggle_button.png",
     "roiFront": "1193,527,27,25",
     "roiBack": "1169,146,73,453",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "as_toggle_button.png",
+    "description": "toggle_button"
   }
 ]

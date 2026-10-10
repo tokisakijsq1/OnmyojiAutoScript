@@ -3,18 +3,18 @@
     "itemName": "c_greed",
     "roiFront": "87,99,138,51",
     "roiBack": "87,99,138,51",
-    "description": "description"
+    "description": "c_greed"
   },
   {
     "itemName": "c_anger",
     "roiFront": "89,203,132,52",
     "roiBack": "89,203,132,52",
-    "description": "description"
+    "description": "c_anger"
   },
   {
     "itemName": "c_foolery",
     "roiFront": "95,313,142,41",
     "roiBack": "95,313,142,41",
-    "description": "description"
+    "description": "c_foolery"
   }
 ]

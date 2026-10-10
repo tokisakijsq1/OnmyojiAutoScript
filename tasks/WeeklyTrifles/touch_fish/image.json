@@ -1,92 +1,92 @@
 [
   {
     "itemName": "guild_goto_tf",
-    "imageName": "touch_fish_guild_goto_tf.png",
     "roiFront": "30,433,88,30",
     "roiBack": "7,153,227,329",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "前往摸鱼页面"
+    "imageName": "touch_fish_guild_goto_tf.png",
+    "description": "guild_goto_tf"
   },
   {
     "itemName": "wt_happy_get",
-    "imageName": "touch_fish_wt_happy_get.png",
     "roiFront": "736,461,119,35",
     "roiBack": "736,461,119,35",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "关闭首次进入弹窗"
+    "imageName": "touch_fish_wt_happy_get.png",
+    "description": "wt_happy_get"
   },
   {
     "itemName": "wt_save_all",
-    "imageName": "touch_fish_wt_save_all.png",
     "roiFront": "1115,598,79,74",
     "roiBack": "1115,598,79,74",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "全部保存本周次数"
+    "imageName": "touch_fish_wt_save_all.png",
+    "description": "wt_save_all"
   },
   {
     "itemName": "check_touch_fish",
-    "imageName": "touch_fish_check_touch_fish.png",
     "roiFront": "1082,20,27,27",
     "roiBack": "1082,20,27,27",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "摸鱼行动页面标志"
+    "imageName": "touch_fish_check_touch_fish.png",
+    "description": "check_touch_fish"
   },
   {
     "itemName": "wt_tf_goto_main",
-    "imageName": "touch_fish_wt_tf_goto_main.png",
     "roiFront": "93,17,42,39",
     "roiBack": "0,0,198,82",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "返回庭院"
+    "imageName": "touch_fish_wt_tf_goto_main.png",
+    "description": "wt_tf_goto_main"
   },
   {
     "itemName": "wt_open_fold_window",
-    "imageName": "touch_fish_wt_open_fold_window.png",
     "roiFront": "28,155,21,21",
     "roiBack": "28,155,21,21",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "打开折叠窗口"
+    "imageName": "touch_fish_wt_open_fold_window.png",
+    "description": "wt_open_fold_window"
   },
   {
     "itemName": "wt_fold_window",
-    "imageName": "touch_fish_wt_fold_window.png",
     "roiFront": "261,155,21,21",
     "roiBack": "261,155,21,21",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "已经打开的折叠窗口"
+    "imageName": "touch_fish_wt_fold_window.png",
+    "description": "wt_fold_window"
   },
   {
     "itemName": "wt_tf_confirm",
-    "imageName": "touch_fish_wt_tf_confirm.png",
     "roiFront": "672,588,139,56",
     "roiBack": "672,588,139,56",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "确认储存的按钮"
+    "imageName": "touch_fish_wt_tf_confirm.png",
+    "description": "wt_tf_confirm"
   },
   {
     "itemName": "wt_tf_save_success",
-    "imageName": "touch_fish_wt_tf_save_success.png",
     "roiFront": "942,243,62,25",
     "roiBack": "871,212,219,70",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "储存成功的标志"
+    "imageName": "touch_fish_wt_tf_save_success.png",
+    "description": "wt_tf_save_success"
   },
   {
     "itemName": "wt_last_save",
-    "imageName": "touch_fish_wt_last_save.png",
     "roiFront": "590,78,99,24",
     "roiBack": "540,58,213,59",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "上周存储界面"
+    "imageName": "touch_fish_wt_last_save.png",
+    "description": "wt_last_save"
   }
 ]

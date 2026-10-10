@@ -1,308 +1,362 @@
 [
   {
     "itemName": "one",
-    "imageName": "as_one.png",
     "roiFront": "633,106,88,105",
     "roiBack": "633,106,88,105",
+    "threshold": "0.7",
     "method": "Template matching",
-    "threshold": 0.7,
-    "description": "进入活动第一步"
+    "imageName": "as_one.png",
+    "description": "one"
   },
   {
     "itemName": "two",
-    "imageName": "as_two.png",
     "roiFront": "819,685,95,26",
     "roiBack": "819,685,200,26",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入活动第二步"
+    "imageName": "as_two.png",
+    "description": "two"
   },
   {
     "itemName": "gbb",
-    "imageName": "as_gbb.png",
     "roiFront": "95,344,37,131",
     "roiBack": "95,344,37,131",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击鬼兵演武"
+    "imageName": "as_gbb.png",
+    "description": "gbb"
   },
   {
     "itemName": "gbb_back",
-    "imageName": "as_gbb_back.png",
     "roiFront": "11,13,63,56",
     "roiBack": "11,13,63,56",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "爬塔返回按钮"
+    "imageName": "as_gbb_back.png",
+    "description": "gbb_back"
   },
   {
     "itemName": "back",
-    "imageName": "as_back.png",
     "roiFront": "20,24,75,76",
     "roiBack": "20,24,75,76",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "鬼兵演武返回按钮"
+    "imageName": "as_back.png",
+    "description": "back"
   },
   {
     "itemName": "battle",
-    "imageName": "as_battle.png",
     "roiFront": "1129,588,99,49",
     "roiBack": "1129,588,99,49",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "挑战按钮"
+    "imageName": "as_battle.png",
+    "description": "battle"
   },
   {
     "itemName": "unlock",
-    "imageName": "as_unlock.png",
     "roiFront": "824,651,20,25",
     "roiBack": "734,632,286,71",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "解锁阵容"
+    "imageName": "as_unlock.png",
+    "description": "unlock"
   },
   {
     "itemName": "lock",
-    "imageName": "as_lock.png",
     "roiFront": "822,650,23,26",
     "roiBack": "736,638,283,71",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "阵容锁定状态"
+    "imageName": "as_lock.png",
+    "description": "lock"
   },
   {
     "itemName": "bcmj",
-    "imageName": "as_bcmj.png",
     "roiFront": "1086,350,45,131",
     "roiBack": "1086,350,45,131",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境"
+    "imageName": "as_bcmj.png",
+    "description": "bcmj"
   },
   {
     "itemName": "bcmj_lock",
-    "imageName": "as_bcmj_lock.png",
     "roiFront": "908,655,20,26",
     "roiBack": "825,645,199,52",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境阵容锁"
+    "imageName": "as_bcmj_lock.png",
+    "description": "bcmj_lock"
   },
   {
     "itemName": "bcmj_battle",
-    "imageName": "as_bcmj_battle.png",
     "roiFront": "1131,598,92,50",
     "roiBack": "1131,598,92,50",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境挑战"
+    "imageName": "as_bcmj_battle.png",
+    "description": "bcmj_battle"
   },
   {
     "itemName": "bcmj_win",
-    "imageName": "as_bcmj_win.png",
     "roiFront": "431,141,100,100",
     "roiBack": "431,141,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境胜利"
+    "imageName": "as_bcmj_win.png",
+    "description": "bcmj_win"
   },
   {
     "itemName": "bcmj_skill_add1",
-    "imageName": "as_bcmj_skill_add1.png",
     "roiFront": "109,361,90,32",
     "roiBack": "103,359,1076,37",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境选择八华斩"
+    "imageName": "as_bcmj_skill_add1.png",
+    "description": "bcmj_skill_add1"
   },
   {
     "itemName": "bcmj_skill_add2",
-    "imageName": "as_bcmj_skill_add2.png",
     "roiFront": "728,359,61,32",
     "roiBack": "106,356,1068,38",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "技能选择 无畏"
+    "imageName": "as_bcmj_skill_add2.png",
+    "description": "bcmj_skill_add2"
   },
   {
     "itemName": "bcmj_skill_add_confirm",
-    "imageName": "as_bcmj_skill_add_confirm.png",
     "roiFront": "608,633,64,36",
     "roiBack": "608,633,64,36",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "技能祝福确定"
+    "imageName": "as_bcmj_skill_add_confirm.png",
+    "description": "bcmj_skill_add_confirm"
   },
   {
     "itemName": "bcmj_property_add_critical",
-    "imageName": "as_bcmj_property_add_critical.png",
     "roiFront": "704,359,115,34",
     "roiBack": "120,356,1038,39",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境的暴击伤害属性奖励"
+    "imageName": "as_bcmj_property_add_critical.png",
+    "description": "bcmj_property_add_critical"
   },
   {
     "itemName": "bcmj_bless",
-    "imageName": "as_bcmj_bless.png",
     "roiFront": "261,159,21,20",
     "roiBack": "256,156,939,27",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境默认祝福"
+    "imageName": "as_bcmj_bless.png",
+    "description": "bcmj_bless"
   },
   {
     "itemName": "bcmj__defalut_attribute",
-    "imageName": "as_bcmj__defalut_attribute.png",
     "roiFront": "1168,159,21,22",
     "roiBack": "255,155,944,31",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "默认属性"
+    "imageName": "as_bcmj__defalut_attribute.png",
+    "description": "bcmj__defalut_attribute"
   },
   {
     "itemName": "bcmj_unlock",
-    "imageName": "as_bcmj_unlock.png",
     "roiFront": "908,656,20,20",
     "roiBack": "825,642,195,56",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境的阵容未锁"
+    "imageName": "as_bcmj_unlock.png",
+    "description": "bcmj_unlock"
   },
   {
     "itemName": "bcmj_reset_confirm",
-    "imageName": "as_bcmj_reset_confirm.png",
     "roiFront": "668,399,180,70",
     "roiBack": "668,399,180,70",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "通过兵藏秘境确认重置按钮"
+    "imageName": "as_bcmj_reset_confirm.png",
+    "description": "bcmj_reset_confirm"
   },
   {
     "itemName": "bcmj_reset_close",
-    "imageName": "as_bcmj_reset_close.png",
     "roiFront": "429,397,186,71",
     "roiBack": "429,397,186,71",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "通过兵藏秘境取消重置按钮"
+    "imageName": "as_bcmj_reset_close.png",
+    "description": "bcmj_reset_close"
   },
   {
     "itemName": "start_challenge",
-    "imageName": "as_start_challenge.png",
     "roiFront": "685,407,142,47",
     "roiBack": "685,407,142,47",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "周一点击确认开始挑战"
+    "imageName": "as_start_challenge.png",
+    "description": "start_challenge"
   },
   {
     "itemName": "check_hero2",
-    "imageName": "as_check_hero2.png",
     "roiFront": "52,113,57,58",
     "roiBack": "3,62,157,151",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "藤原道长副本标志"
+    "imageName": "as_check_hero2.png",
+    "description": "check_hero2"
   },
   {
     "itemName": "switch_hero1",
-    "imageName": "as_switch_hero1.png",
     "roiFront": "176,113,251,360",
     "roiBack": "0,0,1279,718",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "切换源赖光"
+    "imageName": "as_switch_hero1.png",
+    "description": "switch_hero1"
   },
   {
     "itemName": "check_hero1",
-    "imageName": "as_check_hero1.png",
     "roiFront": "52,109,55,66",
     "roiBack": "19,79,127,130",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "源赖光副本标志"
+    "imageName": "as_check_hero1.png",
+    "description": "check_hero1"
   },
   {
     "itemName": "switch_hero2",
-    "imageName": "as_switch_hero2.png",
     "roiFront": "507,126,254,352",
     "roiBack": "0,0,1274,714",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "切换藤原道长"
+    "imageName": "as_switch_hero2.png",
+    "description": "switch_hero2"
   },
   {
     "itemName": "enter_ccsl",
-    "imageName": "as_enter_ccsl.png",
     "roiFront": "302,243,41,149",
     "roiBack": "252,161,148,303",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入传承试炼标志"
+    "imageName": "as_enter_ccsl.png",
+    "description": "enter_ccsl"
   },
   {
     "itemName": "enter_mxmj",
-    "imageName": "as_enter_mxmj.png",
     "roiFront": "1075,331,40,138",
     "roiBack": "1051,302,92,190",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "进入梦虚秘境标志"
+    "imageName": "as_enter_mxmj.png",
+    "description": "enter_mxmj"
   },
   {
     "itemName": "check_hero1_exp",
-    "imageName": "as_check_hero1_exp.png",
     "roiFront": "36,466,63,69",
     "roiBack": "0,427,137,145",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "鬼兵演武页面标志"
+    "imageName": "as_check_hero1_exp.png",
+    "description": "check_hero1_exp"
   },
   {
     "itemName": "check_hero1_skill",
-    "imageName": "as_check_hero1_skill.png",
     "roiFront": "27,237,338,142",
     "roiBack": "0,139,423,322",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "兵藏秘境标志"
+    "imageName": "as_check_hero1_skill.png",
+    "description": "check_hero1_skill"
   },
   {
     "itemName": "check_hero2_exp",
-    "imageName": "as_check_hero2_exp.png",
     "roiFront": "33,465,63,65",
     "roiBack": "12,448,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "传承试炼页面标志"
+    "imageName": "as_check_hero2_exp.png",
+    "description": "check_hero2_exp"
   },
   {
     "itemName": "check_hero2_skill",
-    "imageName": "as_check_hero2_skill.png",
     "roiFront": "24,308,250,92",
     "roiBack": "0,282,362,143",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "梦虚秘境页面标志"
+    "imageName": "as_check_hero2_skill.png",
+    "description": "check_hero2_skill"
   },
   {
     "itemName": "hero_exp_max",
-    "imageName": "as_hero_exp_max.png",
     "roiFront": "175,493,20,20",
     "roiBack": "162,481,106,37",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "御灵满级标志"
+    "imageName": "as_hero_exp_max.png",
+    "description": "hero_exp_max"
   },
   {
     "itemName": "real_money",
-    "imageName": "as_real_money.png",
     "roiFront": "536,320,24,30",
     "roiBack": "466,155,530,411",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "真钱"
+    "imageName": "as_real_money.png",
+    "description": "real_money"
+  },
+  {
+    "itemName": "hero2_skill1",
+    "roiFront": "825,358,61,36",
+    "roiBack": "47,340,1178,65",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_hero2_skill1.png",
+    "description": "hero2_skill1"
+  },
+  {
+    "itemName": "hero2_skill2",
+    "roiFront": "521,356,63,37",
+    "roiBack": "46,333,1174,82",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_hero2_skill2.png",
+    "description": "hero2_skill2"
+  },
+  {
+    "itemName": "hero2_skill4",
+    "roiFront": "1127,356,65,41",
+    "roiBack": "48,349,1173,57",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_hero2_skill4.png",
+    "description": "hero2_skill4"
+  },
+  {
+    "itemName": "hero2_skill5",
+    "roiFront": "217,358,65,37",
+    "roiBack": "46,334,1148,81",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_hero2_skill5.png",
+    "description": "hero2_skill5"
+  },
+  {
+    "itemName": "hero2_skill3",
+    "roiFront": "520,358,62,38",
+    "roiBack": "41,346,1172,63",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_hero2_skill3.png",
+    "description": "hero2_skill3"
+  },
+  {
+    "itemName": "hero2_skill6",
+    "roiFront": "427,356,62,38",
+    "roiBack": "48,342,1175,67",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_hero2_skill6.png",
+    "description": "hero2_skill6"
   }
 ]

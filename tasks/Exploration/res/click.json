@@ -3,66 +3,66 @@
     "itemName": "click_settings",
     "roiFront": "55,662,21,21",
     "roiBack": "55,662,21,21",
-    "description": "点击设置按钮"
+    "description": "click_settings"
   },
   {
     "itemName": "click_standby_team",
     "roiFront": "545,222,506,100",
     "roiBack": "545,222,506,100",
-    "description": "选中候补出战"
+    "description": "click_standby_team"
   },
   {
     "itemName": "click_all_shiki",
     "roiFront": "31,623,65,58",
     "roiBack": "31,623,65,58",
-    "description": "点击全部式神按钮"
+    "description": "click_all_shiki"
   },
   {
     "itemName": "click_n_shiki",
     "roiFront": "146,301,45,54",
     "roiBack": "146,301,45,54",
-    "description": "选中n阶式神"
+    "description": "click_n_shiki"
   },
   {
     "itemName": "click_rotate_1",
     "roiFront": "516,582,22,21",
     "roiBack": "516,582,22,21",
-    "description": "位置1"
+    "description": "click_rotate_1"
   },
   {
     "itemName": "click_rotate_2",
     "roiFront": "650,587,21,21",
     "roiBack": "650,587,21,21",
-    "description": "位置2"
+    "description": "click_rotate_2"
   },
   {
     "itemName": "click_rotate_3",
     "roiFront": "785,587,21,21",
     "roiBack": "785,587,21,21",
-    "description": "位置3"
+    "description": "click_rotate_3"
   },
   {
     "itemName": "click_rotate_4",
     "roiFront": "921,590,21,21",
     "roiBack": "921,590,21,21",
-    "description": "位置4"
+    "description": "click_rotate_4"
   },
   {
     "itemName": "safe_random",
     "roiFront": "0,0,111,12",
     "roiBack": "0,0,111,12",
-    "description": "随机点"
+    "description": "safe_random"
   },
   {
     "itemName": "click_main_title",
     "roiFront": "1070,174,77,28",
     "roiBack": "1070,174,77,28",
-    "description": "点击探索大地图主线tab标题"
+    "description": "click_main_title"
   },
   {
     "itemName": "click_paly_title",
     "roiFront": "1178,172,77,28",
     "roiBack": "1178,172,77,28",
-    "description": "点击探索大地图玩法tab标题"
+    "description": "click_paly_title"
   }
 ]

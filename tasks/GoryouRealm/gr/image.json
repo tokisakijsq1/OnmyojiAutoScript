@@ -1,29 +1,29 @@
 [
   {
     "itemName": "gr_fire",
-    "imageName": "gr_gr_fire.png",
     "roiFront": "1051,577,100,100",
     "roiBack": "1051,577,100,100",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "点击挑战"
+    "imageName": "gr_gr_fire.png",
+    "description": "gr_fire"
   },
   {
     "itemName": "gr_lock",
-    "imageName": "gr_gr_lock.png",
     "roiFront": "702,655,27,32",
     "roiBack": "702,655,27,32",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gr_gr_lock.png",
+    "description": "gr_lock"
   },
   {
     "itemName": "gr_unlock",
-    "imageName": "gr_gr_unlock.png",
     "roiFront": "703,653,26,33",
     "roiBack": "703,653,26,33",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "gr_gr_unlock.png",
+    "description": "gr_unlock"
   }
 ]

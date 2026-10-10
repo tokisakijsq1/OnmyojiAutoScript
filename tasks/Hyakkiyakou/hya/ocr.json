@@ -6,6 +6,6 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "最坏的情况下来判断豆子的数量"
+    "description": "bean_number"
   }
 ]

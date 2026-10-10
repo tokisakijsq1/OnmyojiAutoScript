@@ -6,7 +6,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "准备",
-    "description": "准备"
+    "description": "battle_prepare"
   },
   {
     "itemName": "preset",
@@ -15,7 +15,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "预",
-    "description": "预设,部分场景预设按钮上的文字为'预设'+数字,导致点击preset失败"
+    "description": "preset"
   },
   {
     "itemName": "preset_full",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "预设",
-    "description": "预设"
+    "description": "preset_full"
   },
   {
     "itemName": "boss_mark",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "已标记",
-    "description": "已标记"
+    "description": "boss_mark"
   },
   {
     "itemName": "green_mark_area",
@@ -42,6 +42,6 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "绿标区域"
+    "description": "green_mark_area"
   }
 ]

@@ -6,6 +6,69 @@
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
-    "description": "商店Special购买体力所需勾玉数量，roiBack为动态调整，故此设置为0，0，0，0"
+    "description": "store_sushi_price"
+  },
+  {
+    "itemName": "recall_ticket_area",
+    "roiFront": "590,660,100,32",
+    "roiBack": "590,660,100,32",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "recall_ticket_area"
+  },
+  {
+    "itemName": "select_sm",
+    "roiFront": "0,0,100,720",
+    "roiBack": "0,0,100,720",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "select_sm"
+  },
+  {
+    "itemName": "select_sm1",
+    "roiFront": "27,130,45,38",
+    "roiBack": "27,130,45,38",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "select_sm1"
+  },
+  {
+    "itemName": "select_sm2",
+    "roiFront": "26,216,45,38",
+    "roiBack": "26,216,45,38",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "select_sm2"
+  },
+  {
+    "itemName": "select_sm3",
+    "roiFront": "26,304,45,38",
+    "roiBack": "26,304,45,38",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "select_sm3"
+  },
+  {
+    "itemName": "select_sm4",
+    "roiFront": "26,397,45,38",
+    "roiBack": "26,397,45,38",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "select_sm4"
+  },
+  {
+    "itemName": "luck_msg",
+    "roiFront": "15,38,70,70",
+    "roiBack": "15,38,70,70",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "吉闻",
+    "description": "luck_msg"
   }
 ]

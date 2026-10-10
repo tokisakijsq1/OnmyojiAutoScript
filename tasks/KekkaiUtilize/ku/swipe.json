@@ -4,6 +4,20 @@
     "roiFront": "420,546,40,40",
     "roiBack": "8,546,40,40",
     "mode": "default",
-    "description": "移动寻找寮体力"
+    "description": "guild_find_ap"
+  },
+  {
+    "itemName": "u_up",
+    "roiFront": "247,520,100,1",
+    "roiBack": "247,104,100,1",
+    "mode": "default",
+    "description": "u_up"
+  },
+  {
+    "itemName": "u_end",
+    "roiFront": "175,179,26,26",
+    "roiBack": "164,518,49,102",
+    "mode": "default",
+    "description": "u_end"
   }
 ]

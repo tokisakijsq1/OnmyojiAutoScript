@@ -1,92 +1,92 @@
 [
   {
     "itemName": "fire_kirin",
-    "imageName": "o_fire_kirin.png",
     "roiFront": "104,120,217,325",
     "roiBack": "104,120,217,325",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "火麒麟进入"
+    "imageName": "o_fire_kirin.png",
+    "description": "fire_kirin"
   },
   {
     "itemName": "form_team",
-    "imageName": "o_form_team.png",
     "roiFront": "959,580,100,100",
     "roiBack": "916,572,156,130",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "组队"
+    "imageName": "o_form_team.png",
+    "description": "form_team"
   },
   {
     "itemName": "evozone_lock",
-    "imageName": "o_evozone_lock.png",
     "roiFront": "700,655,31,32",
     "roiBack": "613,614,155,91",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "o_evozone_lock.png",
+    "description": "evozone_lock"
   },
   {
     "itemName": "evozone_unlock",
-    "imageName": "o_evozone_unlock.png",
     "roiFront": "701,657,26,29",
     "roiBack": "609,623,170,89",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "description"
+    "imageName": "o_evozone_unlock.png",
+    "description": "evozone_unlock"
   },
   {
     "itemName": "evozone_fire",
-    "imageName": "o_evozone_fire.png",
     "roiFront": "1127,568,131,124",
     "roiBack": "1127,568,131,124",
+    "threshold": "0.6",
     "method": "Template matching",
-    "threshold": 0.6,
-    "description": "点击挑战"
+    "imageName": "o_evozone_fire.png",
+    "description": "evozone_fire"
   },
   {
     "itemName": "shi_records",
-    "imageName": "o_shi_records.png",
     "roiFront": "843,570,48,45",
     "roiBack": "843,570,48,45",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "式神录"
+    "imageName": "o_shi_records.png",
+    "description": "shi_records"
   },
   {
     "itemName": "pet_present",
-    "imageName": "o_pet_present.png",
     "roiFront": "873,184,62,147",
     "roiBack": "873,184,62,147",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "小小宠物，发现宝藏"
+    "imageName": "o_pet_present.png",
+    "description": "pet_present"
   },
   {
     "itemName": "wind_kirin",
-    "imageName": "o_wind_kirin.png",
     "roiFront": "423,116,201,250",
     "roiBack": "423,116,201,250",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "风麒麟进入"
+    "imageName": "o_wind_kirin.png",
+    "description": "wind_kirin"
   },
   {
     "itemName": "water_kirin",
-    "imageName": "o_water_kirin.png",
     "roiFront": "728,115,201,342",
     "roiBack": "728,115,201,342",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "水麒麟进入"
+    "imageName": "o_water_kirin.png",
+    "description": "water_kirin"
   },
   {
     "itemName": "lightning_kirin",
-    "imageName": "o_lightning_kirin.png",
     "roiFront": "1016,99,218,270",
     "roiBack": "1016,99,218,270",
+    "threshold": "0.8",
     "method": "Template matching",
-    "threshold": 0.8,
-    "description": "雷麒麟进入"
+    "imageName": "o_lightning_kirin.png",
+    "description": "lightning_kirin"
   }
 ]
