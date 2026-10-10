@@ -15,7 +15,7 @@ from module.atom.click import RuleClick
 from module.atom.ocr import RuleOcr
 from module.base.protect import random_sleep
 from module.base.timer import Timer
-from module.exception import TaskEnd
+from module.exception import TaskEnd, ScriptError
 from module.logger import logger
 
 from tasks.base_task import BaseTask
@@ -155,7 +155,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
         #
         for climb_type in self.conf.general_climb.run_sequence_v:
             # 进入到活动的主页面，不是具体的战斗页面
-            self.goto_page(game.page_climb_act)
+            self.goto_page_safe(game.page_climb_act)
             try:
                 method_func = getattr(self, f'_run_{climb_type}')
                 method_func()
@@ -169,11 +169,47 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
 
         # 返回庭院
         logger.hr("Exit Shikigami", 2)
-        self.goto_page(game.page_main)
+        self.goto_page_safe(game.page_main)
         if self.conf.general_climb.active_souls_clean:
             self.set_next_run(task='SoulsTidy', success=False, finish=False, target=datetime.now())
         self.set_next_run(task="ActivityShikigami", success=True)
         raise TaskEnd
+
+    def goto_page_safe(self, page):
+        """
+        上次异常退出可能停在战斗准备/战斗中, 全局page_battle_prepare的接管钩子会构造GeneralBattle
+        触发 Task name mismatch ScriptError; 这里先自己接管打完再导航, 导航中再遇到同样兜底
+        """
+        try:
+            self.goto_page(page)
+        except ScriptError:
+            logger.warning('ScriptError during goto (leftover battle page), take over the battle')
+            self.recover_leftover_battle()
+            self.goto_page(page)
+
+    def recover_leftover_battle(self):
+        """
+        残留的战斗准备/战斗中界面: 用本任务的战斗流程接管打完
+        """
+        self.screenshot()
+        if not (self.appear(self.I_PREPARE_HIGHLIGHT) or self.appear(self.I_PREPARE_DARK)
+                or self.appear(self.I_PRESET) or self.appear(self.I_PRESET_WIT_NUMBER)
+                or self.is_in_battle(False)):
+            return
+        logger.hr('Recover leftover battle', 1)
+        self.run_battle_wait()
+
+    def run_battle_wait(self):
+        strategies, options = self.loadout_from_config(self.get_general_battle_conf())
+        strategies['success'] = 'activity'
+        self.loadout_show((strategies, options))
+        self.state_show()
+        with battle_wait_strategy(**strategies), battle_wait_options(**options):
+            win = self.battle_wait()
+        if win:
+            self.count_map[self.climb_type] += 1
+            logger.info(f'Count {self.climb_type}: {self.count_map[self.climb_type]}')
+        return win
 
     def _run_pass(self):
         """
@@ -313,17 +349,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 logger.info(f'Try click fire, remain times[{max_times - click_times}]')
                 continue
         # 运行战斗
-        strategies, options = self.loadout_from_config(self.get_general_battle_conf())
-        strategies['success'] = 'activity'
-        self.loadout_show((strategies, options))
-        self.state_show()
-        with battle_wait_strategy(**strategies), battle_wait_options(**options):
-            win = self.battle_wait()
-        # 对齐历史语义: 战斗成功结束后记为一次
-        if win:
-            self.count_map[self.climb_type] += 1
-            logger.info(f'Count {self.climb_type}: {self.count_map[self.climb_type]}')
-        return win
+        return self.run_battle_wait()
 
     # @battle_wait_strategy(success='activity')
     # def battle_wait(self, *args, **kwargs):
