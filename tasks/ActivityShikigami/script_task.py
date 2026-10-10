@@ -29,6 +29,7 @@ from tasks.Component.SwitchSoul.switch_soul import SwitchSoul
 from tasks.GameUi.game_ui import GameUi
 import tasks.Component.GeneralBattle.config_general_battle
 import tasks.ActivityShikigami.page as game
+from tasks.ActivityShikigami.battle_activity import ActivityBattle
 
 
 def _prepare_image_for_ocr(image: np.ndarray, asset: RuleOcr) -> np.ndarray:
@@ -143,9 +144,10 @@ class StateMachine(BaseTask):
         return True
 
 
-class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, ActivityShikigamiAssets):
+class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, SwitchSoul, ActivityShikigamiAssets):
     """
     更新前请先看 ./README.md
+    ActivityBattle 通过 MRO 覆盖共享 Battle 的 activity 结算钩子, 仅本任务生效
     """
 
     def run(self) -> None:
@@ -184,7 +186,6 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
         self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
 
         ocr_limit_timer = Timer(1).start()
-        click_limit_timer = Timer(4).start()
         while 1:
             self.screenshot()
             self.put_status()
@@ -198,6 +199,11 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
                 continue
             ocr_limit_timer.reset()
             if not self.ocr_appear(self.O_FIRE):
+                # 战斗后可能退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页
+                if (self.appear_then_click(self.I_BATTLE_PLAQUE, interval=4)
+                        or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=4)
+                        or self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=4)):
+                    continue
                 continue
             #  --------------------------------------------------------------
             self.lock_team(self.conf.general_battle)
@@ -389,8 +395,8 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
         from tasks.Component.GeneralBattle.config_general_battle import GeneralBattleConfig as gbc
         self.conf.validate_switch_preset()
         enable_preset = getattr(self.conf.general_battle, f'enable_{self.climb_type}_preset', False)
-        group, team = getattr(self.conf.switch_soul_config, f'{self.climb_type}_group_team').split(',')
-        return gbc(lock_team_enable=not enable_preset,
+        group, team = getattr(self.switch_soul_config, f'{self.climb_type}_group_team').split(',')
+        conf = gbc(lock_team_enable=not enable_preset,
                    preset_enable=enable_preset,
                    preset_group=group if enable_preset else 1,
                    preset_team=team if enable_preset else 1,
@@ -398,6 +404,13 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
                    green_mark=getattr(self.conf.general_battle, f'{self.climb_type}_green_mark'),
                    random_click_swipt_enable=getattr(self.conf.general_battle, f'enable_{self.climb_type}_anti_detect',
                                                      False), )
+        if conf.preset_enable:
+            # 2026-10 本活动点挑战直接开打, 没有准备阶段; preset钩子会在战斗中死等预设按钮导致卡死
+            # 阵容请用切换御魂(已支持)配置; 待准备页"队伍预设"自动化实现后再放开
+            logger.warning(f'{self.climb_type}: prep-page preset not supported, preset disabled to avoid stuck')
+            conf.preset_enable = False
+            conf.lock_team_enable = False
+        return conf
 
     def random_reward_click(self, exclude_click: list = None, click_now: bool = True) -> RuleClick:
         """

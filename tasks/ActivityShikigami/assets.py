@@ -116,3 +116,15 @@ class ActivityShikigamiAssets:
 	O_ENTER_AP100 = RuleOcr(roi=(73,98,95,32), area=(5,79,256,108), mode="Single", method="Default", keyword="将魂试炼", name="enter_ap100")
 
 
+
+	# Click Rule Assets (以下为 2026-10 手写补充, assets_extract 会洗掉需重加)
+	# 活动大奖励网格页禁区(随机点击排除区, 奖励格子占满中央)
+	C_GRID_REWARD_AREA = RuleClick(roi_front=(223,56,867,599), roi_back=(223,56,867,599), name="grid_reward_area")
+	# 活动大奖励网格页安全点击位(底部"点击屏幕继续")
+	C_GRID_CONTINUE = RuleClick(roi_front=(560,670,160,40), roi_back=(560,670,160,40), name="grid_continue")
+
+	# Image Rule Assets
+	# 活动大奖励网格页识别模板x3(命中任一)
+	I_GRID_ANCHOR_1 = RuleImage(roi_front=(107,24,50,31), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_grid_anchor_1.png")
+	I_GRID_ANCHOR_2 = RuleImage(roi_front=(711,501,76,64), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_grid_anchor_2.png")
+	I_GRID_ANCHOR_3 = RuleImage(roi_front=(561,680,160,26), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_grid_anchor_3.png")
