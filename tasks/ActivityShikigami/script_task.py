@@ -187,17 +187,19 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             self.recover_leftover_battle()
             self.goto_page(page)
 
-    def recover_leftover_battle(self):
+    def recover_leftover_battle(self) -> bool:
         """
-        残留的战斗准备/战斗中界面: 用本任务的战斗流程接管打完
+        残留的战斗准备(含节点连战自动进入的"准备"阶段)/战斗中界面: 用本任务的战斗流程接管打完
+        :return: True 表示接管并打完了一场, False 表示当前不在战斗相关界面
         """
         self.screenshot()
         if not (self.appear(self.I_PREPARE_HIGHLIGHT) or self.appear(self.I_PREPARE_DARK)
                 or self.appear(self.I_PRESET) or self.appear(self.I_PRESET_WIT_NUMBER)
                 or self.is_in_battle(False)):
-            return
+            return False
         logger.hr('Recover leftover battle', 1)
         self.run_battle_wait()
+        return True
 
     def run_battle_wait(self):
         strategies, options = self.loadout_from_config(self.get_general_battle_conf())
@@ -235,7 +237,10 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 continue
             ocr_limit_timer.reset()
             if not self.ocr_appear(self.O_FIRE):
-                # 战斗后可能退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页; 公告/剧情动画走跳过链
+                # 战后节点连战会直接进到下一场的准备阶段(按钮从"挑战"变"准备"), 先让 battle_wait 接管
+                if self.recover_leftover_battle():
+                    continue
+                # 其余情况退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页; 公告/剧情动画走跳过链
                 if (self.skip_story()
                         or self.appear_then_click(self.I_BATTLE_PLAQUE, interval=4)
                         or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=4)
