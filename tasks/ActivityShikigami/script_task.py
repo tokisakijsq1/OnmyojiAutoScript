@@ -235,8 +235,8 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 continue
             ocr_limit_timer.reset()
             if not self.ocr_appear(self.O_FIRE):
-                # 战斗后可能退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页; 公告弹窗先粉叉
-                if (self.appear_then_click(self.I_UI_BACK_RED, interval=2)
+                # 战斗后可能退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页; 公告/剧情动画走跳过链
+                if (self.skip_story()
                         or self.appear_then_click(self.I_BATTLE_PLAQUE, interval=4)
                         or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=4)
                         or self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=4)):
@@ -326,14 +326,29 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             self.screenshot()
             if self.appear(self.I_CHECK_BATTLE_MAIN):
                 break
-            # 进图时可能弹"挑战开启"等公告弹窗, 粉叉关闭(复用通用素材)
-            if self.appear_then_click(self.I_UI_BACK_RED, interval=1):
+            # 进图时可能弹公告/播剧情动画, 跳过链处理(粉叉/跳过/确认/奖励弹窗)
+            if self.skip_story():
                 continue
             if self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=1):
                 continue
             if (self.appear_then_click(self.I_BATTLE_PLAQUE, interval=1.2)
                     or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=1.2)):
                 continue
+
+    def skip_story(self) -> bool:
+        """
+        爬塔剧情动画跳过链 (2026-10): 右上"跳过" -> 确认跳过 -> 获得奖励弹窗点空白 -> 每日补给页粉叉
+        在各等待循环里调用, 每轮处理一步; 动画放完会停在活动主页, 由进图链重新进入
+        """
+        if self.appear_then_click(self.I_SKIP_BUTTON, interval=1.5):
+            return True
+        if self.appear_then_click(self.I_CONFIRM_SKIP, interval=1.5):
+            return True
+        if self.ui_reward_appear_click():
+            return True
+        if self.appear_then_click(self.I_UI_BACK_RED, interval=1.5):
+            return True
+        return False
 
     def start_battle(self):
         click_times, max_times = 0, random.randint(4, 8)
@@ -344,6 +359,9 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             if click_times >= max_times:
                 logger.warning(f'Climb {self.climb_type} cannot enter, maybe already end, try next')
                 return
+            # 点挑战后可能播剧情动画(跳过->确认跳过->奖励弹窗->每日补给粉叉), 不处理会死等
+            if self.skip_story():
+                continue
             if (self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1) or
                     self.appear_then_click(self.I_UI_CONFIRM, interval=1) ):
                 continue
@@ -427,8 +445,8 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             if self.appear(self.I_CHECK_MAIN):
                 logger.info('Arrived main page')
                 return
-            # 任何带粉叉的公告弹窗先关掉(如进图时的"挑战开启")
-            if self.appear_then_click(self.I_UI_BACK_RED, interval=1.2):
+            # 途中遇到公告弹窗/剧情动画(跳过->确认跳过->奖励弹窗->粉叉)一路处理
+            if self.skip_story():
                 sleep(1)
                 continue
             if self.appear(self.I_CHECK_ACT_MAIN):
