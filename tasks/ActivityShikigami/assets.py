@@ -53,10 +53,10 @@ class ActivityShikigamiAssets:
 	I_TO_BATTLE_MAIN = RuleImage(roi_front=(818,464,99,23), roi_back=(770,430,200,90), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_main.png")
 	# 点击进入boss战斗页面 
 	I_TO_BATTLE_BOSS = RuleImage(roi_front=(1111,248,37,136), roi_back=(979,142,234,327), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_boss.png")
-	# description 
-	I_CHECK_BATTLE_MAIN = RuleImage(roi_front=(50,642,62,58), roi_back=(1,510,415,203), threshold=0.65, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_main.png")
 	# description (2026-10 磐长故地战斗准备页判据=右下挑战钻石按钮文字区域; 原门票图标在地图页同位置也出现,不可用作判据)
 	I_CHECK_BATTLE_MAIN = RuleImage(roi_front=(1122,568,96,60), roi_back=(1090,540,180,180), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_main.png")
+	# description 
+	I_CHECK_BATTLE_BOSS = RuleImage(roi_front=(978,636,43,31), roi_back=(899,537,167,154), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_boss.png")
 	# description (2026-10 准备页底部式神录狐狸图标)
 	I_BATTLE_MAIN_TO_RECORDS = RuleImage(roi_front=(1014,565,43,40), roi_back=(980,540,100,90), threshold=0.7, method="Template matching", file="./tasks/ActivityShikigami/as/as_battle_main_to_records.png")
 	# description 
