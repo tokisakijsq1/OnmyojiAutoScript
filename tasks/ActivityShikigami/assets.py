@@ -97,8 +97,8 @@ class ActivityShikigamiAssets:
 	# Ocr Rule Assets
 	# 挑战 (2026-10 磐长故地准备页右下挑战按钮)
 	O_FIRE = RuleOcr(roi=(1110,560,120,75), area=(1110,560,120,75), mode="Single", method="Default", keyword="挑战", name="fire")
-	# 地图上的战斗按钮 (2026-10 位置不固定, ocr识别"战斗"二字; roi避开主页古迹演武的战斗副标题和准备页战斗说明)
-	O_BATTLE_PLAQUE = RuleOcr(roi=(290,110,820,530), area=(290,110,820,530), mode="Single", method="Default", keyword="战斗", name="battle_plaque")
+	# 地图上的战斗按钮 (2026-10 位置不固定, 模板匹配+大范围roi_back; 竖排"战斗"OCR检不出已弃用)
+	I_BATTLE_PLAQUE = RuleImage(roi_front=(662,383,22,37), roi_back=(200,100,900,560), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_battle_plaque.png")
 	# 体力的数量检测 
 	O_REMAIN_AP = RuleOcr(roi=(584,17,63,27), area=(583,16,63,30), mode="Digit", method="Default", keyword="", name="remain_ap")
 	# 活动体力的剩余检测 (2026-10 准备页右上门票数)

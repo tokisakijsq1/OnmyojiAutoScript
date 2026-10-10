@@ -277,7 +277,7 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
 
     def enter_climb_battle(self):
         """
-        2026-10 改版后的进战路径: 活动主页 -> 磐长故地(图) -> 地图页"战斗"牌(ocr,位置不固定) -> 战斗准备页
+        2026-10 改版后的进战路径: 活动主页 -> 磐长故地(图) -> 地图页"战斗"牌(位置不固定,模板+大roi) -> 战斗准备页
         """
         while 1:
             self.screenshot()
@@ -285,7 +285,7 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
                 break
             if self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=1):
                 continue
-            if self.ocr_appear_click(self.O_BATTLE_PLAQUE, interval=1.2):
+            if self.appear_then_click(self.I_BATTLE_PLAQUE, interval=1.2):
                 continue
 
     def start_battle(self):
