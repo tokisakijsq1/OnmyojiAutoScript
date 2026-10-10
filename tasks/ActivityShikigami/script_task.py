@@ -399,7 +399,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
         from tasks.Component.GeneralBattle.config_general_battle import GeneralBattleConfig as gbc
         self.conf.validate_switch_preset()
         enable_preset = getattr(self.conf.general_battle, f'enable_{self.climb_type}_preset', False)
-        group, team = getattr(self.switch_soul_config, f'{self.climb_type}_group_team').split(',')
+        group, team = getattr(self.conf.switch_soul_config, f'{self.climb_type}_group_team').split(',')
         return gbc(lock_team_enable=not enable_preset,
                    preset_enable=enable_preset,
                    preset_group=group if enable_preset else 1,
