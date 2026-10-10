@@ -1551,20 +1551,35 @@ class BattleWait(BaseTask, GeneralBattleAssets):
             inputs.append(click)
         return RuleClickExclude(inputs, name='exclude_click_activity', strategy='rejection', distribution='uniform')
 
+    @cached_property
+    def grid_templates(self) -> list:
+        return [self.I_REWARD_GRID_1, self.I_REWARD_GRID_2, self.I_REWARD_GRID_3]
+
+    def reward_grid_appear(self) -> bool:
+        """活动大奖励网格结算页: 三模板命中任一"""
+        return any(self.appear(t) for t in self.grid_templates)
+
+    @cached_property
+    def exclude_click_grid(self) -> RuleClickExclude:
+        """网格页随机兜底点击: 排除奖励网格禁区(蓝框区域)"""
+        return RuleClickExclude([self.C_GRID_REWARD_AREA], name='exclude_click_grid',
+                                strategy='rejection', distribution='uniform')
+
     def _bw_success_activity(self, pub: PublicContext, pri: PrivateContext) -> HookSignal:
         """
         战斗结算是有 “获得奖励” 的适用
-        2026-10 兼容活动大奖励网格结算页(无"获得奖励"标题, 底部"点击屏幕继续"):
-        识别到网格页直接点提示文字本身, 不做随机点击, 避免点中奖励弹出详情
+        2026-10 兼容活动大奖励网格结算页(无"获得奖励"标题):
+        三模板识别 -> 点底部"点击屏幕继续"安全位; 模板都识别失败时随机点击兜底(排除奖励网格禁区)
         """
-        if not (self.appear(self.I_UI_REWARD) or self.ocr_appear(self.O_CLICK_CONTINUE)):
+        if not (self.appear(self.I_UI_REWARD) or self.reward_grid_appear()):
             return HookSignal.CONTINUE
         self.screenshot()
-        if not (self.appear(self.I_UI_REWARD) or self.ocr_appear(self.O_CLICK_CONTINUE)):
+        if not (self.appear(self.I_UI_REWARD) or self.reward_grid_appear()):
             return HookSignal.CONTINUE
 
         logger.info('Win battle')
         timer = Timer(20).start()
+        grid_seen_timer = None  # 网格页最近一次被识别的时间源, 兜底随机点击只在6s内生效
         while 1:
             self.screenshot()
 
@@ -1575,21 +1590,26 @@ class BattleWait(BaseTask, GeneralBattleAssets):
                     self.click(self.C_REWARD_2, interval=2.5)
                 continue
 
-            if self.ocr_appear_click(self.O_CLICK_CONTINUE, interval=2):
-                # 活动大奖励网格页: 点"点击屏幕继续"翻页
+            if self.reward_grid_appear():
+                grid_seen_timer = Timer(6).start()
+                self.click(self.C_GRID_CONTINUE, interval=2)
                 continue
             if self.appear(self.I_UI_REWARD):
+                grid_seen_timer = grid_seen_timer or Timer(6).start()
                 if random.random() < 0.02:
                     # 有一定的概率专门点击具体的奖励物品
                     x, y = self.exclude_click_activity.coord_in_excluded(['C_END_ACTIVITY_REWARD'])
                     self.device.click(x=x, y=y, control_name='reward_item')
                     continue
                 self.click(self.exclude_click_activity, interval=2.5)
+            elif grid_seen_timer is not None and not grid_seen_timer.reached():
+                # 网格页刚被识别过但三模板都没匹配上(动画/变化): 随机点击兜底, 排除奖励网格禁区
+                self.click(self.exclude_click_grid, interval=2.5)
             elif not self.appear(self.I_END_FIX_2):
                 self.screenshot()
                 if any([self.appear(self.I_UI_REWARD), self.appear(self.I_END_FIX_1), self.appear(self.I_END_FIX_2), self.appear(self.I_END_FIX_3)]):
                     continue
-                if self.ocr_appear(self.O_CLICK_CONTINUE):
+                if self.reward_grid_appear():
                     continue
                 logger.info('Get all reward')
                 pub.per_battle.success = BattleResult.SUCCESS

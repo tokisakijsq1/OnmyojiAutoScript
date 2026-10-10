@@ -255,20 +255,22 @@ class GeneralBattleAssets:
 
 
 	# Click Rule Assets
-	# 获得奖励中间的区域 
+	# 获得奖励中间的区域
 	C_END_ACTIVITY_REWARD = RuleClick(roi_front=(400,250,493,226), roi_back=(401,252,494,230), name="end_activity_reward")
+	# 2026-10 活动大奖励网格页禁区(随机点击排除区, 奖励格子占满中央)
+	C_GRID_REWARD_AREA = RuleClick(roi_front=(223,56,867,599), roi_back=(223,56,867,599), name="grid_reward_area")
+	# 2026-10 活动大奖励网格页安全点击位(底部"点击屏幕继续")
+	C_GRID_CONTINUE = RuleClick(roi_front=(560,670,160,40), roi_back=(560,670,160,40), name="grid_continue")
 
 
 	# Image Rule Assets
-	# description 
+	# 2026-10 活动大奖励网格页识别模板x3(手写补充, assets_extract会洗掉需重加)
+	I_REWARD_GRID_1 = RuleImage(roi_front=(107,24,50,31), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gb_reward_grid_1.png")
+	I_REWARD_GRID_2 = RuleImage(roi_front=(711,501,76,64), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gb_reward_grid_2.png")
+	I_REWARD_GRID_3 = RuleImage(roi_front=(561,680,160,26), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gb_reward_grid_3.png")
+	# description
 	I_END_FIX_1 = RuleImage(roi_front=(721,119,89,58), roi_back=(119,66,1136,620), threshold=0.85, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gw_end_fix_1.png")
-	# description 
+	# description
 	I_END_FIX_2 = RuleImage(roi_front=(800,251,100,33), roi_back=(32,90,1137,547), threshold=0.85, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gw_end_fix_2.png")
-	#  
+	#
 	I_END_FIX_3 = RuleImage(roi_front=(871,278,150,49), roi_back=(119,66,1136,620), threshold=0.85, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gw_end_fix_3.png")
-
-
-
-
-	# Ocr Rule Assets (2026-10 手写补充: 活动大奖励网格结算页的"点击屏幕继续", 横排文字OCR; assets_extract会洗掉需重加)
-	O_CLICK_CONTINUE = RuleOcr(roi=(450,655,420,60), area=(450,655,420,60), mode="Single", method="Default", keyword="点击屏幕继续", name="click_continue")
