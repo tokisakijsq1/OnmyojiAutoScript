@@ -429,16 +429,22 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 return
             # 任何带粉叉的公告弹窗先关掉(如进图时的"挑战开启")
             if self.appear_then_click(self.I_UI_BACK_RED, interval=1.2):
+                sleep(1)
                 continue
             if self.appear(self.I_CHECK_ACT_MAIN):
                 self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5)
+                sleep(1)
                 continue
             if self.appear(self.I_CHECK_BATTLE_MAP):
                 self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+                sleep(1)
                 continue
             # 其余层(备战页等): 左上黄色返回, 没有则试回退箭头
-            if not self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5):
-                self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+            if self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5):
+                sleep(1)
+                continue
+            self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+            sleep(1)
         logger.warning('exit_activity: main page not confirmed after 8 rounds')
 
     def check_tickets_enough(self) -> bool:
