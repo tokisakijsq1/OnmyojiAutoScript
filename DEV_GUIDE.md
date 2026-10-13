@@ -215,10 +215,21 @@ while 1:
   失败抛 `GameStuckError`）。全仓只有这一处实现。
   不走 `run_general_battle` 且自身没有切自动的自写战斗流程要显式调用，已接入的有：
   首领退治 `DemonRetreat`（点准备循环结束后调用）、
-  道馆 `Dokan` 的 `dokan_battle_1` 与 `dokan_battle`（等准备按钮出现后调用）。
+  道馆 `Dokan` 的 `dokan_battle_1` 与 `dokan_battle`（等准备按钮出现、点完准备后调用）。
   斗技 `Duel.wait_battle` 保持 dev 原生的 `ui_click(O_D_HAND, O_D_AUTO)` 不动，
   不接入本模块，避免和上游 dev rebase 时冲突。
   新写战斗流程时直接调 `self.ensure_auto_battle()`，不要再复制一套 OCR 点击
+- **坑：调 `ensure_auto_battle` 前必须已有人点准备（自己点或锁定阵容游戏自动点）**
+  （2026-10-13 道馆 oas1/oas2 双双卡死的根因，10-09 b6471ddc 引入）：齿轮只在正式开打后
+  才渲染，`ensure_auto_battle` 内部 `wait_real_battle` 等 15 秒等不到齿轮就直接抛
+  `GameStuckError`。道馆的 `dokan_battle` 在函数开头"等准备按钮出现"之后紧接
+  `ensure_auto_battle`，但点准备动作在下方 while 循环的 `I_RYOU_DOKAN_IN_FIELD` 分支里——
+  首场准备没人点，战斗永远不开始，日志表现为进 `In_Field` 后
+  `BATTLE_AUTO/BATTLE_HAND: No text detected` 刷屏约 170 秒后卡死重启。
+  已修：两处均在 `ensure_auto_battle` 前补
+  `ui_click_until_disappear(self.I_PREPARE_HIGHLIGHT, interval=0.8)`（自带点击生效校验）。
+  排查时注意：`wait_until_appear` 不传 `wait_time` 是无限等待，若准备按钮识别正常它会
+  很快返回掩盖顺序问题，识别失效则换成另一种死法
 - **坑：切自动必须等左下角齿轮出现（正式开打）再检测，且识别到"手动"后延迟复核再点**
   （2026-10-07 用户实机反馈"有时乱点反而切成手动"的根因）：开打瞬间界面仍在过渡，
   OCR 可能在一帧里读到"手动"，检测完立刻点击时游戏状态已变化（或点击落在过渡动画上），

@@ -340,6 +340,9 @@ class ScriptTask(ExtendGreenMark, GameUi, SwitchSoul, DokanSceneDetector):
 
         # 等待准备按钮的出现
         self.wait_until_appear(self.I_PREPARE_HIGHLIGHT)
+        # 先点准备正式开打（本函数下方循环只在 I_RYOU_DOKAN_IN_FIELD 命中时才点击，
+        # 不先点的话战斗不开始，ensure_auto_battle 会一直等不到齿轮而卡死）
+        self.ui_click_until_disappear(self.I_PREPARE_HIGHLIGHT, interval=0.8)
         # 点准备后等左下角齿轮出现（正式开打）再切自动；模块内部自带等待，
         # 识别到"手动"延迟 0.5s 复核再点，开打瞬间不会反切
         self.ensure_auto_battle()
@@ -1025,6 +1028,9 @@ class ScriptTask(ExtendGreenMark, GameUi, SwitchSoul, DokanSceneDetector):
 
         # 等待准备按钮的出现
         self.wait_until_appear(self.I_PREPARE_HIGHLIGHT)
+        # 先点准备正式开打（下方循环的 I_RYOU_DOKAN_IN_FIELD 分支管的是后续连战，
+        # 首场不点的话战斗不开始，ensure_auto_battle 会一直等不到齿轮而卡死）
+        self.ui_click_until_disappear(self.I_PREPARE_HIGHLIGHT, interval=0.8)
         # 点准备后等左下角齿轮出现（正式开打）再切自动，识别到"手动"延迟 0.5s 复核再点
         self.ensure_auto_battle()
 
