@@ -1,5 +1,23 @@
 [
   {
+    "itemName": "home_exit",
+    "imageName": "as_home_exit.png",
+    "roiFront": "94,19,40,38",
+    "roiBack": "0,0,250,100",
+    "method": "Template matching",
+    "threshold": 0.85,
+    "description": "home_exit"
+  },
+  {
+    "itemName": "back_arrow",
+    "imageName": "as_back_arrow.png",
+    "roiFront": "28,22,34,35",
+    "roiBack": "0,0,200,100",
+    "method": "Template matching",
+    "threshold": 0.85,
+    "description": "back_arrow"
+  },
+  {
     "itemName": "lock",
     "imageName": "as_lock.png",
     "roiFront": "825,657,28,25",

@@ -24,7 +24,11 @@ class ActivityShikigamiAssets:
 
 
 	# Image Rule Assets
-	# 上锁图标 
+	# 活动页左上角返回庭院图标(2026-10限时活动内页, 未知页面恢复用)
+	I_HOME_EXIT = RuleImage(roi_front=(94,19,40,38), roi_back=(0,0,250,100), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_home_exit.png")
+	# 活动内页左上角回退箭头
+	I_BACK_ARROW = RuleImage(roi_front=(28,22,34,35), roi_back=(0,0,200,100), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_back_arrow.png")
+	# 上锁图标
 	I_LOCK = RuleImage(roi_front=(825,657,28,25), roi_back=(739,432,440,266), threshold=0.5, method="Multi-scale template matching", file="./tasks/ActivityShikigami/as/as_lock.png")
 	# 还未上锁图片 
 	I_UNLOCK = RuleImage(roi_front=(893,649,31,36), roi_back=(850,620,120,95), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_unlock.png")
