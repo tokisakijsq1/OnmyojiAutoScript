@@ -3,48 +3,66 @@
     "itemName": "ms_scroll_1",
     "roiFront": "247,192,279,192",
     "roiBack": "247,192,279,192",
-    "description": "ms_scroll_1"
+    "description": "进入卷一"
   },
   {
     "itemName": "ms_scroll_2",
     "roiFront": "542,189,274,196",
     "roiBack": "542,189,274,196",
-    "description": "ms_scroll_2"
+    "description": "进入卷二"
   },
   {
     "itemName": "ms_scroll_3",
     "roiFront": "840,192,279,187",
     "roiBack": "840,192,279,187",
-    "description": "ms_scroll_3"
+    "description": "进入卷三"
   },
   {
     "itemName": "ms_scroll_4",
     "roiFront": "246,402,279,199",
     "roiBack": "246,402,279,199",
-    "description": "ms_scroll_4"
+    "description": "进入卷四"
   },
   {
     "itemName": "ms_scroll_5",
     "roiFront": "552,405,271,196",
     "roiBack": "552,405,271,196",
-    "description": "ms_scroll_5"
+    "description": "进入卷五"
   },
   {
     "itemName": "ms_scroll_6",
     "roiFront": "838,408,277,185",
     "roiBack": "838,408,277,185",
-    "description": "ms_scroll_6"
+    "description": "进入卷六"
   },
   {
     "itemName": "ms_contributed",
     "roiFront": "108,509,993,190",
     "roiBack": "108,509,993,190",
-    "description": "ms_contributed"
+    "description": "贡献完成跳结算"
   },
   {
     "itemName": "ms_double_scrolls_2",
     "roiFront": "714,128,464,397",
     "roiBack": "714,128,464,397",
-    "description": "ms_double_scrolls_2"
+    "description": "双绘卷之二"
+  },
+  {
+    "itemName": "ms_max_s",
+    "roiFront": "1106,116,36,36",
+    "roiBack": "1106,116,36,36",
+    "description": "小绘卷最大按钮"
+  },
+  {
+    "itemName": "ms_max_m",
+    "roiFront": "1106,258,36,36",
+    "roiBack": "1106,258,36,36",
+    "description": "中绘卷最大按钮"
+  },
+  {
+    "itemName": "ms_max_l",
+    "roiFront": "1106,398,36,36",
+    "roiBack": "1106,398,36,36",
+    "description": "大绘卷最大按钮"
   }
 ]

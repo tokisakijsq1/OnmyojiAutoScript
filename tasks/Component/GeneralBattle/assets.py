@@ -109,8 +109,6 @@ class GeneralBattleAssets:
 	I_STATISTICS = RuleImage(roi_front=(70,630,33,28), roi_back=(35,28,411,661), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/gb/gb_statistics.png")
 	# 左上角的退出 
 	I_EXIT = RuleImage(roi_front=(14,12,43,41), roi_back=(14,12,43,41), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/gb/gb_exit.png")
-	# 退出确认 
-	I_EXIT_ENSURE = RuleImage(roi_front=(664,407,180,65), roi_back=(624,387,260,105), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/gb/gb_exit_ensure.png")
 	# 左上角好友图标 
 	I_FRIENDS = RuleImage(roi_front=(89,14,36,36), roi_back=(89,14,36,36), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/gb/gb_friends.png")
 	# 结算时左下角统计图标 
@@ -252,6 +250,8 @@ class GeneralBattleAssets:
 	C_END_3_6 = RuleClick(roi_front=(0,0,100,100), roi_back=(0,0,100,100), name="end_3_6")
 	# 其实贪吃鬼这个点了也是没事儿 
 	C_END_GREED = RuleClick(roi_front=(138,16,512,93), roi_back=(138,16,512,93), name="end_greed")
+	# 中间的一堆奖励直接忽略。上面的end_1_1到end_3_6会容易UI变化失效 
+	C_END_MASTER = RuleClick(roi_front=(251,145,811,530), roi_back=(248,143,815,535), name="end_master")
 
 
 	# Click Rule Assets
