@@ -531,3 +531,60 @@ lock_team 点击后用另一态出现做确认，3 次未确认则带警告放�
   各任务目录下残余的旧圆角式 *_confirm/*_ensure 模板（AbyssShadows/BondlingFairyland/
   DemonEncounter/Dokan×6/Exploration/FloatParade/Summon/HeroTest/RichMan/SixRealms/
   TalismanPass/TrueOrochi/WantedQuests/WeeklyTrifles/XianShiYaoYue 等均有）。
+
+> **2026-10-14 合并后状态**：上游 10-11 起对同一批按钮做了"共享素材化"修复并已合并
+> 进来——`I_UI_CONFIRM/I_UI_CANCEL/I_UI_CHECK/I_UI_UNCHECK` 换新图+加宽 roi_back、
+> 新增 `*_OLD` 旧版保留；gi 专用 4 素材、`ss_sou_switch_sure`、12 套皮肤确定键、
+> `gb_exit_ensure`、`res_fresh_ensure`、`res_get_reward`、Restart 登录/邮件弹窗素材
+> 全部删除并改指共享素材。本地换图的 `I_INVITE_ENSURE`（上游漏改，旧 roi 实测 0.17）
+> 与 `as_unlock.png`（上游未动）按"先他一步"原则保留本地新图新 roi。详见第 23 节。
+
+## 23. fork/dev 合流：弹窗按钮收敛共享素材 + ActivityShikigami 取上游版（2026-10-14）
+
+**背景**：fork/dev 5bc3f6e2→4c688865（45 提交，全部在 tasks/）合入 Tokisaki-dev，
+合并基 ff594d1c，实测 49 个冲突。总策略：**弹窗按钮类与全部冲突整体取 dev**；
+"本地先他一步更新且上游漏改"的素材保留本地；对本地更新的连带影响逐一同步修复。
+
+**合流决策记录**：
+- **ActivityShikigami 整体取 dev**：dev 10-11 针对当期活动换了 8 张图+4 处 roi
+  （remain_pass 791→1153 与本地 71341a03 同 bug 独立修复），重点重做了 `_run_pass`
+  （=门票模式，oas3 `run_sequence:"pass"` 只跑这个），资产引用自洽。代价：本地 15+
+  提交的爬塔重做（skip_story 剧情跳过链、确定性退出链、连战恢复、goto_page_safe
+  防准备页残留崩溃、双态阵容锁、网格结算）全部随 merge 丢弃，**实机若卡剧情动画或
+  复现"准备页残留 Task name mismatch 崩溃"，从 backup/pre-merge-dev-20261014 按需
+  重移植**（历史可找回）。
+- **GeneralBattle 结算兜底无需二选一**：本地网格结算改的是 success 钩子
+  `_bw_success_activity`（后已搬去活动任务），上游 27241886 改的是 completion 钩子
+  （本地零改动），时序互补（success"Get all reward"后才 enable completion）。
+  自动合并后两边并存：上游 C_END_MASTER 大禁区、兜底 3s/最多 5 次强制 DONE 进来，
+  本地 BATTLE_STATUS_S 守卫、切自动模块、battle_before 重试全部健在。
+- **保留的本地资产（上游遗漏）**：`gi_invite_ensure.png`（好友列表邀请确定，上游仍是
+  旧图旧 roi、实测 0.17 失效）与 `as_unlock.png`（黑底金锁解锁态）——保留本地新图，
+  roi 补本地验证值并双边同步。`I_HOME_EXIT`/`I_BACK_ARROW`（navigator 未知页恢复用）
+  定义随 dev 版 assets.py 被覆盖，**import 冒烟抓到 AttributeError 后补回**。
+
+**同步修复清单**（合并后的连带影响）：
+- 淡出误触发修复（原 0f2c0739）重移植到 dev 新版 `check_and_invite`：出口判据
+  I_GI_SURE→I_UI_CONFIRM，保留 Timer(10) 超时。
+- 删除孤儿文件 `battle_activity.py` + `as/as_grid_anchor_*.png`（dev 版 script_task
+  不再引用；顺带消掉其缺 `import random` 的 NameError 隐患）。
+
+**验证方法沉淀**（合并动素材后必做）：
+1. `git grep` 被删素材名 → 无残留引用；
+2. **全量悬空扫描**（比 grep 更强）：正则抽全部 assets.py 的 `^\t[IOCSL]_\w+ *=`
+   定义集，再扫 tasks/、module/ 全部 .py 的 `self.X_…|xxxAssets.X_…` 引用求差——
+   本次靠它+import 冒烟抓到 grep 抓不到的 I_HOME_EXIT；
+3. `PYTHONPATH=. toolkit/python.exe -c "import …"` 对合并涉及模块做 import 冒烟；
+4. 素材文件存在性扫描（引用的 file="./…" 逐个 os.path.exists）：本次 31 个缺失全部
+   为上游历史遗留（fork/dev 同样缺），合并零引入。
+
+**assets_extract 现状（重要）**：方向是 **JSON→assets.py**（不是反向）。上游自己的
+assets.py↔JSON 存在漂移，合并后跑 extract 会删掉 4 个在用定义
+（I_CONFIRM/I_CONFIRM_CLOSE_DIFF_SOUL/I_DISABLE_7DAYS_DIFF_SOUL/I_GREED_GHOST）、
+复活死条目（C_GRID_* 等），**现阶段不要跑**；要恢复"extract 0 差异"需按 7e6ec531
+的流程把全任务 JSON 重新按 assets.py 反向重建（独立 chore，待做）。
+
+**实测回归清单**（合并后首跑观察点）：重启进程 → oas3 门票爬塔（dev 版 `_run_pass`
+首跑，留意剧情动画是否有跳过能力）→ 组队邀请链（淡出修复+共享勾选框）→ 探索
+（UP 类型自适应滑屏）→ 斗技（ui_click 超时上限）→ 现世妖约（I_UI_CONFIRM 新
+roi_back 回归）→ 获得奖励浮窗识别（dev 裁剪 y≈126 vs 本地旧裁剪 y≈239，理论可覆盖）。
