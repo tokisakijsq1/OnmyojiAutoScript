@@ -1,75 +1,75 @@
 [
   {
     "itemName": "cards_kaiko_6",
-    "roiFront": "193,204,89,73",
-    "roiBack": "169,148,130,501",
-    "threshold": "0.8",
+    "roiFront": "191,258,89,20",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_6.png",
-    "description": "cards_kaiko_6"
+    "description": "太鼓6 星级珠子行(6橙珠)"
   },
   {
     "itemName": "cards_kaiko_5",
-    "roiFront": "191,345,88,58",
-    "roiBack": "172,162,126,488",
-    "threshold": "0.8",
+    "roiFront": "191,399,89,21",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_5.png",
-    "description": "cards_kaiko_5"
+    "description": "太鼓5 星级珠子行(5橙珠+1灰)"
   },
   {
     "itemName": "cards_kaiko_4",
-    "roiFront": "192,354,90,22",
-    "roiBack": "179,165,116,482",
-    "threshold": "0.85",
+    "roiFront": "191,461,89,20",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_4.png",
-    "description": "cards_kaiko_4"
+    "description": "太鼓4 星级珠子行(4橙珠+2灰)"
   },
   {
     "itemName": "cards_kaiko_3",
-    "roiFront": "192,187,89,66",
-    "roiBack": "183,169,109,474",
-    "threshold": "0.8",
+    "roiFront": "191,603,89,19",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_3.png",
-    "description": "cards_kaiko_3"
+    "description": "太鼓3 星级珠子行(3橙珠+3灰)"
   },
   {
     "itemName": "cards_fish_6",
-    "roiFront": "193,183,87,91",
-    "roiBack": "178,169,110,474",
-    "threshold": "0.8",
+    "roiFront": "191,259,89,20",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_fish_6.png",
-    "description": "cards_fish_6"
+    "description": "斗鱼6 星级珠子行(6橙珠)"
   },
   {
     "itemName": "cards_fish_5",
-    "roiFront": "192,329,88,90",
-    "roiBack": "176,155,116,492",
-    "threshold": "0.8",
+    "roiFront": "191,542,89,20",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_fish_5.png",
-    "description": "cards_fish_5"
+    "description": "斗鱼5 星级珠子行(5橙珠+1灰)"
   },
   {
     "itemName": "cards_fish_4",
-    "roiFront": "192,409,87,21",
-    "roiBack": "176,175,118,473",
-    "threshold": "0.7",
+    "roiFront": "191,279,89,20",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_fish_4.png",
-    "description": "cards_fish_4"
+    "description": "斗鱼4 星级珠子行(4橙珠+2灰)"
   },
   {
     "itemName": "cards_fish_3",
-    "roiFront": "193,314,86,64",
-    "roiBack": "188,164,100,482",
-    "threshold": "0.8",
+    "roiFront": "191,563,89,18",
+    "roiBack": "150,145,170,520",
+    "threshold": "0.93",
     "method": "Template matching",
     "imageName": "cards_cards_fish_3.png",
-    "description": "cards_fish_3"
+    "description": "斗鱼3 星级珠子行(3橙珠+3灰)"
   },
   {
     "itemName": "cards_moon_6",

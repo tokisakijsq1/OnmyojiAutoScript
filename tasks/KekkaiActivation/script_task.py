@@ -5,6 +5,8 @@ import time
 
 import random
 import re
+import cv2
+import numpy as np
 from cached_property import cached_property
 from datetime import datetime, timedelta
 from module.atom.click import RuleClick
@@ -474,6 +476,41 @@ class ScriptTask(KU, KekkaiActivationAssets):
         logger.info('No card matched the sort order in the whole list')
         return None
 
+    # 星级对应的橙珠数: 珠子行固定6槽, 橙珠数=星级, 其余为灰珠
+    CARD_STAR_BEADS = {
+        CardClass.TAIKO3: 3, CardClass.TAIKO4: 4, CardClass.TAIKO5: 5, CardClass.TAIKO6: 6,
+        CardClass.FISH3: 3, CardClass.FISH4: 4, CardClass.FISH5: 5, CardClass.FISH6: 6,
+    }
+
+    @staticmethod
+    def _count_orange_beads(roi) -> int:
+        """
+        数区域内的橙色珠子数(截图为 RGB 通道序)
+        :param roi: (h, w, 3) 截图区域
+        """
+        r, g, b = roi[:, :, 0].astype(int), roi[:, :, 1].astype(int), roi[:, :, 2].astype(int)
+        mask = ((r > 190) & (g > 50) & (g < 170) & (b < 90)).astype(np.uint8)
+        n, _, stats, _ = cv2.connectedComponentsWithStats(mask, 8)
+        return len([i for i in range(1, n) if stats[i, cv2.CC_STAT_AREA] >= 40])
+
+    def _match_gate_ok(self, image, match, card: CardClass) -> bool:
+        """
+        窄条命中双判据校验, 防素材老化后相邻星级/另一类型静默错配:
+        1. 框内橙珠数 = 目标星级 (珠子行固定6槽, 橙珠数=星级)
+        2. 框上方卡面艺术区暖色差 R-B 符号 = 目标类型 (太鼓暖红 +77~+102, 斗鱼冷蓝 -24~-35)
+        """
+        _, x, y, w, h = match
+        beads = self._count_orange_beads(image[y:y + h, x:x + w])
+        art = image[max(0, y - 10):max(0, y - 2), x:x + w].astype(int)
+        warm = float((art[:, :, 0] - art[:, :, 2]).mean())
+        expect_beads, expect_taiko = self.CARD_STAR_BEADS[card], card.name.startswith('TAIKO')
+        if beads != expect_beads or (warm > 0) != expect_taiko:
+            logger.warning(f'Gate mismatch: {card.name} expect {expect_beads} beads/'
+                           f"{'taiko' if expect_taiko else 'fish'} got {beads} beads/"
+                           f"{'taiko' if warm > 0 else 'fish'}(R-B={warm:+.1f}) at ({x}, {y}), drop this match")
+            return False
+        return True
+
     def _search_cards_in_list(self, pairs: list[tuple]) -> tuple:
         """
         在当前卡类型列表中从顶部向下滑逐屏匹配目标星级模板
@@ -489,6 +526,8 @@ class ScriptTask(KU, KekkaiActivationAssets):
             # 每屏按优先级顺序匹配，命中即返回
             for idx, card, target_image in targets:
                 matches = target_image.match_all_any(image)
+                # 窄条只负责定位, 星级/类型以命中框橙珠数与卡面暖色差为准
+                matches = [m for m in matches if self._match_gate_ok(image, m, card)]
                 if matches:
                     # 取匹配分数最高的一个
                     score, x, y, w, h = max(matches, key=lambda m: m[0])
