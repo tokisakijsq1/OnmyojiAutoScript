@@ -15,7 +15,7 @@ from module.atom.click import RuleClick
 from module.atom.ocr import RuleOcr
 from module.base.protect import random_sleep
 from module.base.timer import Timer
-from module.exception import TaskEnd
+from module.exception import TaskEnd, ScriptError
 from module.logger import logger
 
 from tasks.base_task import BaseTask
@@ -29,6 +29,7 @@ from tasks.Component.SwitchSoul.switch_soul import SwitchSoul
 from tasks.GameUi.game_ui import GameUi
 import tasks.Component.GeneralBattle.config_general_battle
 import tasks.ActivityShikigami.page as game
+from tasks.ActivityShikigami.battle_activity import ActivityBattle
 
 
 def _prepare_image_for_ocr(image: np.ndarray, asset: RuleOcr) -> np.ndarray:
@@ -143,9 +144,10 @@ class StateMachine(BaseTask):
         return True
 
 
-class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, ActivityShikigamiAssets):
+class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, SwitchSoul, ActivityShikigamiAssets):
     """
     更新前请先看 ./README.md
+    ActivityBattle 通过 MRO 覆盖共享 Battle 的 activity 结算钩子, 仅本任务生效
     """
 
     def run(self) -> None:
@@ -153,21 +155,12 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
         #
         for climb_type in self.conf.general_climb.run_sequence_v:
             # 进入到活动的主页面，不是具体的战斗页面
-            self.goto_page(game.page_climb_act)
+            self.goto_page_safe(game.page_climb_act)
             try:
                 method_func = getattr(self, f'_run_{climb_type}')
                 method_func()
             except LimitCountOut as e:
-                while 1:
-                    self.screenshot()
-                    if self.appear(self.I_TO_BATTLE_MAIN):
-                        break
-                    if self.appear_then_click(self.I_UI_BACK_CIRCLE, interval=1.5):
-                        continue
-                    if self.appear_then_click(self.I_UI_BACK_YELLOW, interval=2.5):
-                        continue
-                    if self.appear_then_click(self.I_UI_BACK_RED, interval=1.5):
-                        continue
+                self.exit_activity()
             except LimitTimeOut as e:
                 break
             finally:
@@ -176,64 +169,61 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
 
         # 返回庭院
         logger.hr("Exit Shikigami", 2)
-        self.goto_page(game.page_main)
+        self.goto_page_safe(game.page_main)
         if self.conf.general_climb.active_souls_clean:
             self.set_next_run(task='SoulsTidy', success=False, finish=False, target=datetime.now())
         self.set_next_run(task="ActivityShikigami", success=True)
         raise TaskEnd
+
+    def goto_page_safe(self, page):
+        """
+        上次异常退出可能停在战斗准备/战斗中, 全局page_battle_prepare的接管钩子会构造GeneralBattle
+        触发 Task name mismatch ScriptError; 这里先自己接管打完再导航, 导航中再遇到同样兜底
+        """
+        try:
+            self.goto_page(page)
+        except ScriptError:
+            logger.warning('ScriptError during goto (leftover battle page), take over the battle')
+            self.recover_leftover_battle()
+            self.goto_page(page)
+
+    def recover_leftover_battle(self) -> bool:
+        """
+        残留的战斗准备(含节点连战自动进入的"准备"阶段)/战斗中界面: 用本任务的战斗流程接管打完
+        :return: True 表示接管并打完了一场, False 表示当前不在战斗相关界面
+        """
+        self.screenshot()
+        if not (self.appear(self.I_PREPARE_HIGHLIGHT) or self.appear(self.I_PREPARE_DARK)
+                or self.appear(self.I_PRESET) or self.appear(self.I_PRESET_WIT_NUMBER)
+                or self.is_in_battle(False)):
+            return False
+        logger.hr('Recover leftover battle', 1)
+        self.run_battle_wait()
+        return True
+
+    def run_battle_wait(self):
+        strategies, options = self.loadout_from_config(self.get_general_battle_conf())
+        strategies['success'] = 'activity'
+        self.loadout_show((strategies, options))
+        self.state_show()
+        with battle_wait_strategy(**strategies), battle_wait_options(**options):
+            win = self.battle_wait()
+        if win:
+            self.count_map[self.climb_type] += 1
+            logger.info(f'Count {self.climb_type}: {self.count_map[self.climb_type]}')
+        return win
 
     def _run_pass(self):
         """
             更新前请先看 ./README.md
         """
         logger.hr(f'Start run climb type PASS', 1)
-        # self.ui_clicks([self.I_TO_BATTLE_MAIN_2],
-        #                stop=self.I_CHECK_BATTLE_MAIN, interval=1)
-        #
-        center_click_cnt = 0
-        while 1:
-            self.screenshot()
-
-            if self.appear(self.I_UI_BACK_RED) and self.appear(self.I_PASS_4):
-                break
-            if self.appear(self.I_CHECK_BATTLE_MAIN):
-                break
-            if self.appear_then_click(self.I_UI_CONFIRM, interval=0.5):
-                continue
-            if self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=0.5):
-                continue
-            if self.appear_then_click(self.I_TO_BATTLE_MAIN_2, interval=1.5):
-                continue
-            if not self.appear(self.I_PASS_3):
-                continue
-            if self.appear_then_click(self.I_PASS_1, interval=1.5):
-                continue
-            if self.appear_then_click(self.I_PASS_2, interval=1.5):
-                continue
-            center = RuleClick(roi_front=(630,360,10,10), roi_back=(630,360,10,10), name="random_all")
-            if center_click_cnt <= 5 and self.click(center, interval=3.5):
-                center_click_cnt += 1
-                continue
-        logger.info('Enter occupation reward screen')  # 进入到占领奖励
-        index = 0
-        clicks = [self.I_PASS_5, self.I_PASS_6, self.I_PASS_7, self.I_PASS_8, self.I_PASS_9]
-        while 1:
-            self.screenshot()
-            if self.appear(self.I_CHECK_BATTLE_MAIN):
-                break
-            if self.click(clicks[index], interval=1.5):
-                sleep(1)
-            index = (index + 1) % len(clicks)
-        logger.info('Enter challenge screen')  # 正式进入挑战界面
-
-
-
-
+        # 2026-10 改版: 主页点"磐长故地" -> 地图页ocr点"战斗" -> 准备页(右上门票标志为判据)
+        # 门票/体力不可在界面内直接切换, 无模式切换步骤
+        self.enter_climb_battle()
         self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
-        # self.switch_climb_mode_in_game('pass')
 
         ocr_limit_timer = Timer(1).start()
-        click_limit_timer = Timer(4).start()
         while 1:
             self.screenshot()
             self.put_status()
@@ -247,6 +237,15 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
                 continue
             ocr_limit_timer.reset()
             if not self.ocr_appear(self.O_FIRE):
+                # 战后节点连战会直接进到下一场的准备阶段(按钮从"挑战"变"准备"), 先让 battle_wait 接管
+                if self.recover_leftover_battle():
+                    continue
+                # 其余情况退回地图页/活动主页, 点战斗牌或磐长故地重新进入准备页; 公告/剧情动画走跳过链
+                if (self.skip_story()
+                        or self.appear_then_click(self.I_BATTLE_PLAQUE, interval=4)
+                        or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=4)
+                        or self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=4)):
+                    continue
                 continue
             #  --------------------------------------------------------------
             self.lock_team(self.conf.general_battle)
@@ -258,27 +257,17 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
             if self.start_battle():
                 continue
 
-        # self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=4.5)
-        while 1:
-            self.screenshot()
-            if self.appear(self.I_TO_BATTLE_MAIN):
-                break
-            if self.appear(self.I_CHECK_BATTLE_MAIN) and self.appear_then_click(self.I_UI_BACK_YELLOW, interval=2.5):
-                continue
-            if self.appear_then_click(self.I_UI_BACK_CIRCLE, interval=2.5):
-                continue
-            if self.appear_then_click(self.I_UI_BACK_RED, interval=1.5):
-                continue
+        self.exit_activity()
 
     def _run_ap(self):
         """
             更新前请先看 ./README.md
         """
         logger.hr(f'Start run climb type AP')
-        self.ui_clicks([self.I_TO_BATTLE_MAIN],
+        self.ui_clicks([self.I_TO_BATTLE_MAIN, self.I_TO_BATTLE_MAIN_2],
                        stop=self.I_CHECK_BATTLE_MAIN, interval=1)
         self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_MAIN)
-        # self.switch_climb_mode_in_game('ap')
+        self.switch_climb_mode_in_game('ap')
 
         ocr_limit_timer = Timer(1).start()
         while 1:
@@ -301,19 +290,7 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
             if self.start_battle():
                 continue
 
-        # self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=3.5, timeout=10)
-        while 1:
-            self.screenshot()
-
-            if self.appear(self.I_TO_BATTLE_MAIN):
-                break
-            if self.appear_then_click(self.I_UI_BACK_CIRCLE, interval=1.5):
-                continue
-            if self.appear_then_click(self.I_UI_BACK_YELLOW, interval=2.5):
-                continue
-            if self.appear_then_click(self.I_UI_BACK_RED, interval=1.5):
-                continue
-
+        self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_MAIN, interval=4.5)
 
     def _run_boss(self):
         """
@@ -346,6 +323,38 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
         """
         logger.hr(f'Start run climb type AP100')
 
+    def enter_climb_battle(self):
+        """
+        2026-10 改版后的进战路径: 活动主页 -> 磐长故地(图) -> 地图页"战斗"牌(位置不固定,模板+大roi) -> 战斗准备页
+        """
+        while 1:
+            self.screenshot()
+            if self.appear(self.I_CHECK_BATTLE_MAIN):
+                break
+            # 进图时可能弹公告/播剧情动画, 跳过链处理(粉叉/跳过/确认/奖励弹窗)
+            if self.skip_story():
+                continue
+            if self.appear_then_click(self.I_TO_BATTLE_MAIN, interval=1):
+                continue
+            if (self.appear_then_click(self.I_BATTLE_PLAQUE, interval=1.2)
+                    or self.appear_then_click(self.I_BATTLE_PLAQUE_2, interval=1.2)):
+                continue
+
+    def skip_story(self) -> bool:
+        """
+        爬塔剧情动画跳过链 (2026-10): 右上"跳过" -> 确认跳过 -> 获得奖励弹窗点空白 -> 每日补给页粉叉
+        在各等待循环里调用, 每轮处理一步; 动画放完会停在活动主页, 由进图链重新进入
+        """
+        if self.appear_then_click(self.I_SKIP_BUTTON, interval=1.5):
+            return True
+        if self.appear_then_click(self.I_CONFIRM_SKIP, interval=1.5):
+            return True
+        if self.ui_reward_appear_click():
+            return True
+        if self.appear_then_click(self.I_UI_BACK_RED, interval=1.5):
+            return True
+        return False
+
     def start_battle(self):
         click_times, max_times = 0, random.randint(4, 8)
         while 1:
@@ -355,6 +364,9 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
             if click_times >= max_times:
                 logger.warning(f'Climb {self.climb_type} cannot enter, maybe already end, try next')
                 return
+            # 点挑战后可能播剧情动画(跳过->确认跳过->奖励弹窗->每日补给粉叉), 不处理会死等
+            if self.skip_story():
+                continue
             if (self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1) or
                     self.appear_then_click(self.I_UI_CONFIRM, interval=1) ):
                 continue
@@ -364,19 +376,11 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
                 logger.info(f'Try click fire, remain times[{max_times - click_times}]')
                 continue
         # 运行战斗
-        strategies, options = self.loadout_from_config(self.get_general_battle_conf())
-        # strategies['success'] = 'activity'
-        options['completion'].check_imgs = [self.I_CHECK_BATTLE_MAIN]
-        self.loadout_show((strategies, options))
-        self.state_show()
-        with battle_wait_strategy(**strategies), battle_wait_options(**options):
-            win = self.battle_wait()
-        # 对齐历史语义: 战斗成功结束后记为一次
-        if win:
-            self.count_map[self.climb_type] += 1
-            logger.info(f'Count {self.climb_type}: {self.count_map[self.climb_type]}')
-        return win
+        return self.run_battle_wait()
 
+    # @battle_wait_strategy(success='activity')
+    # def battle_wait(self, *args, **kwargs):
+    #     return self.battle_wait_with_strategy(*args, **kwargs)
 
     def switch_soul(self, enter_button: RuleImage, cur_img: RuleImage):
         conf = self.conf.switch_soul_config
@@ -405,15 +409,66 @@ class ScriptTask(StateMachine, GameUi, Battle, BaseActivity, SwitchSoul, Activit
 
     def lock_team(self, battle_conf: GeneralBattleConfig):
         """
-        根据配置判断当前爬塔类型是否锁定阵容, 并执行锁定或解锁
+        点挑战前检查阵容锁定状态 (2026-10 磐长故地准备页底部"阵容"钻石开关):
+        锁定态=I_LOCK(紫角挂锁), 解锁态=I_UNLOCK(黑底金锁), 同一位置二选一, 互斥验证
+        - 配置了使用预设 -> 需要解锁: 见锁就点, 点击后等解锁态出现确认
+        - 未配置预设 -> 需要锁定: 见解锁态就点, 点击后等锁定态出现确认
         """
         enable_preset = getattr(battle_conf, f"enable_{self.climb_type}_preset", False)
-        if not enable_preset:
-            logger.info(f'Lock {self.climb_type} team')
-            self.ui_click(self.I_UNLOCK, stop=self.I_LOCK, interval=1.5)
-            return
-        logger.info(f'Unlock {self.climb_type} team')
-        self.ui_click(self.I_LOCK, stop=self.I_UNLOCK, interval=1.5)
+        for _ in range(3):
+            self.screenshot()
+            if self.appear(self.I_UNLOCK):
+                if enable_preset:
+                    logger.info(f'{self.climb_type} team already unlocked')
+                    return
+                logger.info(f'Lock {self.climb_type} team')
+                self.appear_then_click(self.I_UNLOCK, interval=1)
+                continue
+            if self.appear(self.I_LOCK):
+                if enable_preset:
+                    logger.info(f'Unlock {self.climb_type} team for preset')
+                    self.appear_then_click(self.I_LOCK, interval=1)
+                    continue
+                logger.info(f'{self.climb_type} team already locked')
+                return
+            # 两态都未识别(可能被遮挡/动画中): 开预设时按已解锁跳过, 否则按位置盲切
+            if enable_preset:
+                logger.warning(f'Lock icon not identified, assume {self.climb_type} team unlocked')
+                return
+            logger.info(f'Lock {self.climb_type} team (blind toggle)')
+            self.click(self.I_LOCK, interval=1)
+        logger.warning('lock_team: toggle state not confirmed after 3 tries, continue anyway')
+
+    def exit_activity(self):
+        """
+        2026-10 改版退出链 (确定性走层, 不依赖页面导航):
+        备战页 --back_yellow--> 地图页(I_CHECK_BATTLE_MAP) --I_BACK_ARROW--> 活动主页(I_CHECK_ACT_MAIN) --back_yellow--> 庭院(I_CHECK_MAIN)
+        """
+        logger.hr('Exit climb activity', 2)
+        for _ in range(8):
+            self.screenshot()
+            if self.appear(self.I_CHECK_MAIN):
+                logger.info('Arrived main page')
+                return
+            # 途中遇到公告弹窗/剧情动画(跳过->确认跳过->奖励弹窗->粉叉)一路处理
+            if self.skip_story():
+                sleep(1)
+                continue
+            if self.appear(self.I_CHECK_ACT_MAIN):
+                self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5)
+                sleep(1)
+                continue
+            if self.appear(self.I_CHECK_BATTLE_MAP):
+                self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+                sleep(1)
+                continue
+            # 其余层(备战页等): 左上黄色返回, 没有则试回退箭头
+            if self.appear_then_click(self.I_UI_BACK_YELLOW, interval=1.5):
+                sleep(1)
+                continue
+            self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+            sleep(1)
+        logger.warning('exit_activity: main page not confirmed after 8 rounds')
 
     def check_tickets_enough(self) -> bool:
         """
