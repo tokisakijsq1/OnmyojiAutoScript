@@ -222,6 +222,12 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
                     self.appear_then_click(self.I_UI_BACK_YELLOW, interval=2.5)):
                 continue
 
+    def _hook_battle_start_timeout(self) -> float:
+        # 协战队友可能迟迟不点准备, 齿轮不出现战斗就不开始
+        # (2026-10-16 实测: 点准备后 15s 就误判手动模式切换失败而重启),
+        # 等待窗放宽到 75s(默认 15 + 用户要求加 1 分钟)
+        return 75
+
     def _hook_special_reward(self) -> bool:
         """
         战斗结算可能弹出重复奖励转换弹窗(内容不定, 统一检测确定按钮),

@@ -200,6 +200,11 @@ while 1:
 - 组队/协战战斗同样适用：进入战斗准备界面后与普通战斗一致
 - `current_count` 由 run_general_battle 自增，第一场才会执行预设队伍切换
 - 排队/邀请等组队前置流程需要自己写（参考 `_match_and_battle` 的状态机）
+- **点准备后等正式开打的时长由 `_hook_battle_start_timeout()` 控制（默认 15s）**：
+  组队本队友可能迟迟不点准备，齿轮不出现战斗就不开始（2026-10-16 现世妖约实测：
+  点准备后 15s 就抛 `Battle is in manual mode and switch to auto failed` 重启）。
+  需要更长等待的任务覆写该钩子（现世妖约 75s）；`ensure_auto_battle` 等待循环
+  已每轮 `stuck_record_clear()`，长等待不会误触设备卡死重启
 - **坑：切自动检测必须在"点准备"之后显式触发，不能指望 battle_before 循环自然走到**
   （2026-10-09 结界突破实测：切预设、点准备都正常，但点准备后一直没有切自动检测，
   卡在原地等游戏自己开打）：`battle_before` 只有 `is_in_real_battle`（战斗信息图标）

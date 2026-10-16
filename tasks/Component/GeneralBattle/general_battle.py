@@ -60,6 +60,9 @@ class GeneralBattle(BattleWait, GeneralBuff):
         """
         timer = Timer(timeout).start()
         while not timer.reached():
+            # 组队本等待队友准备期间长时间无点击, 每轮重置设备卡死检测,
+            # 超时由本循环的 timer 自行管理
+            self.device.stuck_record_clear()
             self.screenshot()
             if self.appear(self.O_BATTLE_AUTO) or self.appear(self.O_BATTLE_HAND):
                 return True
@@ -93,6 +96,14 @@ class GeneralBattle(BattleWait, GeneralBuff):
             return True
         logger.error('Failed to switch battle to auto mode')
         raise GameStuckError('Battle is in manual mode and switch to auto failed')
+
+    def _hook_battle_start_timeout(self) -> float:
+        """
+        点击准备后等待正式开打的秒数(ensure_auto_battle 的等待窗)。
+        组队本队友可能迟迟不点准备, 齿轮不出现战斗就不开始;
+        子类可覆写延长, 默认维持原 15s
+        """
+        return 15
 
     def battle_before(self, buff: BuffClass | list[BuffClass], config: GeneralBattleConfig, timeout: float = 5) -> bool:
         """战斗前设置
@@ -132,7 +143,7 @@ class GeneralBattle(BattleWait, GeneralBuff):
                         # 点准备后到正式开打之间 is_in_prepare/is_in_real_battle 都不成立，
                         # 循环只会空转到超时，切自动检测必须在这里显式触发
                         # （2026-10-09 结界突破实测：点准备后一直没有切自动检测）
-                        self.ensure_auto_battle()
+                        self.ensure_auto_battle(timeout=self._hook_battle_start_timeout())
                         return True
                 continue
             # 未知界面, 既不是准备界面也不是战斗界面
@@ -140,7 +151,7 @@ class GeneralBattle(BattleWait, GeneralBuff):
             sleep(random.uniform(0.4, 0.8))
         # 超时退出前补一次：锁定阵容由游戏自动点准备、或准备按钮识别失败时，
         # 上面的点击分支不会走到，这里兜底等齿轮出现再切自动
-        self.ensure_auto_battle()
+        self.ensure_auto_battle(timeout=self._hook_battle_start_timeout())
         return False
 
     def run_general_battle_back(self, config: GeneralBattleConfig = None, exit_four: bool = False) -> bool:
