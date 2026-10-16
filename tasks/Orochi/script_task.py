@@ -221,6 +221,9 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
         self.device.stuck_record_add('BATTLE_STATUS_S')
         while 1:
             self.screenshot()
+            # 等待队长邀请期间画面静止且无点击, 每轮必须清卡死记录,
+            # 否则wait_time(5分钟)一到先触发GameStuck硬重启 (2026-10-16 oas2 三连重启)
+            self.device.stuck_record_clear()
 
             # 检查猫咪奖励
             if self.appear_then_click(self.I_PET_PRESENT, action=self.C_WIN_3, interval=1):

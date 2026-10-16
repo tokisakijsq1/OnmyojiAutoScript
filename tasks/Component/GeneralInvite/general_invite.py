@@ -61,7 +61,9 @@ class GeneralInvite(BaseTask, GeneralInviteAssets):
             self.timer_invite = Timer(20)
             self.timer_invite.start()
             self.ensure_room_type(config.invite_number)
-            self.invite_friends(config)
+            if not self.invite_friends(config):
+                logger.warning('Invite friends failed at first time')
+                return False
         else:
             self.timer_invite = Timer(30)
             self.timer_invite.start()
@@ -86,6 +88,10 @@ class GeneralInvite(BaseTask, GeneralInviteAssets):
                 self.timer_emoji.reset()
                 self.appear_then_click(self.I_GI_EMOJI_1)
                 self.appear_then_click(self.I_GI_EMOJI_2)
+
+            # 好友列表弹窗没关掉会遮挡空位判定(确定漏识别的残留), 见了确定先点掉
+            if self.appear_then_click(self.I_INVITE_ENSURE, interval=1):
+                continue
 
             fire = False  # 是否开启挑战
             # 如果这个房间最多只容纳两个人（意思是只可以邀请一个人），且已经邀请一个人了，那就开启挑战
@@ -118,8 +124,7 @@ class GeneralInvite(BaseTask, GeneralInviteAssets):
 
             # 点击挑战
             if fire:
-                self.click_fire()
-                return True
+                return self.click_fire()
 
             if self.timer_invite and self.timer_invite.reached():
                 if is_first:
@@ -196,15 +201,45 @@ class GeneralInvite(BaseTask, GeneralInviteAssets):
                 continue
         return True
 
-    def click_fire(self):
+    def click_fire(self) -> bool:
+        """
+        点击挑战。有点击上限: 空房点挑战只会弹"需要有队友"提示, 连点10次会触发
+        GameTooManyClickError硬重启 (2026-10-16 oas3), 到上限视为没开起来
+        :return: 是否成功开启挑战 (以离开房间为准)
+        """
+        click_count = 0
         while 1:
             self.screenshot()
             if not self.is_in_room(False):
-                break
+                return True
+            if click_count >= 6:
+                logger.warning('Fire clicked 6 times but battle not started, maybe no teammate')
+                return False
             if self.appear_then_click(self.I_FIRE, interval=1, threshold=0.7):
+                click_count += 1
                 continue
             if self.appear_then_click(self.I_FIRE_SEA, interval=1, threshold=0.7):
+                click_count += 1
                 continue
+
+    def close_friend_list(self) -> bool:
+        """
+        关闭好友列表弹窗回到房间, 确定按钮无法识别时的兜底出口
+        :return:
+        """
+        logger.info('Close friend list')
+        for _ in range(8):
+            self.screenshot()
+            if self.is_in_room(False):
+                return True
+            if self.appear(self.I_ADD_2) or self.appear(self.I_ADD_5_4):
+                return True
+            if self.appear_then_click(self.I_BACK_YELLOW, interval=0.8):
+                continue
+            if self.appear_then_click(self.I_INVITE_ENSURE, interval=0.8):
+                continue
+        return False
+
     @cached_property
     def room_type(self) -> RoomType:
         """
@@ -452,16 +487,26 @@ class GeneralInvite(BaseTask, GeneralInviteAssets):
                 if self.detect_select(name):
                     is_select = True
 
-        # 点击确定
+        # 点击确定。确定始终不出现=邀请没发出去: 存图留证+关列表+返回失败,
+        # 不能再当成功返回, 否则队长对空房点挑战 (2026-10-16 oas3 连点挑战事故)
         logger.info('Click invite ensure')
-        if not self.appear(self.I_INVITE_ENSURE):
-            logger.warning('No appear invite ensure while invite friend')
+        timer_ensure = Timer(8)
+        timer_ensure.start()
+        ensured = False
         while 1:
             self.screenshot()
-            if not self.appear(self.I_INVITE_ENSURE):
-                break
-            if self.appear_then_click(self.I_INVITE_ENSURE):
+            if self.appear_then_click(self.I_INVITE_ENSURE, interval=1.5):
+                ensured = True
                 continue
+            if ensured:
+                if not self.appear(self.I_INVITE_ENSURE):
+                    break
+            elif timer_ensure.reached():
+                self.device.save_screenshot('invite_ensure_missing', interval=120)
+                logger.warning('Invite ensure never appeared, diagnostic screenshot genre=invite_ensure_missing in log/screenshots')
+                logger.warning('Close friend list and report invite failed')
+                self.close_friend_list()
+                return False
         # 哪怕没有找到好友也有点击 确认 以退出好友列表
         if not is_select:
             logger.warning('No find friend')
@@ -474,19 +519,21 @@ class GeneralInvite(BaseTask, GeneralInviteAssets):
     def invite_friends(self, config: InviteConfig) -> bool:
         """
         看情况邀请两个好友
-        :return:
+        :return: 是否有邀请成功
         """
-        success = self.invite_friend(config.friend_1, config.find_mode)
-        if not success:
+        success_1 = self.invite_friend(config.friend_1, config.find_mode)
+        if not success_1:
             logger.warning('Invite friend 1 failed')
         # 如果是邀请第二个人
         if config.invite_number == InviteNumber.TWO:
             # 确定邀请前等待一段时间，避免游戏弹出邀请过快
             sleep(3)
-            success = self.invite_friend(config.friend_2, config.find_mode)
-            if not success:
+            success_2 = self.invite_friend(config.friend_2, config.find_mode)
+            if not success_2:
                 logger.warning('Invite friend 2 failed')
+            return success_1 or success_2
         sleep(0.5)
+        return success_1
 
     def invite_again(self, default_invite: bool=True) -> bool:
         """

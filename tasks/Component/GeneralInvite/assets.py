@@ -45,8 +45,8 @@ class GeneralInviteAssets:
 	I_LOAD_FRIEND = RuleImage(roi_front=(709,546,134,60), roi_back=(709,546,134,60), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_load_friend.png")
 	# 左上角退出 
 	I_BACK_YELLOW = RuleImage(roi_front=(19,13,58,55), roi_back=(19,13,58,55), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_back_yellow.png")
-	# 点击邀请 
-	I_INVITE_ENSURE = RuleImage(roi_front=(686,541,180,65), roi_back=(630,495,290,155), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_invite_ensure.png")
+	# 点击邀请 (2026-10-10改版确定按钮换素材, 旧图对新按钮只有0.69; 素材取自GlobalGame ui_ui_confirm, roi加宽兜住弹窗布局漂移)
+	I_INVITE_ENSURE = RuleImage(roi_front=(686,541,179,66), roi_back=(520,400,520,310), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_invite_ensure.png")
 	# 判断是否点中好友了 
 	I_SELECTED = RuleImage(roi_front=(895,373,33,32), roi_back=(895,373,33,32), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_selected.png")
 	# 用来判断当前的列表是哪儿的 
