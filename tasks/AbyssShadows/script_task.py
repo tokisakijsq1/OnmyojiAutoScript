@@ -132,11 +132,12 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
                     self.set_next_run(task='AbyssShadows', finish=False, server=True, success=False)
                     raise TaskEnd
         if entered:
-            # 等待可进攻时间
-            self.device.stuck_record_add('BATTLE_STATUS_S')
-            # 集结中图片
-            self.wait_until_disappear(self.I_WAIT_TO_START)
-            self.device.stuck_record_clear()
+            # 等待集结结束（顶部横幅 集结中 -> 进攻中）后再开始进攻
+            if not self.wait_rally_finish():
+                logger.warning("Rally not finished, exit and retry later")
+                self.goto_main()
+                self.set_next_run(task='AbyssShadows', finish=False, server=True, success=False)
+                raise TaskEnd
 
             # 攻打各区域；后续区域全部封印时按成功结束并排期
             try:
@@ -156,22 +157,12 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
                             success = True
                             break
                         else:
-                            #切换区域之前关闭战报
-                            self.appear_then_click(self.I_ABYSS_MAP_EXIT, interval=1)
-                            current_area = self.check_current_area()
-                            logger.info(f"Current area is {current_area}, switch to next area")
-                            if current_area == AreaType.DRAGON:
-                                self.change_area(AreaType.PEACOCK)
-                                continue
-                            elif current_area == AreaType.PEACOCK:
-                                self.change_area(AreaType.FOX)
-                                continue
-                            elif current_area == AreaType.FOX:
-                                self.change_area(AreaType.LEOPARD)
-                                continue
-                            else:
-                                logger.warning("All enemy types have been defeated, but not enough emeny to fight, exit")
-                                break
+                            #切换区域之前关闭战报；当前区域已清扫过一轮，
+                            #后续区域全部封印才是真正的"全部封印"
+                            if not self.switch_area():
+                                logger.warning("All abyss areas have been sealed, no enemy to fight")
+                                raise AbyssShadowsAllSealed
+                            continue
 
                 # 开启智能伤害
                 if cfg.abyss_shadows_combat_time.CombatTime_enable:
@@ -254,15 +245,18 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
             logger.info(
                 f"Current fight times: boss {self.boss_fight_count} times, general {self.general_fight_count} times, elite {self.elite_fight_count} times")
 
-            # 完成攻打后切换区域
+            # 完成攻打后切换区域；切换失败(后续区域全封印)时留在当前区域继续清扫
             current_area = self.check_current_area()
             if fight_count < required_count and current_area != AreaType.LEOPARD:
                 next_area_func()
         return fight_count
 
-    def switch_area(self):
+    def switch_area(self) -> bool:
         ''' 切换到下一个未封印的区域
-        后续区域全部封印时抛 AbyssShadowsAllSealed
+        :return True 已切换; False 后续区域全部封印
+        当前区域可能还有未清完的目标，调用方应继续清扫当前区域而不是结束任务
+        （2026-10-16 实测：后三个区域封印但神龙首领还活着，旧写法在此宣告
+        "全部封印"导致只打 1 个首领就收工）
         '''
         #确保没有战报页面
         self.appear_then_click(self.I_ABYSS_MAP_EXIT, interval=1)
@@ -275,10 +269,10 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
             remain = order[1:]
         for area in remain:
             if self.change_area(area):
-                return
+                return True
             logger.info(f"{area.name} has been sealed, try next area")
-        logger.warning("All abyss areas have been sealed, no enemy to fight")
-        raise AbyssShadowsAllSealed
+        logger.warning("All next areas have been sealed, stay and sweep current area")
+        return False
 
 
 
@@ -423,6 +417,34 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
             if self.appear(self.I_ABYSS_NAVIGATION):
                 break
         return True
+
+    def wait_rally_finish(self, timeout: int = 900) -> bool:
+        ''' 等待狭间集结结束
+
+        以顶部横幅出现"进攻中"作为进攻阶段开始的正向信号。
+        不能用"集结中"横幅消失代替：进图过渡动画期间横幅尚未渲染、
+        横幅随倒计时文字漂移导致模板失配，都会在集结期就误判已结束
+        （2026-10-16 oas2 实测：集结期进场开打，挑战连点无效直至重启）。
+        :param timeout: 最长等待秒数
+        :return 是否等到进攻阶段
+        '''
+        logger.info("Wait rally finish")
+        timer = Timer(timeout).start()
+        rally_seen = False
+        while 1:
+            self.screenshot()
+            # 集结期间无任何点击，保活避免 60 秒卡死重启
+            self.device.stuck_record_clear()
+            if self.appear(self.I_IS_ATTACK):
+                logger.info("Rally finished, attack phase started")
+                return True
+            if self.appear(self.I_WAIT_TO_START):
+                if not rally_seen:
+                    rally_seen = True
+                    logger.info("Rally in progress, keep waiting")
+            if timer.reached():
+                logger.warning(f"Wait rally finish timeout ({timeout}s), rally banner seen: {rally_seen}")
+                return False
 
     def find_enemy(self, enemy_type: EmemyType) -> bool:
         ''' 寻找敌人,并开始寻路进入战斗

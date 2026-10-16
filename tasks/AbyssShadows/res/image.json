@@ -137,7 +137,7 @@
   {
     "itemName": "is_attack",
     "roiFront": "586,62,73,27",
-    "roiBack": "586,62,73,27",
+    "roiBack": "420,50,460,55",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "res_is_attack.png",
@@ -191,7 +191,7 @@
   {
     "itemName": "wait_to_start",
     "roiFront": "588,64,70,26",
-    "roiBack": "588,64,70,26",
+    "roiBack": "420,50,460,55",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "res_wait_to_start.png",
