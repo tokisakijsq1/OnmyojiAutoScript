@@ -151,7 +151,6 @@ class SwitchSoul(BaseTask, SwitchSoulAssets):
             sleep(0.5)
         # 点击队伍
         target_team = get_team_asset(team)
-        clicked = False
         for i in range(3):
             sleep(0.8)
             self.screenshot()
@@ -164,18 +163,10 @@ class SwitchSoul(BaseTask, SwitchSoulAssets):
                     if not self.appear(self.I_UI_CONFIRM):
                         break
                 continue
-            if self.appear_then_click(target_team, interval=3):
-                clicked = True
-            else:
+            if not self.appear_then_click(target_team, interval=3):
                 logger.warning(f'Click team {team} failed in group {group}')
         # 兜底若还出现确认按钮则点击
         self.ui_click_until_disappear(self.I_UI_CONFIRM)
-        if not clicked:
-            # 3 次都没点到队伍卡片：切换很可能没生效，不能假装成功继续打
-            logger.error(f'Switch soul group {group} team {team}: team card never clicked, team may stay unchanged')
-            return
-        # 点击生效后游戏还要穿御魂，稍等配置完成再离开，否则后续战斗用的还是旧阵容
-        sleep(2)
         logger.info(f'Switch soul_one group {group} team {team}')
 
     def switch_souls(self, target: tuple or list[tuple]) -> None:
