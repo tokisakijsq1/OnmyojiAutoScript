@@ -159,14 +159,13 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, XianShiYaoYueAssets):
         self.ui_click(self.I_XY_GOTO_SHOP, stop=self.I_XY_CHECK_SHOP, interval=1, timeout=30)
         for attempt in range(3):
             self.screenshot()
-            # 用子串匹配而不是 ocr_appear: 后者是全串相等, OCR 结果带尾随空格等噪声时恒为 False,
-            # 2026-09-26 实测导致已上架的现世祝福被判成"已购买"而跳过
-            blessing_text = self.O_XY_BLESSING.ocr(self.device.image)
-            if self.O_XY_BLESSING.keyword not in blessing_text:
+            # Full 模式在整个商品区检索"现世祝福": 商品位置会轮换(2026-11-05 实测从 2 号位换到 1 号位),
+            # 固定 roi 会失配; 点击落在识别到的标题文字上, 天然避开图标小方框(点它会拖动祝福)
+            if not self.ocr_appear(self.O_XY_BLESSING):
                 logger.info('Blessing not found in shop, maybe already bought')
                 break
             logger.info(f'Find XianShi blessing, try buy, attempt {attempt + 1}')
-            self.click(self.C_XY_BLESSING)
+            self.ocr_appear_click(self.O_XY_BLESSING)
             if self._click_blessing_buy():
                 break
             # 弹窗没弹出或按钮没等到: 关掉弹窗后重试

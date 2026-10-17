@@ -45,16 +45,14 @@ class XianShiYaoYueAssets:
 	I_XY_BUY_BLESSING = RuleImage(roi_front=(558,491,166,59), roi_back=(430,140,430,470), threshold=0.8, method="Template matching", file="./tasks/XianShiYaoYue/xy/xy_blessing_buy.png")
 
 	# Ocr Rule Assets
-	# description 商店绿框区域现世祝福识别
-	O_XY_BLESSING = RuleOcr(roi=(440,138,230,50), area=(440,138,230,50), mode="Single", method="Default", keyword="现世祝福", name="xy_blessing")
+	# description 商店商品区(整个红框)内检索现世祝福: 商品位置会轮换, Full 模式返回匹配文字的绝对坐标供点击
+	O_XY_BLESSING = RuleOcr(roi=(180,118,980,540), area=(180,118,980,540), mode="Full", method="Default", keyword="现世祝福", name="xy_blessing")
 	# description 活动页挑战次数 38/40
 	O_XY_BATTLE_COUNT = RuleOcr(roi=(990,680,170,32), area=(990,680,170,32), mode="DigitCounter", method="Default", keyword="", name="xy_battle_count")
 	# description 排队横幅人数 前方约有1832排队(数字位数不定位置浮动, 取整条横幅文本, 任务里自行抽数字)
 	O_XY_QUEUE = RuleOcr(roi=(350,8,460,84), area=(350,8,460,84), mode="Single", method="Default", keyword="", name="xy_queue")
 
 	# Click Rule Assets
-	# description 点击现世祝福卡片"今日剩余数量"文字行(图标小方框在 495,185-575,275, 点它会点到/拖动祝福弹窗)
-	C_XY_BLESSING = RuleClick(roi_front=(460,288,155,42), roi_back=(460,288,155,42), name="xy_blessing")
 	# description 直接点击组队挑战
 	C_XY_TEAM_CHALLENGE = RuleClick(roi_front=(1102,558,96,99), roi_back=(1102,558,96,99), name="xy_team_challenge")
 	# description 勾选队伍公开权限-所有人
