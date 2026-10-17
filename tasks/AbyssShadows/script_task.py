@@ -272,6 +272,14 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
                 return True
             logger.info(f"{area.name} has been sealed, try next area")
         logger.warning("All next areas have been sealed, stay and sweep current area")
+        # 盲点关弹窗不保险（书签飘动动画可能吃掉点击），弹窗开着会挡住战报按钮，
+        # find_enemy 将无点击空转 60 秒触发卡死重启（2026-10-17 oas3 三连实测）。
+        # 以"战报按钮重新可见"为弹窗已关的判据（书本模板在封印进度/浮动动画下不可靠）
+        for _ in range(4):
+            self.screenshot()
+            if self.appear(self.I_ABYSS_NAVIGATION):
+                break
+            self._close_area_popup()
         return False
 
 
@@ -350,8 +358,10 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
         return False
 
     def _close_area_popup(self):
-        ''' 关闭"点击空白处关闭"的领域选择弹窗 '''
-        self.device.click(360, 300, control_name='ABYSS_CLOSE_POPUP')
+        ''' 关闭"点击空白处关闭"的领域选择弹窗
+        点底部空白：原来的 (360,300) 在书与书的夹缝处，书签飘动动画可能吃掉点击
+        '''
+        self.device.click(640, 680, control_name='ABYSS_CLOSE_POPUP')
         sleep(1)
     
     def goto_main(self):
@@ -452,13 +462,24 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AbyssShadowsAssets):
         True 找到敌人，并已经战斗完成
         '''
         print(f"Find enemy: {enemy_type}")
+        recover_timer = Timer(30).start()
         while 1:
             self.screenshot()
+            # 可能长时间无点击（弹窗残留遮挡等），保活避免 60 秒卡死重启
+            self.device.stuck_record_clear()
             # 点击战报按钮
             if self.appear(self.I_ABYSS_MAP):
                 break
-            if self.appear_then_click(self.I_ABYSS_NAVIGATION,interval=1):
-                continue
+            if self.appear(self.I_ABYSS_NAVIGATION):
+                recover_timer = Timer(30).start()
+                if self.click(self.I_ABYSS_NAVIGATION, interval=1):
+                    continue
+            if recover_timer.reached():
+                # 战报按钮 30 秒不可见：疑似有弹窗残留遮挡，点空白处驱散后继续等
+                logger.warning("Battle report button not visible for 30s, dismiss possible overlay")
+                self.device.click(640, 680, control_name='ABYSS_DISMISS_OVERLAY')
+                sleep(1)
+                recover_timer = Timer(30).start()
  
         match enemy_type:
             case EmemyType.BOSS: success = self.run_boss_fight()
