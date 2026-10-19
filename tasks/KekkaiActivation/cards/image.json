@@ -3,7 +3,7 @@
     "itemName": "cards_kaiko_6",
     "roiFront": "191,258,89,20",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_6.png",
     "description": "太鼓6 星级珠子行(6橙珠)"
@@ -12,7 +12,7 @@
     "itemName": "cards_kaiko_5",
     "roiFront": "191,399,89,21",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_5.png",
     "description": "太鼓5 星级珠子行(5橙珠+1灰)"
@@ -21,7 +21,7 @@
     "itemName": "cards_kaiko_4",
     "roiFront": "191,461,89,20",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_4.png",
     "description": "太鼓4 星级珠子行(4橙珠+2灰)"
@@ -30,7 +30,7 @@
     "itemName": "cards_kaiko_3",
     "roiFront": "191,603,89,19",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_kaiko_3.png",
     "description": "太鼓3 星级珠子行(3橙珠+3灰)"
@@ -39,7 +39,7 @@
     "itemName": "cards_fish_6",
     "roiFront": "191,259,89,20",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_fish_6.png",
     "description": "斗鱼6 星级珠子行(6橙珠)"
@@ -48,7 +48,7 @@
     "itemName": "cards_fish_5",
     "roiFront": "191,542,89,20",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_fish_5.png",
     "description": "斗鱼5 星级珠子行(5橙珠+1灰)"
@@ -57,7 +57,7 @@
     "itemName": "cards_fish_4",
     "roiFront": "191,279,89,20",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_fish_4.png",
     "description": "斗鱼4 星级珠子行(4橙珠+2灰)"
@@ -66,7 +66,7 @@
     "itemName": "cards_fish_3",
     "roiFront": "191,563,89,18",
     "roiBack": "150,145,170,520",
-    "threshold": "0.93",
+    "threshold": "0.90",
     "method": "Template matching",
     "imageName": "cards_cards_fish_3.png",
     "description": "斗鱼3 星级珠子行(3橙珠+3灰)"

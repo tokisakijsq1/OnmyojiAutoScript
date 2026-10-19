@@ -87,21 +87,21 @@ class KekkaiActivationAssets:
 
 	# Image Rule Assets
 	# 太鼓6 星级珠子行(6橙珠), 窄条只负责定位, 星级由 script_task 橙珠计数校验
-	I_CARDS_KAIKO_6 = RuleImage(roi_front=(191,258,89,20), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_6.png")
+	I_CARDS_KAIKO_6 = RuleImage(roi_front=(191,258,89,20), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_6.png")
 	# 太鼓5 星级珠子行(5橙珠+1灰)
-	I_CARDS_KAIKO_5 = RuleImage(roi_front=(191,399,89,21), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_5.png")
+	I_CARDS_KAIKO_5 = RuleImage(roi_front=(191,399,89,21), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_5.png")
 	# 太鼓4 星级珠子行(4橙珠+2灰)
-	I_CARDS_KAIKO_4 = RuleImage(roi_front=(191,461,89,20), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_4.png")
+	I_CARDS_KAIKO_4 = RuleImage(roi_front=(191,461,89,20), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_4.png")
 	# 太鼓3 星级珠子行(3橙珠+3灰)
-	I_CARDS_KAIKO_3 = RuleImage(roi_front=(191,603,89,19), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_3.png")
+	I_CARDS_KAIKO_3 = RuleImage(roi_front=(191,603,89,19), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_kaiko_3.png")
 	# 斗鱼6 星级珠子行(6橙珠)
-	I_CARDS_FISH_6 = RuleImage(roi_front=(191,259,89,20), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_6.png")
+	I_CARDS_FISH_6 = RuleImage(roi_front=(191,259,89,20), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_6.png")
 	# 斗鱼5 星级珠子行(5橙珠+1灰)
-	I_CARDS_FISH_5 = RuleImage(roi_front=(191,542,89,20), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_5.png")
+	I_CARDS_FISH_5 = RuleImage(roi_front=(191,542,89,20), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_5.png")
 	# 斗鱼4 星级珠子行(4橙珠+2灰)
-	I_CARDS_FISH_4 = RuleImage(roi_front=(191,279,89,20), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_4.png")
+	I_CARDS_FISH_4 = RuleImage(roi_front=(191,279,89,20), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_4.png")
 	# 斗鱼3 星级珠子行(3橙珠+3灰)
-	I_CARDS_FISH_3 = RuleImage(roi_front=(191,563,89,18), roi_back=(150,145,170,520), threshold=0.93, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_3.png")
+	I_CARDS_FISH_3 = RuleImage(roi_front=(191,563,89,18), roi_back=(150,145,170,520), threshold=0.90, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_fish_3.png")
 	# description 
 	I_CARDS_MOON_6 = RuleImage(roi_front=(189,186,89,88), roi_back=(183,167,100,480), threshold=0.8, method="Template matching", file="./tasks/KekkaiActivation/cards/cards_cards_moon_6.png")
 	# description 

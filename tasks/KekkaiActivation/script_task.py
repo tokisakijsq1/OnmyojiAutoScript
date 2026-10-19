@@ -398,10 +398,13 @@ class ScriptTask(KU, KekkaiActivationAssets):
     def _select_card_by_order(self, order: list[CardClass]) -> RuleClick or None:
         """
         按星级优先级在卡列表中选卡: 优先级列表按连续同类型分组，逐组切换卡类型下拉，
-        从顶部往下滑逐屏匹配组内各星级模板，命中组内最高优先级的卡记为候选;
-        滑到底或达到滑动上限仍未命中则看下一组，全部组未命中返回 None。
-        点击前若列表被后续组的搜索切走类型/滚动位置，切回最优卡类型重扫一次取新坐标，
-        重扫不到按无匹配返回 None
+        从顶部往下滑遍历完整列表逐屏匹配组内各星级模板，取整列中优先级最高的卡。
+        卡列表按星级降序排列时，高优先级的低星卡往往压在首屏折叠线以下，
+        首屏命中就早退会退化成"有几星挂几星"(曾因此连续挂出5星)，必须扫完整列。
+        前面组一旦有命中即为最终结果(后面组的优先级下标必然更大)，不再搜后面的组。
+        全部组遍历完仍无命中返回 None。
+        扫完时列表停在滚动途中，最优卡多半已不在命中时的位置: 回滚到顶部后
+        对最优卡单独重扫一次(扫到即停)取新坐标再点，重扫不到按无匹配返回 None
         :param order: 优先级从高到低的 CardClass 列表 (仅 TAIKO3~6 / FISH3~6)
         :return: 命中卡的 RuleClick，没有则 None
         """
@@ -418,17 +421,14 @@ class ScriptTask(KU, KekkaiActivationAssets):
             CardType.TAIKO: self.I_A_CARD_KAIKO,
             CardType.FISH: self.I_A_CARD_FISH,
         }
-        best_priority = len(order)  # 越小优先级越高
+        best_priority = None
         best_box = None
-        best_swipes = 0  # 命中最优卡时列表已上滑的次数
-        swipes = 0  # 当前卡列表自顶部起累计的上滑次数
-        last_type = None  # 最后搜索的组类型，即列表当前显示的类型
+        swipes = 0  # 当前列表自顶部起累计的上滑次数
 
         for card_type, pairs in groups:
             target_class = type_targets[card_type]
             logger.info(f'Searching card group: {card_type} {[c.name for _, c in pairs]}')
             self._select_card_class(target_class)
-            last_type = card_type
             if swipes:
                 # 切换类型后列表可能停留在上次滚动的位置，先回滚到顶部
                 self._swipe_card_list_to_top(swipes)
@@ -437,44 +437,32 @@ class ScriptTask(KU, KekkaiActivationAssets):
             found, used = self._search_cards_in_list(pairs)
             swipes = used
             if found is not None:
-                priority, box = found
-                if priority < best_priority:
-                    best_priority = priority
-                    best_box = box
-                    best_swipes = swipes
-                # 已经是全局最高优先级，无需继续找更低优先级的组
-                if best_priority == 0:
-                    break
+                best_priority, best_box = found
+                break
 
-        if best_box is not None:
-            best_type = CardType.TAIKO if order[best_priority].name.startswith('TAIKO') else CardType.FISH
-            # 命中最优卡后若又搜过其他组，列表类型/滚动位置已变化，
-            # 旧坐标会点到新列表同一位置的其他卡(曾把斗鱼列表同位置的低星卡当太鼓挂上)，
-            # 必须切回最优卡的类型并回顶重扫一次取新坐标
-            if last_type != best_type or best_swipes != swipes:
-                if last_type != best_type:
-                    self._select_card_class(type_targets[best_type])
-                if swipes:
-                    self._swipe_card_list_to_top(swipes)
-                    swipes = 0
-                found, used = self._search_cards_in_list([(best_priority, order[best_priority])])
-                if found is None:
-                    logger.warning('Best card not found again on re-scan, treat as no match')
-                    if used:
-                        self._swipe_card_list_to_top(used)
-                    return None
-                _, best_box = found
-            x, y, w, h = best_box
-            roi = int(x), int(y), int(w), int(h)
-            target = RuleClick(roi_front=roi, roi_back=roi, name="tmpclick")
-            logger.info(f'选择挂卡(按优先级): order={order[best_priority].name} {roi}')
-            return target
+        if best_box is None:
+            # 没有任何排序中的卡: 回滚到顶部，交回默认挂卡模式
+            if swipes:
+                self._swipe_card_list_to_top(swipes)
+            logger.info('No card matched the sort order in the whole list')
+            return None
 
-        # 没有任何排序中的卡: 回滚到顶部，交回默认挂卡模式
+        # 全列扫描后列表停在滚动途中，旧坐标会点到别的卡: 回顶后对最优卡重扫一次取新坐标
         if swipes:
             self._swipe_card_list_to_top(swipes)
-        logger.info('No card matched the sort order in the whole list')
-        return None
+            swipes = 0
+        found, used = self._search_cards_in_list([(best_priority, order[best_priority])])
+        if found is None:
+            logger.warning('Best card not found again on re-scan, treat as no match')
+            if used:
+                self._swipe_card_list_to_top(used)
+            return None
+        _, best_box = found
+        x, y, w, h = best_box
+        roi = int(x), int(y), int(w), int(h)
+        target = RuleClick(roi_front=roi, roi_back=roi, name="tmpclick")
+        logger.info(f'选择挂卡(按优先级): order={order[best_priority].name} {roi}')
+        return target
 
     # 星级对应的橙珠数: 珠子行固定6槽, 橙珠数=星级, 其余为灰珠
     CARD_STAR_BEADS = {
@@ -513,34 +501,44 @@ class ScriptTask(KU, KekkaiActivationAssets):
 
     def _search_cards_in_list(self, pairs: list[tuple]) -> tuple:
         """
-        在当前卡类型列表中从顶部向下滑逐屏匹配目标星级模板
+        全列扫描: 从当前位置向下滑遍历完整卡列表(直到列表底标记或滑动上限)，
+        逐屏匹配各目标星级模板(窄条定位+双判据门)，返回整列中优先级最高(下标最小)的命中。
+        组内最高优先级的卡一命中即提前收工(列表剩余部分不可能出现更优下标)。
         :param pairs: (全局优先级下标, CardClass) 列表，下标越小优先级越高
-        :return: ((优先级下标, 匹配框 (x, y, w, h)), 上滑次数)，未找到时第一项为 None
+        :return: ((优先级下标, 匹配框 (x, y, w, h)), 上滑次数)，整列无命中时第一项为 None
         """
         max_swipes = 20
         targets = [(idx, card, self.dict_card_image[card]) for idx, card in pairs]
+        best_priority = None
+        best_box = None
         swipe_count = 0
         while 1:
             self.screenshot()
             image = self.device.image
-            # 每屏按优先级顺序匹配，命中即返回
+            # 每屏按优先级顺序匹配，整列取最优: 已有记录后同屏只看下标更小的目标
             for idx, card, target_image in targets:
+                if best_priority is not None and idx >= best_priority:
+                    break
                 matches = target_image.match_all_any(image)
                 # 窄条只负责定位, 星级/类型以命中框橙珠数与卡面暖色差为准
                 matches = [m for m in matches if self._match_gate_ok(image, m, card)]
                 if matches:
-                    # 取匹配分数最高的一个
                     score, x, y, w, h = max(matches, key=lambda m: m[0])
+                    best_priority, best_box = idx, (x, y, w, h)
                     logger.info(f'Found card {card.name} score={score:.3f} at ({x}, {y}, {w}, {h})')
-                    return (idx, (x, y, w, h)), swipe_count
+                    if best_priority == pairs[0][0]:
+                        return (best_priority, best_box), swipe_count
             if self.appear(self.I_AA_SWIPE_BLOCK):
                 logger.info('Swipe to the end of card list')
-                return None, swipe_count
+                break
             if swipe_count >= max_swipes:
                 logger.warning('Max swipe count reached in card list')
-                return None, swipe_count
+                break
             self._swipe_up_card_list()
             swipe_count += 1
+        if best_priority is None:
+            return None, swipe_count
+        return (best_priority, best_box), swipe_count
 
     def _card_not_found(self):
         # 获取配置引用
