@@ -18,7 +18,9 @@ class ActivityBattle:
 
     @cached_property
     def _grid_templates(self) -> list:
-        return [self.I_GRID_ANCHOR_1, self.I_GRID_ANCHOR_2, self.I_GRID_ANCHOR_3]
+        # 1-3为门票模式网格锚点, boss为神眸垂世网格锚点(不同帧裁剪互为动画冗余)
+        return [self.I_GRID_ANCHOR_1, self.I_GRID_ANCHOR_2, self.I_GRID_ANCHOR_3,
+                self.I_GRID_ANCHOR_BOSS]
 
     def reward_grid_appear(self) -> bool:
         """活动大奖励网格结算页: 三模板命中任一"""

@@ -195,7 +195,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
         self.screenshot()
         if not (self.appear(self.I_PREPARE_HIGHLIGHT) or self.appear(self.I_PREPARE_DARK)
                 or self.appear(self.I_PRESET) or self.appear(self.I_PRESET_WIT_NUMBER)
-                or self.is_in_battle(False)):
+                or self.is_in_battle(False) or self.boss_battle_appear()):
             return False
         logger.hr('Recover leftover battle', 1)
         self.run_battle_wait()
@@ -295,27 +295,88 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
     def _run_boss(self):
         """
         更新前请先看 ./README.md
+        2026-10 神眸垂世·首领: 活动主页点首领入口 -> BOSS页(判据=左上标题) -> 循环点挑战
+        战斗(通用框架+双锚点判活) -> 大奖励网格结算 -> 回BOSS页;
+        右下"额外奖励 x/100" 达 min(boss_limit,100) 停 (100为活动上限)
         """
-        logger.hr(f'Start run climb type BOSS')
+        logger.hr(f'Start run climb type BOSS', 1)
+        self.enter_boss_page()
+        self.switch_soul(self.I_BATTLE_MAIN_TO_RECORDS, self.I_CHECK_BATTLE_BOSS)
 
-        self.ui_clicks([self.I_TO_BATTLE_BOSS],
-                       stop=self.I_CHECK_BATTLE_BOSS, interval=1)
-
-
+        ocr_limit_timer = Timer(1).start()
         while 1:
             self.screenshot()
             self.put_status()
             # --------------------------------------------------------------
-            if not self.ocr_appear(self.O_FIRE):
-                self.appear_then_click(self.I_CHECK_BATTLE_BOSS, interval=4)
+            if (self.appear_then_click(self.I_UI_CONFIRM, interval=0.5)
+                    or self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=0.5)):
                 continue
-
+            if self.ui_reward_appear_click():
+                continue
+            # 战后大奖励网格页保险 (battle_wait 结算钩子漏网时兜底翻页)
+            if self.reward_grid_appear():
+                self.click(self.C_GRID_CONTINUE, interval=2)
+                continue
+            if not ocr_limit_timer.reached():
+                continue
+            ocr_limit_timer.reset()
+            if not self.ocr_appear(self.O_FIRE_BOSS):
+                # 战斗中(含连战残留)让 battle_wait 接管; 其余走跳过链/重点首领入口
+                if self.recover_leftover_battle():
+                    continue
+                if (self.skip_story()
+                        or self.appear_then_click(self.I_TO_BATTLE_BOSS, interval=4)):
+                    continue
+                continue
+            #  --------------------------------------------------------------
+            if not self.check_boss_extra_reward():
+                logger.info('Boss extra reward target reached, exit boss mode')
+                break
+            self.lock_team(self.conf.general_battle)
             if self.conf.general_climb.random_sleep:
                 random_sleep(probability=0.2)
             if self.start_battle():
                 continue
 
-        self.ui_click(self.I_UI_BACK_YELLOW, stop=self.I_TO_BATTLE_BOSS, interval=4.5)
+        self.exit_activity()
+
+    def enter_boss_page(self):
+        """
+        2026-10 神眸垂世进图路径: 活动主页点"神眸垂世·首领" -> BOSS页(左上标题判据)
+        途中可能弹公告/播剧情动画, 跳过链处理
+        """
+        while 1:
+            self.screenshot()
+            if self.appear(self.I_CHECK_BATTLE_BOSS):
+                break
+            if self.skip_story():
+                continue
+            if (self.appear_then_click(self.I_UI_CONFIRM, interval=1)
+                    or self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1)):
+                continue
+            if self.appear_then_click(self.I_TO_BATTLE_BOSS, interval=1.2):
+                continue
+
+    def boss_battle_appear(self) -> bool:
+        """
+        神眸垂世BOSS战斗中判据 (2026-10): 顶部金圆图标内核 或 "特殊压制"狐狸图标
+        标准is_in_battle素材对该战斗UI不匹配, 不加此判定 start_battle 会死循环点挑战
+        """
+        return (self.appear(self.I_BOSS_BATTLE_ICON)
+                or self.appear(self.I_BOSS_BATTLE_ICON_2))
+
+    def check_boss_extra_reward(self) -> bool:
+        """
+        OCR右下"额外奖励 x/100": 达到 min(boss_limit,100) 返回 False(该停)
+        OCR失败(total=0)不误停只告警; put_status 的 boss_limit 仍作兜底
+        """
+        limit = min(self.conf.general_climb.boss_limit, 100)
+        current, _, total = self.O_EXTRA_REWARD.ocr_digit_counter(self.device.image)
+        if total == 0:
+            logger.warning(f'OCR extra reward failed, skip check (limit {limit})')
+            return True
+        logger.info(f'Boss extra reward {current}/{total}, target limit {limit}')
+        return current < limit
 
     def _run_ap100(self):
         """
@@ -356,10 +417,15 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
         return False
 
     def start_battle(self):
+        # boss模式页面判据/挑战OCR与pass不同 (神眸垂世BOSS页 vs 磐长故地准备页)
+        if self.climb_type == 'boss':
+            check_img, fire_ocr = self.I_CHECK_BATTLE_BOSS, self.O_FIRE_BOSS
+        else:
+            check_img, fire_ocr = self.I_CHECK_BATTLE_MAIN, self.O_FIRE
         click_times, max_times = 0, random.randint(4, 8)
         while 1:
             self.screenshot()
-            if self.is_in_battle(False):
+            if self.is_in_battle(False) or self.boss_battle_appear():
                 break
             if click_times >= max_times:
                 logger.warning(f'Climb {self.climb_type} cannot enter, maybe already end, try next')
@@ -370,8 +436,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
             if (self.appear_then_click(self.I_UI_CONFIRM_SAMLL, interval=1) or
                     self.appear_then_click(self.I_UI_CONFIRM, interval=1) ):
                 continue
-            if (self.appear(self.I_CHECK_BATTLE_MAIN, interval=1) or self.appear(self.I_CHECK_BATTLE_BOSS, interval=1)) \
-                    and  self.ocr_appear_click(self.O_FIRE, interval=2):
+            if self.appear(check_img, interval=1) and self.ocr_appear_click(fire_ocr, interval=2):
                 click_times += 1
                 logger.info(f'Try click fire, remain times[{max_times - click_times}]')
                 continue
@@ -409,25 +474,29 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
 
     def lock_team(self, battle_conf: GeneralBattleConfig):
         """
-        点挑战前检查阵容锁定状态 (2026-10 磐长故地准备页底部"阵容"钻石开关):
-        锁定态=I_LOCK(紫角挂锁), 解锁态=I_UNLOCK(黑底金锁), 同一位置二选一, 互斥验证
+        点挑战前检查阵容锁定状态 (2026-10 准备页/BOSS页底部"阵容"钻石开关):
+        锁定态/解锁态同位不同形, pass页与boss页素材分别一对, 互斥验证
         - 配置了使用预设 -> 需要解锁: 见锁就点, 点击后等解锁态出现确认
         - 未配置预设 -> 需要锁定: 见解锁态就点, 点击后等锁定态出现确认
         """
+        if self.climb_type == 'boss':
+            lock_asset, unlock_asset = self.I_BOSS_LOCK, self.I_BOSS_UNLOCK
+        else:
+            lock_asset, unlock_asset = self.I_LOCK, self.I_UNLOCK
         enable_preset = getattr(battle_conf, f"enable_{self.climb_type}_preset", False)
         for _ in range(3):
             self.screenshot()
-            if self.appear(self.I_UNLOCK):
+            if self.appear(unlock_asset):
                 if enable_preset:
                     logger.info(f'{self.climb_type} team already unlocked')
                     return
                 logger.info(f'Lock {self.climb_type} team')
-                self.appear_then_click(self.I_UNLOCK, interval=1)
+                self.appear_then_click(unlock_asset, interval=1)
                 continue
-            if self.appear(self.I_LOCK):
+            if self.appear(lock_asset):
                 if enable_preset:
                     logger.info(f'Unlock {self.climb_type} team for preset')
-                    self.appear_then_click(self.I_LOCK, interval=1)
+                    self.appear_then_click(lock_asset, interval=1)
                     continue
                 logger.info(f'{self.climb_type} team already locked')
                 return
@@ -436,7 +505,7 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 logger.warning(f'Lock icon not identified, assume {self.climb_type} team unlocked')
                 return
             logger.info(f'Lock {self.climb_type} team (blind toggle)')
-            self.click(self.I_LOCK, interval=1)
+            self.click(lock_asset, interval=1)
         logger.warning('lock_team: toggle state not confirmed after 3 tries, continue anyway')
 
     def exit_activity(self):
@@ -460,6 +529,11 @@ class ScriptTask(StateMachine, GameUi, ActivityBattle, Battle, BaseActivity, Swi
                 continue
             if self.appear(self.I_CHECK_BATTLE_MAP):
                 self.appear_then_click(self.I_BACK_ARROW, interval=1.5)
+                sleep(1)
+                continue
+            # 神眸垂世BOSS页: 左上回退箭头回活动主页 (2026-10)
+            if self.appear(self.I_CHECK_BATTLE_BOSS):
+                self.appear_then_click(self.I_BOSS_BACK_ARROW, interval=1.5)
                 sleep(1)
                 continue
             # 其余层(备战页等): 左上黄色返回, 没有则试回退箭头

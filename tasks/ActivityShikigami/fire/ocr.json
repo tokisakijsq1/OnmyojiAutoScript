@@ -70,5 +70,23 @@
     "method": "Default",
     "keyword": "将魂试炼",
     "description": "enter_ap100"
+  },
+  {
+    "itemName": "fire_boss",
+    "roiFront": "1115,585,120,75",
+    "roiBack": "1115,585,120,75",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "挑战",
+    "description": "2026-10 boss page challenge button"
+  },
+  {
+    "itemName": "extra_reward",
+    "roiFront": "1084,654,177,42",
+    "roiBack": "1084,654,177,42",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "2026-10 boss page extra reward counter x/100"
   }
 ]

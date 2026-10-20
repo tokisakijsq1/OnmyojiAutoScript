@@ -13,6 +13,20 @@
 - `as_shi` 入口图标已换成当期图标(51x36)，但**没有整屏截图可验证 roi**，首次实机跑时注意
 - 竖排"战斗"两字 OCR 检出率待实机确认，不行再换方案（如固定几个候选点击位）
 
+## 2026-10-20 BOSS 模块更新（神眸垂世·首领）
+
+`_run_boss` 已对接当期首领玩法，素材全部由用户 2026-10-20 截图裁剪并离线验证（7 图交叉矩阵：来源 1.0 / 负例远低于阈值）。
+
+流程：活动主页点"神眸垂世·首领"(`I_TO_BATTLE_BOSS`) → BOSS页(判据 `I_CHECK_BATTLE_BOSS`=左上标题) → 循环：额外奖励检查 → lock_team → start_battle（点挑战→锁定直接开打/未锁走准备阶段→通用战斗框架→网格结算）→ 回BOSS页；结束走 `exit_activity()`（新增 `I_CHECK_BATTLE_BOSS` 分支点 `I_BOSS_BACK_ARROW`）。
+
+- **结束条件**：右下"额外奖励 x/100"（`O_EXTRA_REWARD` DigitCounter）达到 **min(boss_limit, 100)** 即停；OCR 失败不误停，`put_status` 的 boss_limit 保留兜底。挑战按钮下的 x12 不消耗，不检测（用户确认）
+- **战斗判活**：`boss_battle_appear()` = 顶部金圆图标内核(`I_BOSS_BATTLE_ICON`) 或 "特殊压制"狐狸图标(`I_BOSS_BATTLE_ICON_2`)。标准 `is_in_battle` 素材对 BOSS 战 UI 不匹配；用户标的两侧空白背景跨帧漂移（0.21~0.68）已弃用。金圆有动画，**内核裁剪**(29x18)三帧全 1.0，负例 max 0.73 故阈值 0.85
+- **阵容锁**：BOSS 页开关位置与 pass 页相同但素材有差异（旧 `I_LOCK` 对新页仅 0.76），新增 `I_BOSS_LOCK`/`I_BOSS_UNLOCK`（同位 (897,640,39,44)，互斥 0.47），`lock_team` 按 climb_type 选素材对
+- **式神录按钮复用** `I_BATTLE_MAIN_TO_RECORDS`（对 BOSS 页 0.972）；回退箭头与地图页不同，新增 `I_BOSS_BACK_ARROW`（与活动主页同款，由标题判据先门控）
+- **网格结算**：复用 `_bw_success_activity`；门票网格锚点 1/2 对 BOSS 网格失配，锚点 3（点击屏幕继续）0.906 可用，另加 `I_GRID_ANCHOR_BOSS` 冗余；主循环另有 `reward_grid_appear→C_GRID_CONTINUE` 保险
+- `O_FIRE_BOSS`(1115,585,120,75) 与 pass 的 `O_FIRE` 位置不同；`O_REMAIN_BOSS` 为旧活动遗留已停用
+- 实机注意：改素材后须重启 OAS 实例进程；BOSS 准备阶段（未锁阵容）的预设/准备按钮素材未实机验证；金圆若实机漏检按战斗牌经验补多模板
+
 
 
 ## 关于页面导航（`./as/page.json`文件）

@@ -21,7 +21,7 @@ class GeneralClimb(ConfigBase):
     # boss_limit_time: Time = Field(default=Time(minute=5), description='boss单局限制时间')
     pass_limit: int = Field(default=50, description='门票爬塔的最大次数')
     ap_limit: int = Field(default=300, description='体力爬塔的最大次数')
-    boss_limit: int = Field(default=20, description='boss战爬塔的最大次数')
+    boss_limit: int = Field(default=20, description='BOSS战额外奖励目标次数(右下x/100计数达到min(此值,100)即停,2026-10神眸垂世)')
     ap100_limit: int = Field(default=20, description='100体爬塔的最大次数')
     run_sequence: str = Field(default='pass,ap100,boss,ap',
                               description='运行爬塔顺序(pass:门票,ap100:100体,boss:boss战,ap:体力)\n英文逗号分隔,从左到右运行,可自定义执行顺序\n例如:pass,ap100,boss,ap就是门票->100体->boss战->体力')

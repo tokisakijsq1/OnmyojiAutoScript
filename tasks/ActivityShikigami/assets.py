@@ -55,12 +55,12 @@ class ActivityShikigamiAssets:
 	I_RED_EXIT = RuleImage(roi_front=(1162,96,39,38), roi_back=(1120,49,110,135), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_red_exit.png")
 	# 进入主要的战斗界面 (2026-10 磐长故地=门票爬塔入口, 主页下方文字)
 	I_TO_BATTLE_MAIN = RuleImage(roi_front=(818,464,99,23), roi_back=(770,430,200,90), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_main.png")
-	# 点击进入boss战斗页面 
-	I_TO_BATTLE_BOSS = RuleImage(roi_front=(1111,248,37,136), roi_back=(979,142,234,327), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_boss.png")
+	# 进入boss战斗页面 (2026-10 神眸垂世·首领入口, 活动主页右上方块文字)
+	I_TO_BATTLE_BOSS = RuleImage(roi_front=(1062,296,101,28), roi_back=(950,220,330,220), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_to_battle_boss.png")
 	# description (2026-10 磐长故地战斗准备页判据=右下挑战钻石按钮文字区域; 原门票图标在地图页同位置也出现,不可用作判据)
 	I_CHECK_BATTLE_MAIN = RuleImage(roi_front=(1122,568,96,60), roi_back=(1090,540,180,180), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_main.png")
-	# description 
-	I_CHECK_BATTLE_BOSS = RuleImage(roi_front=(978,636,43,31), roi_back=(899,537,167,154), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_boss.png")
+	# description (2026-10 神眸垂世BOSS页判据=左上"神眸垂世"标题, boss/boss2双正例1.0)
+	I_CHECK_BATTLE_BOSS = RuleImage(roi_front=(98,17,146,39), roi_back=(0,0,420,90), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_check_battle_boss.png")
 	# description (2026-10 准备页底部式神录狐狸图标)
 	I_BATTLE_MAIN_TO_RECORDS = RuleImage(roi_front=(1014,565,43,40), roi_back=(980,540,100,90), threshold=0.7, method="Template matching", file="./tasks/ActivityShikigami/as/as_battle_main_to_records.png")
 	# description 
@@ -112,8 +112,12 @@ class ActivityShikigamiAssets:
 	O_REMAIN_BUY = RuleOcr(roi=(808,531,39,42), area=(808,531,39,42), mode="DigitCounter", method="Default", keyword="", name="remain_buy")
 	# 活动票数（没有百分比） 
 	O_REMAIN_PASS2 = RuleOcr(roi=(750,17,88,29), area=(750,17,88,29), mode="Digit", method="Default", keyword="", name="remain_pass2")
-	# boss剩余攻击次数 
+	# boss剩余攻击次数
 	O_REMAIN_BOSS = RuleOcr(roi=(970,16,42,29), area=(970,16,42,29), mode="DigitCounter", method="Default", keyword="", name="remain_boss")
+	# 挑战 (2026-10 神眸垂世BOSS页右下挑战按钮)
+	O_FIRE_BOSS = RuleOcr(roi=(1115,585,120,75), area=(1115,585,120,75), mode="Single", method="Default", keyword="挑战", name="fire_boss")
+	# 额外奖励x/100 (2026-10 BOSS页右下角, 结束条件计数; DigitCounter返回(当前,剩余,上限))
+	O_EXTRA_REWARD = RuleOcr(roi=(1084,654,177,42), area=(1084,654,177,42), mode="DigitCounter", method="Default", keyword="", name="extra_reward")
 	# 100体活动门票检测 
 	O_REMAIN_AP100 = RuleOcr(roi=(922,21,112,39), area=(913,8,131,62), mode="Digit", method="Default", keyword="", name="remain_ap100")
 	# 进入100体活动标识 
@@ -132,3 +136,17 @@ class ActivityShikigamiAssets:
 	I_GRID_ANCHOR_1 = RuleImage(roi_front=(107,24,50,31), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_grid_anchor_1.png")
 	I_GRID_ANCHOR_2 = RuleImage(roi_front=(711,501,76,64), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_grid_anchor_2.png")
 	I_GRID_ANCHOR_3 = RuleImage(roi_front=(561,680,160,26), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_grid_anchor_3.png")
+
+	# Image Rule Assets (以下为 2026-10-20 神眸垂世BOSS模块手写补充, assets_extract 会洗掉需重加)
+	# BOSS页底部阵容开关解锁态 (图2实裁, 与I_UNLOCK同位不同形; 与I_BOSS_LOCK互斥0.47)
+	I_BOSS_UNLOCK = RuleImage(roi_front=(897,640,39,44), roi_back=(850,620,120,95), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_boss_unlock.png")
+	# BOSS页底部阵容开关锁定态 (图5实裁, 与I_LOCK同位不同形)
+	I_BOSS_LOCK = RuleImage(roi_front=(897,640,39,44), roi_back=(850,620,120,95), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_boss_lock.png")
+	# BOSS页左上回退箭头 (与活动主页同款, 由I_CHECK_BATTLE_BOSS分支先门控再点)
+	I_BOSS_BACK_ARROW = RuleImage(roi_front=(14,17,56,48), roi_back=(0,0,200,100), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_boss_back_arrow.png")
+	# BOSS战斗中判据1: 顶部金圆图标内核 (三帧战斗全1.0, 动画光效取内核; 负例max 0.73故阈值0.85)
+	I_BOSS_BATTLE_ICON = RuleImage(roi_front=(392,24,29,18), roi_back=(330,0,250,90), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_boss_battle_icon.png")
+	# BOSS战斗中判据2: 右上"特殊压制"狐狸图标 (跨帧0.999, 负例max 0.51)
+	I_BOSS_BATTLE_ICON_2 = RuleImage(roi_front=(1036,50,77,60), roi_back=(990,30,180,140), threshold=0.85, method="Template matching", file="./tasks/ActivityShikigami/as/as_boss_battle_icon_2.png")
+	# BOSS大奖励网格页锚点("点击屏幕继续", 与I_GRID_ANCHOR_3同位置不同帧裁剪, 互为动画冗余)
+	I_GRID_ANCHOR_BOSS = RuleImage(roi_front=(556,679,168,29), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/ActivityShikigami/as/as_grid_anchor_boss.png")

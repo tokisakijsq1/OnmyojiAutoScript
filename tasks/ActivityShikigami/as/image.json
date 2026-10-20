@@ -109,8 +109,8 @@
   },
   {
     "itemName": "to_battle_boss",
-    "roiFront": "1111,248,37,136",
-    "roiBack": "979,142,234,327",
+    "roiFront": "1062,296,101,28",
+    "roiBack": "950,220,330,220",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "as_to_battle_boss.png",
@@ -127,8 +127,8 @@
   },
   {
     "itemName": "check_battle_boss",
-    "roiFront": "978,636,43,31",
-    "roiBack": "899,537,167,154",
+    "roiFront": "98,17,146,39",
+    "roiBack": "0,0,420,90",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "as_check_battle_boss.png",
@@ -205,5 +205,59 @@
     "method": "Template matching",
     "imageName": "as_grid_anchor_3.png",
     "description": "grid_anchor_3"
+  },
+  {
+    "itemName": "boss_unlock",
+    "roiFront": "897,640,39,44",
+    "roiBack": "850,620,120,95",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_boss_unlock.png",
+    "description": "2026-10 boss page team unlocked state"
+  },
+  {
+    "itemName": "boss_lock",
+    "roiFront": "897,640,39,44",
+    "roiBack": "850,620,120,95",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_boss_lock.png",
+    "description": "2026-10 boss page team locked state"
+  },
+  {
+    "itemName": "boss_back_arrow",
+    "roiFront": "14,17,56,48",
+    "roiBack": "0,0,200,100",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_boss_back_arrow.png",
+    "description": "2026-10 boss page top-left back arrow"
+  },
+  {
+    "itemName": "boss_battle_icon",
+    "roiFront": "392,24,29,18",
+    "roiBack": "330,0,250,90",
+    "threshold": "0.85",
+    "method": "Template matching",
+    "imageName": "as_boss_battle_icon.png",
+    "description": "2026-10 boss battle golden circle inner core"
+  },
+  {
+    "itemName": "boss_battle_icon_2",
+    "roiFront": "1036,50,77,60",
+    "roiBack": "990,30,180,140",
+    "threshold": "0.85",
+    "method": "Template matching",
+    "imageName": "as_boss_battle_icon_2.png",
+    "description": "2026-10 boss battle special-suppression fox icon"
+  },
+  {
+    "itemName": "grid_anchor_boss",
+    "roiFront": "556,679,168,29",
+    "roiBack": "0,0,1280,720",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "as_grid_anchor_boss.png",
+    "description": "2026-10 boss reward grid continue text anchor"
   }
 ]
