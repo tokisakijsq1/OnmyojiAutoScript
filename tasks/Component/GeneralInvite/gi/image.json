@@ -156,7 +156,7 @@
     "itemName": "invite_ensure",
     "imageName": "gi_invite_ensure.png",
     "roiFront": "704,544,136,62",
-    "roiBack": "520,400,520,310",
+    "roiBack": "473,400,567,310",
     "method": "Template matching",
     "threshold": 0.8,
     "description": "点击邀请"
