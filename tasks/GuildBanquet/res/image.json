@@ -2,7 +2,7 @@
   {
     "itemName": "flag",
     "roiFront": "1035,12,33,60",
-    "roiBack": "1035,12,33,60",
+    "roiBack": "940,5,130,75",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "res_flag.png",
