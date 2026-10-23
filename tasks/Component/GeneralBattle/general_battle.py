@@ -128,7 +128,7 @@ class GeneralBattle(BattleWait, GeneralBuff):
                         if config.preset_enable:
                             # 预设确认后游戏还要几秒把御魂穿上，立刻点准备会把没换完的阵容带进战斗
                             # （2026-10-16 oas3 阴间门实测：预设确认后 0.35s 就点了准备）
-                            sleep(6)
+                            sleep(4)
                         confed = True
                     # 点击准备(锁定阵容自动点准备,不锁定阵容前面也已经配置完毕需要点准备)
                     if self.appear_then_click(self.I_PREPARE_HIGHLIGHT, interval=0.8):
