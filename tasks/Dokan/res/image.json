@@ -444,7 +444,7 @@
     "itemName": "center_guanzhu_xiuxi",
     "roiFront": "0,0,1280,720",
     "roiBack": "0,0,1280,720",
-    "threshold": "0.8",
+    "threshold": "0.7",
     "method": "Template matching",
     "imageName": "res_ryou_dokan_center_guanzhu_xiuxi.png",
     "description": "center_guanzhu_xiuxi"
