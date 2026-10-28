@@ -280,6 +280,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         GOTO_BUTTON = [self.I_GOTO_1, self.I_GOTO_2, self.I_GOTO_3, self.I_GOTO_4]
         name_funcs: dict = {
             '式神': self.challenge,
+            '式神碎片': self.challenge,  # 2026-10 改版: 挑战页类目的徽章由"式神"改为红色"式神碎片"
             '探索': self.explore,
             '秘闻': self.secret
         }
@@ -350,8 +351,9 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             order_list = self.config.model.wanted_quests.wanted_quests_config.battle_priority
             order_list = order_list.replace(' ', '').replace('\n', '')
             order_list: list = re.split(r'>', order_list)
-            # OCR识别"式神"但用户配置用"挑战"，做映射
-            type_wq_for_order = '挑战' if type_wq == '式神' else type_wq
+            # OCR识别的类型与用户配置的映射: 旧版"式神"与新版"式神碎片"都是挑战页类目,
+            # 用户配置里写的是"挑战"
+            type_wq_for_order = '挑战' if type_wq in ('式神', '式神碎片') else type_wq
             result[0] = order_list.index(type_wq_for_order) if type_wq_for_order in order_list else -1
             result[4] = name_funcs.get(type_wq, lambda: logger.warning('No task can be challenged'))
             result[5] = type_wq
@@ -410,7 +412,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             return False
         # sort
         info_wq_list.sort(key=lambda x: x[0])
-        filtered = list(filter(lambda x: (x[5] == '秘闻' or x[5] == '式神') and x[2] >= 3, info_wq_list))
+        filtered = list(filter(lambda x: (x[5] == '秘闻' or x[5] in ('式神', '式神碎片')) and x[2] >= 3, info_wq_list))
         if filtered:
             info_wq_list = filtered
         best_type, destination, once_number, goto_button, func, _ = info_wq_list[0]
