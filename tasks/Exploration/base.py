@@ -442,17 +442,27 @@ class BaseExploration(GameUi, GeneralBattle, GeneralRoom, GeneralInvite, Replace
         return False
 
     def fire(self, button) -> bool:
-        # DEBUG 2026-10-28: 悬赏探索点击怪不生效问题排查, 定位后删除
-        import time as _time
-        import cv2 as _cv2
-        _tag = _time.strftime('%H%M%S')
-        logger.attr('fire', f'match pos={button.roi_front} score={getattr(button.appear_target, "last_score", -1):.3f} target={button.appear_target.name}')
-        _cv2.imwrite(f'./log/tmp_fire_{_tag}_before.png',
-                     _cv2.cvtColor(self.device.image, _cv2.COLOR_RGB2BGR))
-        self.ui_click_until_disappear(button, interval=3)
-        self.screenshot()
-        _cv2.imwrite(f'./log/tmp_fire_{_tag}_after.png',
-                     _cv2.cvtColor(self.device.image, _cv2.COLOR_RGB2BGR))
+        # 实机复盘(2026-10-28 oas3): 点击金环后金环 0.3s 内消失但不进战斗——金环有随
+        # 怪移动的消失-复现周期, 且滑动后地图有惯性滚动, 滚动中的点击会被游戏当作
+        # "停止滚动"而非点击目标。对策: 立即点第一下 -> 金环短暂消失不判负、复现就
+        # 补点 -> 消失后等一拍确认是否真的进入战斗转场, 避免外层立刻滑动打断转场。
+        x, y = button.coord()
+        self.device.click(x, y, control_name=button.name)
+        for _ in range(3):
+            self.screenshot()
+            if not self.appear(button):
+                break
+            if self.appear_then_click(button, interval=1.5):
+                continue
+            break
+        # 金环消失后战斗转场可能要 1s 左右才显示出来(实测点击后 0.5s 仍是地图画面)
+        settle = Timer(1.5).start()
+        while 1:
+            self.screenshot()
+            if not self.appear(button):
+                break
+            if settle.reached():
+                break
         if (self.appear(self.I_E_SETTINGS_BUTTON) or
                 self.appear(self.I_E_AUTO_ROTATE_ON) or
                 self.appear(self.I_E_AUTO_ROTATE_OFF)):
