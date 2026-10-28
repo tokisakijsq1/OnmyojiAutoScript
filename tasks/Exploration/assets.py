@@ -39,9 +39,13 @@ class ExplorationAssets:
 	I_LIGHT12 = RuleImage(roi_front=(477,290,85,90), roi_back=(0,0,100,100), threshold=0.6, method="Template matching", file="./tasks/Exploration/highlight/highlight_light12.png")
 	# description 
 	I_LIGHT13 = RuleImage(roi_front=(478,293,82,87), roi_back=(0,0,100,100), threshold=0.6, method="Template matching", file="./tasks/Exploration/highlight/highlight_light13.png")
-	# description 
+	# description
 	I_LIGHT14 = RuleImage(roi_front=(474,290,82,87), roi_back=(0,0,100,100), threshold=0.6, method="Template matching", file="./tasks/Exploration/highlight/highlight_light14.png")
-	# 经验怪 
+	# 2026-10悬赏改版新目标图标 金环交叉剑
+	I_LIGHT15 = RuleImage(roi_front=(595,219,86,88), roi_back=(97,182,1130,409), threshold=0.6, method="Template matching", file="./tasks/Exploration/highlight/highlight_light15.png")
+	# 2026-10悬赏改版新目标图标 金环交叉剑
+	I_LIGHT16 = RuleImage(roi_front=(760,234,88,86), roi_back=(97,182,1130,409), threshold=0.6, method="Template matching", file="./tasks/Exploration/highlight/highlight_light16.png")
+	# 经验怪
 	I_UP_EXP = RuleImage(roi_front=(471,518,74,71), roi_back=(1,225,1278,410), threshold=0.8, method="Sift Flann", file="./tasks/Exploration/highlight/highlight_up_exp.png")
 	# 金币怪 
 	I_UP_COIN = RuleImage(roi_front=(330,529,74,74), roi_back=(1,317,1278,316), threshold=0.8, method="Sift Flann", file="./tasks/Exploration/highlight/highlight_up_coin.png")

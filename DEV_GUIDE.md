@@ -777,6 +777,20 @@ GameTooManyClickError→重启×3→人工接管。oas2（队员）等不到邀�
   开关接受/拒绝/仅勾协，接受后自动把 WantedQuests next_run 拉到立刻——机制现成，
   本次只更新了 6 个素材（新弹窗的接受/拒绝/关闭X重裁，勾玉/猫粮/狗粮只改 roiBack）。
   弹窗 X 不在 I_UI_BACK_RED 的 roiBack 内，IGNORE 必须用自己的 X 模板。
+- **探索图目标小怪发光图标随悬赏改版换皮**（实机 oas3 发现 2026-10-28）：旧 I_LIGHT1~14
+  是"白色细环"高亮帧，新图标是"金色圆环+交叉双剑"，旧帧对新图最高只有 0.419
+  （阈值 0.6 全灭）→进图后永远找不到怪→空跑退出重进；叠加 ExploreWantedBoss 排除
+  机制后形成"详情页↔大世界"死循环。修复：从实机截图裁两帧过 `highlight()` 滤波的
+  新模板 I_LIGHT15/16（金环不同辉光相位各一帧），插到 TEMPLATE_GIF targets 最前
+  （旧帧保留兜底）。要点：①HighlightGif 的模板和截图都要过 version.highlight() 滤波，
+  裁完必须滤波再存；②模板是内容裁切、位置无关——金环在图上任意位置由共享搜索域
+  (97,182,1130,409) 兜住，命中后 roi_front 更新为绝对位置供 fire() 点击；③探索任务
+  (solo.py) 找怪走 search_up_fight（UP图标+剑图标），不用 TEMPLATE_GIF，本次改动
+  只影响 WQExplore。
+- **WQ 主循环死循环兜底加固**（同日）：`execute_mission` 返回 False（无可打目的地/
+  怪名被排除）计入 error_count，连续多次结束任务而非永远重进同一任务；
+  ExploreWantedBoss 分支返回前先 `close_wq_detail()`（原来详情页开着返回，
+  主循环会在详情页上 OCR 任务列表）。
 - **协作任务详情页标题没有"悬赏目标"字样**（实机卡死发现 2026-10-28）：接了好友邀请的
   协作悬赏，详情标题是"自己击败XX"（好友击败部分在对方客户端），只认"悬赏目标"会
   20s 超时返回→主循环重进同一圆圈→无点击死循环。修复：加 O_WQ_TARGET_COOP

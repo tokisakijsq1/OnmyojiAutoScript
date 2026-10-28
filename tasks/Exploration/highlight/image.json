@@ -1,164 +1,182 @@
 [
-  {
-    "itemName": "lighttest",
-    "roiFront": "550,288,85,82",
-    "roiBack": "97,182,1130,409",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_lighttest.png",
-    "description": "lighttest"
-  },
-  {
-    "itemName": "light1",
-    "roiFront": "498,297,86,87",
-    "roiBack": "97,182,1130,409",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light1.png",
-    "description": "light1"
-  },
-  {
-    "itemName": "light2",
-    "roiFront": "497,300,86,82",
-    "roiBack": "97,182,1130,409",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light2.png",
-    "description": "light2"
-  },
-  {
-    "itemName": "light3",
-    "roiFront": "495,301,85,77",
-    "roiBack": "97,182,1130,409",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light3.png",
-    "description": "light3"
-  },
-  {
-    "itemName": "light4",
-    "roiFront": "496,296,85,85",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light4.png",
-    "description": "light4"
-  },
-  {
-    "itemName": "light5",
-    "roiFront": "494,296,82,86",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light5.png",
-    "description": "light5"
-  },
-  {
-    "itemName": "light6",
-    "roiFront": "490,295,83,85",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light6.png",
-    "description": "light6"
-  },
-  {
-    "itemName": "light7",
-    "roiFront": "486,295,84,87",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light7.png",
-    "description": "light7"
-  },
-  {
-    "itemName": "light8",
-    "roiFront": "485,298,84,81",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light8.png",
-    "description": "light8"
-  },
-  {
-    "itemName": "light9",
-    "roiFront": "484,295,85,84",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light9.png",
-    "description": "light9"
-  },
-  {
-    "itemName": "light10",
-    "roiFront": "479,297,84,78",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light10.png",
-    "description": "light10"
-  },
-  {
-    "itemName": "light11",
-    "roiFront": "479,296,83,82",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light11.png",
-    "description": "light11"
-  },
-  {
-    "itemName": "light12",
-    "roiFront": "477,290,85,90",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light12.png",
-    "description": "light12"
-  },
-  {
-    "itemName": "light13",
-    "roiFront": "478,293,82,87",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light13.png",
-    "description": "light13"
-  },
-  {
-    "itemName": "light14",
-    "roiFront": "474,290,82,87",
-    "roiBack": "0,0,100,100",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "highlight_light14.png",
-    "description": "light14"
-  },
-  {
-    "itemName": "up_exp",
-    "roiFront": "471,518,74,71",
-    "roiBack": "1,225,1278,410",
-    "threshold": "0.8",
-    "method": "Sift Flann",
-    "imageName": "highlight_up_exp.png",
-    "description": "up_exp"
-  },
-  {
-    "itemName": "up_coin",
-    "roiFront": "330,529,74,74",
-    "roiBack": "1,317,1278,316",
-    "threshold": "0.8",
-    "method": "Sift Flann",
-    "imageName": "highlight_up_coin.png",
-    "description": "up_coin"
-  },
-  {
-    "itemName": "up_daruma",
-    "roiFront": "1146,510,80,80",
-    "roiBack": "1,265,1278,369",
-    "threshold": "0.8",
-    "method": "Sift Flann",
-    "imageName": "highlight_up_daruma.png",
-    "description": "up_daruma"
-  }
+ {
+  "itemName": "lighttest",
+  "roiFront": "550,288,85,82",
+  "roiBack": "97,182,1130,409",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_lighttest.png",
+  "description": "lighttest"
+ },
+ {
+  "itemName": "light1",
+  "roiFront": "498,297,86,87",
+  "roiBack": "97,182,1130,409",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light1.png",
+  "description": "light1"
+ },
+ {
+  "itemName": "light2",
+  "roiFront": "497,300,86,82",
+  "roiBack": "97,182,1130,409",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light2.png",
+  "description": "light2"
+ },
+ {
+  "itemName": "light3",
+  "roiFront": "495,301,85,77",
+  "roiBack": "97,182,1130,409",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light3.png",
+  "description": "light3"
+ },
+ {
+  "itemName": "light4",
+  "roiFront": "496,296,85,85",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light4.png",
+  "description": "light4"
+ },
+ {
+  "itemName": "light5",
+  "roiFront": "494,296,82,86",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light5.png",
+  "description": "light5"
+ },
+ {
+  "itemName": "light6",
+  "roiFront": "490,295,83,85",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light6.png",
+  "description": "light6"
+ },
+ {
+  "itemName": "light7",
+  "roiFront": "486,295,84,87",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light7.png",
+  "description": "light7"
+ },
+ {
+  "itemName": "light8",
+  "roiFront": "485,298,84,81",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light8.png",
+  "description": "light8"
+ },
+ {
+  "itemName": "light9",
+  "roiFront": "484,295,85,84",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light9.png",
+  "description": "light9"
+ },
+ {
+  "itemName": "light10",
+  "roiFront": "479,297,84,78",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light10.png",
+  "description": "light10"
+ },
+ {
+  "itemName": "light11",
+  "roiFront": "479,296,83,82",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light11.png",
+  "description": "light11"
+ },
+ {
+  "itemName": "light12",
+  "roiFront": "477,290,85,90",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light12.png",
+  "description": "light12"
+ },
+ {
+  "itemName": "light13",
+  "roiFront": "478,293,82,87",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light13.png",
+  "description": "light13"
+ },
+ {
+  "itemName": "light14",
+  "roiFront": "474,290,82,87",
+  "roiBack": "0,0,100,100",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light14.png",
+  "description": "light14"
+ },
+ {
+  "itemName": "up_exp",
+  "roiFront": "471,518,74,71",
+  "roiBack": "1,225,1278,410",
+  "threshold": "0.8",
+  "method": "Sift Flann",
+  "imageName": "highlight_up_exp.png",
+  "description": "up_exp"
+ },
+ {
+  "itemName": "up_coin",
+  "roiFront": "330,529,74,74",
+  "roiBack": "1,317,1278,316",
+  "threshold": "0.8",
+  "method": "Sift Flann",
+  "imageName": "highlight_up_coin.png",
+  "description": "up_coin"
+ },
+ {
+  "itemName": "up_daruma",
+  "roiFront": "1146,510,80,80",
+  "roiBack": "1,265,1278,369",
+  "threshold": "0.8",
+  "method": "Sift Flann",
+  "imageName": "highlight_up_daruma.png",
+  "description": "up_daruma"
+ },
+ {
+  "itemName": "light15",
+  "roiFront": "595,219,86,88",
+  "roiBack": "97,182,1130,409",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light15.png",
+  "description": "2026-10悬赏改版新目标图标 金环交叉剑"
+ },
+ {
+  "itemName": "light16",
+  "roiFront": "760,234,88,86",
+  "roiBack": "97,182,1130,409",
+  "threshold": "0.6",
+  "method": "Template matching",
+  "imageName": "highlight_light16.png",
+  "description": "2026-10悬赏改版新目标图标 金环交叉剑"
+ }
 ]

@@ -91,9 +91,13 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
                 sleep(1)
                 continue
             # 找到任务,执行
-            error_count = 0
             self.O_WQ_TEXT_ALL.area = area
-            self.execute_mission(self.O_WQ_TEXT_ALL, total - cu)
+            if self.execute_mission(self.O_WQ_TEXT_ALL, total - cu) is False:
+                # 该任务无法执行(无可打目的地/怪名被排除等): 计入失败,
+                # 否则会永远找到同一个任务反复进详情页形成无点击死循环
+                error_count += 1
+            else:
+                error_count = 0
             sleep(1.5)
 
         self.next_run()
@@ -416,6 +420,8 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         except ExploreWantedBoss:
             logger.warning('The extreme case. The quest only needs to challenge one final boss, so skip it')
             self.want_strategy_excluding.append(info_wq_list[0])
+            # 详情页还开着，关掉再返回，否则主循环会在详情页上找任务列表
+            self.close_wq_detail()
 
     def challenge(self, goto_btn, num):
         self.ui_click(goto_btn, self.I_WQC_FIRE)
