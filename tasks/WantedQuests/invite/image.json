@@ -1,272 +1,290 @@
 [
-  {
-    "itemName": "wq_invite_1",
-    "roiFront": "137,361,39,47",
-    "roiBack": "108,338,100,100",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_invite_1.png",
-    "description": "wq_invite_1"
-  },
-  {
-    "itemName": "wq_invite_2",
-    "roiFront": "462,361,37,47",
-    "roiBack": "435,336,100,100",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_invite_2.png",
-    "description": "wq_invite_2"
-  },
-  {
-    "itemName": "wq_invite_3",
-    "roiFront": "754,366,39,42",
-    "roiBack": "728,339,100,100",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_invite_3.png",
-    "description": "wq_invite_3"
-  },
-  {
-    "itemName": "wq_friend_1",
-    "roiFront": "240,185,180,80",
-    "roiBack": "240,185,180,80",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_friend_1.png",
-    "description": "wq_friend_1"
-  },
-  {
-    "itemName": "wq_friend_2",
-    "roiFront": "530,185,180,80",
-    "roiBack": "530,185,180,80",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_friend_2.png",
-    "description": "wq_friend_2"
-  },
-  {
-    "itemName": "wq_friend_3",
-    "roiFront": "240,285,180,80",
-    "roiBack": "240,285,180,80",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_friend_3.png",
-    "description": "wq_friend_3"
-  },
-  {
-    "itemName": "wq_friend_4",
-    "roiFront": "530,285,180,80",
-    "roiBack": "530,285,180,80",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_friend_4.png",
-    "description": "wq_friend_4"
-  },
-  {
-    "itemName": "wq_friend_5",
-    "roiFront": "240,385,180,80",
-    "roiBack": "240,385,180,80",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "invite_wq_friend_5.png",
-    "description": "wq_friend_5"
-  },
-  {
-    "itemName": "wq_invite_ensure",
-    "roiFront": "500,540,132,60",
-    "roiBack": "500,540,140,65",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_invite_ensure.png",
-    "description": "wq_invite_ensure"
-  },
-  {
-    "itemName": "wq_invite_cancel",
-    "roiFront": "230,540,132,60",
-    "roiBack": "230,540,140,65",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_invite_cancel.png",
-    "description": "wq_invite_cancel"
-  },
-  {
-    "itemName": "wq_invite_selected",
-    "roiFront": "370,180,32,32",
-    "roiBack": "370,180,370,355",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_invite_selected.png",
-    "description": "wq_invite_selected"
-  },
-  {
-    "itemName": "wq_invite_friend_list_appear",
-    "roiFront": "370,180,32,32",
-    "roiBack": "370,180,370,355",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_invite_friend_list_appear.png",
-    "description": "wq_invite_friend_list_appear"
-  },
-  {
-    "itemName": "wq_invite_same_svr",
-    "roiFront": "170,90,60,35",
-    "roiBack": "170,90,105,65",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_invite_same_svr.png",
-    "description": "wq_invite_same_svr"
-  },
-  {
-    "itemName": "wq_invite_diff_svr",
-    "roiFront": "280,90,60,35",
-    "roiBack": "280,90,105,65",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_invite_diff_svr.png",
-    "description": "wq_invite_diff_svr"
-  },
-  {
-    "itemName": "wq_invite_diff_svr_highlight",
-    "roiFront": "260,70,120,90",
-    "roiBack": "260,70,120,90",
-    "threshold": "0.9",
-    "method": "Template matching",
-    "imageName": "wq_invite_diff_svr_highlight.png",
-    "description": "wq_invite_diff_svr_highlight"
-  },
-  {
-    "itemName": "wq_cooperation_type_gold_1",
-    "roiFront": "195,505,180,90",
-    "roiBack": "195,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_gold.png",
-    "description": "wq_cooperation_type_gold_1"
-  },
-  {
-    "itemName": "wq_cooperation_type_jade_1",
-    "roiFront": "195,505,180,90",
-    "roiBack": "195,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_jade.png",
-    "description": "wq_cooperation_type_jade_1"
-  },
-  {
-    "itemName": "wq_cooperation_type_dog_food_1",
-    "roiFront": "195,505,180,90",
-    "roiBack": "195,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_dog_food.png",
-    "description": "wq_cooperation_type_dog_food_1"
-  },
-  {
-    "itemName": "wq_cooperation_type_cat_food_1",
-    "roiFront": "195,505,180,90",
-    "roiBack": "195,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_cat_food.png",
-    "description": "wq_cooperation_type_cat_food_1"
-  },
-  {
-    "itemName": "wq_cooperation_type_sushi_1",
-    "roiFront": "195,505,180,90",
-    "roiBack": "195,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_sushi.png",
-    "description": "wq_cooperation_type_sushi_1"
-  },
-  {
-    "itemName": "wq_cooperation_type_gold_2",
-    "roiFront": "490,505,180,90",
-    "roiBack": "490,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_gold.png",
-    "description": "wq_cooperation_type_gold_2"
-  },
-  {
-    "itemName": "wq_cooperation_type_jade_2",
-    "roiFront": "490,505,180,90",
-    "roiBack": "490,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_jade.png",
-    "description": "wq_cooperation_type_jade_2"
-  },
-  {
-    "itemName": "wq_cooperation_type_dog_food_2",
-    "roiFront": "490,505,180,90",
-    "roiBack": "490,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_dog_food.png",
-    "description": "wq_cooperation_type_dog_food_2"
-  },
-  {
-    "itemName": "wq_cooperation_type_cat_food_2",
-    "roiFront": "490,505,180,90",
-    "roiBack": "490,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_cat_food.png",
-    "description": "wq_cooperation_type_cat_food_2"
-  },
-  {
-    "itemName": "wq_cooperation_type_sushi_2",
-    "roiFront": "490,505,180,90",
-    "roiBack": "490,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_sushi.png",
-    "description": "wq_cooperation_type_sushi_2"
-  },
-  {
-    "itemName": "wq_cooperation_type_gold_3",
-    "roiFront": "790,505,180,90",
-    "roiBack": "790,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_gold.png",
-    "description": "wq_cooperation_type_gold_3"
-  },
-  {
-    "itemName": "wq_cooperation_type_jade_3",
-    "roiFront": "790,505,180,90",
-    "roiBack": "790,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_jade.png",
-    "description": "wq_cooperation_type_jade_3"
-  },
-  {
-    "itemName": "wq_cooperation_type_dog_food_3",
-    "roiFront": "790,505,180,90",
-    "roiBack": "790,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_dog_food.png",
-    "description": "wq_cooperation_type_dog_food_3"
-  },
-  {
-    "itemName": "wq_cooperation_type_cat_food_3",
-    "roiFront": "790,505,180,90",
-    "roiBack": "790,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_cat_food.png",
-    "description": "wq_cooperation_type_cat_food_3"
-  },
-  {
-    "itemName": "wq_cooperation_type_sushi_3",
-    "roiFront": "790,505,180,90",
-    "roiBack": "790,505,180,90",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_cooperation_type_sushi.png",
-    "description": "wq_cooperation_type_sushi_3"
-  }
+ {
+  "itemName": "wq_friend_1",
+  "roiFront": "240,185,180,80",
+  "roiBack": "240,185,180,80",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "invite_wq_friend_1.png",
+  "description": "好友格子1"
+ },
+ {
+  "itemName": "wq_friend_2",
+  "roiFront": "530,185,180,80",
+  "roiBack": "530,185,180,80",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "invite_wq_friend_2.png",
+  "description": "好友格子2"
+ },
+ {
+  "itemName": "wq_friend_3",
+  "roiFront": "240,285,180,80",
+  "roiBack": "240,285,180,80",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "invite_wq_friend_3.png",
+  "description": "好友格子3"
+ },
+ {
+  "itemName": "wq_friend_4",
+  "roiFront": "530,285,180,80",
+  "roiBack": "530,285,180,80",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "invite_wq_friend_4.png",
+  "description": "好友格子4"
+ },
+ {
+  "itemName": "wq_friend_5",
+  "roiFront": "240,385,180,80",
+  "roiBack": "240,385,180,80",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "invite_wq_friend_5.png",
+  "description": "好友格子5"
+ },
+ {
+  "itemName": "wq_invite_ensure",
+  "roiFront": "500,540,132,60",
+  "roiBack": "500,540,140,65",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_ensure.png",
+  "description": "悬赏封印邀请确定按钮"
+ },
+ {
+  "itemName": "wq_invite_cancel",
+  "roiFront": "230,540,132,60",
+  "roiBack": "230,540,140,65",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_cancel.png",
+  "description": "悬赏封印邀请取消按钮"
+ },
+ {
+  "itemName": "wq_invite_selected",
+  "roiFront": "370,180,32,32",
+  "roiBack": "370,180,370,355",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_selected.png",
+  "description": "邀请好友被选中标记"
+ },
+ {
+  "itemName": "wq_invite_friend_list_appear",
+  "roiFront": "370,180,32,32",
+  "roiBack": "370,180,370,355",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_friend_list_appear.png",
+  "description": "好友列表已加载标志"
+ },
+ {
+  "itemName": "wq_invite_diff_svr",
+  "roiFront": "280,90,60,35",
+  "roiBack": "280,90,105,65",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_diff_svr.png",
+  "description": "邀请跨服好友"
+ },
+ {
+  "itemName": "wq_invite_diff_svr_highlight",
+  "roiFront": "260,70,120,90",
+  "roiBack": "260,70,120,90",
+  "threshold": "0.9",
+  "method": "Template matching",
+  "imageName": "wq_invite_diff_svr_highlight.png",
+  "description": "跨服好友高亮"
+ },
+ {
+  "itemName": "wq_invite_btn_1",
+  "roiFront": "152,394,148,40",
+  "roiBack": "100,380,290,70",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_btn.png",
+  "description": "协作卡片邀请好友按钮"
+ },
+ {
+  "itemName": "wq_invite_btn_2",
+  "roiFront": "152,394,148,40",
+  "roiBack": "380,380,290,70",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_btn.png",
+  "description": "协作卡片邀请好友按钮"
+ },
+ {
+  "itemName": "wq_invite_btn_3",
+  "roiFront": "152,394,148,40",
+  "roiBack": "660,380,290,70",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_btn.png",
+  "description": "协作卡片邀请好友按钮"
+ },
+ {
+  "itemName": "wq_invite_btn_4",
+  "roiFront": "152,394,148,40",
+  "roiBack": "940,380,290,70",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_invite_btn.png",
+  "description": "协作卡片邀请好友按钮"
+ },
+ {
+  "itemName": "wq_coop_badge",
+  "roiFront": "302,112,47,47",
+  "roiBack": "280,95,920,85",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_coop_badge.png",
+  "description": "协作任务角标"
+ },
+ {
+  "itemName": "wq_cooperation_type_jade_1",
+  "roiFront": "148,544,60,50",
+  "roiBack": "130,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_jade.png",
+  "description": "协作类型jade 卡1"
+ },
+ {
+  "itemName": "wq_cooperation_type_jade_2",
+  "roiFront": "148,544,60,50",
+  "roiBack": "410,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_jade.png",
+  "description": "协作类型jade 卡2"
+ },
+ {
+  "itemName": "wq_cooperation_type_jade_3",
+  "roiFront": "148,544,60,50",
+  "roiBack": "690,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_jade.png",
+  "description": "协作类型jade 卡3"
+ },
+ {
+  "itemName": "wq_cooperation_type_jade_4",
+  "roiFront": "148,544,60,50",
+  "roiBack": "970,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_jade.png",
+  "description": "协作类型jade 卡4"
+ },
+ {
+  "itemName": "wq_cooperation_type_dog_food_1",
+  "roiFront": "148,544,60,50",
+  "roiBack": "130,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_dog_food.png",
+  "description": "协作类型dog_food 卡1"
+ },
+ {
+  "itemName": "wq_cooperation_type_dog_food_2",
+  "roiFront": "148,544,60,50",
+  "roiBack": "410,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_dog_food.png",
+  "description": "协作类型dog_food 卡2"
+ },
+ {
+  "itemName": "wq_cooperation_type_dog_food_3",
+  "roiFront": "148,544,60,50",
+  "roiBack": "690,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_dog_food.png",
+  "description": "协作类型dog_food 卡3"
+ },
+ {
+  "itemName": "wq_cooperation_type_dog_food_4",
+  "roiFront": "148,544,60,50",
+  "roiBack": "970,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_dog_food.png",
+  "description": "协作类型dog_food 卡4"
+ },
+ {
+  "itemName": "wq_cooperation_type_cat_food_1",
+  "roiFront": "148,544,60,50",
+  "roiBack": "130,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_cat_food.png",
+  "description": "协作类型cat_food 卡1"
+ },
+ {
+  "itemName": "wq_cooperation_type_cat_food_2",
+  "roiFront": "148,544,60,50",
+  "roiBack": "410,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_cat_food.png",
+  "description": "协作类型cat_food 卡2"
+ },
+ {
+  "itemName": "wq_cooperation_type_cat_food_3",
+  "roiFront": "148,544,60,50",
+  "roiBack": "690,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_cat_food.png",
+  "description": "协作类型cat_food 卡3"
+ },
+ {
+  "itemName": "wq_cooperation_type_cat_food_4",
+  "roiFront": "148,544,60,50",
+  "roiBack": "970,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_cat_food.png",
+  "description": "协作类型cat_food 卡4"
+ },
+ {
+  "itemName": "wq_cooperation_type_sushi_1",
+  "roiFront": "148,544,60,50",
+  "roiBack": "130,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_sushi.png",
+  "description": "协作类型sushi 卡1"
+ },
+ {
+  "itemName": "wq_cooperation_type_sushi_2",
+  "roiFront": "148,544,60,50",
+  "roiBack": "410,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_sushi.png",
+  "description": "协作类型sushi 卡2"
+ },
+ {
+  "itemName": "wq_cooperation_type_sushi_3",
+  "roiFront": "148,544,60,50",
+  "roiBack": "690,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_sushi.png",
+  "description": "协作类型sushi 卡3"
+ },
+ {
+  "itemName": "wq_cooperation_type_sushi_4",
+  "roiFront": "148,544,60,50",
+  "roiBack": "970,515,200,105",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_cooperation_type_sushi.png",
+  "description": "协作类型sushi 卡4"
+ }
 ]

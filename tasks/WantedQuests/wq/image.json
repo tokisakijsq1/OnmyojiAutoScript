@@ -1,173 +1,92 @@
 [
-  {
-    "itemName": "wq_seal",
-    "roiFront": "174,184,20,29",
-    "roiBack": "56,93,664,455",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_wq_seal.png",
-    "description": "wq_seal"
-  },
-  {
-    "itemName": "wq_done",
-    "roiFront": "248,183,37,39",
-    "roiBack": "63,134,624,401",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_wq_done.png",
-    "description": "wq_done"
-  },
-  {
-    "itemName": "trace_enable",
-    "roiFront": "1097,588,101,70",
-    "roiBack": "1097,588,101,70",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_enable.png",
-    "description": "trace_enable"
-  },
-  {
-    "itemName": "trace_disable",
-    "roiFront": "1091,586,108,70",
-    "roiBack": "1091,586,108,70",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_disable.png",
-    "description": "trace_disable"
-  },
-  {
-    "itemName": "wq_box",
-    "roiFront": "48,187,43,38",
-    "roiBack": "12,78,108,496",
-    "threshold": "0.7",
-    "method": "Template matching",
-    "imageName": "wq_wq_box.png",
-    "description": "wq_box"
-  },
-  {
-    "itemName": "trace_true",
-    "roiFront": "173,187,28,29",
-    "roiBack": "173,187,28,29",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_true.png",
-    "description": "trace_true"
-  },
-  {
-    "itemName": "trace_false",
-    "roiFront": "170,186,31,32",
-    "roiBack": "170,186,31,32",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_false.png",
-    "description": "trace_false"
-  },
-  {
-    "itemName": "goto_1",
-    "roiFront": "978,234,87,45",
-    "roiBack": "978,234,87,60",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_goto_1.png",
-    "description": "goto_1"
-  },
-  {
-    "itemName": "goto_2",
-    "roiFront": "979,305,88,43",
-    "roiBack": "979,305,88,58",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_goto_2.png",
-    "description": "goto_2"
-  },
-  {
-    "itemName": "goto_3",
-    "roiFront": "994,396,58,30",
-    "roiBack": "979,373,88,62",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_goto_3.png",
-    "description": "goto_3"
-  },
-  {
-    "itemName": "goto_4",
-    "roiFront": "979,447,87,42",
-    "roiBack": "979,447,87,57",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_goto_4.png",
-    "description": "goto_4"
-  },
-  {
-    "itemName": "wq_check_task",
-    "roiFront": "110,154,21,125",
-    "roiBack": "73,122,69,459",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_wq_check_task.png",
-    "description": "wq_check_task"
-  },
-  {
-    "itemName": "wq_trace_one_enable",
-    "roiFront": "160,175,120,60",
-    "roiBack": "160,175,120,60",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_one_enable.png",
-    "description": "wq_trace_one_enable"
-  },
-  {
-    "itemName": "wq_trace_one_disable",
-    "roiFront": "160,175,120,60",
-    "roiBack": "160,175,120,60",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_one_disable.png",
-    "description": "wq_trace_one_disable"
-  },
-  {
-    "itemName": "wq_trace_one_check_opened",
-    "roiFront": "510,175,210,60",
-    "roiBack": "510,175,210,60",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_one_check_opened.png",
-    "description": "wq_trace_one_check_opened"
-  },
-  {
-    "itemName": "wq_trace_one_realworld",
-    "roiFront": "850,470,180,180",
-    "roiBack": "850,470,180,180",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_trace_one_realworld.png",
-    "description": "wq_trace_one_realworld"
-  },
-  {
-    "itemName": "wqse_fire",
-    "roiFront": "1041,556,100,100",
-    "roiBack": "1016,534,147,138",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_wqse_fire.png",
-    "description": "wqse_fire"
-  },
-  {
-    "itemName": "wq_d1111",
-    "roiFront": "20,171,99,105",
-    "roiBack": "6,148,150,299",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_wq_d1111.png",
-    "description": "wq_d1111"
-  },
-  {
-    "itemName": "wq_nian",
-    "roiFront": "19,176,100,100",
-    "roiBack": "0,153,166,273",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "wq_wq_nian.png",
-    "description": "wq_nian"
-  }
+ {
+  "itemName": "wq_seal",
+  "roiFront": "232,302,39,45",
+  "roiBack": "56,93,664,455",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_wq_seal.png",
+  "description": "庭院悬赏封印入口 封字"
+ },
+ {
+  "itemName": "trace_enable",
+  "roiFront": "1126,573,128,116",
+  "roiBack": "1100,550,180,170",
+  "threshold": "0.8",
+  "method": "Masked template matching",
+  "imageName": "wq_trace_enable.png",
+  "description": "一键追踪"
+ },
+ {
+  "itemName": "trace_disable",
+  "roiFront": "1113,563,141,129",
+  "roiBack": "1090,545,190,175",
+  "threshold": "0.8",
+  "method": "Masked template matching",
+  "imageName": "wq_trace_disable.png",
+  "description": "取消追踪"
+ },
+ {
+  "itemName": "wq_box",
+  "roiFront": "48,187,43,38",
+  "roiBack": "12,78,108,496",
+  "threshold": "0.7",
+  "method": "Template matching",
+  "imageName": "wq_wq_box.png",
+  "description": "奖励宝箱"
+ },
+ {
+  "itemName": "goto_1",
+  "roiFront": "1053,281,86,38",
+  "roiBack": "1020,265,150,68",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_goto.png",
+  "description": "前往按钮"
+ },
+ {
+  "itemName": "goto_2",
+  "roiFront": "1053,356,86,38",
+  "roiBack": "1020,340,150,68",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_goto.png",
+  "description": "前往按钮"
+ },
+ {
+  "itemName": "goto_3",
+  "roiFront": "1053,432,86,38",
+  "roiBack": "1020,416,150,68",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_goto.png",
+  "description": "前往按钮"
+ },
+ {
+  "itemName": "goto_4",
+  "roiFront": "1053,507,86,38",
+  "roiBack": "1020,491,150,68",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_goto.png",
+  "description": "前往按钮"
+ },
+ {
+  "itemName": "trace_detail",
+  "roiFront": "1127,557,128,120",
+  "roiBack": "1100,535,180,160",
+  "threshold": "0.8",
+  "method": "Masked template matching",
+  "imageName": "wq_trace_detail.png",
+  "description": "详情页追踪角标(未追踪态)"
+ },
+ {
+  "itemName": "wqse_fire",
+  "roiFront": "1041,556,100,100",
+  "roiBack": "1016,534,147,138",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "wq_wqse_fire.png",
+  "description": "秘闻挑战"
+ }
 ]
