@@ -7,5 +7,14 @@
     "method": "Default",
     "keyword": "",
     "description": "buy_number"
+  },
+  {
+    "itemName": "buy_price",
+    "roiFront": "646,537,60,52",
+    "roiBack": "646,537,60,52",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "buy_price"
   }
 ]

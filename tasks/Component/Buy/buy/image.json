@@ -43,5 +43,14 @@
     "method": "Template matching",
     "imageName": "buy_buy_success.png",
     "description": "buy_success"
+  },
+  {
+    "itemName": "buy_jade",
+    "roiFront": "604,537,42,52",
+    "roiBack": "540,480,200,120",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "buy_buy_jade.png",
+    "description": "buy_jade"
   }
 ]
