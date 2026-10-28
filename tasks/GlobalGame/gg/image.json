@@ -1,92 +1,92 @@
 [
-  {
-    "itemName": "g_accept",
-    "roiFront": "830,407,56,46",
-    "roiBack": "798,369,117,110",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_g_accept.png",
-    "description": "g_accept"
-  },
-  {
-    "itemName": "g_reject",
-    "roiFront": "832,508,53,51",
-    "roiBack": "808,480,108,101",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_g_reject.png",
-    "description": "g_reject"
-  },
-  {
-    "itemName": "g_jade",
-    "roiFront": "661,466,43,46",
-    "roiBack": "661,466,43,46",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_g_jade.png",
-    "description": "g_jade"
-  },
-  {
-    "itemName": "g_cat_food",
-    "roiFront": "565,463,59,65",
-    "roiBack": "565,463,59,65",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_g_cat_food.png",
-    "description": "g_cat_food"
-  },
-  {
-    "itemName": "g_dog_food",
-    "roiFront": "565,464,60,63",
-    "roiBack": "565,464,60,63",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_g_dog_food.png",
-    "description": "g_dog_food"
-  },
-  {
-    "itemName": "g_ignore",
-    "roiFront": "773,116,21,21",
-    "roiBack": "759,102,48,48",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_g_ignore.png",
-    "description": "g_ignore"
-  },
-  {
-    "itemName": "network_abnormal",
-    "roiFront": "583,330,221,67",
-    "roiBack": "583,330,221,67",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_network_abnormal.png",
-    "description": "network_abnormal"
-  },
-  {
-    "itemName": "network_error",
-    "roiFront": "431,253,416,208",
-    "roiBack": "431,253,416,208",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_network_error.png",
-    "description": "network_error"
-  },
-  {
-    "itemName": "client_clear",
-    "roiFront": "578,369,151,72",
-    "roiBack": "578,369,151,72",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_client_clear.png",
-    "description": "client_clear"
-  },
-  {
-    "itemName": "chat_close_button",
-    "roiFront": "632,343,49,103",
-    "roiBack": "632,343,49,103",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "gg_chat_close_button.png",
-    "description": "chat_close_button"
-  }
+ {
+  "itemName": "g_accept",
+  "roiFront": "835,455,63,70",
+  "roiBack": "810,430,110,120",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_g_accept.png",
+  "description": "g_accept"
+ },
+ {
+  "itemName": "g_reject",
+  "roiFront": "833,550,64,72",
+  "roiBack": "808,525,110,120",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_g_reject.png",
+  "description": "g_reject"
+ },
+ {
+  "itemName": "g_jade",
+  "roiFront": "568,502,43,46",
+  "roiBack": "550,488,200,100",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_g_jade.png",
+  "description": "g_jade"
+ },
+ {
+  "itemName": "g_cat_food",
+  "roiFront": "568,502,59,65",
+  "roiBack": "550,488,200,100",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_g_cat_food.png",
+  "description": "g_cat_food"
+ },
+ {
+  "itemName": "g_dog_food",
+  "roiFront": "568,502,60,63",
+  "roiBack": "550,488,200,100",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_g_dog_food.png",
+  "description": "g_dog_food"
+ },
+ {
+  "itemName": "g_ignore",
+  "roiFront": "784,77,34,33",
+  "roiBack": "765,60,70,65",
+  "threshold": "0.7",
+  "method": "Template matching",
+  "imageName": "gg_g_ignore.png",
+  "description": "g_ignore"
+ },
+ {
+  "itemName": "network_abnormal",
+  "roiFront": "583,330,221,67",
+  "roiBack": "583,330,221,67",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_network_abnormal.png",
+  "description": "network_abnormal"
+ },
+ {
+  "itemName": "network_error",
+  "roiFront": "431,253,416,208",
+  "roiBack": "431,253,416,208",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_network_error.png",
+  "description": "network_error"
+ },
+ {
+  "itemName": "client_clear",
+  "roiFront": "578,369,151,72",
+  "roiBack": "578,369,151,72",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_client_clear.png",
+  "description": "client_clear"
+ },
+ {
+  "itemName": "chat_close_button",
+  "roiFront": "632,343,49,103",
+  "roiBack": "632,343,49,103",
+  "threshold": "0.8",
+  "method": "Template matching",
+  "imageName": "gg_chat_close_button.png",
+  "description": "chat_close_button"
+ }
 ]
