@@ -442,8 +442,17 @@ class BaseExploration(GameUi, GeneralBattle, GeneralRoom, GeneralInvite, Replace
         return False
 
     def fire(self, button) -> bool:
+        # DEBUG 2026-10-28: 悬赏探索点击怪不生效问题排查, 定位后删除
+        import time as _time
+        import cv2 as _cv2
+        _tag = _time.strftime('%H%M%S')
+        logger.attr('fire', f'match pos={button.roi_front} score={getattr(button.appear_target, "last_score", -1):.3f} target={button.appear_target.name}')
+        _cv2.imwrite(f'./log/tmp_fire_{_tag}_before.png',
+                     _cv2.cvtColor(self.device.image, _cv2.COLOR_RGB2BGR))
         self.ui_click_until_disappear(button, interval=3)
         self.screenshot()
+        _cv2.imwrite(f'./log/tmp_fire_{_tag}_after.png',
+                     _cv2.cvtColor(self.device.image, _cv2.COLOR_RGB2BGR))
         if (self.appear(self.I_E_SETTINGS_BUTTON) or
                 self.appear(self.I_E_AUTO_ROTATE_ON) or
                 self.appear(self.I_E_AUTO_ROTATE_OFF)):
