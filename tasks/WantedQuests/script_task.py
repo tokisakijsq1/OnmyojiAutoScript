@@ -201,6 +201,15 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         self.goto_page(page_exploration)
         return True
 
+    def _wq_detail_open(self) -> bool:
+        """
+            悬赏详情页打开判定：
+            普通任务标题是"悬赏目标：击败N个XX"，协作任务标题是"自己击败XX"没有"悬赏"字样
+            （协作详情页为实机发现 2026-10-28：只认"悬赏目标"会让协作任务在详情页判定处
+            20s 超时，主循环反复重进形成无点击死循环卡死）
+        """
+        return self.appear(self.O_WQ_TARGET) or self.appear(self.O_WQ_TARGET_COOP)
+
     def trace_one(self, card_index: int):
         """
             追踪单个协作任务：点击协作卡片打开详情页 -> 点右下角"追踪"角标 -> 关闭详情页
@@ -211,12 +220,17 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         # 点击卡片立绘区域(避开右上角协角标与中部邀请好友按钮)
         x = 220 + (card_index - 1) * 280
         self.device.click(x, 250, control_name=f'wq_coop_card_{card_index}')
-        if not self.wait_until_appear(self.O_WQ_TARGET, wait_time=4):
-            logger.warning('trace_one: coop quest detail not opened')
-            return
+        open_timer = Timer(6).start()
+        while 1:
+            self.screenshot()
+            if self._wq_detail_open():
+                break
+            if open_timer.reached():
+                logger.warning('trace_one: coop quest detail not opened')
+                return
         for _ in range(3):
             self.screenshot()
-            if not self.appear(self.O_WQ_TARGET):
+            if not self._wq_detail_open():
                 break
             if not self.appear(self.I_WQ_DETAIL_TRACE):
                 # 角标消失说明已变为"取消追踪"，追踪成功
@@ -228,13 +242,13 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
 
     def close_wq_detail(self):
         """
-            关闭悬赏详情页：点右上角X直到"悬赏目标"行消失
+            关闭悬赏详情页：点右上角X直到详情标题行消失
             NOTE 右下角的"取消追踪"绝对不能点，会把任务取消追踪
         """
         timer = Timer(15).start()
         while 1:
             self.screenshot()
-            if not self.appear(self.O_WQ_TARGET):
+            if not self._wq_detail_open():
                 break
             if timer.reached():
                 logger.warning('WQ detail close timeout')
@@ -244,12 +258,12 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
     @staticmethod
     def extract_monster_name(text: str) -> str:
         """
-            从"悬赏目标：击败10个山童"提取怪名
+            从"悬赏目标：击败10个山童"或协作标题"自己击败山兔"提取怪名
             NOTE OCR偶发错字(实测"涂壁"被读成"涂障")，排除名单匹配不到就算了，与旧竖排OCR同样的局限
         """
         if not text:
             return ''
-        match = re.search(r'击败\d+\s*[个只](.+)$', text)
+        match = re.search(r'(?:击败\d+\s*[个只]|自己击败)(.+)$', text)
         return match.group(1).strip() if match else ''
 
     def execute_mission(self, ocr, num_want: int):
@@ -346,12 +360,12 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             return tuple(result)
 
         logger.hr('Start wanted quests')
-        # 点击左侧圆圈打开详情，以"悬赏目标"行出现为详情打开标志
+        # 点击左侧圆圈打开详情，以详情标题行出现为打开标志（普通/协作两种标题都认）
         # (旧版蓝对勾 I_TRACE_TRUE 已随 2026-10 悬赏改版消失；自带20s上限防无限点击)
         open_timer = Timer(20).start()
         while 1:
             self.screenshot()
-            if self.appear(self.O_WQ_TARGET):
+            if self._wq_detail_open():
                 break
             if open_timer.reached():
                 logger.warning('WQ detail not opened in 20s, skip this quest')

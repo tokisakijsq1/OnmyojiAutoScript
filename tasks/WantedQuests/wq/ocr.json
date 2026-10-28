@@ -18,6 +18,15 @@
   "description": "详情页悬赏目标行,详情打开判定+怪名提取"
  },
  {
+  "itemName": "wq_target_coop",
+  "roiFront": "620,158,350,45",
+  "roiBack": "620,158,350,45",
+  "mode": "Full",
+  "method": "Default",
+  "keyword": "自己击败",
+  "description": "协作任务详情标题行自己击败XX(协作详情页无悬赏目标字样)"
+ },
+ {
   "itemName": "wq_dest",
   "roiFront": "628,262,340,300",
   "roiBack": "628,262,340,300",

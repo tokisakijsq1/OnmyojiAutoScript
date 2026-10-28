@@ -130,6 +130,8 @@ class WantedQuestsAssets:
 	O_WQ_WANTED = RuleOcr(roi=(15,116,85,401), area=(15,116,85,401), mode="Full", method="Default", keyword="悬赏封印", name="wq_wanted")
 	# 详情页悬赏目标行,详情打开判定+怪名提取
 	O_WQ_TARGET = RuleOcr(roi=(620,158,350,45), area=(620,158,350,45), mode="Full", method="Default", keyword="悬赏目标", name="wq_target")
+	# 协作任务详情标题行"自己击败XX"(实机发现: 协作详情页没有"悬赏目标"字样)
+	O_WQ_TARGET_COOP = RuleOcr(roi=(620,158,350,45), area=(620,158,350,45), mode="Full", method="Default", keyword="自己击败", name="wq_target_coop")
 	# 目的地列表整区(类型徽章+信息, detect_and_ocr按行分组; 逐行Single窄框会裁字丢数字)
 	O_WQ_DEST = RuleOcr(roi=(628,262,340,300), area=(628,262,340,300), mode="Full", method="Default", keyword="", name="wq_dest")
 	# 左侧任务列表全区
