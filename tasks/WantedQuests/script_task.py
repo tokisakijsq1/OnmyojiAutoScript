@@ -412,7 +412,9 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             return False
         # sort
         info_wq_list.sort(key=lambda x: x[0])
-        filtered = list(filter(lambda x: (x[5] == '秘闻' or x[5] in ('式神', '式神碎片')) and x[2] >= 3, info_wq_list))
+        # 批量兜底：只有单次能杀≥4个的挑战/秘闻才越过用户优先级强选（3个不足以牺牲优先级，
+        # 实测3个的秘闻(安梦奇缘)会压过可用探索导致打不过卡死，2026-10-29 由3改为4）
+        filtered = list(filter(lambda x: (x[5] == '秘闻' or x[5] in ('式神', '式神碎片')) and x[2] >= 4, info_wq_list))
         if filtered:
             info_wq_list = filtered
         best_type, destination, once_number, goto_button, func, _ = info_wq_list[0]
