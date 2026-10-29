@@ -126,9 +126,9 @@ class GeneralBattle(BattleWait, GeneralBuff):
                         self.switch_preset_team(config.preset_enable, config.preset_group, config.preset_team)
                         self.check_and_open_buff(buff)
                         if config.preset_enable:
-                            # 预设确认后游戏还要几秒把御魂穿上，立刻点准备会把没换完的阵容带进战斗
-                            # （2026-10-16 oas3 阴间门实测：预设确认后 0.35s 就点了准备）
-                            sleep(4)
+                            # 预设确认后游戏还要把御魂穿上，立刻点准备会把没换完的阵容带进战斗
+                            # （2026-10-16 oas3 阴间门实测：0.35s 太快；4s 偏久降为 2s，待实机复核）
+                            sleep(2)
                         confed = True
                     # 点击准备(锁定阵容自动点准备,不锁定阵容前面也已经配置完毕需要点准备)
                     if self.appear_then_click(self.I_PREPARE_HIGHLIGHT, interval=0.8):
