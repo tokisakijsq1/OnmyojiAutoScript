@@ -25,10 +25,8 @@ class GeneralBuffAssets:
 	I_EXP_50 = RuleImage(roi_front=(379,406,44,43), roi_back=(365,127,70,393), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBuff/gb/gb_exp_50.png")
 	# description 
 	I_EXP_100 = RuleImage(roi_front=(383,406,30,40), roi_back=(368,126,58,386), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBuff/gb/gb_exp_100.png")
-	# description 
-	I_OPEN_YELLOW = RuleImage(roi_front=(774,299,13,18), roi_back=(766,133,35,366), threshold=0.6, method="Template matching", file="./tasks/Component/GeneralBuff/gb/gb_open_yellow.png")
-	# description 
-	I_CLOSE_RED = RuleImage(roi_front=(773,365,12,20), roi_back=(764,134,38,369), threshold=0.6, method="Template matching", file="./tasks/Component/GeneralBuff/gb/gb_close_red.png")
+	# 新版加成行尾圆形开关按钮-关闭态(暗色静止; 开启态发光旋转, 用switch_is_on发光占比判定)
+	I_CLOSE_RED = RuleImage(roi_front=(855,340,33,30), roi_back=(848,125,57,420), threshold=0.75, method="Template matching", file="./tasks/Component/GeneralBuff/gb/gb_close_red.png")
 	# 用来判定是否点击的那个 
 	I_CLOUD = RuleImage(roi_front=(357,505,65,38), roi_back=(313,484,158,75), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBuff/gb/gb_cloud.png")
 

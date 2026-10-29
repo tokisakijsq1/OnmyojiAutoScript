@@ -63,22 +63,13 @@
     "description": "exp_100"
   },
   {
-    "itemName": "open_yellow",
-    "roiFront": "774,299,13,18",
-    "roiBack": "766,133,35,366",
-    "threshold": "0.6",
-    "method": "Template matching",
-    "imageName": "gb_open_yellow.png",
-    "description": "open_yellow"
-  },
-  {
     "itemName": "close_red",
-    "roiFront": "773,365,12,20",
-    "roiBack": "764,134,38,369",
-    "threshold": "0.6",
+    "roiFront": "855,340,33,30",
+    "roiBack": "848,125,57,420",
+    "threshold": "0.75",
     "method": "Template matching",
     "imageName": "gb_close_red.png",
-    "description": "close_red"
+    "description": "新版加成行尾圆形开关按钮-关闭态(暗色静止; 开启态发光旋转, 用switch_is_on发光占比判定)"
   },
   {
     "itemName": "cloud",

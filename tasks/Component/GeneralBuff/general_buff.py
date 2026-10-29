@@ -6,11 +6,20 @@ import time
 import cv2
 import numpy as np
 
+from module.base.timer import Timer
 from tasks.Component.GeneralBuff.assets import GeneralBuffAssets
 from module.atom.ocr import RuleOcr
 from module.atom.image import RuleImage
 from tasks.base_task import BaseTask
 from module.logger import logger
+
+
+# 2026-10-29 加成界面改版: 每行开关变为行尾圆形巴纹按钮(开启=发光且旋转, 关闭=暗色静止),
+# 按钮列固定在 x≈852-892, 与描述文字之间隔着剩余时间进度条, 不能再按"文字右缘+10"定位开关
+SWITCH_AREA_X = 848
+SWITCH_AREA_W = 48
+# 按钮发光色(淡黄 ≈243,239,195)占行内按钮区的比例: 实测开启态任意旋转角 >=0.126, 关闭态 <=0.019
+SWITCH_ON_GLOW_RATIO = 0.06
 
 
 class GeneralBuff(BaseTask, GeneralBuffAssets):
@@ -65,10 +74,10 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
             logger.info(f'No {buff.name} buff')
             return None
 
-        # 开始的x坐标就是文字的右边
-        start_x = area[0] + area[2] + 10  # 10是文字和开关之间的间隔
+        # 开关是行尾固定列的圆形按钮(x见SWITCH_AREA_X), OCR只提供行的y
+        start_x = SWITCH_AREA_X
         start_y = area[1] - 10
-        width = 80  # 开关的宽度 80够了
+        width = SWITCH_AREA_W
         height = area[3] + 20
         return int(start_x), int(start_y), int(width), int(height)
 
@@ -78,8 +87,38 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
         :param area:
         :return:
         """
-        self.I_OPEN_YELLOW.roi_back = list(area)  # 动态设置roi
-        self.I_CLOSE_RED.roi_back = list(area)
+        self.I_CLOSE_RED.roi_back = list(area)  # 动态设置roi
+
+    def switch_is_on(self) -> bool:
+        """
+        当前行(需先 set_switch_area)的圆形按钮是否为开启态
+        开启态按钮发光且旋转, 固定模板无法匹配, 用发光色像素占比判定(旋转不变)
+        """
+        x, y, w, h = self.I_CLOSE_RED.roi_back
+        region = self.device.image[y:y + h, x:x + w]
+        r = region[:, :, 0].astype(np.int32)
+        g = region[:, :, 1].astype(np.int32)
+        b = region[:, :, 2].astype(np.int32)
+        glow = ((r >= 225) & (g >= 210) & (b >= 150) & (b <= 230)).mean()
+        return glow > SWITCH_ON_GLOW_RATIO
+
+    def switch_set(self, is_open: bool, timeout: int = 10) -> bool:
+        """
+        把当前行的开关切到目标状态, 点击行尾圆形按钮直到状态一致
+        :param is_open: 目标状态 True=开启
+        :param timeout: 超时秒数
+        :return: 是否达到目标状态
+        """
+        timer = Timer(timeout).start()
+        while 1:
+            self.screenshot()
+            if self.switch_is_on() == is_open:
+                return True
+            if timer.reached():
+                return False
+            x, y, w, h = self.I_CLOSE_RED.roi_back
+            self.device.click(x + w // 2, y + h // 2, control_name='GB_SWITCH')
+            time.sleep(1)
 
     def gold_50(self, is_open: bool = True):
         """
@@ -94,12 +133,8 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
             logger.warning('No gold 50 buff')
             return None
         self.set_switch_area(area)
-        if is_open:
-            if not self.ui_click(click=self.I_CLOSE_RED, stop=self.I_OPEN_YELLOW, interval=1, timeout=10):
-                logger.warning('Open gold 50 buff failed')
-        else:
-            if not self.ui_click(click=self.I_OPEN_YELLOW, stop=self.I_CLOSE_RED, interval=1, timeout=10):
-                logger.warning('Close gold 50 buff failed')
+        if not self.switch_set(is_open):
+            logger.warning(f'{"Open" if is_open else "Close"} gold 50 buff failed')
 
     def gold_100(self, is_open: bool = True):
         """
@@ -114,12 +149,8 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
             logger.warning('No gold 100 buff')
             return None
         self.set_switch_area(area)
-        if is_open:
-            if not self.ui_click(click=self.I_CLOSE_RED, stop=self.I_OPEN_YELLOW, interval=1, timeout=10):
-                logger.warning('Open gold 100 buff failed')
-        else:
-            if not self.ui_click(click=self.I_OPEN_YELLOW, stop=self.I_CLOSE_RED, interval=1, timeout=10):
-                logger.warning('Close gold 100 buff failed')
+        if not self.switch_set(is_open):
+            logger.warning(f'{"Open" if is_open else "Close"} gold 100 buff failed')
 
     def exp_50(self, is_open: bool = True):
         """
@@ -136,18 +167,14 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
                 continue
             self.set_switch_area(area)
 
-            if not self.appear(self.I_OPEN_YELLOW) and not self.appear(self.I_CLOSE_RED):
+            if not self.appear(self.I_CLOSE_RED) and not self.switch_is_on():
                 self.device.swipe(p2=(530, 240), p1=(580, 320))
                 time.sleep(1)
             else:
                 break
 
-        if is_open:
-            if not self.ui_click(click=self.I_CLOSE_RED, stop=self.I_OPEN_YELLOW, interval=1, timeout=10):
-                logger.warning('Open exp 50 buff failed')
-        else:
-            if not self.ui_click(click=self.I_OPEN_YELLOW, stop=self.I_CLOSE_RED, interval=1, timeout=10):
-                logger.warning('Close exp 50 buff failed')
+        if not self.switch_set(is_open):
+            logger.warning(f'{"Open" if is_open else "Close"} exp 50 buff failed')
 
     def exp_100(self, is_open: bool = True):
         """
@@ -164,18 +191,14 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
                 continue
             self.set_switch_area(area)
 
-            if not self.appear(self.I_OPEN_YELLOW) and not self.appear(self.I_CLOSE_RED):
+            if not self.appear(self.I_CLOSE_RED) and not self.switch_is_on():
                 self.device.swipe(p2=(530, 240), p1=(580, 320))
                 time.sleep(1)
             else:
                 break
 
-        if is_open:
-            if not self.ui_click(click=self.I_CLOSE_RED, stop=self.I_OPEN_YELLOW, interval=1, timeout=10):
-                logger.warning('Open exp 100 buff failed')
-        else:
-            if not self.ui_click(click=self.I_OPEN_YELLOW, stop=self.I_CLOSE_RED, interval=1, timeout=10):
-                logger.warning('Close exp 100 buff failed')
+        if not self.switch_set(is_open):
+            logger.warning(f'{"Open" if is_open else "Close"} exp 100 buff failed')
 
     def get_area_image(self, target: RuleImage) -> list:
         """
@@ -193,9 +216,9 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
             return None
             # logger.info(f'front area: {target.roi_front}')
             # logger.info(f'front center: {target.front_center()}')
-        start_x = int(target.front_center()[0] + 364)
+        start_x = SWITCH_AREA_X
         start_y = int(target.roi_front[1])
-        width = 80
+        width = SWITCH_AREA_W
         height = int(target.roi_front[3])
         return [start_x, start_y, width, height]
 
@@ -212,12 +235,8 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
             logger.warning('No awake buff')
             return None
         self.set_switch_area(area)
-        if is_open:
-            if not self.ui_click(click=self.I_CLOSE_RED, stop=self.I_OPEN_YELLOW, interval=1, timeout=10):
-                logger.warning('Open awake buff failed')
-        else:
-            if not self.ui_click(click=self.I_OPEN_YELLOW, stop=self.I_CLOSE_RED, interval=1, timeout=10):
-                logger.warning('Close awake buff failed')
+        if not self.switch_set(is_open):
+            logger.warning(f'{"Open" if is_open else "Close"} awake buff failed')
 
     def soul(self, is_open: bool = True):
         """
@@ -232,12 +251,8 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
             logger.warning('No soul buff')
             return None
         self.set_switch_area(area)
-        if is_open:
-            if not self.ui_click(click=self.I_CLOSE_RED, stop=self.I_OPEN_YELLOW, interval=1, timeout=10):
-                logger.warning('Open soul buff failed')
-        else:
-            if not self.ui_click(click=self.I_OPEN_YELLOW, stop=self.I_CLOSE_RED, interval=1, timeout=10):
-                logger.warning('Close soul buff failed')
+        if not self.switch_set(is_open):
+            logger.warning(f'{"Open" if is_open else "Close"} soul buff failed')
 
     def reject_invite(self):
         from tasks.Component.GeneralInvite.assets import GeneralInviteAssets as gia
