@@ -5,6 +5,7 @@ from enum import Enum
 
 from pydantic import BaseModel, Field
 
+from tasks.Component.GeneralBattle.config_general_battle import GeneralBattleConfig
 from tasks.Component.SwitchSoul.switch_soul_config import SwitchSoulConfig
 from tasks.Component.config_base import ConfigBase, Time
 from tasks.Component.config_scheduler import Scheduler
@@ -117,3 +118,4 @@ class WantedQuests(ConfigBase):
     scheduler: Scheduler = Field(default_factory=Scheduler)
     wanted_quests_config: WantedQuestsConfig = Field(default_factory=WantedQuestsConfig)
     switch_soul_config: SwitchSoulConfig = Field(default_factory=SwitchSoulConfig)
+    general_battle: GeneralBattleConfig = Field(default_factory=GeneralBattleConfig)
