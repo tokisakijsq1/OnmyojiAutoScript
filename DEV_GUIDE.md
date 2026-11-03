@@ -741,6 +741,11 @@ GameTooManyClickError→重启×3→人工接管。oas2（队员）等不到邀�
 
 ## 27. 悬赏封印 2026-10 大改版：卡片化主界面、圆圈大世界与新详情页（2026-10-28）
 
+> **【2026-11-03 状态更新】本节描述的本地重做版已在合并 41e08821 中整体弃用，改取上游
+> 921a2b82 的适配版（仍是"4 行列表"流程模型）+ 回植 4 项独有修复（见第 30 节）。
+> 重做版保留在分支 `backup/pre-merge-dev-20261103`，若实机证明上游列表模型跑不通可整体回退。
+> 本节的经验（新 UI 形态观察、a12c26b8 协作详情判定思路）仍是实机验证时的对照材料。**
+
 改版内容：悬赏封印主界面从竖排列表变 4 张横排卡片（协作任务带"协"角标+"邀请好友"
 小按钮，最多 4 张）；探索大世界左侧任务从文字条目变圆形头像圈（N/M 在圈内、
 "悬赏封印"标签在圈下）；详情页整体右移下移（类型徽章 x646、信息 x717、行距 76px、
@@ -885,3 +890,63 @@ oas1 早 06:33 起连打 7 次同因失败：悬赏 5 位全打不开（按设�
 - 修复随 merge 41e08821 入库（当时代码与另一窗口 merge 竞速，4 文件被卷进 merge
   暂存区、退暂存跑在提交之后变 no-op）。**实机待验证**：oas1 次日（11-04 06:33）
   AreaBoss 调度；**改 assets.py/image.json 的进程须重启才生效**。
+
+## 30. merge origin/dev 10-28~11-03：悬赏封印弃重做取上游 + checkout 整目录覆盖坑（2026-11-03）
+
+上游 31 提交（`62957654`→`de497a3f`）：悬赏封印新 UI 适配、协作邀请素材 10-30 二波、
+桌面杀进程重启/空闲关游戏、商店双招牌、道馆开馆重构、六道选岛限连点、TalismanPass
+页签判定、皮肤 sk13、FindJade 调度注册。合并 41e08821 + 回植 0af95959 + 纠偏 ea3a798e。
+
+### 裁决记录（用户拍板）
+- **WQ 整体取上游 921a2b82，弃本地重做版**（a8aeae4e 卡片化流程）。两边同日各自适配
+  同一新 UI 且界面模型互斥（我们观察=卡片化、上游=仍是 4 行列表），离线无法裁决谁对，
+  只有实机能验证。重做版保留在 `backup/pre-merge-dev-20261103` 可整体回退。
+- **回植 4 项独有修复**：①挑战徽章"式神碎片"映射（上游 name_funcs 不认识，挑战类
+  永远选不中）；②批量筛选阈值 3→4；③古董 bug `if not filtered and len(filtered)!=0`
+  永假条件修复（上游优先级筛选从未生效过）；④execute_mission 返回 False 计 error_count
+  死循环兜底。
+- **a12c26b8 协作"自己击败XX"详情判定结构性丢弃**：上游 trace_one 不开详情页无落点；
+  靠④兜底降级为"协作任务最多跳过 4 轮后退出"，不卡死。
+- **GlobalGame 素材取上游 10-30 二波**（8d499033 比本地 10-28 裁图新），代码层两边零分歧。
+- **GameUi/page/image_main.json 取上游满版**（+check_mall_purple），顺带消除 7e6ec531
+  清空该文件造成的 assets.py↔JSON 漂移。上游对该文件仅新增零修改，取满版即正确。
+- **Dokan 保持合并结果**：上游"主循环前尝试一次开馆"（creat_dokan 自带道馆已建立时
+  5 秒超时守卫，每日重复运行安全）与本地 cb5a724e 战前点准备（347/1035 行）分属不同
+  场景无交互。GeneralInvite 的 I_UI_UNCHECK interval 1→3 与本地 check_and_invite
+  惯例一致，保持。
+
+### ⚠️ checkout 整目录会覆盖上游未动的本地独有文件（本次实际踩坑）
+`git checkout origin/dev -- tasks/WantedQuests tasks/GlobalGame` 解决冲突时把**上游
+从未改过、仅本地改过的文件**也覆盖回上游版（==基线版）。本次被覆盖 6 个文件，晚一步
+由 ea3a798e 从 parent 恢复：WQ config.py（946713ef）/ chanllenge+se_image+swipe 三
+json（7e6ec531 重建）/ invite/ocr.json（a8aeae4e 好友列 OCR roi，实机 VIP 协作邀请在
+用）/ GlobalGame ui/click.json。**教训：解冲突 checkout 必须逐文件点名，禁止整目录**；
+合并后用 `comm` 对比"合并 diff vs 上游 diff"审计多余文件（本次靠它抓出来的）。
+
+### 并发窗口竞速
+另一窗口同时在改 AreaBoss（其暂存的 4 文件被卷进 merge commit——merge commit 提交
+的是整个暂存区），随后它补提交 8229a1d1 文档说明；此刻其工作区还有未提交的
+BondlingFairyland 改动。**多人/多窗口共用一个工作区时：merge 前确认 `git status` 无
+他人暂存；提交后只 stage 自己点名的文件。**
+
+### 漂移俱乐部新成员（assets.py 有定义+png 在盘、json 无条目，extract 会删）
+- 继承自上游：WQ `I_WQSE_FIRE` / `I_WQ_D1111` / `I_WQ_NIAN`（wq/image.json 无条目，
+  疑上游自身漂移）
+- 既有：GeneralInvite `I_GI_EMOJI_1/2` / `I_GI_EXPLORE` / `I_GI_HOME`（4 个活定义）
+- 误报澄清：GameUi `I_CHECK_MALL_PURPLE` 在 page/image_main.json 有条目（文件名是
+  image_main.json 不是 image.json，审计脚本按 basename 过滤会漏）
+- 恢复仍走 7e6ec531 流程（待做 chore），assets_extract 继续勿跑
+
+### 上游祖传坑：invite_wq_friend_1-5.png 从未进过 git
+WQ invite/image.json 和 assets.py 引用 `invite_wq_friend_1.png`~`5.png`，但**全历史
+任何提交都没有这 5 张图**（上游 PR 作者本地有、忘了 add）。RuleImage 懒加载所以
+import 不炸；只有非 VIP 路径 invite_five() 点好友槽位时才会读到缺图。三台实机都配了
+invite_friend_name（VIP 路径），实际不可达，零影响；新号裸配悬赏注意。
+
+### 实机验证清单（合并后首次运行悬赏前逐条过）
+1. 上游"4 行列表"模型是否成立：找得到任务、追踪开关、前往按钮（核心裁决点，不成则
+   回退 backup/pre-merge-dev-20261103）
+2. 挑战类目能否被选中（式神碎片映射①生效与否，顺带验证 type roi 55px 宽读出什么）
+3. 协作任务邀请→追踪→打完全链路（a12c26b8 丢弃后的表现；最坏=跳过不卡死）
+4. GlobalGame 接受/拒绝弹窗上游 10-30 素材命中
+5. **改 assets/image.json 后重启进程才生效**
