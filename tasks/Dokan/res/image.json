@@ -316,12 +316,12 @@
   },
   {
     "itemName": "ryou_dokan_quit_battle_ensure",
-    "roiFront": "0,0,1280,720",
-    "roiBack": "0,0,1280,720",
+    "roiFront": "668,408,172,60",
+    "roiBack": "358,380,565,120",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "res_ryou_dokan_quit_battle_ensure.png",
-    "description": "ryou_dokan_quit_battle_ensure"
+    "description": "战斗进行中返回集结确认弹窗确定按钮(2026-11-03实机截图重裁: 10月弹窗改版确认→确定, 旧确认字样模板0.719失配致quit_battle反复点返回卡死)"
   },
   {
     "itemName": "ryou_dokan_exit_ensure",

@@ -100,7 +100,7 @@ class DokanAssets:
 	I_RYOU_DOKAN_FIGHTING = RuleImage(roi_front=(232,36,42,19), roi_back=(232,36,42,19), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_fighting.png")
 	# 状态：道馆已经结束 
 	I_RYOU_DOKAN_FINISHED = RuleImage(roi_front=(658,649,91,27), roi_back=(658,649,91,27), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_finished.png")
-	# 道馆失败/成功 出现的突破排名 弹窗 
+	# 道馆失败/成功 出现的突破排名 弹窗
 	I_RYOU_DOKAN_TOPPA_RANK = RuleImage(roi_front=(110,80,170,70), roi_back=(110,80,170,70), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_toppa_rank.png")
 	# 状态：道馆挑战失败，投票 保留赏金 
 	I_RYOU_DOKAN_FAILED_VOTE_KEEP_BOUNTY = RuleImage(roi_front=(1020,220,260,120), roi_back=(1020,220,260,120), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_failed_vote_keep_bounty.png")
@@ -110,8 +110,8 @@ class DokanAssets:
 	I_RYOU_DOKAN_ABANDONED_TOPPA_ABANDONED = RuleImage(roi_front=(1020,220,260,120), roi_back=(1020,220,260,120), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_abandoned_toppa_abandoned.png")
 	# 状态：道馆投票 继续突破 
 	I_RYOU_DOKAN_ABANDONED_TOPPA_CONTINUE = RuleImage(roi_front=(1020,220,260,120), roi_back=(1020,220,260,120), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_abandoned_toppa_continue.png")
-	# 道馆战斗界面 点击退出按钮后 弹出的确认按钮 
-	I_RYOU_DOKAN_QUIT_BATTLE_ENSURE = RuleImage(roi_front=(0,0,1280,720), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_quit_battle_ensure.png")
+	# 道馆战斗界面 点击退出按钮后 弹出的确认按钮 (2026-11-03 重裁: 10月弹窗改版确认→确定, 旧"确认"字样模板0.719失配)
+	I_RYOU_DOKAN_QUIT_BATTLE_ENSURE = RuleImage(roi_front=(668,408,172,60), roi_back=(358,380,565,120), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_quit_battle_ensure.png")
 	# 道馆退出确认 
 	I_RYOU_DOKAN_EXIT_ENSURE = RuleImage(roi_front=(678,395,125,56), roi_back=(678,395,125,56), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_exit_ensure.png")
 	# 进入加油相关：道馆战报按钮 
