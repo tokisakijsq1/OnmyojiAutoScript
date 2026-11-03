@@ -1,137 +1,137 @@
 [
- {
-  "itemName": "wq_seal",
-  "imageName": "wq_wq_seal.png",
-  "roiFront": "232,302,39,45",
-  "roiBack": "56,93,664,455",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "庭院悬赏封印入口 2026-10新卷轴图标(重做版实机验证模板, 老封字小裁剪对新图标仅0.740<0.8)"
- },
- {
-  "itemName": "wq_done",
-  "imageName": "wq_wq_done.png",
-  "roiFront": "248,183,37,39",
-  "roiBack": "63,134,624,401",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "勾号"
- },
- {
-  "itemName": "trace_enable",
-  "imageName": "wq_trace_enable.png",
-  "roiFront": "1159,606,52,58",
-  "roiBack": "1075,518,198,196",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "一键追踪"
- },
- {
-  "itemName": "trace_disable",
-  "imageName": "wq_trace_disable.png",
-  "roiFront": "1154,609,68,58",
-  "roiBack": "1065,495,215,225",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "取消追踪"
- },
- {
-  "itemName": "wq_box",
-  "imageName": "wq_wq_box.png",
-  "roiFront": "48,187,43,38",
-  "roiBack": "12,78,108,496",
-  "method": "Template matching",
-  "threshold": 0.7,
-  "description": "奖励宝箱"
- },
- {
-  "itemName": "trace_true",
-  "imageName": "wq_trace_true.png",
-  "roiFront": "1148,571,77,69",
-  "roiBack": "1035,502,245,213",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "小号追踪"
- },
- {
-  "itemName": "trace_false",
-  "imageName": "wq_trace_false.png",
-  "roiFront": "1152,569,83,79",
-  "roiBack": "1051,481,229,239",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "小号不追踪"
- },
- {
-  "itemName": "goto_1",
-  "imageName": "wq_goto_1.png",
-  "roiFront": "1075,287,62,29",
-  "roiBack": "1054,266,99,70",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "description"
- },
- {
-  "itemName": "goto_2",
-  "imageName": "wq_goto_2.png",
-  "roiFront": "1074,363,60,31",
-  "roiBack": "1055,341,99,71",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "description"
- },
- {
-  "itemName": "goto_3",
-  "imageName": "wq_goto_3.png",
-  "roiFront": "1074,439,56,29",
-  "roiBack": "1053,417,101,73",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "description"
- },
- {
-  "itemName": "goto_4",
-  "imageName": "wq_goto_4.png",
-  "roiFront": "1078,516,55,27",
-  "roiBack": "1054,488,100,76",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "description"
- },
- {
-  "itemName": "wq_trace_one_enable",
-  "imageName": "wq_trace_one_enable.png",
-  "roiFront": "1150,570,79,75",
-  "roiBack": "1047,500,233,220",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "庭院悬赏任务界面 单个任务点开后 左上角是否追踪"
- },
- {
-  "itemName": "wq_trace_one_disable",
-  "imageName": "wq_trace_one_disable.png",
-  "roiFront": "1156,570,77,67",
-  "roiBack": "1055,488,225,232",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "庭院悬赏任务界面 单个任务点开后 左上角是否追踪"
- },
- {
-  "itemName": "wq_trace_one_check_opened",
-  "imageName": "wq_trace_one_check_opened.png",
-  "roiFront": "778,166,52,29",
-  "roiBack": "582,147,431,110",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "庭院悬赏任务界面 单个任务点开后的界面 是否打开的 标志"
- },
- {
-  "itemName": "wq_trace_one_realworld",
-  "imageName": "wq_trace_one_realworld.png",
-  "roiFront": "1173,579,51,54",
-  "roiBack": "1037,517,243,203",
-  "method": "Template matching",
-  "threshold": 0.8,
-  "description": "庭院悬赏任务界面 单个任务点开后的界面 是否为现世任务标志"
- }
+  {
+    "itemName": "wq_seal",
+    "imageName": "wq_wq_seal.png",
+    "roiFront": "232,302,39,45",
+    "roiBack": "56,93,664,455",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "庭院悬赏封印入口 2026-10新卷轴图标(重做版实机模板回植, 老封字小裁剪对新图标仅0.740)"
+  },
+  {
+    "itemName": "wq_done",
+    "imageName": "wq_wq_done.png",
+    "roiFront": "248,183,37,39",
+    "roiBack": "63,134,624,401",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "勾号"
+  },
+  {
+    "itemName": "trace_enable",
+    "imageName": "wq_trace_enable.png",
+    "roiFront": "1159,606,52,58",
+    "roiBack": "1075,518,198,196",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "一键追踪"
+  },
+  {
+    "itemName": "trace_disable",
+    "imageName": "wq_trace_disable.png",
+    "roiFront": "1154,609,68,58",
+    "roiBack": "1065,495,215,225",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "取消追踪"
+  },
+  {
+    "itemName": "wq_box",
+    "imageName": "wq_wq_box.png",
+    "roiFront": "48,187,43,38",
+    "roiBack": "12,78,108,496",
+    "method": "Template matching",
+    "threshold": 0.7,
+    "description": "奖励宝箱"
+  },
+  {
+    "itemName": "trace_true",
+    "imageName": "wq_trace_true.png",
+    "roiFront": "1148,571,77,69",
+    "roiBack": "1035,502,245,213",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "小号追踪"
+  },
+  {
+    "itemName": "trace_false",
+    "imageName": "wq_trace_false.png",
+    "roiFront": "1152,569,83,79",
+    "roiBack": "1051,481,229,239",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "小号不追踪"
+  },
+  {
+    "itemName": "goto_1",
+    "imageName": "wq_goto_1.png",
+    "roiFront": "1075,287,62,29",
+    "roiBack": "1054,266,99,70",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "goto_2",
+    "imageName": "wq_goto_2.png",
+    "roiFront": "1074,363,60,31",
+    "roiBack": "1055,341,99,71",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "goto_3",
+    "imageName": "wq_goto_3.png",
+    "roiFront": "1074,439,56,29",
+    "roiBack": "1053,417,101,73",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "goto_4",
+    "imageName": "wq_goto_4.png",
+    "roiFront": "1078,516,55,27",
+    "roiBack": "1054,488,100,76",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "wq_trace_one_enable",
+    "imageName": "wq_trace_one_enable.png",
+    "roiFront": "1150,570,79,75",
+    "roiBack": "1047,500,233,220",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "庭院悬赏任务界面 单个任务点开后 左上角是否追踪"
+  },
+  {
+    "itemName": "wq_trace_one_disable",
+    "imageName": "wq_trace_one_disable.png",
+    "roiFront": "1156,570,77,67",
+    "roiBack": "1055,488,225,232",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "庭院悬赏任务界面 单个任务点开后 左上角是否追踪"
+  },
+  {
+    "itemName": "wq_trace_one_check_opened",
+    "imageName": "wq_trace_one_check_opened.png",
+    "roiFront": "778,166,52,29",
+    "roiBack": "582,147,431,110",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "庭院悬赏任务界面 单个任务点开后的界面 是否打开的 标志"
+  },
+  {
+    "itemName": "wq_trace_one_realworld",
+    "imageName": "wq_trace_one_realworld.png",
+    "roiFront": "1173,579,51,54",
+    "roiBack": "1037,517,243,203",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "庭院悬赏任务界面 单个任务点开后的界面 是否为现世任务标志"
+  }
 ]
