@@ -2,11 +2,11 @@
   {
     "itemName": "wq_seal",
     "imageName": "wq_wq_seal.png",
-    "roiFront": "232,302,39,45",
+    "roiFront": "174,184,20,29",
     "roiBack": "56,93,664,455",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "庭院悬赏封印入口 2026-10新卷轴图标(重做版实机模板回植, 老封字小裁剪对新图标仅0.740)"
+    "description": "封印"
   },
   {
     "itemName": "wq_done",
