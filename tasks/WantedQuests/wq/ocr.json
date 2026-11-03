@@ -1,47 +1,164 @@
 [
- {
-  "itemName": "wq_wanted",
-  "roiFront": "15,116,85,401",
-  "roiBack": "15,116,85,401",
-  "mode": "Full",
-  "method": "Default",
-  "keyword": "悬赏封印",
-  "description": "判断是否还有任务"
- },
- {
-  "itemName": "wq_target",
-  "roiFront": "620,158,350,45",
-  "roiBack": "620,158,350,45",
-  "mode": "Full",
-  "method": "Default",
-  "keyword": "悬赏目标",
-  "description": "详情页悬赏目标行,详情打开判定+怪名提取"
- },
- {
-  "itemName": "wq_target_coop",
-  "roiFront": "620,158,350,45",
-  "roiBack": "620,158,350,45",
-  "mode": "Full",
-  "method": "Default",
-  "keyword": "自己击败",
-  "description": "协作任务详情标题行自己击败XX(协作详情页无悬赏目标字样)"
- },
- {
-  "itemName": "wq_dest",
-  "roiFront": "628,262,340,300",
-  "roiBack": "628,262,340,300",
-  "mode": "Full",
-  "method": "Default",
-  "keyword": "",
-  "description": "目的地列表整区(类型徽章+信息, detect_and_ocr按行分组)"
- },
- {
-  "itemName": "wq_text_all",
-  "roiFront": "12,119,88,393",
-  "roiBack": "12,119,88,393",
-  "mode": "Full",
-  "method": "Default",
-  "keyword": "",
-  "description": "左侧任务列表全区"
- }
+  {
+    "itemName": "wq_number",
+    "roiFront": "541,14,97,33",
+    "roiBack": "541,14,97,33",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "挑战券的数量"
+  },
+  {
+    "itemName": "wq_wanted",
+    "roiFront": "15,116,85,401",
+    "roiBack": "15,116,85,401",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "悬赏封印"
+  },
+  {
+    "itemName": "wq_text_1",
+    "roiFront": "67,233,52,32",
+    "roiBack": "67,233,52,32",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "封印",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_text_2",
+    "roiFront": "66,377,52,32",
+    "roiBack": "66,377,52,32",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "封印",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_num_1",
+    "roiFront": "32,260,72,27",
+    "roiBack": "32,260,72,27",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_num_2",
+    "roiFront": "34,406,65,24",
+    "roiBack": "34,406,65,24",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_num_unknown_1",
+    "roiFront": "32,260,72,27",
+    "roiBack": "32,260,72,27",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "备用识别1"
+  },
+  {
+    "itemName": "wq_num_unknown_2",
+    "roiFront": "34,406,65,24",
+    "roiBack": "34,406,65,24",
+    "mode": "Digit",
+    "method": "Default",
+    "keyword": "",
+    "description": "备用识别2"
+  },
+  {
+    "itemName": "wq_type_1",
+    "roiFront": "645,283,55,36",
+    "roiBack": "645,283,55,36",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_type_2",
+    "roiFront": "647,361,55,30",
+    "roiBack": "647,361,55,30",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_type_3",
+    "roiFront": "648,437,54,30",
+    "roiBack": "648,437,54,30",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_type_4",
+    "roiFront": "647,512,52,32",
+    "roiBack": "647,512,52,32",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_info_1",
+    "roiFront": "710,279,309,45",
+    "roiBack": "710,279,309,45",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_info_2",
+    "roiFront": "712,358,298,41",
+    "roiBack": "712,358,298,41",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_info_3",
+    "roiFront": "710,430,305,44",
+    "roiBack": "710,429,305,44",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_info_4",
+    "roiFront": "711,506,315,44",
+    "roiBack": "711,507,315,44",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "Ocr-description"
+  },
+  {
+    "itemName": "wq_monster_type",
+    "roiFront": "634,154,483,52",
+    "roiBack": "634,154,483,52",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "怪物名称,如酒吞，阎魔等"
+  },
+  {
+    "itemName": "wq_text_all",
+    "roiFront": "12,119,88,393",
+    "roiBack": "12,119,88,393",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": ""
+  }
 ]

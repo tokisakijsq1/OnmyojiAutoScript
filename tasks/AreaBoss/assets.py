@@ -91,8 +91,10 @@ class AreaBossAssets:
 	I_AB_LEVEL_HANDLE = RuleImage(roi_front=(170,250,400,75), roi_back=(170,250,400,75), threshold=0.8, method="Template matching", file="./tasks/AreaBoss/res/ab_level_handle.png")
 	# 普通地鬼 等级为60 标志 
 	I_AB_LEVEL_60 = RuleImage(roi_front=(300,160,110,100), roi_back=(300,160,110,100), threshold=0.8, method="Template matching", file="./tasks/AreaBoss/res/ab_level_60.png")
-	# 极地鬼 层数列表打开 标志 
+	# 极地鬼 层数列表打开 标志
 	I_AB_JI_FLOOR_LIST_CHECK = RuleImage(roi_front=(390,150,60,290), roi_back=(390,150,60,290), threshold=0.8, method="Template matching", file="./tasks/AreaBoss/res/ab_ji_floor_list_check.png")
+	# 极地鬼 层数列表打开 并列判别: 壹星条目(贰星以下未解锁带挂锁时伍星判据失配, 2026-11-03 oas1实测)
+	I_AB_JI_FLOOR_ONE_CHECK = RuleImage(roi_front=(385,155,70,45), roi_back=(385,155,70,45), threshold=0.8, method="Template matching", file="./tasks/AreaBoss/res/ab_ji_floor_one_check.png")
 	# 极地鬼 一层 
 	I_AB_JI_FLOOR_ONE = RuleImage(roi_front=(390,150,60,290), roi_back=(390,150,60,290), threshold=0.8, method="Template matching", file="./tasks/AreaBoss/res/ab_ji_floor_one.png")
 	# 极地鬼 十层 

@@ -280,7 +280,7 @@ class ScriptTask(Battle, GeneralBattle, GameUi, SwitchSoul, AreaBossAssets):
         """
         # _Floor = ["壹星", "贰星", "叁星", "肆星", "伍星", "陆星", "柒星", "捌星", "玖星", "拾星"]
         # 打开选择列表
-        self.ui_click(self.C_AB_JI_FLOOR_SELECTED, self.I_AB_JI_FLOOR_LIST_CHECK, interval=3)
+        self.open_floor_list()
         while 1:
             self.screenshot()
             if self.appear(self.I_AB_JI_FLOOR_ONE):
@@ -291,12 +291,25 @@ class ScriptTask(Battle, GeneralBattle, GameUi, SwitchSoul, AreaBossAssets):
             # 等待滑动动画
             self.wait_until_appear(self.I_AB_JI_FLOOR_ONE, False, 1)
 
+    def open_floor_list(self):
+        """
+            打开层数选择列表
+            列表打开判据: 伍星条目 或 壹星条目 任一识别到即可
+            (贰星以下未解锁时条目带挂锁, 伍星模板会失配, 2026-11-03 oas1实测)
+        """
+        while 1:
+            self.screenshot()
+            if self.appear(self.I_AB_JI_FLOOR_LIST_CHECK) or self.appear(self.I_AB_JI_FLOOR_ONE_CHECK):
+                return
+            if self.click(self.C_AB_JI_FLOOR_SELECTED, interval=3):
+                continue
+
     def switch_to_floor_10(self):
         """
             更改层数为十层
         """
         # 打开选择列表
-        self.ui_click(self.C_AB_JI_FLOOR_SELECTED, self.I_AB_JI_FLOOR_LIST_CHECK, interval=3)
+        self.open_floor_list()
         while 1:
             self.screenshot()
             if self.appear(self.I_AB_JI_FLOOR_TEN):

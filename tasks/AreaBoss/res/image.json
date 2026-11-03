@@ -196,5 +196,14 @@
     "method": "Template matching",
     "imageName": "ab_num_challenge_rail.png",
     "description": "ab_num_challenge_rail"
+  },
+  {
+    "itemName": "ab_ji_floor_one_check",
+    "roiFront": "385,155,70,45",
+    "roiBack": "385,155,70,45",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "ab_ji_floor_one_check.png",
+    "description": "ab_ji_floor_one_check"
   }
 ]
