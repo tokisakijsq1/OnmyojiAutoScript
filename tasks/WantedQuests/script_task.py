@@ -89,9 +89,12 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
                 sleep(1)
                 continue
             # 找到任务,执行
-            error_count = 0
-            self.O_WQ_TEXT_ALL.area = area
-            self.execute_mission(self.O_WQ_TEXT_ALL, total - cu, number_challenge)
+            # 任务无法执行(无可打目的地/怪名被排除等)时计入失败,
+            # 否则会永远找到同一个任务反复执行形成无点击死循环
+            if self.execute_mission(self.O_WQ_TEXT_ALL, total - cu, number_challenge) is False:
+                error_count += 1
+            else:
+                error_count = 0
             sleep(1.5)
 
         self.next_run()
@@ -241,6 +244,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         GOTO_BUTTON = [self.I_GOTO_1, self.I_GOTO_2, self.I_GOTO_3, self.I_GOTO_4]
         name_funcs: dict = {
             '式神': self.challenge,
+            '式神碎片': self.challenge,  # 2026-10 改版: 挑战页类目的徽章由"式神"改为红色"式神碎片"
             '探索': self.explore,
             '秘闻': self.secret
         }
@@ -286,8 +290,9 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             order_list = self.config.model.wanted_quests.wanted_quests_config.battle_priority
             order_list = order_list.replace(' ', '').replace('\n', '')
             order_list: list = re.split(r'>', order_list)
-            # OCR识别"式神"但用户配置用"挑战"，做映射
-            type_wq_for_order = '挑战' if type_wq == '式神' else type_wq
+            # OCR识别的类型与用户配置的映射: 旧版"式神"与新版"式神碎片"都是挑战页类目,
+            # 用户配置里写的是"挑战"
+            type_wq_for_order = '挑战' if type_wq in ('式神', '式神碎片') else type_wq
             result[0] = order_list.index(type_wq_for_order) if type_wq_for_order in order_list else -1
             result[4] = name_funcs.get(type_wq, lambda: logger.warning('No task can be challenged'))
             result[5] = type_wq
@@ -327,8 +332,11 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             return False
         # sort
         info_wq_list.sort(key=lambda x: x[0])
-        filtered = list(filter(lambda x: (x[5] == '秘闻' or x[5] == '式神') and x[2] >= 3, info_wq_list))
-        if not filtered and len(filtered) != 0:
+        # 批量兜底：只有单次能杀≥4个的挑战/秘闻才越过用户优先级强选（3个不足以牺牲优先级，
+        # 实测3个的秘闻(安梦奇缘)会压过可用探索导致打不过卡死，2026-10-29 由3改为4）
+        filtered = list(filter(lambda x: (x[5] == '秘闻' or x[5] in ('式神', '式神碎片')) and x[2] >= 4, info_wq_list))
+        # 修复古董bug: 原条件 `not filtered and len(filtered) != 0` 数学上永假, 筛选从未生效
+        if filtered:
             info_wq_list = filtered
         best_type, destination, once_number, goto_button, func, _ = info_wq_list[0]
         do_number = 1 if once_number >= num_want else num_want // once_number + (1 if num_want % once_number > 0 else 0)
