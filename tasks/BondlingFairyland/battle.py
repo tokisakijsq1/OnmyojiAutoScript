@@ -5,7 +5,6 @@ from datetime import timedelta, datetime
 
 import random
 
-from module.base.timer import Timer
 from module.server.i18n import I18n
 from tasks.BondlingFairyland.config import BondlingMode
 from tasks.Component.GeneralBattle.general_battle import GeneralBattle
@@ -69,7 +68,6 @@ class BondlingBattle(GeneralBattle, BondlingFairylandAssets):
         bondling_mode = self.config.bondling_fairyland.bondling_config.bondling_mode
         cap_again = bondling_mode in [BondlingMode.MODE3, BondlingMode.MODE4]
         cap_cnt, max_cap = 0, 10
-        catch_ui_timer = None  # 结契页(挑战按钮)连续可见计时
         while 1:
             # 捕获次数超过最大次数限制, 则不再进行捕获
             if cap_cnt >= max_cap:
@@ -78,45 +76,26 @@ class BondlingBattle(GeneralBattle, BondlingFairylandAssets):
             # 如果捕获成功
             if self.appear_then_click(self.I_CAP_SUCCESS, action=self.C_CAP_SUCCESS,  interval=1):
                 win = True
-                catch_ui_timer = None
             # 连续结契捕获失败
             if self.appear_then_click(self.I_CAP_FAILURE, action=self.C_CAP_SUCCESS, interval=1):
                 win = False
-                catch_ui_timer = None
             # 非连续结契且单次抓捕失败
             if not cap_again and self.appear_then_click(self.I_BATTLE_FAIL_ABANDON, interval=1):
                 win = False
-                catch_ui_timer = None
             # 连续结契则继续结契
             if cap_again and self.appear_then_click(self.I_CAP_AGAIN, interval=1):
                 self.device.click_record_clear()  # 需要10次结契因此清空点击记录
                 cap_cnt += 1
-                catch_ui_timer = None
                 continue
             # 如果领奖励
             if self.appear(self.I_REWARD, threshold=0.6):
                 break
             if self.appear_then_click(self.I_WIN, threshold=0.6):
-                catch_ui_timer = None
                 continue
             if self.appear_then_click(self.I_BATTLE_SUCCESS, threshold=0.6, interval=1):
-                catch_ui_timer = None
                 continue
             if self.appear_then_click(self.I_BATTLE_FAIL, threshold=0.6, interval=1):
-                catch_ui_timer = None
                 continue
-            # 普通胜利有时点掉胜利横幅后直接回到结契界面, 没有任何弹窗(获得奖励/结契成功/失败),
-            # 本循环原本只认 I_REWARD, 会困在这里随机点击空转直到 GameTooManyClickError。
-            # 出口: 没有任何结算弹窗且挑战按钮连续可见 2 秒, 视为战斗已结束
-            if self.appear(self.I_BALL_FIRE):
-                if catch_ui_timer is None:
-                    catch_ui_timer = Timer(2).start()
-                    continue
-                if catch_ui_timer.reached():
-                    logger.info('Back to catch ui without reward popup, battle is over')
-                    break
-            else:
-                catch_ui_timer = None
             # 如果开启战斗过程随机滑动
             if random_click_swipt_enable:
                 self.random_click_swipt()
