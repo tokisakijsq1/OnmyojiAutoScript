@@ -984,3 +984,49 @@ invite_friend_name（VIP 路径），实际不可达，零影响；新号裸配�
   上游 challenge() 假设直达）；②新详情页右上角 X 是否标准粉叉 I_UI_BACK_RED（上游
   主动从 C_WQ_TRACE_ONE_CLOSE 换成粉叉=旁证）；③trace_one 的 y-40 魔法点击坐标落点；
   ④全部完成态金勾徽章 wq_done 仍是基线素材（仅收尾场景，seal 修好 后非关键路径）。
+
+## 31. oas1 道馆之夜三连卡死：确认→确定改版漏网鱼 + 调度器 exit(1)（2026-11-03/04）
+
+### 事故时间线（2026-11-03 晚，oas1）
+19:32 道馆启动 → 19:37:25 GameStuckError(馆主战共斗等待超时) → 19:42:01 GameStuckError(同)
+→ 19:46:21 击破馆主(第二阵容,目标已达成) → 19:46:55 **GameTooManyClickError:
+dokan_battle_quit_area**(胜利界面收尾点到左上返回 → "战斗进行中,返回集结将损失挑战次数"
+弹窗 → 旧素材不认 → 反复点返回) → 19:47:06 **`Task Dokan failed 3 or more times` →
+exit(1) 杀进程** → GUI 黄灯,用户手动重启。重启后 19:47 寮突又撞上"组队/进攻"弹窗无处理
++1 次 GameStuck(与合并无关,上游结构性空缺,先不改)。
+
+### 根因与处置
+1. **I_RYOU_DOKAN_QUIT_BATTLE_ENSURE 素材失配（fcad0fa8 已修）**：10 月弹窗按钮改版
+   "确认→确定"漏掉了道馆退出确认这个——旧"确认"字样 91x42 模板对新"确定"按钮仅
+   0.719<0.8，`quit_battle` 里现成的确认分支永不命中，落到迭代点返回按钮分支。已从实机
+   卡死截图重裁"确定"60x172 紧贴(668,408)，来源 1.000、无关截图最高 0.287 零误报，
+   roi_back 收窄到弹窗按钮区(358,380,565,120)。**quit_battle 代码分支本就存在，无需改码。**
+2. **调度器 exit(1) 改跳过+排期——已实现后按用户要求撤销（11-04）**：曾实现
+   （failed>=3 改推送+failure_record 清零+task_delay(success=False) 按 failure_interval
+   排期+continue），用户决定取消，已 reset 删除，**保持原行为：failed>=3 → 关模拟器+
+   exit(1) 杀进程+黄灯人工接管**。若将来重做：推送 → 清零计数 → task_delay(success=False)
+   → del_cached_property + continue 即可，思路已验证可行。
+3. **馆主战 random swipt 等待循环 stuck 白名单不满足**（19:37/19:42 两次）——**先不改**
+   （用户拍板），与共斗战斗时长相关。
+4. **RyouToppa "组队/进攻"弹窗无处理分支**——上游结构性空缺，卡死截图在
+   `log/error/1793706743089/`，素材裁图条件已备好，**先不改**（用户拍板）。
+
+### 恢复规则澄清（GUI 黄灯语义）
+- 单次 GameStuck/TooManyClick：自动保存错误日志+截图（`log/error/<时间戳>`）→ 手机推送
+  → 10 秒后杀游戏重启 → 任务本轮放弃重跑。**自愈。**
+- 同一任务连续失败 3 次：杀进程+黄灯（调度跳过+排期改造已撤销，维持原行为）。
+- 黄灯/错误推送是每次出错都会亮的"标记"，不代表必须人工介入；真正需要人工的是
+  RequestHumanTakeover 与启动初始化失败。
+
+### 经验
+- "确认→确定"改版扫描的漏网案例：改版扫图清单要覆盖**每个任务的确认类弹窗**，
+  不能只扫主流程（Dokan quit_battle 是低频路径，漏了两个月）。
+- 模板裁剪 1:1 落盘，**目检用放大图、资产用原图**（本次差点把 3x 放大目检图当资产拷进库，
+  matchTemplate 直接报模板大于源区）。
+- json 条目删除用文本替换会留悬挂逗号，删完必须 `json.load` 回验。
+- **并发窗口下 reset --hard 血案（11-04 实际发生）**：撤销调度改造提交时只 stash 了
+  script_task.py 一个文件，没注意另一窗口此时在 BondlingFairyland **battle.py** 上也有
+  未提交改动，reset --hard 把它连同叠在上面的 docs 提交一并清掉；battle.py 未进过 git
+  对象库，fsck 无 dangling blob，**不可恢复**。教训：多窗口共用工作区时**禁止
+  reset --hard**，撤销已提交改动一律 `git revert`（反向提交，谁也不丢工作区）；
+  必须 reset 前先 `git status` 并对**全部**未提交文件逐个保护。
