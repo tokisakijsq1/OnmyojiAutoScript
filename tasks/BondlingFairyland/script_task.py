@@ -629,20 +629,33 @@ class ScriptTask(GameUi, GeneralInvite, GeneralRoom, BondlingBattle, SwitchSoul,
         单人 挑战， 主要是结契时的挑战
         """
         click_count = 0
+        fire_gone_timer = None  # 挑战按钮连续消失计时，防止把短暂动画误判成已进入战斗
         while 1:
             self.screenshot()
-            if not self.appear(self.I_BALL_FIRE, threshold=0.7):
-                break
-            if self.appear_then_click(self.I_BALL_FIRE, interval=1):
-                click_count += 1
-                continue
-            if click_count >= 6:
-                logger.error('Click fire failed')
-                logger.error('You might need to check your bondling number. It most possibly arrived to the max 500')
-                raise BondlingNumberMax
-            # 某些活动的时候出现 “选择共鸣的阴阳师”
-            if self.appear_then_click(self.I_UI_CONFIRM, interval=1):
-                continue
+            if self.appear(self.I_BALL_FIRE, threshold=0.7):
+                if fire_gone_timer is not None:
+                    # 按钮又出现了：刚才只是奖励界面淡出之类的动画，挑战没有生效，继续点
+                    logger.info('Ball fire button reappears, challenge not started, click again')
+                    fire_gone_timer = None
+                if self.appear_then_click(self.I_BALL_FIRE, interval=1):
+                    click_count += 1
+                    continue
+                if click_count >= 6:
+                    logger.error('Click fire failed')
+                    logger.error('You might need to check your bondling number. It most possibly arrived to the max 500')
+                    raise BondlingNumberMax
+                # 某些活动的时候出现 “选择共鸣的阴阳师”
+                if self.appear_then_click(self.I_UI_CONFIRM, interval=1):
+                    continue
+            else:
+                # 单帧消失不能作为挑战生效的判据：点击落在奖励界面淡出/按钮动画上时游戏没有响应，
+                # 按钮会短暂识别不到然后又出现。连续消失 2 秒才认为已进入战斗。
+                if fire_gone_timer is None:
+                    fire_gone_timer = Timer(2).start()
+                    continue
+                if fire_gone_timer.reached():
+                    logger.info('Ball fire button gone for 2s, battle is starting')
+                    break
 
     def wait_battle(self, wait_time: time) -> bool:
         """
