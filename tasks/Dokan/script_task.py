@@ -868,8 +868,13 @@ class ScriptTask(ExtendGreenMark, GameUi, SwitchSoul, DokanSceneDetector):
             self.screenshot()
             if self.appear(self.I_RYOU_DOKAN_CENTER_TOP):
                 break
+            # 2026-11-04: 退出确认弹窗新旧两版并存——战斗中返回为"确定"(新版式),
+            # 退出集结场景/奖励未领取退出为"确认"(旧版式,同位置), 任一命中即点击至消失
             if self.appear(self.I_RYOU_DOKAN_QUIT_BATTLE_ENSURE):
                 self.ui_click_until_disappear(self.I_RYOU_DOKAN_QUIT_BATTLE_ENSURE)
+                break
+            if self.appear(self.I_RYOU_DOKAN_QUIT_BATTLE_ENSURE_OLD):
+                self.ui_click_until_disappear(self.I_RYOU_DOKAN_QUIT_BATTLE_ENSURE_OLD)
                 break
             # 退出时,意外弹出"确认退出集结场景" 弹窗,导致卡住
             # 只能怀疑是上面两个appear的耗时 导致screenshot 过时导致错误点击

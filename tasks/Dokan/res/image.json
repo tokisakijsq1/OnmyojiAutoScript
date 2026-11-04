@@ -324,6 +324,15 @@
     "description": "战斗进行中返回集结确认弹窗确定按钮(2026-11-03实机截图重裁: 10月弹窗改版确认→确定, 旧确认字样模板0.719失配致quit_battle反复点返回卡死)"
   },
   {
+    "itemName": "ryou_dokan_quit_battle_ensure_old",
+    "roiFront": "696,401,91,42",
+    "roiBack": "358,380,565,120",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "res_ryou_dokan_quit_battle_ensure_old.png",
+    "description": "退出流程旧版确认弹窗按钮(2026-11-04实机三帧: 确认退出集结场景/退出后无法领取奖励确认退出两处均为此旧版确认按钮, 与新版确定弹窗并存, 与上一条并列检测任一命中即点)"
+  },
+  {
     "itemName": "ryou_dokan_exit_ensure",
     "roiFront": "678,395,125,56",
     "roiBack": "678,395,125,56",

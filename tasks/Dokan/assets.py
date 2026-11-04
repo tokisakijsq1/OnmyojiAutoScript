@@ -112,6 +112,9 @@ class DokanAssets:
 	I_RYOU_DOKAN_ABANDONED_TOPPA_CONTINUE = RuleImage(roi_front=(1020,220,260,120), roi_back=(1020,220,260,120), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_abandoned_toppa_continue.png")
 	# 道馆战斗界面 点击退出按钮后 弹出的确认按钮 (2026-11-03 重裁: 10月弹窗改版确认→确定, 旧"确认"字样模板0.719失配)
 	I_RYOU_DOKAN_QUIT_BATTLE_ENSURE = RuleImage(roi_front=(668,408,172,60), roi_back=(358,380,565,120), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_quit_battle_ensure.png")
+	# 同一退出流程的旧版"确认"弹窗按钮 (2026-11-04 实机三帧: "确认退出集结场景吗?"/"退出后将无法领取本次道馆突破奖励,确认退出?"
+	# 均为此旧版"确认"按钮@(696,401)91x42, 与新版"确定"弹窗并存, quit_battle 两模板并列检测任一命中即点)
+	I_RYOU_DOKAN_QUIT_BATTLE_ENSURE_OLD = RuleImage(roi_front=(696,401,91,42), roi_back=(358,380,565,120), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_quit_battle_ensure_old.png")
 	# 道馆退出确认 
 	I_RYOU_DOKAN_EXIT_ENSURE = RuleImage(roi_front=(678,395,125,56), roi_back=(678,395,125,56), threshold=0.8, method="Template matching", file="./tasks/Dokan/res/res_ryou_dokan_exit_ensure.png")
 	# 进入加油相关：道馆战报按钮 
