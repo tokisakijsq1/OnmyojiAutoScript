@@ -416,6 +416,15 @@ class ScriptTask(GameUi, GeneralInvite, GeneralRoom, BondlingBattle, SwitchSoul,
                     return False
             self.screenshot()
             cu, res, total = target_plate.ocr(self.device.image)
+            # 结契设置弹窗刚关闭的瞬间, 顶栏计数可能被关闭动画短暂遮挡/重置导致OCR误读
+            # (实测80/200被读成0/200直接结束任务), 计数为0时重试确认, 全部为0才判定没有盘子
+            if cu == 0 and cu + res == total:
+                for _ in range(3):
+                    sleep(1)
+                    self.screenshot()
+                    cu, res, total = target_plate.ocr(self.device.image)
+                    if not (cu == 0 and cu + res == total):
+                        break
             if cu == 0 and cu + res == total:
                 logger.warning(f'No plate number, exit')
                 return False
@@ -424,6 +433,14 @@ class ScriptTask(GameUi, GeneralInvite, GeneralRoom, BondlingBattle, SwitchSoul,
         def check_ball_number():
             self.screenshot()
             cu, res, total = self.O_B_BALL_NUMBER.ocr(self.device.image)
+            # 同check_plate_number: 弹窗刚关闭瞬间的单次误读需要重试确认
+            if cu == 0 and cu + res == total and total == 99:
+                for _ in range(3):
+                    sleep(1)
+                    self.screenshot()
+                    cu, res, total = self.O_B_BALL_NUMBER.ocr(self.device.image)
+                    if not (cu == 0 and cu + res == total and total == 99):
+                        break
             if cu == 0 and cu + res == total and total == 99:
                 logger.warning(f'No ball number, exit')
                 return False
