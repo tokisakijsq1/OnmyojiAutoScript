@@ -54,15 +54,6 @@
     "description": "mda_challenge"
   },
   {
-    "itemName": "mda_summon",
-    "roiFront": "1088,570,150,150",
-    "roiBack": "1080,540,190,180",
-    "threshold": "0.8",
-    "method": "Template matching",
-    "imageName": "mda_summon.png",
-    "description": "mda_summon"
-  },
-  {
     "itemName": "mda_banner_go",
     "roiFront": "99,212,50,52",
     "roiBack": "0,190,545,300",

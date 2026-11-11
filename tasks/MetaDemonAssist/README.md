@@ -35,7 +35,7 @@
 ## 页面图（page.py）
 
 - `page_mda_event` 祸至无日页（标题模板+超鬼王竖排按钮 any_of）
-- `page_mda_huozhu` 祸主降临页（标题模板+挑战/召唤按钮 any_of）
+- `page_mda_huozhu` 祸主降临页（标题模板+挑战按钮 any_of；标题在无鬼王空态也常驻）
 - `page_main ⇄ page_mda_event`（右侧栏图标+I_TOGGLE_BUTTON）`⇄ page_mda_huozhu`（超鬼王竖排按钮）
 - 注：两页标题几乎同位同风格（祸至无日/祸主降临），**OCR keyword 会因竖排逐字兜底互相误报，只能用模板判页**
   （交叉得分 0.62 vs 阈值 0.8，实测可区分）。
@@ -49,7 +49,6 @@
 | mda_title_huozhu / mda_title_event | 两页标题 | 1.0，互判 0.62x |
 | mda_back | 左上返回（两页同款同位，一个模板通吃） | 1.0 |
 | mda_challenge | 挑战按钮（MetaDemon 旧素材 0.52 已失效） | 1.0 / 无 >0.6 误报 |
-| mda_summon | 召唤鬼王大圆按钮（无好友鬼王态） | 1.0 / 对挑战钮 0.686 |
 | mda_banner_go | 横幅立即前往圆钮 | 1.0 / 零误报 |
 | mda_buff_off / mda_buff_on | 2.5 倍勾选双态 | OFF 1.0；**ON 来自用户特写裁剪，未实机验证** |
 | 珠子计数 | 亮珠 RGB(228,114,35)，8x12，间距 11px，槽1珠行 y450/槽2 y579 | 4星卡=4、结算卡=3、空=0、合成 5/6 星=5/6 全对 |

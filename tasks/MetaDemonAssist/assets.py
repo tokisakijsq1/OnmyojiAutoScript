@@ -23,8 +23,6 @@ class MetaDemonAssistAssets:
 	I_MDA_BACK = RuleImage(roi_front=(16,6,62,56), roi_back=(5,2,95,75), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_back.png")
 	# 挑战按钮(右下大按钮, 有可挑战对象时显示)
 	I_MDA_CHALLENGE = RuleImage(roi_front=(1130,566,124,124), roi_back=(1080,540,190,180), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_challenge.png")
-	# 召唤鬼王大圆按钮(好友发现无鬼王时右下显示)
-	I_MDA_SUMMON = RuleImage(roi_front=(1088,570,150,150), roi_back=(1080,540,190,180), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_summon.png")
 	# 庭院邀请横幅上的"立即前往"圆按钮
 	I_MDA_BANNER_GO = RuleImage(roi_front=(99,212,50,52), roi_back=(0,190,545,300), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_banner_go.png")
 	# 2.5倍伤害勾选框 未勾选态(暗色空心圆, 来源截图2/4)

@@ -115,8 +115,7 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
                 return
             clicked = False
             if (self.appear(self.I_MDA_TITLE_HUOZHU) or self.appear(self.I_MDA_CHALLENGE)
-                    or self.appear(self.I_MDA_SUMMON) or self.appear(self.I_MDA_TITLE_EVENT)
-                    or self.appear(self.I_MDA_GOTO_HUOZHU)):
+                    or self.appear(self.I_MDA_TITLE_EVENT) or self.appear(self.I_MDA_GOTO_HUOZHU)):
                 self.click(self.I_MDA_BACK)
                 clicked = True
             elif self.appear(self.I_UI_BACK_RED):
