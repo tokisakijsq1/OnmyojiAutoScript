@@ -48,16 +48,29 @@ hya_invite_friend_name: str = Field(default='', description='hya_invite_friend_n
 
 按字段在文件中已有的顺序位置插入同样的两条（`字段名` + `字段名_help`）。
 
-### 3. 生效方式
+### 3. 生效方式（2026-11-11 实测更新）
 
-- 后端 `_ZH_CN_TRANSLATIONS` 是进程级缓存（只加载一次），**需要重启 oasx / server 进程**。
-- 前端每次加载页面都会重新拉取 `/home/additional_translate`，刷新网页即可。
+- **help/description**：后端 `_translate_text` 按文件 mtime 热加载（`config_model.py
+  _load_zh_cn_translations`），改完附加表即生效，无需重启后端。
+- **字段 label / 分组名 / 左侧菜单名**：前端 oasx 只在**页面加载时**拉一次
+  `GET /home/additional_translate`，之后一直用内存里的旧表——改完附加表后
+  **必须刷新网页（F5）/重开 oasx.exe** 才生效。
+- 主表 `module/config/i18n/zh-CN.json` 会被运行中的 oasx 回写覆盖（gitignore 的
+  编译产物），手工加的键会消失，属正常现象，以附加表为准，别在主表找补。
 
 ## 踩坑记录
 
 - 2026-09 百鬼夜行新增 `hya_invite_friend_name` 时只加了
   `module/config/i18n/zh-CN.json`，结果 oasx 界面显示原始 key。
   根因即上表：界面走的是 `assets/i18n/zh-CN.json` 附加表 + exe 内嵌快照。
+- **2026-11-11 超鬼王协助（MetaDemonAssist）：加完附加表后 oasx 界面 label/菜单仍显示
+  英文，但 help 文本中文正常——不是翻译没加上，是前端页面没刷新**。定位方法：
+  `python -c` 用 urllib 直连 `http://127.0.0.1:<端口>/home/additional_translate`
+  （端口看 server.py 启动日志；curl 会被 Clash 代理拦 127.0.0.1 返回 HTTP 000，
+  要加 `--noproxy "*"` 或干脆用 python）。API 返回含新键 = 后端正常，刷新前端即可；
+  不含 = 附加表没改对。注意后端下发的 `title` 其实已是中文（`_translate_text`
+  热加载），前端 label 不采用它、用自己的表渲染——"title 中文 + label 英文"并存
+  正是"前端旧表"的症状。
 - 后端 `script_task()` 接口返回的 `title` 是 pydantic 自动生成的
   Title Case（如 `Hya Invite Friend Name`），前端并不用它做展示，
   前端是拿**字段名 key** 自己查表翻译的，所以 key 必须写成字段名原样（全小写下划线）。
@@ -69,5 +82,5 @@ hya_invite_friend_name: str = Field(default='', description='hya_invite_friend_n
 
 - [ ] `tasks/.../config.py`：字段 + `description='xxx_help'`
 - [ ] `assets/i18n/zh-CN.json`：加 `xxx` 和 `xxx_help` 两条
-- [ ] `module/config/i18n/zh-CN.json`：加同样的两条
-- [ ] 重启 oasx / server 进程，刷新网页
+- [ ] `module/config/i18n/zh-CN.json`：加同样的两条（会被回写洗掉，以附加表为准）
+- [ ] 刷新 oasx 网页（label/菜单名生效的条件；help 无需刷新）
