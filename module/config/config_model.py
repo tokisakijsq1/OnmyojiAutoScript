@@ -98,6 +98,7 @@ from tasks.KittyShop.config import KittyShop
 from tasks.DyeTrials.config import DyeTrials
 from tasks.BudokaiTournament.config import BudokaiTournament
 from tasks.XianShiYaoYue.config import XianShiYaoYue
+from tasks.MetaDemonAssist.config import MetaDemonAssist
 # ----------------------------------------------------------------------------------------------------------------------
 
 # 肝帝专属---------------------------------------------------------------------------------------------------------------
@@ -191,6 +192,7 @@ class ConfigModel(ConfigBase):
     guild_activity_monitor: GuildActivityMonitor = Field(default_factory=GuildActivityMonitor)
     budokai_tournament: BudokaiTournament = Field(default_factory=BudokaiTournament)
     xian_shi_yao_yue: XianShiYaoYue = Field(default_factory=XianShiYaoYue)
+    meta_demon_assist: MetaDemonAssist = Field(default_factory=MetaDemonAssist)
 
     def __init__(self, config_name: str=None) -> None:
         """

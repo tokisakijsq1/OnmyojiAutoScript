@@ -1,0 +1,29 @@
+[
+  {
+    "itemName": "mda_banner",
+    "roiFront": "0,190,545,300",
+    "roiBack": "0,190,545,300",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "鬼王",
+    "description": "mda_banner"
+  },
+  {
+    "itemName": "mda_card",
+    "roiFront": "140,368,175,265",
+    "roiBack": "140,368,175,265",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "剩余时间",
+    "description": "mda_card"
+  },
+  {
+    "itemName": "mda_resource",
+    "roiFront": "1040,20,170,44",
+    "roiBack": "1040,20,170,44",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "mda_resource"
+  }
+]

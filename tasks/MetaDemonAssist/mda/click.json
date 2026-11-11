@@ -1,0 +1,20 @@
+[
+  {
+    "itemName": "mda_buff",
+    "roiFront": "1115,514,24,24",
+    "roiBack": "1115,514,24,24",
+    "description": "mda_buff"
+  },
+  {
+    "itemName": "mda_card_1",
+    "roiFront": "60,380,100,80",
+    "roiBack": "60,380,100,80",
+    "description": "mda_card_1"
+  },
+  {
+    "itemName": "mda_card_2",
+    "roiFront": "60,509,100,80",
+    "roiBack": "60,509,100,80",
+    "description": "mda_card_2"
+  }
+]

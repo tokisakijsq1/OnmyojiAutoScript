@@ -21,6 +21,7 @@ class ConfigManual:
         > Secret > WeeklyTrifles > MysteryShop > Duel > FindJade
         > TrueOrochi > RichMan
         > MetaDemon > FloatParade > Quiz > KittyShop > DyeTrials > MemoryScrolls
+        > MetaDemonAssist
         """
 
     DEVICE_OVER_HTTP = False
