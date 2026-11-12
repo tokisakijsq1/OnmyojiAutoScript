@@ -1274,3 +1274,19 @@ gitcode 镜像(de497a3f, 11-03)当时已落后 GitHub dev 两三天，今后 fet
   mda_/mdp_ 键已补入本地文件即刻生效，不会产生合并冲突。
 - 验证脚本归档在 `log/mda_fix_20261112/`（measure_false/screen_corpus/validate_fix/
   check_imports/smoke_postmerge），复跑口径见各文件头注释。
+
+### 35.1 补：Provider 等击杀 Wait too long——点击清空白名单 + 首拍前的空窗（2026-11-12 夜）
+
+实机（小号7）：等击杀 ~125s 必炸 `GameStuckError: Wait too long`，与 `mdp_kill_timeout=30分钟`
+无关。机制（device.py）：
+- `stuck_timer=Timer(60, count=60)`——**count 按检查次数计**：慢轮询循环（截图+OCR+sleep2
+  ≈2.1s/轮）下 60 次≈125s 才到点，别拿 60s 硬套时间线；`stuck_timer_long=300s` 是硬顶，
+  到点白名单也没用（`stuck_record_check` 里 `reached_long` 直接跳过白名单）。
+- **每次点击经 handle_control_check → stuck_record_clear：白名单清空 + 双计时器归零**。
+- 日志 `Waiting for set()` 打印的就是 detect_record——**set() 空 = 白名单空**，一眼定位。
+- Provider 等击杀循环的 280s 保活拍只负责"280s 之后"，邀请发送那次点击到首拍之间存在
+  ~125s 空窗 → 必炸。修法（Provider 类内 `_keep_alive`）：**循环入口先打一拍预登记 'PAUSE'**，
+  周期拍续命（每拍归零双计时器，280s<300s 可无限续），奖励结算点击后立即补拍
+  （那次点击同样清白名单）。与 Assist `_wait_banner` 入口预登记同范式。
+- 通用教训：**任何长安静循环，入口先 `stuck_record_clear + add(豁免)`，周期拍 < 300s；
+  只写周期拍不写入口拍 = 首拍前必有空窗**。

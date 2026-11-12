@@ -47,6 +47,10 @@ LIST_READY_MIN_CHARS = 2
 MAX_SWIPES = 4
 # 选中标记确认轮数(每轮间隔确认, 给选中动画留渲染时间)
 SELECT_CONFIRM_RETRY = 3
+# 长等待保活周期(秒): 等击杀期间无点击, 周期性清卡死白名单并登记 PAUSE 豁免
+# (device.py: 短阈值60次检查≈本循环2.1s/轮→~125s即查白名单, 300s为硬顶;
+#  保活拍会同时归零两个计时器, 周期<300s 即可无限续)
+KEEP_ALIVE_CYCLE = 280
 
 # ---------------- 召唤队列卡识别(与排序无关, 数星标) ----------------
 # 弹窗卡按"拥有的星级种类"压缩排列(缺的星级不留空位), 固定坐标不可用(2026-11-12 用户实测);
@@ -277,9 +281,14 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
             # 等好友击杀(鬼王消失): 空面具出现 且 卡片OCR读空, 连续 GONE_CONFIRM_FRAMES 帧一致才算
             # (单帧证据坑: 邀请弹窗关闭动画/结算浮层会短暂遮挡卡片区造成假消失)
             timer = Timer(timeout).start()
-            keep_alive = Timer(280).start()
+            keep_alive = Timer(KEEP_ALIVE_CYCLE).start()
             log_timer = Timer(30).start()
             gone_frames = 0
+            # 循环入口先打一拍保活(修 2026-11-12 实机 GameStuckError: Wait too long):
+            # 邀请发送那次点击经 handle_control_check 清空了卡死白名单, 而首个周期拍要到
+            # 280s 才补登 'PAUSE'——空窗期内短阈值(60次检查≈本循环2.1s/轮≈125s)必炸。
+            # 入口先登记让白名单在安静期开始前就位, 之后周期拍续命。
+            self._keep_alive(keep_alive)
             while not timer.reached():
                 self.screenshot()
                 if log_timer.reached():
@@ -288,11 +297,10 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
                                 f'empty={self.appear(self.I_MDP_EMPTY)}')
                     log_timer.reset()
                 if keep_alive.reached():
-                    self.device.stuck_record_clear()
-                    self.device.stuck_record_add('PAUSE')
-                    keep_alive.reset()
+                    self._keep_alive(keep_alive)
                 if self.ui_reward_appear_click():
-                    keep_alive.reset()
+                    # 奖励结算的那次点击同样会清空白名单, 立即补登记再继续
+                    self._keep_alive(keep_alive)
                     gone_frames = 0
                     continue
                 if not self.appear(self.I_MDP_INVITE):
@@ -306,6 +314,14 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
                 sleep(2)
             logger.warning(f'Kill wait timeout (round {round_no}), re-invite')
         return False
+
+    def _keep_alive(self, keeper: Timer) -> None:
+        """长等待保活一拍: 清卡死白名单并登记 PAUSE 豁免(同超鬼王协助守候范式, 本任务类内自有)。
+        每次点击都会经 handle_control_check 清掉白名单并归零计时器,
+        安静等待开始前与每个保活周期都要重新登记。"""
+        self.device.stuck_record_clear()
+        self.device.stuck_record_add('PAUSE')
+        keeper.reset()
 
     def _invite_friend(self, friend: str, round_no: int) -> bool:
         """点集结 -> 弹窗内选好友 -> 点邀请 -> 等弹窗关闭。失败返回 False(调用方收工)。
