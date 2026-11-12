@@ -225,6 +225,12 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
 
         # 进入战斗流程
         self.device.stuck_record_add('BATTLE_STATUS_S')
+        # 长时间既没有邀请弹窗也不在房间, 视为队长已结束/跑路, 自己收工退出任务
+        # (2026-11-12: 大号打满30次先结束, 小号异常重启后被重新入队, 在这里死等邀请,
+        #  且因 stuck_record_add('BATTLE_STATUS_S') 卡死窗口放宽到300秒, 变成约5分钟一次的重启死循环)
+        invite_wait = self.config.evo_zone.invite_config.wait_time
+        idle_limit = timedelta(minutes=invite_wait.minute, seconds=invite_wait.second)
+        last_active = datetime.now()
         while 1:
             self.screenshot()
 
@@ -240,9 +246,11 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
                 break
 
             if self.check_then_accept():
+                last_active = datetime.now()
                 continue
 
             if self.is_in_room():
+                last_active = datetime.now()
                 self.device.stuck_record_clear()
                 if self.wait_battle(wait_time=self.config.evo_zone.invite_config.wait_time):
                     self.run_general_battle(config=self.config.evo_zone.general_battle_config)
@@ -250,18 +258,37 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
                     break
             # 队长秒开的时候，检测是否进入到战斗中
             elif self.check_take_over_battle(False, config=self.config.evo_zone.general_battle_config):
+                last_active = datetime.now()
                 continue
 
+            if datetime.now() - last_active >= idle_limit:
+                logger.warning('No invite for a long time, assume leader finished')
+                break
+
+        # 收尾: 庭院/探索即完成; 房间/战斗则退出; 陌生页面点左上角返回往回走
+        # (2026-11-12: 退出房间后落在探索大地图, 四个判据全不匹配, 循环零点击60秒触发卡死重启)
+        idle_rounds = 0
+        total_rounds = 0
         while 1:
+            self.screenshot()
             # 有一种情况是本来要退出的，但是队长邀请了进入的战斗的加载界面
             if self.appear(self.I_GI_HOME) or self.appear(self.I_GI_EXPLORE):
                 break
+            total_rounds += 1
+            progressed = False
             # 如果可能在房间就退出
             if self.exit_room():
-                pass
+                progressed = True
             # 如果还在战斗中，就退出战斗
             if self.exit_battle():
-                pass
+                progressed = True
+            # 陌生页面(如探索大地图)点左上角返回往回走
+            if not progressed and self.appear_then_click(self.I_BACK_YELLOW, interval=1):
+                progressed = True
+            idle_rounds = 0 if progressed else idle_rounds + 1
+            if idle_rounds >= 5 or total_rounds >= 20:
+                logger.warning('Exit loop made no progress, goto main as fallback')
+                break
 
         self.goto_page(page_main)
         return True

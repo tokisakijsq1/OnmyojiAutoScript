@@ -1108,3 +1108,32 @@ fcad0fa8 修完当晚，次日道馆又卡同一条退出流程——这次弹�
   的"邀请"按钮是像素级同款（1.0000）**，再遇"邀请"类按钮先拿 gi_invite_ensure 试一把再裁新图。
   选中态金卡裁"纯金底区"（避开名字头像）才能跨好友通用；好友名 OCR 行距 95px 双列 roi 见
   MetaDemonProvider/assets.py。
+
+## 33. EvoZone 队员收尾死角：判到结束≠能结束，退出后的"陌生页面"要有出口（2026-11-12）
+
+大号拉小号打满 30 场，小号自己数到 30、自己退房（日志 `EvoZone count limit out`），**结束判定是生效的**——
+挂掉的是退出之后的收尾：退房→确认→退组队页后落在**探索大地图**，`run_member` 收尾循环只认
+庭院 `I_GI_HOME`/探索章节页 `I_GI_EXPLORE`/房间/战斗 4 张脸，大地图全不匹配 → 循环零点击 60 秒 →
+GameStuckError 强制重启。重启后 `current_count`（内存变量）归零、异常路径不走 `set_next_run`/TaskEnd、
+EvoZone 留在 pending 队列 → 从头再跑变回"等邀请"；等待循环无点击且 `stuck_record_add('BATTLE_STATUS_S')`
+把卡死窗口放宽到 300 秒（device.py:34-36）→ **约 5 分钟一次的"重启→再等"死循环**，表象即"小号还在等邀请"。
+
+- **判到结束 ≠ 能结束**：count-out 只保证 break 出战斗循环，任务收尾（退房/退出/回庭院）任一步卡死
+  都会经异常重启把"已结束"的事实抹掉。收尾循环必须对未知画面有出口。
+- **收尾循环兜底范式**（EvoZone run_member 已加）：逐轮记"无进展轮数"，不匹配任何已知画面时点
+  `I_BACK_YELLOW` 往回走；连续 5 轮无进展或总 20 轮就 break，交给 `goto_page(page_main)` 导航兜底。
+  交给导航前先离线验证页面识别与导航边在目标截图上成立（见下）。
+- **队员侧"死等邀请"要有超时**：不在房间、无邀请弹窗、无战斗可接管的空闲时长超过
+  `invite_config.wait_time` 就视为队长已结束/跑路 → 走正常收尾 + `set_next_run` 自行收工。
+  没有它，任何"大号先结束"的场景（含异常重启后重新入队）都会变成 5 分钟一重启的死循环。
+- **同名模板不一定通用，导航兜底必须逐张实测**：大地图左上角 "<" 对 `I_BACK_YELLOW`(GI 版) **不匹配**
+  （0.8 阈值），但对全局 `I_UI_BACK_YELLOW` 1.0 命中——收尾兜底点击可能空转，真正兜底的是
+  `goto_page`；而 `goto_page` 可行是因为事发截图上 `I_CHECK_EXPLORATION` 匹配（页面识别出
+  `page_exploration`）且 `page_exploration.connect(page_main, I_UI_BACK_YELLOW)` 边存在
+  （default_pages.py:220）。**三件事（识别、边、边上的按钮模板）都要拿真实事故截图离线验证。**
+- **离线验证模板记得 BGR2RGB**（第 7 节老坑）：`cv2.imread` → `cvtColor(BGR2RGB)` 再 `rule.match(img)`，
+  本次实测 `I_CHECK_EXPLORATION`/`I_UI_BACK_YELLOW` True、`I_BACK_YELLOW`/`I_GI_HOME`/`I_GI_EXPLORE` False。
+- 同构隐患未动（待实机验证 EvoZone 后照搬）：Orochi/FallenSun/EternitySea 等任务的 run_member
+  是同一套收尾+死等结构，同样的死角大概率同样存在。
+- 相关文件：`tasks/EvoZone/script_task.py`（run_member 两处）、事发错误截图
+  `log/error/1794471207146/`（探索大地图 + 60 秒卡死现场）。**两处修复未实机验证。**
