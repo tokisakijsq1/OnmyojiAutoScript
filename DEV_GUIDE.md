@@ -1221,3 +1221,54 @@ MetaDemonProvider（召唤+集结邀请+等击杀）首次实机 17:12/17:15/17:
 **顺带发现（独立问题，未修，观察项）**：老夏 MetaDemon 19:25 `GameTooManyClickError:
 MD_MD_BATTLE_FAILURE`——其模板（412,105）今天没被换过、进程无补丁、同代码 18:18 成功过，
 是败局结算点击不推进的游戏侧瞬态，重跑自愈。若复发再按"败局结算多一层浮层"排查。
+
+## 35. 上游切仓 nearaura + 51 提交合并 + 超鬼王两任务自包含重构（2026-11-12）
+
+### 上游已切仓：runhey 被封，官方备份仓 nearaura
+
+runhey 账号 2026-11-08 被 GitHub 封禁（无邮件通知），官方临时备份仓 =
+**https://github.com/nearaura/OnmyojiAutoScript**（README 自述，历史与原仓连续）。
+本仓库 origin remote 已 set-url 指向它，失效的 runhey `upstream` remote 已删。
+gitcode 镜像(de497a3f, 11-03)当时已落后 GitHub dev 两三天，今后 fetch 一律走新 origin。
+
+### 合并裁决记录（e602ff60，51 提交，冲突 29 文件）
+
+- **MetaDemon 原版被上游大改**（公开共享鬼王识别 md_boos_public/battle_boss 迁 battle_wait
+  策略钩子/胜利界面识别循环/auto_shared_boss 新配置）：代码+config+素材**整体取上游**；
+  fire 系 4png+gift_box+Screenshots_a2~a5 上游已删随删；本地 0fc20ec7 的 11-11 换图批次被
+  上游 11-10/11-11 批次取代（md_md_battle_failure 对真实败局截图复验 0.9972）。
+  **上游把主体规则挪进 image_2025.json、image.json 只留战斗结算两张**——annotator 工具保存
+  仍会写 image.json，两文件并存正常（extractor 扫全目录）。
+- ActivityShikigami/assets.py **取本地**（磐长故地重做版；上游 2 行只是调其自家旧布局 roi）。
+- 6 个 json(main16/cb1-3/gw/kekkai_a/realm/gate1) 取上游（本地侧仅 7e6ec531 重建格式）。
+- i18n zh-CN.json 取本地（超集）。
+- **module/atom/image.py：上游把搜索区外扩改为 RuleImage.__init__ 时统一 expand_roi(+2px)**，
+  本地 ROI_MATCH_PAD 桌面开关机制被替换（全仓无残留引用）。所有模板 roi_back 初始化后即
+  外扩 2px——**离线验证脚本里硬编码 roi_back 断言要按外扩后的值写**（如 I_FALSE 断言
+  (411,122,104,104)）。
+- 合并后审计固定动作全过：全任务 import 冒烟 + PageRegistry 全页扫描 + assets.py 重复定义
+  grep=0 + 败局/选卡离线复验。
+
+### 超鬼王协助/提供者自包含重构（b071a54e/0de62737）
+
+- Provider 此前唯一跨任务依赖 = import 协助的 page_mda_huozhu（README 自认"复用页面图"）。
+  重构后：**页判据素材 6 张字节拷贝为 mdp_ 副本 + 自有 page.py（key 用 page_mdp_*，
+  PageRegistry 同 key 会覆盖，两任务并存必须 key 异名）**，零跨新任务依赖。
+- **import 卫生检查**（log/mda_fix_20261112/check_imports.py，AST 级不看注释）：
+  Provider 禁 import MetaDemonAssist/MetaDemon；两新任务外部依赖仅
+  tasks.Component.*/tasks.GameUi/module.* 白名单（原版 MetaDemon 的 Restart/
+  ActivityShikigami 引用是上游既有，白名单放行）。
+- **邀请链路时序对齐百鬼夜行范式**（hya_slave.py `_invite_specific_friend`/
+  `_scroll_friend_list`/`_find_friend_click`），修 Provider 实机"点完集结后 OCR 时间太短"：
+  1) **列表就绪等待**：弹窗框出现≠列表渲染完成，沉降 1s 后 OCR 轮询到非空名单再选人；
+  2) **滑动有效性校验**：滑动前后双列名单对比，吞滑=没翻页（游戏偶尔吞滑动，盲滑会空翻到底）；
+  3) 点中好友后 sleep(1) 再查选中标记（0.4s 连点无间隔是实机事故第二根因）。
+  该范式通用：**任何"点开弹窗→OCR 里面的列表"都该走 就绪等待+翻页校验+点击留间隔 三件套**。
+- Assist 重写=结构整理（常量归拢/排期统一/去魔法数），行为零变化；I_FALSE shadowing 原样。
+
+### 其他
+
+- `module/config/i18n/*.json`（i18n 第二张表）在 .gitignore 里（运行时文件不入库），
+  mda_/mdp_ 键已补入本地文件即刻生效，不会产生合并冲突。
+- 验证脚本归档在 `log/mda_fix_20261112/`（measure_false/screen_corpus/validate_fix/
+  check_imports/smoke_postmerge），复跑口径见各文件头注释。
