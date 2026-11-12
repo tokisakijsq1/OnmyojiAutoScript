@@ -1237,8 +1237,10 @@ gitcode 镜像(de497a3f, 11-03)当时已落后 GitHub dev 两三天，今后 fet
   策略钩子/胜利界面识别循环/auto_shared_boss 新配置）：代码+config+素材**整体取上游**；
   fire 系 4png+gift_box+Screenshots_a2~a5 上游已删随删；本地 0fc20ec7 的 11-11 换图批次被
   上游 11-10/11-11 批次取代（md_md_battle_failure 对真实败局截图复验 0.9972）。
-  **上游把主体规则挪进 image_2025.json、image.json 只留战斗结算两张**——annotator 工具保存
-  仍会写 image.json，两文件并存正常（extractor 扫全目录）。
+  **上游把主体规则挪进 image_2025.json、image.json 只留战斗结算两张**——⚠️ 若将来再用标注
+  工具保存 GameUi 任务，工具会重建整份 page/image.json，与拆分的 image_main/exploration/
+  act_list/town.json 并存 → 31 个重复定义复发（本次 953649ed 删的就是它）。届时要么清空
+  image.json 只留新改的条目、要么删拆分文件，二者必须二选一。
 - ActivityShikigami/assets.py **取本地**（磐长故地重做版；上游 2 行只是调其自家旧布局 roi）。
 - 6 个 json(main16/cb1-3/gw/kekkai_a/realm/gate1) 取上游（本地侧仅 7e6ec531 重建格式）。
 - i18n zh-CN.json 取本地（超集）。
