@@ -173,7 +173,7 @@
   {
     "itemName": "check_mall_purple",
     "imageName": "page_check_mall_purple.png",
-    "roiFront": "231,455,131,78",
+    "roiFront": "231,455,86,75",
     "roiBack": "201,432,185,121",
     "method": "Template matching",
     "threshold": 0.8,
