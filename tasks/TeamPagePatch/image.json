@@ -1,0 +1,11 @@
+[
+  {
+    "itemName": "check_team2",
+    "roiFront": "32,585,82,65",
+    "roiBack": "0,563,148,139",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "page_check_team2.png",
+    "description": "check_team2"
+  }
+]
