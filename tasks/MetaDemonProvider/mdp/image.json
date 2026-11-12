@@ -37,11 +37,29 @@
   },
   {
     "itemName": "mdp_selected",
-    "roiFront": "832,292,92,58",
-    "roiBack": "640,180,310,350",
+    "roiFront": "598,184,38,30",
+    "roiBack": "580,180,360,340",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "mdp_selected.png",
     "description": "mdp_selected"
+  },
+  {
+    "itemName": "mdp_queue",
+    "roiFront": "1090,458,165,47",
+    "roiBack": "1050,440,210,90",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_queue.png",
+    "description": "mdp_queue"
+  },
+  {
+    "itemName": "mdp_summon_now",
+    "roiFront": "545,448,190,44",
+    "roiBack": "480,430,330,110",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_summon_now.png",
+    "description": "mdp_summon_now"
   }
 ]

@@ -213,6 +213,8 @@
   "meta_demon_provider_config": "超鬼王提供者设置",
   "provider_friend_name": "集结邀请的好友名",
   "provider_friend_name_help": "召唤鬼王后点集结邀请该好友协助击杀（填开超鬼王协助的账号的游戏好友名，须与游戏内显示完全一致）；留空任务直接报错不运行",
+  "mdp_target_star": "指定召唤的鬼王星级",
+  "mdp_target_star_help": "0=不指定，直接点召唤鬼王按钮；4/5/6=点全部队列打开召唤队列弹窗，点击对应星级的裂变之眼后点立即召唤（排序下拉保持默认星级从高到低）",
   "mdp_kill_timeout": "等待击杀超时(分钟)",
   "mdp_kill_timeout_help": "集结邀请后等待好友击杀鬼王的最长时间，超时重新集结邀请一次；第二次仍超时收工（鬼王约37分钟后自然逃跑）",
   "mdp_max_duration": "单次运行上限(分钟)",

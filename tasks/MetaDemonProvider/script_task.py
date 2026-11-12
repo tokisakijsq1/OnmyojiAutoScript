@@ -116,18 +116,54 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
 
     def _summon(self) -> bool:
         """召唤鬼王并等待出现在自己发现区; SUMMON_RETRY 次失败=无法召唤(票尽等), 返回 False。"""
+        star = self.conf.meta_demon_provider_config.mdp_target_star
         for attempt in range(1, SUMMON_RETRY + 2):
             self.screenshot()
             if self.ocr_appear(self.O_MDP_CARD) or self.appear(self.I_MDP_RALLY):
                 return True
             ticket = self._read_ticket()
-            logger.info(f'Summon ghost king (attempt {attempt}), ticket={ticket}')
-            self.ui_click_until_disappear(self.I_MDP_FIND, interval=2.5)
+            logger.info(f'Summon ghost king (attempt {attempt}), ticket={ticket}, target_star={star or "default"}')
+            if star:
+                if not self._summon_by_queue(star):
+                    sleep(2)
+                    continue
+            else:
+                self.ui_click_until_disappear(self.I_MDP_FIND, interval=2.5)
             if self.wait_until_appear(self.I_MDP_RALLY, wait_time=10):
                 logger.info('Ghost king summoned')
                 return True
             sleep(2)
         logger.warning('Summon failed repeatedly, no more summonable ghost king')
+        return False
+
+    def _summon_by_queue(self, star: int) -> bool:
+        """指定星级召唤: 全部队列 -> 召唤队列弹窗点对应星级裂变之眼 -> 立即召唤 -> 等2s回召唤界面。
+        排序下拉保持默认'星级从高到低': 槽位0=6星, 槽位1=5星, ... 槽位5=1星 (眼行x: 393+97*i)。"""
+        self.ui_click(self.I_MDP_QUEUE, stop=self.I_MDP_SUMMON_NOW, interval=2, timeout=10)
+        if not self.wait_until_appear(self.I_MDP_SUMMON_NOW, wait_time=4):
+            logger.warning('Summon queue popup did not open')
+            return False
+        slot = 6 - star
+        xs = [393, 493, 592, 690, 790, 882]
+        if not (0 <= slot < len(xs)):
+            logger.warning(f'Star {star} has no queue slot')
+            return False
+        logger.info(f'Click eye slot {slot} (star {star}) at ({xs[slot]},355)')
+        self.device.click(x=xs[slot], y=355, control_name=f'mdp_eye_slot{slot}')
+        sleep(0.6)
+        ensured = False
+        timer = Timer(8).start()
+        while not timer.reached():
+            self.screenshot()
+            if self.appear_then_click(self.I_MDP_SUMMON_NOW, interval=1.5):
+                ensured = True
+                continue
+            if ensured and not self.appear(self.I_MDP_SUMMON_NOW):
+                logger.info('Summon by queue done, wait 2s back to summon page')
+                sleep(2)
+                return True
+        logger.warning('Summon-now popup never closed')
+        self._close_invite_popup()
         return False
 
     def _read_ticket(self):
@@ -150,9 +186,15 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
             # (单帧证据坑: 邀请弹窗关闭动画/结算浮层会短暂遮挡卡片区造成假消失)
             timer = Timer(timeout).start()
             keep_alive = Timer(280).start()
+            log_timer = Timer(30).start()
             gone_frames = 0
             while not timer.reached():
                 self.screenshot()
+                if log_timer.reached():
+                    logger.info(f'Waiting kill (round {round_no}): '
+                                f'remain={int(timer.remain())}s card_ocr={self.ocr_appear(self.O_MDP_CARD)} '
+                                f'empty={self.appear(self.I_MDP_EMPTY)}')
+                    log_timer.reset()
                 if keep_alive.reached():
                     self.device.stuck_record_clear()
                     self.device.stuck_record_add('PAUSE')
