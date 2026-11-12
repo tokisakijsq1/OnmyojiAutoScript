@@ -7,6 +7,11 @@
 本任务只处理**好友发现**的鬼王（协助），两者可同时启用。UI 布局与 MetaDemon 同源（卡槽/按钮位置基本一致），
 但素材均按 2026-11 当前活动重新裁剪验证（MetaDemon 的 `md_battle_demon` 对当前挑战按钮仅 0.52，不可复用）。
 
+**自包含（2026-11-12 重构）**：页面图/素材/战斗判据全部任务内闭环，零跨任务依赖（AST 级检查
+`log/mda_fix_20261112/check_imports.py` 护航），与 MetaDemonProvider 互不依赖，仅共享可复用组件
+（GameUi/SwitchSoul/GeneralBattle/RightActivity）。战败判据以类属性 shadowing 任务内覆盖
+（`ScriptTask.I_FALSE = I_MDA_FALSE`，详见 script_task.py 头注释），不触碰任何共享资产。
+
 ## 流程
 
 1. **run()**：切御魂（两种开关，同现世妖约）→ 回庭院 → 经右侧栏进活动**初始清扫**一遍存量好友鬼王

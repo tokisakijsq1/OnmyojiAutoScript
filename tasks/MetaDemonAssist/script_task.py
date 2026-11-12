@@ -2,6 +2,10 @@
 # -> 处理好友发现列表内其余可挑战鬼王 -> 无可挑战返回庭院继续守候
 # 调度: SCHEDULER_PRIORITY 最末(最低优先级); 守候/战斗间隙主动让位到点到点的其他任务,
 # 其他任务结束后本任务 next_run 已过期被自动唤醒, 每次唤醒重新切御魂
+#
+# 自包含(2026-11-12 重构): 页面图/素材/战斗判据全部任务内闭环——
+# 战败判据以类属性 shadowing 覆盖(见 ScriptTask.I_FALSE), 不触碰任何共享资产;
+# 与 MetaDemonProvider 互不依赖, 仅共享可复用组件(GameUi/SwitchSoul/GeneralBattle/RightActivity)。
 import re
 from cached_property import cached_property
 from datetime import datetime, timedelta
@@ -23,11 +27,24 @@ from tasks.MetaDemonAssist.assets import MetaDemonAssistAssets
 from tasks.MetaDemonAssist.config import MetaDemonAssist
 from tasks.MetaDemonAssist.page import page_mda_huozhu
 
+# ---------------- 常量 ----------------
 # 好友发现卡槽: 文本行"剩余时间"槽1 y406-446 / 槽2 y535-575; 珠子行槽1 y450 / 槽2 y579
 CARD_SLOT_OFFSET = 129
 # 珠子扫描窗(相对槽1珠子行), 亮珠颜色(228,114,35)已三截图标定
 PEARL_X0, PEARL_W = 52, 76
 PEARL_Y0, PEARL_H = 435, 70
+# 协助主循环轮数上限(兜底, 正常由无可挑战/疲劳满/连败退出)
+ASSIST_MAX_ROUNDS = 30
+# 选卡失败/挑战点击落空的无进展容忍次数(超过即退出本轮协助)
+NO_PROGRESS_LIMIT = 3
+# 连败退出阈值(用户指定: 连输3场收工)
+LOSE_STREAK_LIMIT = 3
+# 无可挑战判定的复核帧间隔(秒): 结算浮层/页面数据异步加载会短暂让卡片区读空
+RECHECK_GAP = 1.5
+# 长等待保活周期(秒): 超过该时长无点击会触发设备卡死重启, 周期性重登记 PAUSE 豁免
+KEEP_ALIVE_CYCLE = 280
+# 卡片区"剩余时间"槽分界y(_find_challengeable_slot 按此分槽0/1)
+SLOT_SPLIT_Y = 368 + 100
 
 
 class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
@@ -50,21 +67,22 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
         if self._goto_huozhu():
             fatigue_full = self._assist_loop() == 'fatigue_full'
             self._exit_to_main()
-        # 疲劳满收工(2026-11-12 用户纠正: 顶栏是疲劳非资源, 满100不能打需等时间恢复;
-        # 旧逻辑回庭院守候, 横幅还在就反复"前往->返回"往返)
         if fatigue_full:
-            gap = self.conf.meta_demon_assist_config.mda_rerun_gap
-            self.set_next_run(task='MetaDemonAssist', success=None, finish=False, server=False,
-                              target=datetime.now() + timedelta(minutes=gap))
-            logger.info(f'Fatigue full, skip waiting banner, retry in {gap} min')
+            # 疲劳满收工(2026-11-12 用户纠正: 顶栏是疲劳非资源, 满100不能打需等时间恢复;
+            # 旧逻辑回庭院守候, 横幅还在就反复"前往->返回"往返)
+            self._reschedule('Fatigue full, skip waiting banner')
             raise TaskEnd
         # 庭院守候邀请横幅
         self._wait_banner()
+        self._reschedule('MetaDemonAssist run finish')
+        raise TaskEnd
+
+    def _reschedule(self, note: str) -> None:
+        """按重跑间隔(mda_rerun_gap)排期下次运行。"""
         gap = self.conf.meta_demon_assist_config.mda_rerun_gap
         self.set_next_run(task='MetaDemonAssist', success=None, finish=False, server=False,
                           target=datetime.now() + timedelta(minutes=gap))
-        logger.info('MetaDemonAssist run finish')
-        raise TaskEnd
+        logger.info(f'{note}, retry in {gap} min')
 
     # ---------------- 让位 ----------------
 
@@ -145,7 +163,7 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
     def _wait_banner(self) -> None:
         conf = self.conf.meta_demon_assist_config
         overall = Timer(conf.mda_max_duration * 60).start()
-        stuck_keeper = Timer(280).start()
+        stuck_keeper = Timer(KEEP_ALIVE_CYCLE).start()
         recover_fail = 0
         self._keep_alive(stuck_keeper)
         while not overall.reached():
@@ -198,14 +216,14 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
 
     def _assist_loop(self, banner_star: int = None) -> None:
         """在祸主降临页: 扫好友发现卡片 -> 选卡 -> 按星级设2.5倍 -> 挑战 -> 通用战斗,
-        直到无可挑战卡/资源不足/连败。返回时停在本页(或已离开), 退出交调用方。
+        直到无可挑战卡/疲劳满/连败。返回时停在本页(或已离开), 退出交调用方。
         注意: 协助阶段不做让位检查(主动肝语义, 同 Provider/Orochi)——
         每场战斗结束后被到点任务打断 = 任务结束(2026-11-12 实机"战后即结束"根因), 让位只在守候循环。"""
-        max_rounds = 30
         no_progress = 0
         lose_streak = 0
-        sleep(2)  # 横幅跳转/战斗回页后, 好友发现卡数据服务器异步加载(悬赏教训: 1.4s+才就绪)
-        for _ in range(max_rounds):
+        # 横幅跳转/战斗回页后, 好友发现卡数据服务器异步加载(悬赏教训: 1.4s+才就绪)
+        sleep(2)
+        for _ in range(ASSIST_MAX_ROUNDS):
             self.screenshot()
             if not self._in_huozhu_page(False):
                 # 弹窗/转场: 先尝试关弹窗
@@ -218,11 +236,7 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
                 return
             # 疲劳预检查: 顶栏 N/100 是疲劳度(随时间恢复), 满了才不能打(用户纠正 2026-11-12,
             # 之前误当"资源"用低值判耗尽导致疲劳剩8被拦)。读失败/低值一律继续打。
-            try:
-                cur, _, _total = self.O_MDA_RESOURCE.ocr(self.device.image)
-                cur = int(cur)
-            except (ValueError, TypeError):
-                cur = None
+            cur = self._read_fatigue()
             fatigue_max = self.conf.meta_demon_assist_config.mda_fatigue_max
             if cur is not None and cur >= fatigue_max:
                 logger.info(f'Fatigue full: {cur}/{fatigue_max}, stop assisting and wait recovery')
@@ -231,7 +245,7 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
             if slot is None:
                 # 单帧证据坑: 战斗结算浮层/页面数据异步加载会短暂让卡片区读空, 三帧都空才认定无可挑战
                 for _f in range(2):
-                    sleep(1.5)
+                    sleep(RECHECK_GAP)
                     self.screenshot()
                     slot = self._find_challengeable_slot()
                     if slot is not None:
@@ -246,7 +260,7 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
                 if not self.wait_until_appear(self.I_MDA_CHALLENGE, wait_time=5):
                     no_progress += 1
                     logger.warning(f'Select card slot {slot} failed ({no_progress})')
-                    if no_progress >= 3:
+                    if no_progress >= NO_PROGRESS_LIMIT:
                         return
                     continue
             # 星级: 亮珠计数, 失败用横幅星级兜底
@@ -262,24 +276,31 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
             if not self._wait_battle_enter():
                 no_progress += 1
                 logger.warning(f'Challenge click ineffective ({no_progress})')
-                if no_progress >= 3:
+                if no_progress >= NO_PROGRESS_LIMIT:
                     return
                 sleep(1)
                 continue
-            win = self.run_general_battle(config=self.conf.general_battle)
-            if win:
+            if self.run_general_battle(config=self.conf.general_battle):
                 lose_streak = 0
                 no_progress = 0
             else:
                 lose_streak += 1
-                if lose_streak >= 3:
-                    logger.warning('Lose 3 battles in a row, stop assisting')
+                if lose_streak >= LOSE_STREAK_LIMIT:
+                    logger.warning(f'Lose {LOSE_STREAK_LIMIT} battles in a row, stop assisting')
                     return
             sleep(1)  # 结算点击后的第一段转场
             # 等回到祸主降临页再进下一轮(消除转场中 OCR/页面判据的单帧误判)
             if not self.wait_until_appear(self.I_MDA_TITLE_HUOZHU, wait_time=5):
                 logger.warning('Back to huozhu page not confirmed after battle')
         logger.info('Assist loop max rounds reached')
+
+    def _read_fatigue(self) -> int | None:
+        """读顶栏疲劳 N/100 的当前值; 读失败返回 None(调用方按继续打处理)。"""
+        try:
+            cur, _total = self.O_MDA_RESOURCE.ocr(self.device.image)[:2]
+            return int(cur)
+        except (ValueError, TypeError):
+            return None
 
     def _find_challengeable_slot(self) -> int | None:
         """OCR 卡片区逐行判: 剩余时间=可挑战(按y分槽), 击败奖励结算中=跳过。"""
@@ -293,7 +314,7 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
                 continue
             ys = [p[1] for p in box.box]
             y = self.O_MDA_CARD.roi[1] + min(ys)
-            return 0 if y < 368 + 100 else 1
+            return 0 if y < SLOT_SPLIT_Y else 1
         return None
 
     def _count_pearls(self, slot: int) -> int:
