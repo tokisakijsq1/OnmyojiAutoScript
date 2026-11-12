@@ -11,22 +11,19 @@ class GameUiAssets:
 
 
 	# Image Rule Assets
-	# description 
+	# paper_doll_close 
 	I_PAPER_DOLL_CLOSE = RuleImage(roi_front=(1253,102,25,62), roi_back=(1238,58,40,153), threshold=0.8, method="Template matching", file="./tasks/GameUi/additional/additional_paper_doll_close.png")
-	# 庭院进入活动标志 
+	# act_list_expand 
 	I_ACT_LIST_EXPAND = RuleImage(roi_front=(1186,141,40,41), roi_back=(1162,110,92,103), threshold=0.8, method="Template matching", file="./tasks/GameUi/additional/additional_act_list_expand.png")
-
-
-	# Image Rule Assets
-	# 商店弹窗红色关闭 
+	# ad_close_red 
 	I_AD_CLOSE_RED = RuleImage(roi_front=(993,130,33,36), roi_back=(953,91,215,121), threshold=0.8, method="Template matching", file="./tasks/GameUi/additional/additional_ad_close_red.png")
 
 
-	# Image Rule Assets
-	# 活动列表页前往活动 
-	I_ACT_LIST_GOTO_ACT = RuleImage(roi_front=(1063,627,156,60), roi_back=(1007,552,272,166), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_act_list_goto_act.png")
-	# 活动列表页标志 
-	I_CHECK_ACT_LIST = RuleImage(roi_front=(112,13,125,44), roi_back=(75,3,205,66), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_act_list.png")
+	# Ocr Rule Assets
+	# battle_auto 
+	O_BATTLE_AUTO = RuleOcr(roi=(37,642,51,36), area=(0,589,133,128), mode="Single", method="Default", keyword="自动", name="battle_auto")
+	# battle_hand 
+	O_BATTLE_HAND = RuleOcr(roi=(35,644,52,34), area=(0,589,136,129), mode="Single", method="Default", keyword="手动", name="battle_hand")
 
 
 	# Image Rule Assets
@@ -146,7 +143,7 @@ class GameUiAssets:
 	# 商店页面标志 
 	I_CHECK_MALL = RuleImage(roi_front=(1087,413,47,114), roi_back=(1043,397,116,155), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_mall.png")
 	# 商店页面标志（紫色招牌） 
-	I_CHECK_MALL_PURPLE = RuleImage(roi_front=(231,455,131,78), roi_back=(201,432,185,121), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_mall_purple.png")
+	I_CHECK_MALL_PURPLE = RuleImage(roi_front=(231,455,86,75), roi_back=(201,432,185,121), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_mall_purple.png")
 	# 商店推荐页面标志 
 	I_CHECK_MALL_RECOMMEND = RuleImage(roi_front=(930,12,42,37), roi_back=(905,0,100,100), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_mall_recommend.png")
 	# 阴阳寮页面标志 
@@ -173,7 +170,29 @@ class GameUiAssets:
 	I_SUMMON_GOTO_MAIN = RuleImage(roi_front=(27,5,49,51), roi_back=(0,0,100,100), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_summon_goto_main.png")
 
 
-	# Image Rule Assets
+	# List Rule Assets
+	# 活动列表页图像列表 
+	L_ACT_LIST_IMG = RuleList(folder="./tasks/GameUi/page", direction="vertical", mode="image", roi_back=(140,105,53,479), size=(46, 78), 
+					 array=["climb_act"])
+
+
+	# List Rule Assets
+	# 活动列表页爬塔活动文字 
+	L_ACT_LIST_OCR = RuleList(folder="./tasks/GameUi/page", direction="vertical", mode="ocr", roi_back=(50,123,49,553), size=(45, 69), 
+					 array=["版本"])
+
+
+
+	# 以下两段 2026-11-12 从上游(origin/dev)资产定义拷回: 2026-10-10 起这些条目只存在于
+	# 已删的合并版 page/image.json(漂移俱乐部), 标注工具重生成时因无 json 源而丢失,
+	# 致 default_pages 的 page_act_list 引用 AttributeError(oas2 22:10)。json 源已同步
+	# 归位上游拆分文件(image_act_list/image_town.json), 此后标注工具保存不再丢条目。
+	# Act List(act_list_goto_act/check_act_list, json源=image_act_list.json)
+	# 活动列表页前往活动 
+	I_ACT_LIST_GOTO_ACT = RuleImage(roi_front=(1063,627,156,60), roi_back=(1007,552,272,166), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_act_list_goto_act.png")
+	# 活动列表页标志 
+	I_CHECK_ACT_LIST = RuleImage(roi_front=(112,13,125,44), roi_back=(75,3,205,66), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_act_list.png")
+	# Town(城镇/斗鸡/狩猎/逢魔/娱乐/百鬼夜行等页判据, json源=image_town.json)
 	# description 
 	I_CHECK_TOWN = RuleImage(roi_front=(1026,106,68,82), roi_back=(765,98,402,96), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_town.png")
 	# description 
@@ -212,17 +231,3 @@ class GameUiAssets:
 	I_CHECK_DEMON_ENCOUNTER_REALWORLD = RuleImage(roi_front=(26,658,42,43), roi_back=(2,619,100,100), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_check_demon_encounter_realworld.png")
 	# 进入现世逢魔(移植自mine) 
 	I_DEMON_ENCOUNTER_REALWORLD_GOTO = RuleImage(roi_front=(994,485,106,30), roi_back=(994,485,106,30), threshold=0.8, method="Template matching", file="./tasks/GameUi/page/page_demon_encounter_realworld.png")
-
-
-	# List Rule Assets
-	# 活动列表页图像列表 
-	L_ACT_LIST_IMG = RuleList(folder="./tasks/GameUi/page", direction="vertical", mode="image", roi_back=(140,105,53,479), size=(46, 78), 
-					 array=["climb_act"])
-
-
-	# List Rule Assets
-	# 活动列表页爬塔活动文字 
-	L_ACT_LIST_OCR = RuleList(folder="./tasks/GameUi/page", direction="vertical", mode="ocr", roi_back=(50,123,49,553), size=(45, 69), 
-					 array=["版本"])
-
-
