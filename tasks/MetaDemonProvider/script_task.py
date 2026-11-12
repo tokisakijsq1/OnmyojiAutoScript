@@ -31,6 +31,47 @@ GONE_CONFIRM_FRAMES = 2
 NAME_PREFIX_LEN = 3
 NAME_RATIO = 0.75
 
+# ---------------- 召唤队列卡识别(与排序无关, 数星标) ----------------
+# 弹窗卡按"拥有的星级种类"压缩排列(缺的星级不留空位), 固定坐标不可用(2026-11-12 用户实测);
+# 排序下拉(高到低/低到高)只影响位置顺序, 识别与它无关。
+# 锚点=卡上星标(橙色小星): 实测单颗宽5-6px 间距9.3px, 星级行 y 370-380, 卡间距约99px。
+# 色带列游程计数(同 MetaDemonAssist 亮珠范式): 游程=单颗星, x聚类=卡, 簇内颗数=星级。
+STAR_BAND = (340, 358, 620, 36)  # 星标检索带 x,y,w,h(全6卡 x348-937, 弹窗固定布局)
+STAR_PIP_MIN_W = 3               # 单颗星标最小像素宽(滤金框/眼睛红边的1px毛边)
+STAR_CLUSTER_GAP = 40            # x聚类阈值: 星间距9px归同卡, 卡间距99px分卡
+EYE_CLICK_Y = 340                # 卡上眼睛图标中心y(点击选中)
+
+
+def find_eye_cards(image):
+    """识别召唤队列弹窗里的裂变之眼卡(纯函数, 便于离线验证同一份逻辑)。
+    星标橙色带 -> 列游程=单颗星 -> 按x聚类=卡, 簇内颗数=星级。
+    返回 [(star, cx, cy), ...] 按屏幕从左到右。
+    注意: 星标分"点亮(橙)/未点亮(灰)"两态(如持有3颗的4星眼显示3橙2灰),
+    橙色掩膜天然只数点亮的 = 当前有效星级, 灰星被正确忽略(2026-11-12 部分卡截图人眼核对)。"""
+    x0, y0, w, h = STAR_BAND
+    band = image[y0:y0 + h, x0:x0 + w]
+    r = band[:, :, 0].astype(int)
+    g = band[:, :, 1].astype(int)
+    b = band[:, :, 2].astype(int)
+    colsum = ((r > 180) & (g > 90) & (g < 190) & (b < 90)).sum(axis=0)
+    pips = []
+    start = None
+    for x in range(w + 1):
+        on = x < w and colsum[x] > 3
+        if on and start is None:
+            start = x
+        elif not on and start is not None:
+            if x - start >= STAR_PIP_MIN_W:
+                pips.append(x0 + (start + x) // 2)
+            start = None
+    cards = []
+    for p in pips:
+        if cards and p - cards[-1][-1] <= STAR_CLUSTER_GAP:
+            cards[-1].append(p)
+        else:
+            cards.append([p])
+    return [(len(c), sum(c) // len(c), EYE_CLICK_Y) for c in cards]
+
 
 class ScriptTask(GameUi, MetaDemonProviderAssets):
 
@@ -127,7 +168,12 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
             ticket = self._read_ticket()
             logger.info(f'Summon ghost king (attempt {attempt}), ticket={ticket}, target_star={star or "default"}')
             if star:
-                if not self._summon_by_queue(star):
+                res = self._summon_by_queue(star)
+                if res == 'depleted':
+                    # 目标星级及更高的眼卡都没有: 票尽语义, 直接收工(不再空重试)
+                    logger.warning('No summonable eye card (target star and higher all absent), stop this run')
+                    return False
+                if not res:
                     sleep(2)
                     continue
             else:
@@ -139,20 +185,34 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
         logger.warning('Summon failed repeatedly, no more summonable ghost king')
         return False
 
-    def _summon_by_queue(self, star: int) -> bool:
-        """指定星级召唤: 全部队列 -> 召唤队列弹窗点对应星级裂变之眼 -> 立即召唤 -> 等2s回召唤界面。
-        排序下拉保持默认'星级从高到低': 槽位0=6星, 槽位1=5星, ... 槽位5=1星 (眼行x: 393+97*i)。"""
+    def _summon_by_queue(self, star: int):
+        """指定星级召唤: 全部队列弹窗内按星标识别各眼卡(与排序无关), 点精确星级的卡;
+        没有该星则点星级更高里最接近的; 再没有 = 无可召唤卡, 返回 'depleted' 收工。
+        返回 True=已召唤 / False=弹窗链路失败(调用方可重试) / 'depleted'=无卡可召(调用方结束任务)。"""
         self.ui_click(self.I_MDP_QUEUE, stop=self.I_MDP_SUMMON_NOW, interval=2, timeout=10)
         if not self.wait_until_appear(self.I_MDP_SUMMON_NOW, wait_time=4):
             logger.warning('Summon queue popup did not open')
             return False
-        slot = 6 - star
-        xs = [393, 493, 592, 690, 790, 882]
-        if not (0 <= slot < len(xs)):
-            logger.warning(f'Star {star} has no queue slot')
-            return False
-        logger.info(f'Click eye slot {slot} (star {star}) at ({xs[slot]},355)')
-        self.device.click(x=xs[slot], y=355, control_name=f'mdp_eye_slot{slot}')
+        cards = find_eye_cards(self.device.image)
+        if not cards:
+            # 防弹窗渲染中误判: 稍候复核一次再下结论
+            sleep(1.5)
+            self.screenshot()
+            cards = find_eye_cards(self.device.image)
+        if not cards:
+            logger.warning('No eye card in queue popup at all')
+            self._close_summon_popup()
+            return 'depleted'
+        usable = [c for c in cards if c[0] >= star]
+        if not usable:
+            logger.warning(f'No eye card star>={star} (owned stars={sorted(c[0] for c in cards)}), stop summon')
+            self._close_summon_popup()
+            return 'depleted'
+        # 精确星级优先, 没有则在更高星里取最接近的(min); 不往低星兜底(用户指定)
+        picked = min(usable, key=lambda c: c[0])
+        star_n, cx, cy = picked
+        logger.info(f'Click eye card star={star_n} at ({cx},{cy}), owned stars={sorted(c[0] for c in cards)}')
+        self.device.click(x=cx, y=cy, control_name='mdp_eye_card')
         sleep(0.6)
         ensured = False
         timer = Timer(8).start()
@@ -166,7 +226,19 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
                 sleep(2)
                 return True
         logger.warning('Summon-now popup never closed')
-        self._close_invite_popup()
+        self._close_summon_popup()
+        return False
+
+    def _close_summon_popup(self) -> bool:
+        """关召唤队列弹窗: 粉叉(I_UI_BACK_RED), 以立即召唤按钮消失为出口。"""
+        timer = Timer(10).start()
+        while not timer.reached():
+            self.screenshot()
+            if not self.appear(self.I_MDP_SUMMON_NOW):
+                return True
+            self.appear_then_click(self.I_UI_BACK_RED, interval=1.5)
+            sleep(1)
+        logger.warning('Close summon popup failed')
         return False
 
     def _read_ticket(self):
