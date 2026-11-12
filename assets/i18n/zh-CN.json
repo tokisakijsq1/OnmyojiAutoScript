@@ -209,6 +209,8 @@
   "mda_rerun_gap_help": "守候时长到点自然结束后，隔多久再次运行本任务",
   "mda_buff_min_star": "勾选2.5倍的最低星级",
   "mda_buff_min_star_help": "鬼王星级达到该值才勾选2.5倍伤害（默认5：5/6星勾选，1-4星不勾）。星级由好友发现卡片底部的亮珠数判定，亮几颗就是几星",
+  "mda_fatigue_max": "疲劳判定上限",
+  "mda_fatigue_max_help": "顶栏疲劳读数达到该值视为疲劳满、收工等恢复后再跑（默认100=满值）。疲劳随时间恢复，未满时正常继续打",
   "MetaDemonProvider": "超鬼王提供者",
   "meta_demon_provider_config": "超鬼王提供者设置",
   "provider_friend_name": "集结邀请的好友名",

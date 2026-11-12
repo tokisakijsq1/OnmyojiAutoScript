@@ -28,8 +28,6 @@ CARD_SLOT_OFFSET = 129
 # 珠子扫描窗(相对槽1珠子行), 亮珠颜色(228,114,35)已三截图标定
 PEARL_X0, PEARL_W = 52, 76
 PEARL_Y0, PEARL_H = 435, 70
-# 单次挑战资源消耗
-CHALLENGE_COST = 10
 
 
 class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
@@ -43,9 +41,18 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
         self._switch_soul()
         self.goto_page(page_main)
         # 初始清扫: 处理本任务未运行期间(其他任务在跑时)好友共享的存量鬼王
+        fatigue_full = False
         if self._goto_huozhu():
-            self._assist_loop()
+            fatigue_full = self._assist_loop() == 'fatigue_full'
             self._exit_to_main()
+        # 疲劳满收工(2026-11-12 用户纠正: 顶栏是疲劳非资源, 满100不能打需等时间恢复;
+        # 旧逻辑回庭院守候, 横幅还在就反复"前往->返回"往返)
+        if fatigue_full:
+            gap = self.conf.meta_demon_assist_config.mda_rerun_gap
+            self.set_next_run(task='MetaDemonAssist', success=None, finish=False, server=False,
+                              target=datetime.now() + timedelta(minutes=gap))
+            logger.info(f'Fatigue full, skip waiting banner, retry in {gap} min')
+            raise TaskEnd
         # 庭院守候邀请横幅
         self._wait_banner()
         gap = self.conf.meta_demon_assist_config.mda_rerun_gap
@@ -192,6 +199,7 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
         max_rounds = 30
         no_progress = 0
         lose_streak = 0
+        sleep(2)  # 横幅跳转/战斗回页后, 好友发现卡数据服务器异步加载(悬赏教训: 1.4s+才就绪)
         for _ in range(max_rounds):
             self.screenshot()
             if not self._in_huozhu_page(False):
@@ -203,23 +211,28 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
                     continue
                 logger.warning('Lost huozhu page in assist loop')
                 return
-            # 资源检查(读0视为识别失败, 不当耗尽)
+            # 疲劳预检查: 顶栏 N/100 是疲劳度(随时间恢复), 满了才不能打(用户纠正 2026-11-12,
+            # 之前误当"资源"用低值判耗尽导致疲劳剩8被拦)。读失败/低值一律继续打。
             try:
                 cur, _, _total = self.O_MDA_RESOURCE.ocr(self.device.image)
                 cur = int(cur)
             except (ValueError, TypeError):
                 cur = None
-            if cur is not None and 0 < cur < CHALLENGE_COST:
-                logger.info(f'Challenge resource low: {cur}, stop assisting')
-                return
+            fatigue_max = self.conf.meta_demon_assist_config.mda_fatigue_max
+            if cur is not None and cur >= fatigue_max:
+                logger.info(f'Fatigue full: {cur}/{fatigue_max}, stop assisting and wait recovery')
+                return 'fatigue_full'
             slot = self._find_challengeable_slot()
             if slot is None:
-                # 单帧证据坑: 战斗结算浮层/转场动画会短暂遮挡卡片区, 两帧都空才认定无可挑战
-                sleep(1.5)
-                self.screenshot()
-                slot = self._find_challengeable_slot()
+                # 单帧证据坑: 战斗结算浮层/页面数据异步加载会短暂让卡片区读空, 三帧都空才认定无可挑战
+                for _f in range(2):
+                    sleep(1.5)
+                    self.screenshot()
+                    slot = self._find_challengeable_slot()
+                    if slot is not None:
+                        break
                 if slot is None:
-                    logger.info('No challengeable ghost king in friend list (2 frames)')
+                    logger.info('No challengeable ghost king in friend list (3 frames)')
                     return
             # 选卡(已选中则跳过)
             if not self.appear(self.I_MDA_CHALLENGE):

@@ -15,6 +15,8 @@ class MetaDemonAssistConfig(BaseModel):
     mda_rerun_gap: int = Field(default=10, description='mda_rerun_gap_help', ge=1, le=720)
     # 勾选2.5倍伤害的最低鬼王星级(5/6星勾选, 1-4星不勾)
     mda_buff_min_star: int = Field(default=5, description='mda_buff_min_star_help', ge=2, le=6)
+    # 疲劳判定上限: 顶栏疲劳读数达到此值视为疲劳满不能打, 收工等恢复后再跑(满值100)
+    mda_fatigue_max: int = Field(default=100, description='mda_fatigue_max_help', ge=1, le=200)
 
 
 class MetaDemonAssist(ConfigBase):
