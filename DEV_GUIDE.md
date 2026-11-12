@@ -1187,3 +1187,37 @@ MetaDemonProvider（召唤+集结邀请+等击杀）首次实机 17:12/17:15/17:
   一张样本调，不能只调干净样本**。
 - 相关文件：`tasks/MetaDemonProvider/script_task.py`（find_eye_cards + _summon_by_queue 重写 +
   _close_summon_popup 新增，粉叉关弹窗）、验证样本 `log/mdp3_build/`。**未实机复验。**
+
+### 34.2 战败结算修复翻车与重做：page.py 是全进程加载的，别在里面改共享资产（2026-11-12）
+
+**事故**：d5c0b823 为修"超鬼王败局识别不到"，在 `MetaDemonAssist/page.py` 末尾运行时改共享资产
+`_GBA.I_FALSE.roi_back = (380,78,180,130)`，自以为"删即回退、零上游改动"，结果全仓库流程崩一遍。
+
+**两个致命误会**：
+1. **page.py 不是任务私有代码**。`PageRegistry.load_all_pages()` 启动扫描**导入所有 `tasks/*/page.py`**
+   （`tasks/GameUi/registry.py`），模块级代码在**每个进程**执行——不跑超鬼王的进程照样中招。
+   实锤：绘卷专用（只跑 Exploration/RealmRaid，日志零 MetaDemon 记录）16:46 重启后 RealmRaid
+   exit-four 四连卡死（00:06 同流程 3.4s 正常），进程内存判据被换的唯一途径就是页面扫描。
+2. **扩 roi 是语义破坏不是语义扩展**。普通败局美术在 (413,124~224)，扩宽区纵向只到 y=208——
+   模板在区内合法滑动位置错位 16px 以上，普通败局得分从 0.9889 掉到 **0.31~0.39**。
+   "扩搜索区覆盖两种布局"必须验算**新区域能否完整容纳旧布局的美术框**（matchTemplate 要求
+   模板整个落在裁剪区内，罩半截=两个都识别不了）。d5c0b823 只验证了超鬼王败局与庭院，
+   没验证普通败局——**改共享判据必须把"旧判据的全部既有命中样本"重测一遍**。
+
+**重做范式（d76e9cab，任务内闭环）**：
+- 副本规则 `I_MDA_FALSE`（模板=gb_false.png 同美术拷贝，roi_back=(400,85,120,150) 同时罩住
+  超鬼王 (410,95) 与普通 (413,124) 两布局）进本任务 image.json+assets.py（标注工具可维护）；
+- `ScriptTask` 类体内 `I_FALSE = MetaDemonAssistAssets.I_MDA_FALSE`——**类属性 shadowing**，
+  MRO 最派生优先，GeneralBattle 的 battle_wait/复确认/钩子全走 `self.I_FALSE`，故只影响本任务
+  实例，其他任务零感知，删一行即回退。
+- 与 TeamPagePatch 的 `GameUiAssets.I_CHECK_TEAM = 替换` 区别：那是**语义等价替换**（新旧规则
+  判同一个事实"在组队页"），且 14 处引用逐点核对过；改 roi_back 是**语义修改**（命中集合变了），
+  两者不能类推。
+- 验证固定动作：共享资产原值断言 + `ScriptTask.I_FALSE is I_MDA_FALSE` 断言 + 败局全命中
+  （0.8 主阈值与 0.6 复确认双口径）+ 无关语料搜索区内最高分。本次：0.9874~0.9907 全过、
+  无关语料最高 0.2895、gb_false×gb_win 模板重叠 0.467（胜利互斥安全垫：battle_wait 主循环
+  I_WIN 先判）。
+
+**顺带发现（独立问题，未修，观察项）**：老夏 MetaDemon 19:25 `GameTooManyClickError:
+MD_MD_BATTLE_FAILURE`——其模板（412,105）今天没被换过、进程无补丁、同代码 18:18 成功过，
+是败局结算点击不推进的游戏侧瞬态，重跑自愈。若复发再按"败局结算多一层浮层"排查。
