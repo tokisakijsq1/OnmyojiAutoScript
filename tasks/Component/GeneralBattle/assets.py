@@ -209,8 +209,8 @@ class GeneralBattleAssets:
 	C_END_FRIENDS_32 = RuleClick(roi_front=(0,0,100,100), roi_back=(0,0,100,100), name="end_friends_32")
 	# description 
 	C_END_FRIENDS_23 = RuleClick(roi_front=(0,0,100,100), roi_back=(0,0,100,100), name="end_friends_23")
-	# 御魂过多的【去清理】按钮
-	C_OVERFLOW_GHOST = RuleClick(roi_front=(456, 381, 160, 82), roi_back=(456, 381, 160, 82), name="overflow_ghost")
+	# 御魂过多的【去清理】按钮 
+	C_OVERFLOW_GHOST = RuleClick(roi_front=(456,381,160,82), roi_back=(456,381,160,82), name="overflow_ghost")
 
 
 	# Click Rule Assets
@@ -268,5 +268,12 @@ class GeneralBattleAssets:
 	I_END_FIX_2 = RuleImage(roi_front=(800,251,100,33), roi_back=(32,90,1137,547), threshold=0.85, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gw_end_fix_2.png")
 	#  
 	I_END_FIX_3 = RuleImage(roi_front=(871,278,150,49), roi_back=(119,66,1136,620), threshold=0.85, method="Template matching", file="./tasks/Component/GeneralBattle/gw/gw_end_fix_3.png")
+
+
+	# Image Rule Assets
+	# 显示是锁队伍的图标 
+	I_TEAM_LOCK = RuleImage(roi_front=(1135,379,26,31), roi_back=(728,354,470,341), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/lock/lock_team_lock.png")
+	# 显示是没有锁队伍的图标 
+	I_TEAM_UNLOCK = RuleImage(roi_front=(1136,379,25,27), roi_back=(724,346,472,342), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralBattle/lock/lock_team_unlock.png")
 
 

@@ -1,110 +1,110 @@
 [
   {
     "itemName": "shi_grown",
-    "roiFront": "595,291,35,38",
-    "roiBack": "530,220,202,267",
-    "threshold": "0.6",
-    "method": "Template matching",
     "imageName": "realm_shi_grown.png",
-    "description": "shi_grown"
+    "roiFront": "595,291,35,38",
+    "roiBack": "560,250,130,220",
+    "method": "Template matching",
+    "threshold": 0.6,
+    "description": "育成"
   },
   {
     "itemName": "shi_card",
-    "roiFront": "891,300,31,55",
-    "roiBack": "823,210,252,297",
-    "threshold": "0.6",
-    "method": "Template matching",
     "imageName": "realm_shi_card.png",
-    "description": "shi_card"
+    "roiFront": "891,300,31,55",
+    "roiBack": "760,250,220,220",
+    "method": "Template matching",
+    "threshold": 0.6,
+    "description": "结界卡"
   },
   {
     "itemName": "shi_defense",
-    "roiFront": "303,308,34,52",
-    "roiBack": "178,209,261,274",
-    "threshold": "0.7",
-    "method": "Template matching",
     "imageName": "realm_shi_defense.png",
-    "description": "shi_defense"
+    "roiFront": "303,308,34,52",
+    "roiBack": "260,250,210,210",
+    "method": "Template matching",
+    "threshold": 0.7,
+    "description": "description"
   },
   {
     "itemName": "card_exp",
-    "roiFront": "889,151,57,54",
-    "roiBack": "829,33,231,257",
-    "threshold": "0.8",
-    "method": "Template matching",
     "imageName": "realm_card_exp.png",
-    "description": "card_exp"
+    "roiFront": "889,151,57,54",
+    "roiBack": "750,90,250,230",
+    "method": "Multi-scale template matching",
+    "threshold": 0.8,
+    "description": "收取经验（没有满的图）"
   },
   {
     "itemName": "box_ap",
-    "roiFront": "815,435,57,51",
-    "roiBack": "744,336,395,216",
-    "threshold": "0.7",
-    "method": "Template matching",
     "imageName": "realm_box_ap.png",
-    "description": "box_ap"
+    "roiFront": "815,435,57,51",
+    "roiBack": "790,285,295,240",
+    "method": "Multi-scale template matching",
+    "threshold": 0.7,
+    "description": "收取体力（没有满）"
   },
   {
     "itemName": "box_exp",
-    "roiFront": "893,440,42,45",
-    "roiBack": "792,334,359,232",
-    "threshold": "0.7",
-    "method": "Template matching",
     "imageName": "realm_box_exp.png",
-    "description": "box_exp"
+    "roiFront": "893,440,41,64",
+    "roiBack": "875,285,255,240",
+    "method": "Template matching",
+    "threshold": 0.7,
+    "description": "收取盒子的经验（没有满）"
   },
   {
     "itemName": "realm_shin",
-    "roiFront": "175,460,54,58",
-    "roiBack": "22,359,393,328",
-    "threshold": "0.9",
-    "method": "Template matching",
     "imageName": "realm_realm_shin.png",
-    "description": "realm_shin"
+    "roiFront": "175,460,54,58",
+    "roiBack": "140,270,270,285",
+    "method": "Multi-scale template matching",
+    "threshold": 0.9,
+    "description": "结界皮肤"
   },
   {
     "itemName": "utilize_exp",
-    "roiFront": "583,144,58,43",
-    "roiBack": "513,43,280,309",
-    "threshold": "0.8",
-    "method": "Template matching",
     "imageName": "realm_utilize_exp.png",
-    "description": "utilize_exp"
+    "roiFront": "583,144,58,43",
+    "roiBack": "500,65,220,280",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "寄养别人的经验"
   },
   {
     "itemName": "ap_extract",
+    "imageName": "realm_ap_extract.png",
     "roiFront": "592,501,100,75",
     "roiBack": "592,501,100,75",
-    "threshold": "0.8",
     "method": "Template matching",
-    "imageName": "realm_ap_extract.png",
-    "description": "ap_extract"
+    "threshold": 0.8,
+    "description": "取出"
   },
   {
     "itemName": "exp_extract",
+    "imageName": "realm_exp_extract.png",
     "roiFront": "592,448,100,73",
     "roiBack": "592,448,100,73",
-    "threshold": "0.8",
     "method": "Template matching",
-    "imageName": "realm_exp_extract.png",
-    "description": "exp_extract"
+    "threshold": 0.8,
+    "description": "提取"
   },
   {
     "itemName": "box_exp_max",
-    "roiFront": "889,430,61,64",
-    "roiBack": "796,326,405,330",
-    "threshold": "0.7",
-    "method": "Template matching",
     "imageName": "realm_box_exp_max.png",
-    "description": "box_exp_max"
+    "roiFront": "889,430,61,64",
+    "roiBack": "875,285,255,240",
+    "method": "Template matching",
+    "threshold": 0.7,
+    "description": "盒子经验满"
   },
   {
     "itemName": "plant_tree_close",
+    "imageName": "realm_plant_tree_close.png",
     "roiFront": "777,91,36,34",
     "roiBack": "711,52,169,125",
-    "threshold": "0.8",
     "method": "Template matching",
-    "imageName": "realm_plant_tree_close.png",
-    "description": "plant_tree_close"
+    "threshold": 0.8,
+    "description": "种树活动关闭标识"
   }
 ]

@@ -1,29 +1,29 @@
 [
   {
     "itemName": "shi_grown_2",
-    "roiFront": "585,336,21,38",
-    "roiBack": "519,212,220,281",
-    "threshold": "0.5",
-    "method": "Template matching",
     "imageName": "cb2_shi_grown_2.png",
-    "description": "shi_grown_2"
+    "roiFront": "585,336,21,38",
+    "roiBack": "560,250,130,220",
+    "method": "Template matching",
+    "threshold": 0.5,
+    "description": "育成"
   },
   {
     "itemName": "shi_card_2",
-    "roiFront": "871,341,20,36",
-    "roiBack": "823,210,252,297",
-    "threshold": "0.5",
-    "method": "Template matching",
     "imageName": "cb2_shi_card_2.png",
-    "description": "shi_card_2"
+    "roiFront": "871,341,20,36",
+    "roiBack": "760,250,220,220",
+    "method": "Template matching",
+    "threshold": 0.5,
+    "description": "结界卡"
   },
   {
     "itemName": "shi_defense_2",
-    "roiFront": "287,343,19,38",
-    "roiBack": "178,209,261,274",
-    "threshold": "0.5",
-    "method": "Template matching",
     "imageName": "cb2_shi_defense_2.png",
-    "description": "shi_defense_2"
+    "roiFront": "287,343,19,38",
+    "roiBack": "260,250,210,210",
+    "method": "Template matching",
+    "threshold": 0.5,
+    "description": "防守"
   }
 ]

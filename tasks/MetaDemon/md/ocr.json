@@ -6,7 +6,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "md_exhaustion"
+    "description": "Ocr-description"
   },
   {
     "itemName": "md_ticket",
@@ -15,7 +15,7 @@
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
-    "description": "md_ticket"
+    "description": "Ocr-description"
   },
   {
     "itemName": "md_count_info",
@@ -24,7 +24,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "击败奖励结算中",
-    "description": "md_count_info"
+    "description": "Ocr-description"
   },
   {
     "itemName": "crafting_card_1",
@@ -33,7 +33,7 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "一星梦告铃鼓",
-    "description": "crafting_card_1"
+    "description": "一星卡"
   },
   {
     "itemName": "md_full_name",
@@ -42,7 +42,7 @@
     "mode": "Full",
     "method": "Default",
     "keyword": "",
-    "description": "md_full_name"
+    "description": "式神全名"
   },
   {
     "itemName": "boss_empty_1",
@@ -51,6 +51,6 @@
     "mode": "Single",
     "method": "Default",
     "keyword": "剩余时间",
-    "description": "boss_empty_1"
+    "description": "判断别人是否给鬼王"
   }
 ]
