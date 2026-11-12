@@ -12,6 +12,6 @@ class TeamPagePatchAssets:
 
 	# Image Rule Assets
 	# check_team2 
-	I_CHECK_TEAM2 = RuleImage(roi_front=(32,585,82,65), roi_back=(0,563,148,139), threshold=0.8, method="Template matching", file="./tasks/TeamPagePatch/page_check_team2.png")
+	I_CHECK_TEAM2 = RuleImage(roi_front=(97,24,70,38), roi_back=(85,8,105,65), threshold=0.8, method="Template matching", file="./tasks/TeamPagePatch/page_check_team2.png")
 
 
