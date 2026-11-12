@@ -99,6 +99,7 @@ from tasks.DyeTrials.config import DyeTrials
 from tasks.BudokaiTournament.config import BudokaiTournament
 from tasks.XianShiYaoYue.config import XianShiYaoYue
 from tasks.MetaDemonAssist.config import MetaDemonAssist
+from tasks.MetaDemonProvider.config import MetaDemonProvider
 # ----------------------------------------------------------------------------------------------------------------------
 
 # 肝帝专属---------------------------------------------------------------------------------------------------------------
@@ -193,6 +194,7 @@ class ConfigModel(ConfigBase):
     budokai_tournament: BudokaiTournament = Field(default_factory=BudokaiTournament)
     xian_shi_yao_yue: XianShiYaoYue = Field(default_factory=XianShiYaoYue)
     meta_demon_assist: MetaDemonAssist = Field(default_factory=MetaDemonAssist)
+    meta_demon_provider: MetaDemonProvider = Field(default_factory=MetaDemonProvider)
 
     def __init__(self, config_name: str=None) -> None:
         """

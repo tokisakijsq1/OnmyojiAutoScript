@@ -1,0 +1,38 @@
+[
+  {
+    "itemName": "mdp_card",
+    "roiFront": "140,158,120,55",
+    "roiBack": "140,158,120,55",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "剩余时间",
+    "description": "mdp_card"
+  },
+  {
+    "itemName": "mdp_column_1",
+    "roiFront": "440,190,195,330",
+    "roiBack": "440,190,195,330",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "mdp_column_1"
+  },
+  {
+    "itemName": "mdp_column_2",
+    "roiFront": "730,190,200,330",
+    "roiBack": "730,190,200,330",
+    "mode": "Full",
+    "method": "Default",
+    "keyword": "",
+    "description": "mdp_column_2"
+  },
+  {
+    "itemName": "mdp_ticket",
+    "roiFront": "500,20,130,40",
+    "roiBack": "500,20,130,40",
+    "mode": "DigitCounter",
+    "method": "Default",
+    "keyword": "",
+    "description": "mdp_ticket"
+  }
+]

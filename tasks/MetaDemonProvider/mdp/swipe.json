@@ -1,0 +1,9 @@
+[
+  {
+    "itemName": "mdp_list_up",
+    "roiFront": "560,470,80,40",
+    "roiBack": "560,260,80,40",
+    "mode": "default",
+    "description": "mdp_list_up"
+  }
+]

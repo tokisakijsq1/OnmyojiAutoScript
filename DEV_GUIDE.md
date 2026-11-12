@@ -1103,3 +1103,8 @@ fcad0fa8 修完当晚，次日道馆又卡同一条退出流程——这次弹�
   `stuck_record_clear() + stuck_record_add('PAUSE')`（_keep_alive）。
 - 相关文件：`tasks/MetaDemonAssist/`（README 有素材验证表与实机待验清单）、
   素材标定脚本 `log/mda_build_20261111/`（mda_inspect/pearls/probe/validate 系列）。
+- **MetaDemonProvider 补记（2026-11-12）**：集结/邀请/召唤/空面具 4 个素材全部从 MetaDemon 与
+  GeneralInvite 现有 png 拷贝复用（0.996/1.0/1.0/0.905）——**两种好友邀请弹窗（组队房间 vs 超鬼王集结）
+  的"邀请"按钮是像素级同款（1.0000）**，再遇"邀请"类按钮先拿 gi_invite_ensure 试一把再裁新图。
+  选中态金卡裁"纯金底区"（避开名字头像）才能跨好友通用；好友名 OCR 行距 95px 双列 roi 见
+  MetaDemonProvider/assets.py。

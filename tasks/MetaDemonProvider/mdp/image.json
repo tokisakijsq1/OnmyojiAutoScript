@@ -1,0 +1,47 @@
+[
+  {
+    "itemName": "mdp_rally",
+    "roiFront": "247,146,47,52",
+    "roiBack": "200,100,140,200",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_rally.png",
+    "description": "mdp_rally"
+  },
+  {
+    "itemName": "mdp_invite",
+    "roiFront": "704,544,136,62",
+    "roiBack": "473,400,567,310",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_invite.png",
+    "description": "mdp_invite"
+  },
+  {
+    "itemName": "mdp_find",
+    "roiFront": "1140,582,86,81",
+    "roiBack": "1102,546,165,161",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_find.png",
+    "description": "mdp_find"
+  },
+  {
+    "itemName": "mdp_empty",
+    "roiFront": "44,134,88,85",
+    "roiBack": "30,110,270,160",
+    "threshold": "0.85",
+    "method": "Template matching",
+    "imageName": "mdp_empty.png",
+    "description": "mdp_empty"
+  },
+  {
+    "itemName": "mdp_selected",
+    "roiFront": "832,292,92,58",
+    "roiBack": "640,180,310,350",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_selected.png",
+    "description": "mdp_selected"
+  }
+]
