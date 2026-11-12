@@ -29,6 +29,13 @@ class MetaDemonAssistAssets:
 	I_MDA_BUFF_OFF = RuleImage(roi_front=(1115,514,23,24), roi_back=(1095,500,60,60), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_buff_off.png")
 	# 2.5倍伤害勾选框 已勾选态(蓝色对勾圆, 来源用户特写裁剪图, 未实机验证, 代码以状态变化兜底)
 	I_MDA_BUFF_ON = RuleImage(roi_front=(1113,512,29,29), roi_back=(1095,500,60,60), threshold=0.75, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_buff_on.png")
+	# 超鬼王战败结算"失败"字样(模板=gb_false.png 同美术副本, 只是摆放位置比普通副本高29px)
+	# 实测: 超鬼王败局(410,95)得0.9907、普通败局(413,124)得0.9889, 同一 roi 两位置全命中;
+	# 上游 I_FALSE 搜索区(413,124,100,100)不含超鬼王位置故战败永不识别(d5c0b823 曾改共享
+	# I_FALSE.roi_back 修复, 因 PageRegistry.load_all_pages() 扫描导入所有 tasks/*/page.py
+	# 污染全进程——扩宽区罩不住普通败局致结界突破/逢魔连卡死——已撤销)。
+	# 现为任务内副本规则, 经 script_task.py ScriptTask 类内 shadowing I_FALSE 引用, 不触碰共享资产。
+	I_MDA_FALSE = RuleImage(roi_front=(410,95,100,100), roi_back=(400,85,120,150), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_false.png")
 
 	# Click Rule Assets
 	# 2.5倍伤害勾选圆圈中心

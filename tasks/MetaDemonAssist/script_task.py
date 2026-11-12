@@ -31,6 +31,11 @@ PEARL_Y0, PEARL_H = 435, 70
 
 
 class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
+    # 战败判据任务内覆盖: 超鬼王败局美术在(410,95), 上游 I_FALSE 搜索区(413,124,100,100)
+    # 不含该位置, 战败永不识别。I_MDA_FALSE=gb_false 同美术副本、搜索区(400,85,120,150)
+    # 同时罩住超鬼王(410,95)与普通(413,124)两布局。类属性 shadowing 靠 MRO 最派生优先,
+    # 只影响本任务实例的 self.I_FALSE, 不改共享资产(禁止重蹈 d5c0b823 全进程污染覆辙)。
+    I_FALSE = MetaDemonAssistAssets.I_MDA_FALSE
 
     @cached_property
     def conf(self) -> MetaDemonAssist:
