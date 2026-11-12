@@ -1,12 +1,14 @@
 # 超鬼王提供者: 召唤鬼王 -> 点集结邀请指定好友(=开超鬼王协助的账号) -> 等好友击杀
 # -> 鬼王消失5s后再召唤, 循环直到无法召唤; 票尽收工次日再跑(success_interval 语义)
 # 击杀等待超时(mdp_kill_timeout)重邀一次, 第二次仍超时收工(用户拍板 2026-11-12)
+# 2026-11-12 实机反馈: 邀请完任务就结束 -> 两根因已修:
+#   1) 让位误伤: Provider 是主动肝任务(同 Orochi 语义), 全程占用调度器直到票尽, 不做守候式让位
+#   2) 游戏截断长好友名(丶永…夜)致 exact 匹配永不命中 -> 前缀+difflib 容错匹配
+import difflib
 from cached_property import cached_property
-from datetime import datetime
 from time import sleep
 
 from module.base.timer import Timer
-from module.config.config import Function
 from module.exception import TaskEnd, GamePageUnknownError
 from module.logger import logger
 
@@ -22,6 +24,12 @@ SELECT_RETRY = 2
 SUMMON_RETRY = 2
 # 鬼王消失后等结算再召唤的间隔(秒, 用户指定)
 RESUMMON_DELAY = 5
+# 鬼王消失判据需连续确认的帧数(防弹窗关闭动画/结算浮层遮挡造成单帧假消失, 契灵假0同源坑)
+GONE_CONFIRM_FRAMES = 2
+# 好友名容错匹配: 截断名前缀长度 与 difflib 相似度阈值
+# 0.75 的取值: 3字名误读1字(0.667)要拦(误邀别人代价高), 4字名误读1字(0.75)起放行
+NAME_PREFIX_LEN = 3
+NAME_RATIO = 0.75
 
 
 class ScriptTask(GameUi, MetaDemonProviderAssets):
@@ -40,7 +48,8 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
             self.set_next_run(task='MetaDemonProvider', success=True)
             raise TaskEnd
         while not overall.reached():
-            self._yield_to_scheduler()
+            # 注意: 本任务全程不让位(主动肝任务, 同 Orochi 语义)——
+            # 等待击杀期间被到点任务打断 = 主号失去集结目标, 任务被拆散(2026-11-12 实机教训)
             # 鬼王在场检测: 自己发现卡 OCR 或 集结标记可见
             self.screenshot()
             king_here = self.ocr_appear(self.O_MDP_CARD) or self.appear(self.I_MDP_RALLY)
@@ -64,23 +73,6 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
         self.set_next_run(task='MetaDemonProvider', success=True)
         logger.info('MetaDemonProvider run finish')
         raise TaskEnd
-
-    # ---------------- 让位 ----------------
-
-    def _yield_to_scheduler(self) -> None:
-        """其他启用任务到点时让位(TaskEnd), 调度器按优先级先跑对方后自动唤醒本任务。"""
-        now = datetime.now()
-        for key, value in self.config.model.dict().items():
-            if key == 'meta_demon_provider':
-                continue
-            func = Function(key, value)
-            if not func.enable or not isinstance(func.next_run, datetime):
-                continue
-            if func.next_run <= now:
-                logger.info(f'Yield to pending task: {func.command}')
-                self.set_next_run(task='MetaDemonProvider', success=None, finish=False, server=False,
-                                  target=now)
-                raise TaskEnd('MetaDemonProvider yield')
 
     # ---------------- 页面 ----------------
 
@@ -154,11 +146,12 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
         for round_no in (1, 2):
             if not self._invite_friend(friend, round_no):
                 return None
-            # 等好友击杀(鬼王消失): 空面具出现 且 卡片OCR读空
+            # 等好友击杀(鬼王消失): 空面具出现 且 卡片OCR读空, 连续 GONE_CONFIRM_FRAMES 帧一致才算
+            # (单帧证据坑: 邀请弹窗关闭动画/结算浮层会短暂遮挡卡片区造成假消失)
             timer = Timer(timeout).start()
             keep_alive = Timer(280).start()
+            gone_frames = 0
             while not timer.reached():
-                self._yield_to_scheduler()
                 self.screenshot()
                 if keep_alive.reached():
                     self.device.stuck_record_clear()
@@ -166,12 +159,16 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
                     keep_alive.reset()
                 if self.ui_reward_appear_click():
                     keep_alive.reset()
+                    gone_frames = 0
                     continue
                 if not self.appear(self.I_MDP_INVITE):
                     gone = (not self.ocr_appear(self.O_MDP_CARD)) and self.appear(self.I_MDP_EMPTY)
-                    if gone:
+                    gone_frames = gone_frames + 1 if gone else 0
+                    if gone_frames >= GONE_CONFIRM_FRAMES:
                         logger.info('Ghost king is killed and gone')
                         return True
+                else:
+                    gone_frames = 0
                 sleep(2)
             logger.warning(f'Kill wait timeout (round {round_no}), re-invite')
         return False
@@ -205,11 +202,7 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
             if self.appear(self.I_MDP_SELECTED):
                 selected = True
                 break
-            self.O_MDP_COLUMN_1.keyword = friend
-            self.O_MDP_COLUMN_2.keyword = friend
-            if self.ocr_appear_click(self.O_MDP_COLUMN_1, interval=2, exact=True):
-                continue
-            if self.ocr_appear_click(self.O_MDP_COLUMN_2, interval=2, exact=True):
+            if self._select_friend(friend):
                 continue
             sleep(1)
         if not selected:
@@ -234,13 +227,41 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
                 self._close_invite_popup()
                 return False
 
+    @staticmethod
+    def _name_hit(friend: str, text: str) -> bool:
+        """好友名容错匹配:
+        游戏把长名缩略显示(如 丶永…夜), exact 永不命中(魂十三→魂干三同源的截断坑);
+        OCR 也可能形近误读。三级判据: 清洗后全等 / 任一方为另一方的短前缀(截断) / difflib 相似度。"""
+        clean = lambda s: s.replace(' ', '').replace('…', '').replace('···', '').replace('...', '')
+        f, t = clean(friend), clean(text)
+        if not f or not t:
+            return False
+        if f == t:
+            return True
+        # 截断: OCR 文本(去掉省略号)是配置名的前缀, 或配置名以 OCR 文本开头
+        if len(t) <= len(f) and f.startswith(t[:NAME_PREFIX_LEN]):
+            return True
+        if len(f) <= len(t) and t.startswith(f[:NAME_PREFIX_LEN]):
+            return True
+        return difflib.SequenceMatcher(None, f, t).ratio() >= NAME_RATIO
+
     def _select_friend(self, friend: str) -> bool:
-        """当前屏双列 OCR 找好友名并点击(不验证选中, 选中由调用方确认)。"""
-        self.O_MDP_COLUMN_1.keyword = friend
-        self.O_MDP_COLUMN_2.keyword = friend
-        hit_1 = self.ocr_appear_click(self.O_MDP_COLUMN_1, interval=1.5, exact=True)
-        hit_2 = self.ocr_appear_click(self.O_MDP_COLUMN_2, interval=1.5, exact=True)
-        return hit_1 or hit_2
+        """当前屏双列 OCR 容错匹配好友名并点击其卡片(不验证选中, 选中由调用方确认)。"""
+        for rule in (self.O_MDP_COLUMN_1, self.O_MDP_COLUMN_2):
+            rx, ry, rw, rh = rule.roi
+            for result in rule.detect_and_ocr(self.device.image):
+                text = result.ocr_text
+                if not self._name_hit(friend, text):
+                    continue
+                box = result.box
+                xs = [p[0] for p in box]
+                ys = [p[1] for p in box]
+                cx = rx + int((min(xs) + max(xs)) / 2)
+                cy = ry + int((min(ys) + max(ys)) / 2)
+                logger.info(f'Friend name hit: "{text}" -> click ({cx},{cy})')
+                self.device.click(x=cx, y=cy, control_name=rule.name)
+                return True
+        return False
 
     def _close_invite_popup(self) -> None:
         """找不到好友/确认失败时退出弹窗: 依次尝试点公开(取消选中语义)与返回键, 最后导航自愈。"""

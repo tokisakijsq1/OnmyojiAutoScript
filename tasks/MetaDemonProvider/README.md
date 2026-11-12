@@ -10,17 +10,23 @@
 ## 流程
 
 1. `goto_page(page_mda_huozhu)`（**复用** MetaDemonAssist 的页面图，跨任务引用 page 对象）。
-2. 主循环（`mdp_max_duration` 兜底 + 让位检查，范式同 MetaDemonAssist `_yield_to_scheduler`）：
+2. 主循环（`mdp_max_duration` 兜底）。**全程不让位**（2026-11-12 实机教训：Provider 是主动肝任务，
+   同 Orochi 语义，等待击杀期间被到点任务打断 = 主号失去集结目标，任务被拆散；Assist 是守候型
+   才让位，两类任务语义不同）：
    - **鬼王在场检测**：自己发现卡 OCR「剩余时间」（O_MDP_CARD）或集结标记（I_MDP_RALLY）可见；
    - 无鬼王 → 点召唤鬼王（I_MDP_FIND）→ 等 10s 鬼王出现；重试 2 次仍失败 = **无法召唤，收工**；
    - 有鬼王 → 点集结标记 → 等好友邀请弹窗（I_MDP_INVITE 出现）；
-   - **选好友**：双列 OCR 注入 keyword `ocr_appear_click(exact=True)`（gi `detect_select` 模式）；
+   - **选好友**：双列 OCR `detect_and_ocr` + 容错匹配（`_name_hit`：清洗省略号/空格后
+     全等 / 短前缀 / difflib≥0.75 三级）——**游戏把长名缩略显示（丶永…夜），exact 永不命中**
+     （魂十三→魂干三同源的截断坑，2026-11-12 实机确认）；0.75 的取值=3 字名误读 1 字要拦
+     （误邀别人代价高），4 字名误读 1 字起放行；单测 11 例全过（log/mdp_build_20261112）。
      首屏没有 → 列表上滑一屏再找（S_MDP_LIST_UP）；两屏仍无 → 整轮重试 1 次 → 仍失败：
      存诊断截图 `mdp_friend_not_found` + 关弹窗 + **收工**（失败外传，不静默）；
    - 点中后等选中金卡（I_MDP_SELECTED，裁自选中卡右上纯金底区，避开名字头像）确认，最多重试 3 次；
    - 点「邀请」→ 以**弹窗消失**为成功判据（Timer 8s 兜底，失败存 `mdp_invite_ensure_missing` + 收工）；
-   - **等好友击杀**：轮询自己发现区（每轮 280s 周期 `stuck_record_clear + add('PAUSE')` 保活 + 让位 +
-     `ui_reward_appear_click` 顺手清结算弹窗）；鬼王消失判据 = 卡片 OCR 读空 **且** 空面具出现（双判据）；
+   - **等好友击杀**：轮询自己发现区（每轮 280s 周期 `stuck_record_clear + add('PAUSE')` 保活 +
+     `ui_reward_appear_click` 顺手清结算弹窗）；鬼王消失判据 = 卡片 OCR 读空 **且** 空面具出现，
+     **连续 2 帧确认**（防邀请弹窗关闭动画/结算浮层遮挡造成单帧假消失，契灵假 0 同源坑）；
      `mdp_kill_timeout`（默认 10 分钟）超时 → **重新集结邀请一次**；第二次仍超时 → 收工（鬼王留着，
      下次运行时仍在场可直接集结；鬼王约 37 分钟自然逃跑）；
    - 鬼王消失 → `sleep(5)`（用户指定）→ `_clear_settlement` 清奖励/结算弹窗 → 回到鬼王检测。
