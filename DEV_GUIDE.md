@@ -1293,3 +1293,28 @@ gitcode 镜像(de497a3f, 11-03)当时已落后 GitHub dev 两三天，今后 fet
   （那次点击同样清白名单）。与 Assist `_wait_banner` 入口预登记同范式。
 - 通用教训：**任何长安静循环，入口先 `stuck_record_clear + add(豁免)`，周期拍 < 300s；
   只写周期拍不写入口拍 = 首拍前必有空窗**。
+
+### 35.2 补：GameUi 资产振荡窗口的三次崩——坏版本会被进程固化，修完必须统一重启（2026-11-12 夜）
+
+今晚 21:00-22:18 GameUi/assets.py 经历三个状态：合并后 de497a3f 版（有 act_list、
+**无 O_BATTLE_AUTO**——上游 10-03 就丢了）→ 用户 22:0x 标注保存重生成版（带回
+O_BATTLE_AUTO、**丢 21 条**）→ 2077bf5c 修复版（全齐）。三个 oas 进程分别撞上三个状态：
+
+| 进程 | 启动时刻 | 固化的版本 | 崩法 |
+|---|---|---|---|
+| oas2 | 22:10 前 | 重生成版（缺21条） | I_CHECK_ACT_LIST AttributeError |
+| oas2(重启) | 22:16 | 同上（修复未落盘） | 同上（时间差，非新bug） |
+| 小号6 | **21:48** | de497a3f 版（缺O_BATTLE_AUTO） | 23:30 GoldYoukai 战斗中 AttributeError |
+
+小号6 的崩法最隐蔽：21:48:55 首个任务（MetaDemonProvider）load_module 就把当时磁盘的
+GameUi.assets 固化进 sys.modules（**有 I_CHECK_ACT_LIST 所以页面全正常、任务能跑 5 小时**，
+直到 23:30 第一场通用战斗才踩到缺的 O_BATTLE_AUTO）。load_module 每次重读的只有
+script_task 本身，它 import 的共享模块走 sys.modules 缓存**进程级永不刷新**。
+
+**教训**：
+1. 修 assets/共享模块的中间态期间，任何启动的进程都会固化当时的坏版本——**磁盘修好
+   不会自愈，必须重启进程**；修一半让用户"先重启试试"反而会把中间态固化得更深。
+2. 一次资产手术（合并+清理+修复）结束后，**所有 oas 进程统一重启一次**，不要逐个试探。
+3. 诊断"磁盘有但实例没有"：报错里 `type object 'Xxx' has no attr` = 类属性真缺（查磁盘）；
+   `'ScriptTask' object has no attr` 而磁盘正常 = 进程缓存旧版（查进程启动时刻 vs 文件
+   修改时刻）。21:48-22:18 窗口启动的进程撞的是 de497a3f 版，22:10-22:18 撞的是重生成版。
