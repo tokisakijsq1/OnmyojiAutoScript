@@ -61,5 +61,59 @@
     "method": "Template matching",
     "imageName": "mdp_summon_now.png",
     "description": "mdp_summon_now"
+  },
+  {
+    "itemName": "mdp_right_enter",
+    "roiFront": "1187,230,24,24",
+    "roiBack": "1150,120,105,470",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_right_enter.png",
+    "description": "庭院右侧栏祸至无日活动图标(同超鬼王协助裁剪, 带动画图标取稳定核心区)"
+  },
+  {
+    "itemName": "mdp_goto_huozhu",
+    "roiFront": "992,182,34,76",
+    "roiBack": "950,150,150,260",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_goto_huozhu.png",
+    "description": "祸至无日活动页的竖排超鬼王按钮"
+  },
+  {
+    "itemName": "mdp_title_event",
+    "roiFront": "150,15,132,42",
+    "roiBack": "100,5,350,75",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_title_event.png",
+    "description": "祸至无日活动页标题"
+  },
+  {
+    "itemName": "mdp_title_huozhu",
+    "roiFront": "150,15,135,42",
+    "roiBack": "100,5,350,75",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_title_huozhu.png",
+    "description": "祸主降临页标题(与event标题同位同风格, 靠模板区分)"
+  },
+  {
+    "itemName": "mdp_challenge",
+    "roiFront": "1130,566,124,124",
+    "roiBack": "1080,540,190,180",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_challenge.png",
+    "description": "祸主降临页挑战按钮(有可挑战对象时显示)"
+  },
+  {
+    "itemName": "mdp_back",
+    "roiFront": "16,6,62,56",
+    "roiBack": "5,2,95,75",
+    "threshold": "0.8",
+    "method": "Template matching",
+    "imageName": "mdp_back.png",
+    "description": "左上返回按钮(两活动页同款同位)"
   }
 ]

@@ -23,8 +23,22 @@ class MetaDemonProviderAssets:
 	I_MDP_SELECTED = RuleImage(roi_front=(598,184,38,30), roi_back=(580,180,360,340), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_selected.png")
 	# mdp_queue 
 	I_MDP_QUEUE = RuleImage(roi_front=(1058,492,184,40), roi_back=(1030,465,240,100), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_queue.png")
-	# mdp_summon_now 
+	# mdp_summon_now
 	I_MDP_SUMMON_NOW = RuleImage(roi_front=(545,448,190,44), roi_back=(480,430,330,110), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_summon_now.png")
+	# 页面判据素材(2026-11-12 自超鬼王协助 mda 同款裁剪字节拷贝, 该协助 2026-11-11 从用户截图离线验证:
+	# 全部对来源截图 1.0, 标题互判 0.62x 阈 0.8 可区分; 本任务自包含不再跨任务引用协助页面)
+	# 庭院右侧栏祸至无日活动图标(带动画, 取稳定核心区)
+	I_MDP_RIGHT_ENTER = RuleImage(roi_front=(1187,230,24,24), roi_back=(1150,120,105,470), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_right_enter.png")
+	# 祸至无日活动页的竖排"超鬼王"按钮
+	I_MDP_GOTO_HUOZHU = RuleImage(roi_front=(992,182,34,76), roi_back=(950,150,150,260), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_goto_huozhu.png")
+	# 祸至无日活动页标题
+	I_MDP_TITLE_EVENT = RuleImage(roi_front=(150,15,132,42), roi_back=(100,5,350,75), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_title_event.png")
+	# 祸主降临页标题(与 event 标题同位同风格, 靠模板区分)
+	I_MDP_TITLE_HUOZHU = RuleImage(roi_front=(150,15,135,42), roi_back=(100,5,350,75), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_title_huozhu.png")
+	# 祸主降临页挑战按钮(有可挑战对象时显示)
+	I_MDP_CHALLENGE = RuleImage(roi_front=(1130,566,124,124), roi_back=(1080,540,190,180), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_challenge.png")
+	# 左上返回按钮(两活动页同款同位)
+	I_MDP_BACK = RuleImage(roi_front=(16,6,62,56), roi_back=(5,2,95,75), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_back.png")
 
 
 	# Ocr Rule Assets

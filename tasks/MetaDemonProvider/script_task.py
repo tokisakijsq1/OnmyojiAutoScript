@@ -1,9 +1,20 @@
 # 超鬼王提供者: 召唤鬼王 -> 点集结邀请指定好友(=开超鬼王协助的账号) -> 等好友击杀
 # -> 鬼王消失5s后再召唤, 循环直到无法召唤; 票尽收工次日再跑(success_interval 语义)
 # 击杀等待超时(mdp_kill_timeout)重邀一次, 第二次仍超时收工(用户拍板 2026-11-12)
-# 2026-11-12 实机反馈: 邀请完任务就结束 -> 两根因已修:
-#   1) 让位误伤: Provider 是主动肝任务(同 Orochi 语义), 全程占用调度器直到票尽, 不做守候式让位
-#   2) 游戏截断长好友名(丶永…夜)致 exact 匹配永不命中 -> 前缀+difflib 容错匹配
+#
+# 2026-11-12 重构(自包含): 页面图/页判据素材拷贝为本任务 mdp_ 副本(此前跨任务引用
+# 超鬼王协助的 page_mda_huozhu, 协助模块不在就导航不了); 页面 key 用 page_mdp_* 与
+# 协助的 page_mda_* 并存, 两任务互不依赖, 仅共享可复用组件(GameUi/RightActivity)。
+#
+# 邀请链路时序对齐百鬼夜行范式(tasks/Hyakkiyakou/slave/hya_slave.py _invite_specific_friend):
+#   弹窗框出现 != 列表内容就绪 -> 列表就绪等待(OCR 轮询到非空名单, 修 2026-11-12 实机
+#   "点完集结后给 OCR 的时间太短"读空误判); 滑动翻页校验有效性(前后名单对比, 吞滑重试,
+#   到底即停, 修盲滑两次就放弃); 点中好友留确认间隔再查选中态(修 0.4s 连点无间隔)。
+#
+# 其他既有语义(保持不变):
+#   1) 让位误伤已修: Provider 是主动肝任务(同 Orochi 语义), 全程占用调度器直到票尽
+#   2) 游戏截断长好友名(丶永…夜) -> _name_hit 前缀+difflib 容错匹配(单测11例)
+#   3) 鬼王消失双帧确认(弹窗关闭动画/结算浮层遮挡的单帧假消失, 契灵假0同源坑)
 import difflib
 from cached_property import cached_property
 from time import sleep
@@ -14,12 +25,10 @@ from module.logger import logger
 
 from tasks.GameUi.game_ui import GameUi
 from tasks.GameUi.page import page_main
-from tasks.MetaDemonAssist.page import page_mda_huozhu
 from tasks.MetaDemonProvider.assets import MetaDemonProviderAssets
 from tasks.MetaDemonProvider.config import MetaDemonProvider
+from tasks.MetaDemonProvider.page import page_mdp_huozhu
 
-# 选好友失败的整体重试轮数
-SELECT_RETRY = 2
 # 召唤失败重试次数(超过=无法召唤, 收工)
 SUMMON_RETRY = 2
 # 鬼王消失后等结算再召唤的间隔(秒, 用户指定)
@@ -30,6 +39,14 @@ GONE_CONFIRM_FRAMES = 2
 # 0.75 的取值: 3字名误读1字(0.667)要拦(误邀别人代价高), 4字名误读1字(0.75)起放行
 NAME_PREFIX_LEN = 3
 NAME_RATIO = 0.75
+# 邀请弹窗列表就绪: 首个沉降等待(秒) / 就绪轮询上限(秒) / 就绪判据=名字最少字符数
+LIST_SETTLE = 1.0
+LIST_READY_TIMEOUT = 6
+LIST_READY_MIN_CHARS = 2
+# 选好友最多向下翻屏数(首屏 + MAX_SWIPES 次滑动; 已观察列表规模两屏内, 留余量)
+MAX_SWIPES = 4
+# 选中标记确认轮数(每轮间隔确认, 给选中动画留渲染时间)
+SELECT_CONFIRM_RETRY = 3
 
 # ---------------- 召唤队列卡识别(与排序无关, 数星标) ----------------
 # 弹窗卡按"拥有的星级种类"压缩排列(缺的星级不留空位), 固定坐标不可用(2026-11-12 用户实测);
@@ -118,12 +135,12 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
     # ---------------- 页面 ----------------
 
     def _goto_provider_page(self) -> bool:
-        """进祸主降临页(复用超鬼王协助的页面图, 跨任务引用 page 对象是既有惯例)。"""
+        """进祸主降临页(本任务自包含页面图, 不再依赖超鬼王协助模块)。"""
         try:
-            self.goto_page(page_mda_huozhu)
+            self.goto_page(page_mdp_huozhu)
             return True
         except GamePageUnknownError:
-            logger.warning('Goto page_mda_huozhu failed, activity may be closed')
+            logger.warning('Goto page_mdp_huozhu failed, activity may be closed')
             try:
                 self.goto_page(page_main)
             except GamePageUnknownError:
@@ -291,37 +308,44 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
         return False
 
     def _invite_friend(self, friend: str, round_no: int) -> bool:
-        """点集结 -> 弹窗内选好友 -> 点邀请 -> 等弹窗关闭。失败返回 False(调用方收工)。"""
+        """点集结 -> 弹窗内选好友 -> 点邀请 -> 等弹窗关闭。失败返回 False(调用方收工)。
+        时序对齐百鬼夜行范式: 弹窗开 -> 列表就绪等待 -> 逐屏查找(滑动有效性校验)
+        -> 点中后留间隔确认选中态 -> 点邀请等弹窗消失。"""
         logger.info(f'Rally invite round {round_no}, friend={friend}')
         self.ui_click(self.I_MDP_RALLY, stop=self.I_MDP_INVITE, interval=2, timeout=12)
         if not self.wait_until_appear(self.I_MDP_INVITE, wait_time=4):
             logger.warning('Friend invite popup did not open')
             return False
-        # 选好友: 双列 OCR 注入 keyword, 首屏 -> 滑一屏 -> 重试整轮
-        for attempt in range(SELECT_RETRY):
+        # 逐屏查找: 首屏 -> 滑动翻页(校验真的翻了页, 吞滑补滑, 到底即停)
+        found = False
+        for screen in range(MAX_SWIPES + 1):
+            self.screenshot()
+            self._wait_list_ready()
             if self._select_friend(friend):
+                found = True
                 break
-            logger.info(f'Friend not on current screen ({attempt + 1}/{SELECT_RETRY}), scroll list')
-            self.swipe(self.S_MDP_LIST_UP, 2)
-            sleep(1.5)
-            if self._select_friend(friend):
+            if screen >= MAX_SWIPES:
                 break
-            sleep(1)
-        else:
+            logger.info(f'Friend not on screen {screen + 1}/{MAX_SWIPES + 1}, scroll list')
+            if not self._scroll_friend_list():
+                logger.info('Friend list scroll has no effect, reached bottom')
+                break
+        if not found:
             logger.warning(f'Friend {friend} not found in invite list')
             self.device.save_screenshot('mdp_friend_not_found', interval=120)
             self._close_invite_popup()
             return False
-        # 选中金卡确认(点了名字没选中就再点, 仿 gi detect_select)
+        # 选中标记确认(点中后先留间隔给选中动画渲染, 再复查; 没选中就重新点名字)
         selected = False
-        for _ in range(3):
+        for attempt in range(SELECT_CONFIRM_RETRY):
+            sleep(1)
             self.screenshot()
             if self.appear(self.I_MDP_SELECTED):
                 selected = True
                 break
+            logger.info(f'Selected mark not visible (attempt {attempt + 1}/{SELECT_CONFIRM_RETRY}), re-click name')
             if self._select_friend(friend):
                 continue
-            sleep(1)
         if not selected:
             logger.warning('Friend selected mark never appeared')
             self.device.save_screenshot('mdp_select_missing', interval=120)
@@ -380,8 +404,43 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
                 return True
         return False
 
+    def _list_names(self) -> list:
+        """读邀请弹窗双列当前可见名字(用于列表就绪判据与滑动有效性对比)。"""
+        names = []
+        for rule in (self.O_MDP_COLUMN_1, self.O_MDP_COLUMN_2):
+            for result in rule.detect_and_ocr(self.device.image):
+                text = (result.ocr_text or '').replace(' ', '')
+                if text:
+                    names.append(text)
+        return names
+
+    def _wait_list_ready(self) -> bool:
+        """等邀请弹窗的好友列表渲染完成(弹窗框出现 != 内容就绪, 2026-11-12 实机读空教训)。
+        仿百鬼夜行进面板后的列表加载等待, 但用实际 OCR 读取代替盲等:
+        LIST_SETTLE 首沉降后轮询, 任一列读到名字即就绪; 超时返回 False(调用方继续走选好友,
+        选不到自然走失败链路, 不额外分支)。"""
+        sleep(LIST_SETTLE)
+        timer = Timer(LIST_READY_TIMEOUT).start()
+        while not timer.reached():
+            self.screenshot()
+            if any(len(n) >= LIST_READY_MIN_CHARS for n in self._list_names()):
+                return True
+            sleep(0.5)
+        return False
+
+    def _scroll_friend_list(self) -> bool:
+        """滑动好友列表并确认真的翻页。游戏偶尔吞滑动, 盲滑会一路空翻到底
+        (百鬼夜行 _scroll_friend_list 同源坑); 滑动前后对比双列 OCR 名单判定。
+        返回 True=列表内容变化(翻页成功) / False=没变化(吞滑或已到底, 调用方停止翻页)。"""
+        before = self._list_names()
+        self.swipe(self.S_MDP_LIST_UP, 2)
+        sleep(1.2)
+        self.screenshot()
+        after = self._list_names()
+        return after != before
+
     def _close_invite_popup(self) -> None:
-        """找不到好友/确认失败时退出弹窗: 依次尝试点公开(取消选中语义)与返回键, 最后导航自愈。"""
+        """找不到好友/确认失败时退出弹窗: 点粉叉, 出口=邀请按钮消失; 超时导航自愈。"""
         logger.info('Close invite popup')
         timer = Timer(12).start()
         while not timer.reached():
