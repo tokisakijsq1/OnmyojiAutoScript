@@ -1237,10 +1237,13 @@ gitcode 镜像(de497a3f, 11-03)当时已落后 GitHub dev 两三天，今后 fet
   策略钩子/胜利界面识别循环/auto_shared_boss 新配置）：代码+config+素材**整体取上游**；
   fire 系 4png+gift_box+Screenshots_a2~a5 上游已删随删；本地 0fc20ec7 的 11-11 换图批次被
   上游 11-10/11-11 批次取代（md_md_battle_failure 对真实败局截图复验 0.9972）。
-  **上游把主体规则挪进 image_2025.json、image.json 只留战斗结算两张**——⚠️ 若将来再用标注
-  工具保存 GameUi 任务，工具会重建整份 page/image.json，与拆分的 image_main/exploration/
-  act_list/town.json 并存 → 31 个重复定义复发（本次 953649ed 删的就是它）。届时要么清空
-  image.json 只留新改的条目、要么删拆分文件，二者必须二选一。
+  **上游把主体规则挪进 image_2025.json、image.json 只留战斗结算两张**——⚠️ GameUi 的
+  act_list/town 系列条目（21 条）曾只活在本地已删的合并版 image.json 里：当晚标注工具保存
+  GameUi（重标 check_mall_purple）即触发——工具按现存 json 重生成 assets.py，21 条因无
+  json 源被丢 → default_pages 引用 I_CHECK_ACT_LIST 报 AttributeError。已修（2077bf5c）：
+  image_act_list/image_town.json 取上游正式拆分版本归位 json 源，assets.py 补回 21 条。
+  **此后标注工具保存 GameUi 安全**（所有条目都有 json 源）；教训：删合并版 json 前必须
+  先把其中独有条目落回拆分文件。
 - ActivityShikigami/assets.py **取本地**（磐长故地重做版；上游 2 行只是调其自家旧布局 roi）。
 - 6 个 json(main16/cb1-3/gw/kekkai_a/realm/gate1) 取上游（本地侧仅 7e6ec531 重建格式）。
 - i18n zh-CN.json 取本地（超集）。
