@@ -22,7 +22,7 @@ class MetaDemonProviderAssets:
 	# mdp_selected 
 	I_MDP_SELECTED = RuleImage(roi_front=(598,184,38,30), roi_back=(580,180,360,340), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_selected.png")
 	# mdp_queue 
-	I_MDP_QUEUE = RuleImage(roi_front=(1090,458,165,47), roi_back=(1050,440,210,90), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_queue.png")
+	I_MDP_QUEUE = RuleImage(roi_front=(1058,492,184,40), roi_back=(1030,465,240,100), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_queue.png")
 	# mdp_summon_now 
 	I_MDP_SUMMON_NOW = RuleImage(roi_front=(545,448,190,44), roi_back=(480,430,330,110), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_summon_now.png")
 
@@ -35,7 +35,7 @@ class MetaDemonProviderAssets:
 	# mdp_column_2 
 	O_MDP_COLUMN_2 = RuleOcr(roi=(730,190,200,330), area=(730,190,200,330), mode="Full", method="Default", keyword="", name="mdp_column_2")
 	# mdp_ticket 
-	O_MDP_TICKET = RuleOcr(roi=(500,20,130,40), area=(500,20,130,40), mode="DigitCounter", method="Default", keyword="", name="mdp_ticket")
+	O_MDP_TICKET = RuleOcr(roi=(500,20,130,40), area=(500,20,130,40), mode="Digit", method="Default", keyword="", name="mdp_ticket")
 
 
 	# Swipe Rule Assets

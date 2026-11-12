@@ -30,7 +30,7 @@
     "itemName": "mdp_ticket",
     "roiFront": "500,20,130,40",
     "roiBack": "500,20,130,40",
-    "mode": "DigitCounter",
+    "mode": "Digit",
     "method": "Default",
     "keyword": "",
     "description": "mdp_ticket"

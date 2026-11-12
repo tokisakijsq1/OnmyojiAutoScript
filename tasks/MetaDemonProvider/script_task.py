@@ -92,6 +92,7 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
     def _exit_to_main(self) -> None:
         """认层退回庭院; 中间层判据用通用返回键+页面自愈, 终点以庭院判据为准。"""
         for _ in range(10):
+            self.device.stuck_record_clear()
             self.screenshot()
             if self.appear(self.I_CHECK_MAIN):
                 return
@@ -118,6 +119,8 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
         """召唤鬼王并等待出现在自己发现区; SUMMON_RETRY 次失败=无法召唤(票尽等), 返回 False。"""
         star = self.conf.meta_demon_provider_config.mdp_target_star
         for attempt in range(1, SUMMON_RETRY + 2):
+            # 单轮可达 16s 无点击(模板不匹配时 ui_click/wait_until_appear 干等), 每轮清卡死记录
+            self.device.stuck_record_clear()
             self.screenshot()
             if self.ocr_appear(self.O_MDP_CARD) or self.appear(self.I_MDP_RALLY):
                 return True
@@ -167,9 +170,9 @@ class ScriptTask(GameUi, MetaDemonProviderAssets):
         return False
 
     def _read_ticket(self):
+        # 顶栏票数是单独数字(如 37), 不是 cur/total 格式, 用 Digit 模式直接返回 int
         try:
-            cur, _, _t = self.O_MDP_TICKET.ocr(self.device.image)
-            return int(cur)
+            return int(self.O_MDP_TICKET.ocr(self.device.image))
         except (ValueError, TypeError):
             return None
 

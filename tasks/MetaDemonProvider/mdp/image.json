@@ -46,8 +46,8 @@
   },
   {
     "itemName": "mdp_queue",
-    "roiFront": "1090,458,165,47",
-    "roiBack": "1050,440,210,90",
+    "roiFront": "1058,492,184,40",
+    "roiBack": "1030,465,240,100",
     "threshold": "0.8",
     "method": "Template matching",
     "imageName": "mdp_queue.png",
