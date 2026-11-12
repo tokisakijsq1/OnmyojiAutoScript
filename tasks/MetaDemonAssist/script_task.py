@@ -186,12 +186,13 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
 
     def _assist_loop(self, banner_star: int = None) -> None:
         """在祸主降临页: 扫好友发现卡片 -> 选卡 -> 按星级设2.5倍 -> 挑战 -> 通用战斗,
-        直到无可挑战卡/资源不足/连败。返回时停在本页(或已离开), 退出交调用方。"""
+        直到无可挑战卡/资源不足/连败。返回时停在本页(或已离开), 退出交调用方。
+        注意: 协助阶段不做让位检查(主动肝语义, 同 Provider/Orochi)——
+        每场战斗结束后被到点任务打断 = 任务结束(2026-11-12 实机"战后即结束"根因), 让位只在守候循环。"""
         max_rounds = 30
         no_progress = 0
         lose_streak = 0
         for _ in range(max_rounds):
-            self._yield_to_scheduler()
             self.screenshot()
             if not self._in_huozhu_page(False):
                 # 弹窗/转场: 先尝试关弹窗
@@ -213,8 +214,13 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
                 return
             slot = self._find_challengeable_slot()
             if slot is None:
-                logger.info('No challengeable ghost king in friend list')
-                return
+                # 单帧证据坑: 战斗结算浮层/转场动画会短暂遮挡卡片区, 两帧都空才认定无可挑战
+                sleep(1.5)
+                self.screenshot()
+                slot = self._find_challengeable_slot()
+                if slot is None:
+                    logger.info('No challengeable ghost king in friend list (2 frames)')
+                    return
             # 选卡(已选中则跳过)
             if not self.appear(self.I_MDA_CHALLENGE):
                 self.click(self.C_MDA_CARD_1 if slot == 0 else self.C_MDA_CARD_2)
@@ -251,7 +257,10 @@ class ScriptTask(GameUi, SwitchSoul, GeneralBattle, MetaDemonAssistAssets):
                 if lose_streak >= 3:
                     logger.warning('Lose 3 battles in a row, stop assisting')
                     return
-            sleep(1)  # 结算回页转场
+            sleep(1)  # 结算点击后的第一段转场
+            # 等回到祸主降临页再进下一轮(消除转场中 OCR/页面判据的单帧误判)
+            if not self.wait_until_appear(self.I_MDA_TITLE_HUOZHU, wait_time=5):
+                logger.warning('Back to huozhu page not confirmed after battle')
         logger.info('Assist loop max rounds reached')
 
     def _find_challengeable_slot(self) -> int | None:
