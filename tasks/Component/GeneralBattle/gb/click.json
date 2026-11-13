@@ -370,5 +370,29 @@
     "roiFront": "400,250,493,226",
     "roiBack": "401,252,494,230",
     "description": "end_activity_reward"
+  },
+  {
+    "itemName": "end_top_left_stat",
+    "roiFront": "43,33,68,70",
+    "roiBack": "43,33,68,70",
+    "description": "结算左上角统计图标(禁点)"
+  },
+  {
+    "itemName": "end_top_banner",
+    "roiFront": "662,0,618,52",
+    "roiBack": "662,0,618,52",
+    "description": "结算顶部右侧横幅含角标(禁点)"
+  },
+  {
+    "itemName": "end_contract_icon",
+    "roiFront": "864,56,66,68",
+    "roiBack": "864,56,66,68",
+    "description": "结算同行之契图标(禁点,F3不加宽)"
+  },
+  {
+    "itemName": "end_center_all",
+    "roiFront": "137,130,994,562",
+    "roiBack": "137,130,994,562",
+    "description": "结算中部整块:奖励排+宝箱立绘+加成计时+记录按钮(禁点)"
   }
 ]

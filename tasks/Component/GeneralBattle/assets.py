@@ -252,8 +252,16 @@ class GeneralBattleAssets:
 	C_END_3_6 = RuleClick(roi_front=(0,0,100,100), roi_back=(0,0,100,100), name="end_3_6")
 	# 其实贪吃鬼这个点了也是没事儿 
 	C_END_GREED = RuleClick(roi_front=(138,16,512,93), roi_back=(138,16,512,93), name="end_greed")
-	# 中间的一堆奖励直接忽略。上面的end_1_1到end_3_6会容易UI变化失效 
+	# 中间的一堆奖励直接忽略。上面的end_1_1到end_3_6会容易UI变化失效
 	C_END_MASTER = RuleClick(roi_front=(251,145,811,530), roi_back=(248,143,815,535), name="end_master")
+	# 结算左上角统计图标(禁点)
+	C_END_TOP_LEFT_STAT = RuleClick(roi_front=(43,33,68,70), roi_back=(43,33,68,70), name="end_top_left_stat")
+	# 结算顶部右侧横幅含角标(禁点)
+	C_END_TOP_BANNER = RuleClick(roi_front=(662,0,618,52), roi_back=(662,0,618,52), name="end_top_banner")
+	# 结算同行之契图标(禁点,F3不加宽)
+	C_END_CONTRACT_ICON = RuleClick(roi_front=(864,56,66,68), roi_back=(864,56,66,68), name="end_contract_icon")
+	# 结算中部整块:奖励排+宝箱立绘+加成计时+记录按钮(禁点)
+	C_END_CENTER_ALL = RuleClick(roi_front=(137,130,994,562), roi_back=(137,130,994,562), name="end_center_all")
 
 
 	# Click Rule Assets
