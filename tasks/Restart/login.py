@@ -397,4 +397,15 @@ class LoginHandler(BaseTask, RestartAssets, GameUiAssets, GeneralBuffAssets):
             if self.appear_then_click(self.I_COMPLETE_TASKS, interval=2.3):
                 count_success += 1
                 continue
+
+        # 关闭庭院事务页: 页面左上角有自己的黄色返回箭头。低帧率(15帧)下若连续点击,
+        # 第二击会匹配到关闭前旧帧的箭头,而点击送达时页面已关,落点正好砸在左上角头像上
+        # 弹出头像页(2026-11-13 实机复现)。点一次等1s再判断,最多重试3次。
+        logger.info('Close courtyard affairs page')
+        for _ in range(3):
+            self.screenshot()
+            if not self.appear(self.I_PAGE):
+                break
+            self.appear_then_click(self.I_LOGIN_YELLOW_CLOSE, interval=1)
+            time.sleep(1)
         return True
