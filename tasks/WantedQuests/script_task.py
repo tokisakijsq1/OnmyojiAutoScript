@@ -41,6 +41,8 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
     want_strategy_excluding: list[list] = []  # 不需要执行的
     # 追踪界面(显示"前往"按钮的界面,左上角位置,神秘任务不好使)显示以下名称时,任务不再执行
     unwanted_boss_name_list: list = []
+    # 神秘妖怪(未发现)详情页跳过后记录的圆圈位置, find_wq 据此跳过选下一个圆圈(每次 run 清空)
+    mystery_skip_areas: list = []
 
     def run(self):
         con = self.config.model.wanted_quests
@@ -72,6 +74,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         self.screenshot()
         number_challenge = self.O_WQ_NUMBER.ocr(self.device.image)
         error_count = 0
+        self.mystery_skip_areas = []
         while 1:
             self.screenshot()
             if not self.is_wq_remained():
@@ -103,9 +106,14 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
                 sleep(1)
                 continue
             # 找到任务,执行
+            self.O_WQ_TEXT_ALL.area = area
             # 任务无法执行(无可打目的地/怪名被排除等)时计入失败,
             # 否则会永远找到同一个任务反复执行形成无点击死循环
-            if self.execute_mission(self.O_WQ_TEXT_ALL, total - cu, number_challenge) is False:
+            ret = self.execute_mission(self.O_WQ_TEXT_ALL, total - cu, number_challenge)
+            if ret == 'mystery':
+                # 神秘妖怪(未发现): 记录圆圈位置供 find_wq 跳过, 不计失败
+                self.mystery_skip_areas.append(area)
+            elif ret is False:
                 error_count += 1
             else:
                 error_count = 0
@@ -315,6 +323,14 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             self.screenshot()
             if self.appear(self.I_TRACE_TRUE):
                 break
+            # 神秘妖怪(未发现)详情页: 剪影+线索, 没有"取消追踪"也没有"前往",
+            # 上面的判据永远等不到(对实机截图实测 I_TRACE_TRUE 最高 0.30)会无限空转
+            # 双判据正识: 粉叉在场 + 目标行OCR含"神秘妖怪"; 关页后由调用方跳过该圆圈
+            if self.appear(self.I_UI_BACK_RED) and \
+                    '神秘妖怪' in self.O_WQ_MONSTER_TYPE.detect_text(self.device.image):
+                logger.info('Mystery wanted quest (undiscovered), close and skip')
+                self.ui_click_until_disappear(self.I_UI_BACK_RED)
+                return 'mystery'
             if self.click(ocr, interval=1):
                 continue
         if not self.appear(self.I_GOTO_1):
@@ -676,6 +692,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         # 过滤掉协或者未知悬赏等其他无用字符
         reg_other = re.compile(r'[?？协边]')
         completed_only = False
+        mystery_skipped = False
         for index, res in enumerate(res_list):
             if reg_fengyin.match(res.ocr_text):
                 continue
@@ -686,6 +703,12 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
             if (match := reg_progress.match(res.ocr_text)):
                 spliter_index = match.start(2)
                 xywh = calc_xywh(res.box)
+                # 神秘妖怪(未发现)跳过的圆圈: 按进度框中心y命中跳过区(圆圈间距~140px, 容差40px不会误伤邻圈)
+                if any(abs((xywh[1] + xywh[3] / 2) - (sa[1] + sa[3] / 2)) <= 40
+                       for sa in self.mystery_skip_areas):
+                    logger.info(f'Skip mystery wanted quest circle at {xywh}')
+                    mystery_skipped = True
+                    continue
                 self.O_WQ_TEXT_ALL.area = xywh
                 cu, re, total = int(res.ocr_text[:spliter_index]), 1, int(res.ocr_text[spliter_index + 1:])
                 logger.info(f'Matched: {res.ocr_text}')
@@ -710,6 +733,10 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
                 return 0, 1, 3, calc_xywh(res_list[last_index].box)
 
         if completed_only:
+            return -2, -2, -2, [0, 0, 0, 0]
+        if mystery_skipped:
+            # 剩下的圆圈全是已跳过的神秘妖怪, 视同"只剩已完成", 正常收工而非报错上滑
+            logger.info('Only mystery (undiscovered) wanted quests remained')
             return -2, -2, -2, [0, 0, 0, 0]
         return -1, -1, -1, [0, 0, 0, 0]
 
