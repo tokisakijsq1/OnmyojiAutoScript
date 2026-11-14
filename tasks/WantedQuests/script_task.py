@@ -175,7 +175,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
 
         # 存在协作任务则邀请
         self.screenshot()
-        if self.appear(self.I_WQ_INVITE_1) or self.appear(self.I_WQ_INVITE_2) or self.appear(self.I_WQ_INVITE_3):
+        if self.has_cooperation_quest():
             if self.need_invite_vip():
                 self.all_cooperation_invite()
             else:
@@ -208,7 +208,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
                 self.ui_click_until_disappear(self.I_UI_BACK_RED)
                 return False
         #
-        if not (self.appear(self.I_WQ_INVITE_1) or self.appear(self.I_WQ_INVITE_2) or self.appear(self.I_WQ_INVITE_3)):
+        if not self.has_cooperation_quest():
             logger.info("there is no cooperation quest")
             return False
 
@@ -454,9 +454,11 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         """
 
         logger.hr('Invite friends')
-        self.invite_random(self.I_WQ_INVITE_1)
-        self.invite_random(self.I_WQ_INVITE_2)
-        self.invite_random(self.I_WQ_INVITE_3)
+        for index in range(4):
+            btn = self.__getattribute__("I_WQ_INVITE_" + str(index + 1))
+            if not self.appear(btn):
+                btn = self.__getattribute__("I_WQ_INVITE_BLUE_" + str(index + 1))
+            self.invite_random(btn)
 
     def all_cooperation_invite(self, name_all: str = None):
         """
@@ -466,7 +468,7 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
 
         """
         self.screenshot()
-        if not self.appear(self.I_WQ_INVITE_1):
+        if not self.has_cooperation_quest():
             return False
 
         ret = self.get_cooperation_info()
@@ -557,34 +559,44 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
         self.ui_click_until_disappear(self.I_WQ_INVITE_ENSURE, interval=1)
         return True
 
+    def has_cooperation_quest(self) -> bool:
+        """
+            2026-11 卡片化新UI: 4卡位, 勾协/金协为红圆加号, 食协/体协颜色未确认先认蓝横幅占位
+        """
+        for index in range(4):
+            if self.appear(self.__getattribute__("I_WQ_INVITE_" + str(index + 1))):
+                return True
+            if self.appear(self.__getattribute__("I_WQ_INVITE_BLUE_" + str(index + 1))):
+                return True
+        return False
+
     def get_cooperation_info(self) -> List:
         """
-            获取协作任务详情
+            获取协作任务详情（2026-11 适配卡片化新UI: 4卡位;
+            金币协卡上无专属图标, 由无其他类型图标推定）
         @return: 协作任务类型与邀请按钮
         """
         self.screenshot()
         retList = []
-        i = 0
-        for index in range(3):
+        for index in range(4):
             btn = self.__getattribute__("I_WQ_INVITE_" + str(index + 1))
             if not self.appear(btn):
-                break
-            if self.appear(self.__getattribute__("I_WQ_COOPERATION_TYPE_JADE_" + str(index + 1))):
-                retList.append({'type': CooperationType.Jade, 'inviteBtn': btn})
-                continue
-            if self.appear(self.__getattribute__("I_WQ_COOPERATION_TYPE_DOG_FOOD_" + str(index + 1))):
-                retList.append({'type': CooperationType.Food, 'inviteBtn': btn})
-                continue
-            if self.appear(self.__getattribute__("I_WQ_COOPERATION_TYPE_CAT_FOOD_" + str(index + 1))):
-                retList.append({'type': CooperationType.Food, 'inviteBtn': btn})
-                continue
-            if self.appear(self.__getattribute__("I_WQ_COOPERATION_TYPE_SUSHI_" + str(index + 1))):
-                retList.append({'type': CooperationType.Sushi, 'inviteBtn': btn})
-                continue
-            # NOTE 因为食物协作里面也有金币奖励 ,所以判断金币协作放在最后面
-            if self.appear(self.__getattribute__("I_WQ_COOPERATION_TYPE_GOLD_" + str(index + 1))):
+                btn_blue = self.__getattribute__("I_WQ_INVITE_BLUE_" + str(index + 1))
+                if not self.appear(btn_blue):
+                    continue
+                btn = btn_blue
+            # NOTE 因为食物协作里面也有金币奖励 ,所以判断金币协作放在最后面:
+            #      卡上找不到勾玉/食粮/体力图标时按金币协作处理
+            for tname, ctype in [("JADE", CooperationType.Jade),
+                                 ("DOG_FOOD", CooperationType.Food),
+                                 ("CAT_FOOD", CooperationType.Food),
+                                 ("SUSHI", CooperationType.Sushi),
+                                 ("GOLD", CooperationType.Gold)]:
+                if self.appear(self.__getattribute__("I_WQ_COOPERATION_TYPE_" + tname + "_" + str(index + 1))):
+                    retList.append({'type': ctype, 'inviteBtn': btn})
+                    break
+            else:
                 retList.append({'type': CooperationType.Gold, 'inviteBtn': btn})
-                continue
         logger.info(f"get cooperation size {len(retList)}")
         return retList
 

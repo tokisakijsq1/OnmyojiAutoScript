@@ -1,30 +1,30 @@
 [
   {
     "itemName": "wq_invite_1",
-    "imageName": "invite_wq_invite_1.png",
-    "roiFront": "103,397,37,38",
-    "roiBack": "79,366,146,104",
+    "imageName": "invite_wq_invite_red.png",
+    "roiFront": "117,396,36,36",
+    "roiBack": "100,380,290,70",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "description"
+    "description": "协作卡邀请好友红圆加号(勾协/金协) 卡位1"
   },
   {
     "itemName": "wq_invite_2",
-    "imageName": "invite_wq_invite_2.png",
-    "roiFront": "386,399,31,35",
-    "roiBack": "355,368,157,108",
+    "imageName": "invite_wq_invite_red.png",
+    "roiFront": "397,396,36,36",
+    "roiBack": "380,380,290,70",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "description"
+    "description": "协作卡邀请好友红圆加号(勾协/金协) 卡位2"
   },
   {
     "itemName": "wq_invite_3",
-    "imageName": "invite_wq_invite_3.png",
-    "roiFront": "671,402,37,37",
-    "roiBack": "640,368,176,105",
+    "imageName": "invite_wq_invite_red.png",
+    "roiFront": "677,396,36,36",
+    "roiBack": "660,380,290,70",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "description"
+    "description": "协作卡邀请好友红圆加号(勾协/金协) 卡位3"
   },
   {
     "itemName": "wq_friend_1",
@@ -137,136 +137,226 @@
   {
     "itemName": "wq_cooperation_type_gold_1",
     "imageName": "wq_cooperation_type_gold.png",
-    "roiFront": "127,527,180,90",
-    "roiBack": "127,527,180,90",
+    "roiFront": "202,525,68,68",
+    "roiBack": "160,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第一个协作任务的类型"
+    "description": "协作类型-gold 卡位1 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_jade_1",
     "imageName": "wq_cooperation_type_jade.png",
-    "roiFront": "130,527,180,90",
-    "roiBack": "130,527,180,90",
+    "roiFront": "202,525,68,68",
+    "roiBack": "160,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第一个协作任务的类型"
+    "description": "协作类型-jade 卡位1 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_dog_food_1",
     "imageName": "wq_cooperation_type_dog_food.png",
-    "roiFront": "131,526,180,90",
-    "roiBack": "131,526,180,90",
+    "roiFront": "202,525,68,68",
+    "roiBack": "160,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第一个协作任务的类型为狗粮"
+    "description": "协作类型-dog_food 卡位1 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_cat_food_1",
     "imageName": "wq_cooperation_type_cat_food.png",
-    "roiFront": "131,525,180,90",
-    "roiBack": "131,525,180,90",
+    "roiFront": "202,525,68,68",
+    "roiBack": "160,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第一个协作任务的类型为猫粮"
+    "description": "协作类型-cat_food 卡位1 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_sushi_1",
     "imageName": "wq_cooperation_type_sushi.png",
-    "roiFront": "130,525,180,90",
-    "roiBack": "130,525,180,90",
+    "roiFront": "202,525,68,68",
+    "roiBack": "160,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第一个协作任务的类型"
+    "description": "协作类型-sushi 卡位1 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_gold_2",
     "imageName": "wq_cooperation_type_gold.png",
-    "roiFront": "412,525,180,90",
-    "roiBack": "412,525,180,90",
+    "roiFront": "467,525,68,68",
+    "roiBack": "425,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第二个协作任务的类型"
+    "description": "协作类型-gold 卡位2 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_jade_2",
     "imageName": "wq_cooperation_type_jade.png",
-    "roiFront": "413,525,180,90",
-    "roiBack": "413,525,180,90",
+    "roiFront": "467,525,68,68",
+    "roiBack": "425,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第二个协作任务的类型"
+    "description": "协作类型-jade 卡位2 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_dog_food_2",
     "imageName": "wq_cooperation_type_dog_food.png",
-    "roiFront": "413,527,179,89",
-    "roiBack": "413,527,179,90",
+    "roiFront": "467,525,68,68",
+    "roiBack": "425,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第二个协作任务的类型为狗粮"
+    "description": "协作类型-dog_food 卡位2 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_cat_food_2",
     "imageName": "wq_cooperation_type_cat_food.png",
-    "roiFront": "412,525,180,90",
-    "roiBack": "412,525,180,90",
+    "roiFront": "467,525,68,68",
+    "roiBack": "425,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第二个协作任务的类型为猫粮"
+    "description": "协作类型-cat_food 卡位2 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_sushi_2",
     "imageName": "wq_cooperation_type_sushi.png",
-    "roiFront": "413,526,180,90",
-    "roiBack": "413,526,180,90",
+    "roiFront": "467,525,68,68",
+    "roiBack": "425,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第二个协作任务的类型"
+    "description": "协作类型-sushi 卡位2 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_gold_3",
     "imageName": "wq_cooperation_type_gold.png",
-    "roiFront": "693,524,180,90",
-    "roiBack": "693,524,180,90",
+    "roiFront": "732,525,68,68",
+    "roiBack": "690,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第三个协作任务的类型"
+    "description": "协作类型-gold 卡位3 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_jade_3",
     "imageName": "wq_cooperation_type_jade.png",
-    "roiFront": "693,527,180,90",
-    "roiBack": "693,527,180,90",
+    "roiFront": "732,525,68,68",
+    "roiBack": "690,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第三个协作任务的类型"
+    "description": "协作类型-jade 卡位3 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_dog_food_3",
     "imageName": "wq_cooperation_type_dog_food.png",
-    "roiFront": "694,525,180,90",
-    "roiBack": "694,525,180,90",
+    "roiFront": "732,525,68,68",
+    "roiBack": "690,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第三个协作任务的类型为狗粮"
+    "description": "协作类型-dog_food 卡位3 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_cat_food_3",
     "imageName": "wq_cooperation_type_cat_food.png",
-    "roiFront": "693,526,180,90",
-    "roiBack": "693,526,180,90",
+    "roiFront": "732,525,68,68",
+    "roiBack": "690,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第三个协作任务的类型为猫粮"
+    "description": "协作类型-cat_food 卡位3 (2026-11-14 新UI 68x68)"
   },
   {
     "itemName": "wq_cooperation_type_sushi_3",
     "imageName": "wq_cooperation_type_sushi.png",
-    "roiFront": "692,526,180,90",
-    "roiBack": "692,526,180,90",
+    "roiFront": "732,525,68,68",
+    "roiBack": "690,515,175,105",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "从左到右第三个协作任务的类型"
+    "description": "协作类型-sushi 卡位3 (2026-11-14 新UI 68x68)"
+  },
+  {
+    "itemName": "wq_invite_blue_1",
+    "imageName": "invite_wq_invite_blue.png",
+    "roiFront": "152,394,148,40",
+    "roiBack": "100,380,290,70",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作卡邀请好友蓝横幅(食协/体协占位,颜色未确认) 卡位1"
+  },
+  {
+    "itemName": "wq_invite_blue_2",
+    "imageName": "invite_wq_invite_blue.png",
+    "roiFront": "432,394,148,40",
+    "roiBack": "380,380,290,70",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作卡邀请好友蓝横幅(食协/体协占位,颜色未确认) 卡位2"
+  },
+  {
+    "itemName": "wq_invite_blue_3",
+    "imageName": "invite_wq_invite_blue.png",
+    "roiFront": "712,394,148,40",
+    "roiBack": "660,380,290,70",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作卡邀请好友蓝横幅(食协/体协占位,颜色未确认) 卡位3"
+  },
+  {
+    "itemName": "wq_invite_4",
+    "imageName": "invite_wq_invite_red.png",
+    "roiFront": "957,396,36,36",
+    "roiBack": "940,380,290,70",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作卡邀请好友红圆加号(勾协/金协) 卡位4"
+  },
+  {
+    "itemName": "wq_invite_blue_4",
+    "imageName": "invite_wq_invite_blue.png",
+    "roiFront": "992,394,148,40",
+    "roiBack": "940,380,290,70",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作卡邀请好友蓝横幅(食协/体协占位,颜色未确认) 卡位4"
+  },
+  {
+    "itemName": "wq_cooperation_type_gold_4",
+    "imageName": "wq_cooperation_type_gold.png",
+    "roiFront": "997,525,68,68",
+    "roiBack": "955,515,175,105",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作类型-gold 卡位4 (2026-11-14 新UI 68x68)"
+  },
+  {
+    "itemName": "wq_cooperation_type_jade_4",
+    "imageName": "wq_cooperation_type_jade.png",
+    "roiFront": "997,525,68,68",
+    "roiBack": "955,515,175,105",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作类型-jade 卡位4 (2026-11-14 新UI 68x68)"
+  },
+  {
+    "itemName": "wq_cooperation_type_dog_food_4",
+    "imageName": "wq_cooperation_type_dog_food.png",
+    "roiFront": "997,525,68,68",
+    "roiBack": "955,515,175,105",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作类型-dog_food 卡位4 (2026-11-14 新UI 68x68)"
+  },
+  {
+    "itemName": "wq_cooperation_type_cat_food_4",
+    "imageName": "wq_cooperation_type_cat_food.png",
+    "roiFront": "997,525,68,68",
+    "roiBack": "955,515,175,105",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作类型-cat_food 卡位4 (2026-11-14 新UI 68x68)"
+  },
+  {
+    "itemName": "wq_cooperation_type_sushi_4",
+    "imageName": "wq_cooperation_type_sushi.png",
+    "roiFront": "997,525,68,68",
+    "roiBack": "955,515,175,105",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "协作类型-sushi 卡位4 (2026-11-14 新UI 68x68)"
   }
 ]
