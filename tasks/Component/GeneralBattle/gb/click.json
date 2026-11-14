@@ -373,21 +373,21 @@
   },
   {
     "itemName": "end_top_left_stat",
-    "roiFront": "43,33,68,70",
-    "roiBack": "43,33,68,70",
-    "description": "结算左上角统计图标(禁点)"
+    "roiFront": "28,16,100,105",
+    "roiBack": "28,16,100,105",
+    "description": "结算左上角统计图标(禁点,11-14加大)"
   },
   {
     "itemName": "end_top_banner",
-    "roiFront": "662,0,618,52",
-    "roiBack": "662,0,618,52",
-    "description": "结算顶部右侧横幅含角标(禁点)"
+    "roiFront": "643,0,637,168",
+    "roiBack": "643,0,637,168",
+    "description": "结算顶部右侧横幅含角标+同行横幅条(禁点,11-14加大)"
   },
   {
     "itemName": "end_contract_icon",
     "roiFront": "864,56,66,68",
     "roiBack": "864,56,66,68",
-    "description": "结算同行之契图标(禁点,F3不加宽)"
+    "description": "结算同行之契图标(禁点,已被end_top_banner加大覆盖,保留兜底)"
   },
   {
     "itemName": "end_center_all",

@@ -1408,3 +1408,19 @@ end_top_banner / end_contract_icon / end_center_all`；`assets.py` 双写对应 
 **可复用技巧**：用户在截图上画的标注框，不必目测抄坐标——纯红阈值
 `(r>140)&(r-g>80)&(r-b>80)` + 行/列连续长线段（粗4px）即可反解出闭合矩形，误差 0。
 
+**37.1 v2 加大框（2026-11-14，未实机）**：次日实锤——oas1 已带 37 节小框版（进程
+2026-11-13 23:53 启动 > 提交 14:19），06:35 AreaBoss 结算随机点落 `(56,23)`，在小框
+F1 上沿外 10px 处砸中统计按钮隐形命中区（该次靠 AreaBoss 自己的红叉自愈未卡死）。
+用户在新效果图上加大两框：F1 `(43,33,68,70)→(28,16,100,105)`、F2
+`(662,0,618,52)→(643,0,637,168)`（F2 下扩到 y=168 自动罩住 F3 同行图标+横幅文字条，
+用户确认正是本意；右上可点窄条起点 y130→y168）。双写改值 + excludes_2 不动（超集仍
+成立）+ 离线验证 v2 全过（2 万采样、含 (56,23) 危险点探针）。**oas1/oas2 等实例重启
+进程后 v2 才生效**。
+
+**适用模式清单**（excludes_2 收窄影响面）：路径A默认策略=**EvoZone(觉醒副本)**、
+FallenSun、RealmRaid、RyouToppa、AreaBoss(Battle mixin, battle.py:64)；策略机自定义
+策略不受影响=ActivityShikigami(success=activity)、MetaDemon(success=metademon)；其余
+全部走 v1/v2 固定 C_REWARD_1/2/3 安全条（Orochi/ExperienceYoukai/GoldYoukai/HeroTest/
+Hunt/Tako/DemonEncounter/DemonRetreat/Secret/BudokaiTournament 等）或根本不进战斗
+（CollectiveMissions 的"觉醒一/二/三"只是寮集体任务条目 OCR，非战斗）。
+

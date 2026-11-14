@@ -159,7 +159,7 @@ class OptionSuccessDefault:
         'C_END_BUFF_AREA_2', 'C_END_SOUL_RECORD', 'C_END_SOUL_DETAILS',
         'C_END_1_1', 'C_END_1_2', 'C_END_1_3', 'C_END_1_4',
         'C_END_1_5', 'C_END_1_6', "C_OVERFLOW_GHOST",
-        # 2026-11-13 结算点击域收窄:禁点区(用户审定红框图),覆盖旧条目的超集
+        # 2026-11-13/14 结算点击域收窄:禁点区(用户两次审定红框图,11-14加大F1/F2),覆盖旧条目的超集
         'C_END_TOP_LEFT_STAT', 'C_END_TOP_BANNER',
         'C_END_CONTRACT_ICON', 'C_END_CENTER_ALL',
     ])
