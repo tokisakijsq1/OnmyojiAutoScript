@@ -26,9 +26,9 @@ class MetaDemonProviderAssets:
 	# mdp_summon_now 
 	I_MDP_SUMMON_NOW = RuleImage(roi_front=(545,448,190,44), roi_back=(480,430,330,110), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_summon_now.png")
 	# 庭院右侧栏祸至无日活动图标(同超鬼王协助裁剪, 带动画图标取稳定核心区) 
-	I_MDP_RIGHT_ENTER = RuleImage(roi_front=(1187,230,24,24), roi_back=(1150,120,105,470), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_right_enter.png")
+	I_MDP_RIGHT_ENTER = RuleImage(roi_front=(1194,224,24,24), roi_back=(1150,120,105,470), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_right_enter.png")
 	# 祸至无日活动页的竖排超鬼王按钮 
-	I_MDP_GOTO_HUOZHU = RuleImage(roi_front=(992,182,23,74), roi_back=(950,150,150,260), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_goto_huozhu.png")
+	I_MDP_GOTO_HUOZHU = RuleImage(roi_front=(939,153,46,119), roi_back=(885,54,150,260), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_goto_huozhu.png")
 	# 祸至无日活动页标题 
 	I_MDP_TITLE_EVENT = RuleImage(roi_front=(150,15,132,42), roi_back=(100,5,350,75), threshold=0.8, method="Template matching", file="./tasks/MetaDemonProvider/mdp/mdp_title_event.png")
 	# 祸主降临页标题(与event标题同位同风格, 靠模板区分) 

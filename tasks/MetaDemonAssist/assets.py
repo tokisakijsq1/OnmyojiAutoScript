@@ -21,9 +21,9 @@ class MetaDemonAssistAssets:
 
 	# Image Rule Assets
 	# mda_right_enter 
-	I_MDA_RIGHT_ENTER = RuleImage(roi_front=(1187,230,24,24), roi_back=(1150,120,105,470), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_right_enter.png")
+	I_MDA_RIGHT_ENTER = RuleImage(roi_front=(1192,225,24,24), roi_back=(1150,120,105,470), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_right_enter.png")
 	# mda_goto_huozhu 
-	I_MDA_GOTO_HUOZHU = RuleImage(roi_front=(992,182,23,74), roi_back=(950,150,150,260), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_goto_huozhu.png")
+	I_MDA_GOTO_HUOZHU = RuleImage(roi_front=(939,149,47,127), roi_back=(880,48,150,260), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_goto_huozhu.png")
 	# mda_title_huozhu 
 	I_MDA_TITLE_HUOZHU = RuleImage(roi_front=(150,15,135,42), roi_back=(100,5,350,75), threshold=0.8, method="Template matching", file="./tasks/MetaDemonAssist/mda/mda_title_huozhu.png")
 	# mda_title_event 

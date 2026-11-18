@@ -2,7 +2,7 @@
   {
     "itemName": "mda_right_enter",
     "imageName": "mda_right_enter.png",
-    "roiFront": "1187,230,24,24",
+    "roiFront": "1192,225,24,24",
     "roiBack": "1150,120,105,470",
     "method": "Template matching",
     "threshold": 0.8,
@@ -11,8 +11,8 @@
   {
     "itemName": "mda_goto_huozhu",
     "imageName": "mda_goto_huozhu.png",
-    "roiFront": "992,182,23,74",
-    "roiBack": "950,150,150,260",
+    "roiFront": "939,149,47,127",
+    "roiBack": "880,48,150,260",
     "method": "Template matching",
     "threshold": 0.8,
     "description": "mda_goto_huozhu"
