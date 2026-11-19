@@ -1461,3 +1461,44 @@ FallenSun、RealmRaid、RyouToppa、AreaBoss(Battle mixin, battle.py:64)；策�
 Hunt/Tako/DemonEncounter/DemonRetreat/Secret/BudokaiTournament 等）或根本不进战斗
 （CollectiveMissions 的"觉醒一/二/三"只是寮集体任务条目 OCR，非战斗）。
 
+## 38. SwitchSoul 按名切换卡死：OCR 闸门循环的点击锚点不能每帧现取（2026-11-19，未实机）
+
+**症状**：按名字切换御魂（36 个任务共用的
+`tasks/Component/SwitchSoul/switch_soul.py: switch_soul_by_name`）偶发卡死：日志
+`OCR [SS_TEAM_NAME] detected in None` 每 0.3s 刷屏、循环内零点击，60s 后
+GameStuckError 重启。用户三图实锤 + 脚本复现日志钉死全链路。
+
+**机制定位**（两层叠加）：
+1. 「选中队伍」步骤 `ocr_appear_click(O_SS_TEAM_NAME)` 无 action →
+   `base_task.py` else 分支点 `target.coord()` = OCR 匹配的队名文字 bbox →
+   **点在队名上** → 游戏进改名编辑态（输入框；后期第 2 次按钮列点击后名字被游戏侧
+   清空，代码无此动作，确切机制未定案但不影响修法）。
+2. 切换循环唯一点击通道 `ocr_appear_click_by_rule`（x 取 `I_SOU_CLICK_PRESENT`
+   roiFront≈按钮列 x∈[978,1003]，y 取本帧 OCR bbox 顶 y1）被 `ocr_appear` 闸门关死：
+   失配时 `sub_ocr.py: ocr_full` 返回 (0,0,0,0) → `appear=False` → **在读坐标之前
+   return False 零点击**。行 y 每帧从 OCR 现取、从不记忆 → 名字一没就彻底失去点击
+   能力 → cnt_click 永到不了 4 → 死循环。
+
+**日志关键证据**（2026-11-19 20:54 小号9）：34.320 点名字 (590,168) 落在
+bbox(577,154,44,25) 内 → 34.655/36.446 两次点按钮列期间 OCR 仍能读到「日常」
+（**编辑态输入框文字初期 OCR 可读，"白底读不出"推测有误**）→ 38.230 名字消失只剩
+['突破'] → None 刷屏零点击。另：`ocr_appear` 的 interval 计时器只在匹配成功时重置，
+失配后 OCR 每帧都跑（闸门形同虚设）。
+
+**改动**（不删上游结构，只改切换循环体，最小冲突面）：
+- 匹配成功时记 `anchor_y = O_SS_TEAM_NAME.area[1]`（本帧行 y）
+- 失配且 `anchor_y` 非零 → 兜底点 `(I_SOU_CLICK_PRESENT.coord()[0], anchor_y)`，
+  同样计入 cnt_click，`sleep(1)` 节流（用户手动实测：编辑态下切换按钮仍在原位可点、
+  点了能正常切）
+- 新增 `cnt_miss >= 5` 连续失配退出（仓库 CONSEC_MISS 惯例）：含从未匹配(anchor=0,
+  约 2s 干净放弃)与兜底无效(约 7-8s)两种情形，替代原 60s 卡死重启
+
+**坑**：想给这类"OCR 定位点击"循环兜底时，锚点必须取自**上一次成功匹配的帧**
+（`ocr_full` 匹配成功才更新 `self.area`，失配不清空也不更新），不能取自失配帧；
+`RuleImage.__init__` 不收 name 参数，`name` 是 file 词干派生的 cached_property；
+给兜底点击记 `control_name` 用它即可。
+
+**验证**：py_compile 过 + 三路径边界推演（正常=原行为；消失=2实点+2兜底≈3s 完成；
+从未匹配=2s 放弃）。**未实机**——oas 实例重启后任选一个按名切换任务开局验证；
+重点看消失场景日志应出现 `anchor click present button at (99x, 15x)` 且随后正常。
+

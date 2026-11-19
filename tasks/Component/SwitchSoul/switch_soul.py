@@ -270,16 +270,33 @@ class SwitchSoul(BaseTask, SwitchSoulAssets):
         logger.info(f'Select team {teamName}')
         # 切换御魂
         cnt_click: int = 0
+        cnt_miss: int = 0
+        anchor_y: int = 0
         self.O_SS_TEAM_NAME.keyword = teamName
         while 1:
             self.screenshot()
             if cnt_click >= 4:
                 break
+            if cnt_miss >= 5:
+                logger.warning(f'Switch soul team {teamName} not matched for {cnt_miss} frames, give up switching')
+                break
             if self.appear_then_click(self.I_UI_CONFIRM, interval=0.8):
                 continue
             if self.ocr_appear_click_by_rule(self.O_SS_TEAM_NAME, self.I_SOU_CLICK_PRESENT, interval=1.5):
                 cnt_click += 1
+                cnt_miss = 0
+                # 匹配成功,记住本帧队名行y作为锚点;队名被点进改名编辑态而消失后,仍可凭此继续点切换按钮
+                anchor_y = self.O_SS_TEAM_NAME.area[1]
                 continue
+            # 队名失配(如被"选中队伍"步骤点进编辑态后名字消失):凭记忆的行y兜底点击切换按钮
+            # 注意 ocr_appear 的 interval 计时器只在匹配成功时重置,失配后每帧都会走到这里
+            if anchor_y:
+                button_x, _ = self.I_SOU_CLICK_PRESENT.coord()
+                self.device.click(x=button_x, y=anchor_y, control_name=self.I_SOU_CLICK_PRESENT.name)
+                cnt_click += 1
+                logger.info(f'Team name not matched, anchor click present button at ({button_x}, {anchor_y})')
+                sleep(1)
+            cnt_miss += 1
         logger.info(f'Switch soul_one group {groupName} team {teamName}')
 
     def ocr_appear_click_by_rule(self,
