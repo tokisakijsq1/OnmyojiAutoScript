@@ -18,6 +18,15 @@
     "description": "剧情场景对话按钮的暗盘+三点(边缘亮弧在转, 只裁内核); 阈值0.8=用户裁决, 剧情环境纯净"
   },
   {
+    "itemName": "ms_story_hud_chat",
+    "imageName": "ms_story_hud_chat.png",
+    "roiFront": "95,24,39,35",
+    "roiBack": "75,0,75,80",
+    "method": "Template matching",
+    "threshold": 0.83,
+    "description": "剧情专用左上角对话气泡, 与圆形返回键共同确认剧情HUD上下文"
+  },
+  {
     "itemName": "ms_skip_dialog",
     "imageName": "ms_skip_dialog.png",
     "roiFront": "845,560,50,24",
@@ -56,7 +65,7 @@
   {
     "itemName": "ms_battle",
     "imageName": "ms_battle.png",
-    "roiFront": "252,214,74,58",
+    "roiFront": "720,106,24,22",
     "roiBack": "0,0,1280,720",
     "method": "Template matching",
     "threshold": 0.8,
@@ -65,10 +74,10 @@
   {
     "itemName": "ms_story_question",
     "imageName": "ms_story_question.png",
-    "roiFront": "883,231,44,64",
-    "roiBack": "0,180,1280,220",
+    "roiFront": "469,130,25,36",
+    "roiBack": "0,0,1280,720",
     "method": "Masked template matching",
-    "threshold": 0.8,
+    "threshold": 0.7,
     "description": "剧情场景问号推进按钮(掩膜=盘内稳定核心; 悬停NPC景深不同尺寸会变, 0.88x实测0.921); 阈值0.8=用户裁决"
   }
 ]

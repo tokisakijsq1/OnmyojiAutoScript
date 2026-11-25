@@ -4,10 +4,9 @@
 # 剧情循环每轮重新识别画面, 按优先级只处理一件事:
 #   确认跳过 -> 动画跳过 -> 对话跳过 -> 探查 -> 战斗 -> 剧情对话三点 -> 问号推进 -> 通用奖励浮窗 -> 战斗流程 -> 庭院
 # 跳过链最优先是用户规则: 对话和动画播放中左上角返回键无效, 必须先走完跳过。
-# 退路: 连续 ms_idle_timeout 秒没有任何可识别按钮且画面静止时, 先朝屏幕一侧连滑, 把可能被弹窗
-# 挡住的图标挪出来(滑到图标消失后会在更低处重现), 没救回来再点左上角返回(I_UI_BACK_CIRCLE)退出本段剧情,
-# 回庭院后入口还在就重新进入。连退几轮都退不出去也不抛卡死异常(原地重试会连撞三次杀进程), 而是先按失败
-# 排期再让导航兜底回庭院。战斗复用 GeneralBattle(点准备/切自动/胜负判定/结算点击), 战败即结束任务。
+# 退路: 连续 ms_idle_timeout 秒没有任何可识别按钮且画面静止时, 直接沿用返回键(I_UI_BACK_CIRCLE)退出本段剧情;
+# 连退几轮都退不出去也不抛卡死异常(原地重试会连撞三次杀进程), 而是先按失败排期再让导航兜底回庭院。
+# 战斗复用 GeneralBattle(点准备/切自动/胜负判定/结算点击), 战败即结束任务。
 import os
 import time
 from datetime import datetime
@@ -53,7 +52,7 @@ STORY_CLICK_INTERVAL = 1.2
 # 每次点击后的短暂等待(秒): 给游戏时间消化这次点击, 下一轮再重新识别, 避免在旧画面上重复点击
 CLICK_SETTLE = 0.5
 # 同一按钮在同一画面状态下的容错次数: 连点 3 次画面仍没变 = 点击没生效, 拉黑该按钮组合
-# (交给空等/连滑/返回退路处理), 防止无限硬点直到触发连点保护
+# (交给空等 / 返回退路处理), 防止无限硬点直到触发连点保护
 CLICK_RETRY_LIMIT = 3
 # 按钮可见但仍在冷却 / 空转时的轮询间隔
 COOLDOWN_SLEEP = 0.3
@@ -69,12 +68,10 @@ SCENE_MOVING_DIFF = 2.5
 # 顶部的跑马灯横幅和帧率标签一直在变, 不参与帧差比较
 SCENE_DIFF_TOP = 120
 SCENE_DIFF_SIZE = (160, 75)
-# 空等时把被弹窗挡住的图标滑出来的连滑次数与每次滑动后的等待(秒)。
-# 实机经验: 剧情图标可能被弹窗遮挡识别不到, 朝屏幕一侧连滑, 图标消失后会在屏幕更低处重现
-IDLE_SWIPE_COUNT = 3
-IDLE_SWIPE_PAUSE = 1.0
-# 连滑后给镜头平移/图标重现的短暂稳定窗(秒): 用它代替整轮空等, 之后恢复正常空等节奏
-IDLE_SWIPE_SETTLE = 2.0
+# 顶部聊天播报横幅的禁点区(2026-11-25 用户截图红框, 实测 435,61 ~ 1083,108): 从庭院进入剧情后,
+# 命中框碰到这个区域的按钮一律不点——播报浮在按钮上层, 点下去只会误触播报; 被它压住的按钮
+# 按"没看见"处理, 交给空等 / 返回退路。coord() 是命中框内的随机点, 所以按"框相交"判断
+CHAT_BANNER_BOX = (435, 61, 648, 47)
 # 诊断截图目录
 DIAGNOSIS_DIR = './log/screenshots/MainStory'
 
@@ -123,10 +120,8 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
 
     @cached_property
     def story_markers(self) -> list:
-        """只在主线剧情里出现的判据, 用来判断"当前身在剧情中"。
-        探查/战斗图标不算: 战斗图标与探索地图的普通怪战斗图标是同一套美术,
-        拿它当判据会在探索章节页上误点进一场普通战斗"""
-        return self.skip_buttons + [self.I_MS_STORY_DIALOG, self.I_MS_STORY_QUESTION]
+        """剧情启动判据; 三点和问号须同时满足剧情 HUD 双条件。"""
+        return self.skip_buttons
 
     def run(self):
         self._advance()
@@ -179,7 +174,8 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
         # 启动时已身处剧情(上次异常中断/手动点了入口): 先把这一段走完再回庭院找入口。
         # 庭院判定放宽到 0.8: 庭院被弹窗压暗时仍算庭院, 交给导航处理, 不进剧情循环
         self.screenshot()
-        if not self.appear(self.I_CHECK_MAIN, threshold=0.8) and self._any_visible(self.story_markers):
+        if not self.appear(self.I_CHECK_MAIN, threshold=0.8) and (
+                self._any_visible(self.story_markers) or self._story_hud_visible()):
             logger.info('Already in a story scene, continue it first')
             outcome, clicks = self._story_loop()
 
@@ -239,15 +235,13 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
         idle_rounds = 0       # 连续"画面静止且无按钮"的轮数
         diagnosed = False     # 本段空等是否已存过现场截图
         idle_seen = False     # 是否已进入"无按钮"的空等状态
-        swipe_done = False    # 空等期间是否已做过"连滑挪图标"(每段剧情至多一轮)
-        settle = None         # 连滑后的短暂稳定窗(Timer), 消耗一次后恢复整轮空等节奏
         ineffective = 0       # 同一画面状态下同一按钮的连续点击次数(状态没变 = 点击没生效)
         blocked_sig = None    # 连点 3 次无效后被拉黑的按钮组合, 不再硬点
         clicks = 0
         ref = None            # 判"画面是否还在变"的参考帧(进入空等时记, 之后每轮更新)
 
         def progressed() -> None:
-            nonlocal last_sig, escaped, idle_rounds, diagnosed, idle_seen, swipe_done, ref
+            nonlocal last_sig, escaped, idle_rounds, diagnosed, idle_seen, ref
             nonlocal ineffective, blocked_sig
             idle.reset()
             idle_rounds = 0
@@ -255,7 +249,6 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
             last_sig = None
             diagnosed = False
             idle_seen = False
-            swipe_done = False
             ineffective = 0
             blocked_sig = None
             ref = None
@@ -273,10 +266,19 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
             in_courtyard = self.appear(self.I_CHECK_MAIN)
             # 庭院画面上的三点是入口图标(由外层负责), 不当剧情对话按钮点
             buttons = self.skip_buttons if in_courtyard else self.story_buttons
-            visible = [t for t in buttons if self.appear(t)]
+            visible = []
+            for t in buttons:
+                if not (self._story_icon_visible(t) if t in
+                        (self.I_MS_STORY_DIALOG, self.I_MS_STORY_QUESTION) else self.appear(t)):
+                    continue
+                if self._in_chat_banner(t):
+                    # 聊天播报压住的按钮点了会误触播报: 当作没看见, 让空等/返回退路接手
+                    logger.info(f'Story button {t.name} covered by chat banner, ignore it')
+                    continue
+                visible.append(t)
             sig = tuple((t.name, t.roi_front[0] // SIGNATURE_CELL, t.roi_front[1] // SIGNATURE_CELL)
                         for t in visible)
-            # 拉黑的按钮组合当作没看见: 让下面的奖励/战斗/庭院/空等分支正常接手(空等会连滑、点返回),
+            # 拉黑的按钮组合当作没看见: 让下面的奖励/战斗/庭院/空等/返回退路正常接手,
             # 否则永远跳过其他分支, 只能等 30 分钟总时长超时
             if blocked_sig is not None and sig == blocked_sig:
                 visible = []
@@ -314,7 +316,6 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
                     escaped = False
                     diagnosed = False
                     idle_seen = False
-                    swipe_done = False
                 else:
                     time.sleep(COOLDOWN_SLEEP)
                 continue
@@ -357,25 +358,16 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
                 ref = _shrink(self.device.image)
                 time.sleep(COOLDOWN_SLEEP)
                 continue
-            if not idle.reached() and not (settle is not None and settle.reached()):
+            if not idle.reached():
                 time.sleep(COOLDOWN_SLEEP)
                 continue
             idle.reset()
-            settle = None
             moving, ref = self._scene_changed(ref)
             if moving:
                 # 画面还在变 = 过场/转场在播: 不计入空等轮数(长过场不会被误判卡死),
                 # 也不点返回(用户规则: 动画播放中返回键无效)
                 idle_rounds = 0
                 logger.info('Story scene is still changing, keep waiting')
-                continue
-            # 画面静止的第一轮: 先朝一侧连滑, 把可能被弹窗挡住的图标挪出来(滑到图标消失后
-            # 会在屏幕更低处重现); 滑完只给一个短暂稳定窗, 没救回来, 之后的轮次再走返回退路
-            if not swipe_done:
-                swipe_done = True
-                self._swipe_scene()
-                settle = Timer(IDLE_SWIPE_SETTLE).start()
-                ref = _shrink(self.device.image)
                 continue
             idle_rounds += 1
             logger.warning(f'Story idle {conf.ms_idle_timeout:.0f}s without recognizable buttons '
@@ -403,16 +395,6 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
         small = _shrink(self.device.image)
         changed = ref is None or float(np.abs(small - ref).mean()) >= SCENE_MOVING_DIFF
         return changed, small
-
-    def _swipe_scene(self) -> None:
-        """图标可能被弹窗遮挡: 朝屏幕一侧连滑, 滑到图标消失后它会在屏幕更低的位置重新出现。"""
-        logger.info('Swipe story scene to reveal occluded buttons')
-        for _ in range(IDLE_SWIPE_COUNT):
-            self.swipe(self.S_MS_SCENE_SWIPE)
-            time.sleep(IDLE_SWIPE_PAUSE)
-            self.screenshot()
-            if self._any_visible(self.story_buttons):
-                break
 
     def _click_exit_confirm(self) -> bool:
         """点了返回之后, 若弹出退出确认则点确认(新旧两版确定按钮并列识别)。"""
@@ -449,6 +431,21 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
     def _back_to_courtyard(self) -> None:
         logger.hr('Back to courtyard', 2)
         self.goto_page(page_main)
+
+    def _story_hud_visible(self) -> bool:
+        """剧情专用 HUD 双判据, 避免把庭院入口或普通界面三点误认成剧情内图标。"""
+        return self.appear(self.I_UI_BACK_CIRCLE, threshold=0.85) and self.appear(self.I_MS_STORY_HUD_CHAT)
+
+    def _story_icon_visible(self, target) -> bool:
+        """半透明图标以原始 RGB 模板评分; 附加 HUD 判据过滤跨场景误命中。"""
+        return self.appear(target) and self._story_hud_visible()
+
+    @staticmethod
+    def _in_chat_banner(target) -> bool:
+        """按钮命中框是否碰到顶部聊天播报禁点区(coord() 是框内随机点, 相交即可能点进播报)。"""
+        x, y, w, h = target.roi_front
+        bx, by, bw, bh = CHAT_BANNER_BOX
+        return x < bx + bw and x + w > bx and y < by + bh and y + h > by
 
     def _any_visible(self, targets) -> bool:
         return any(self.appear(t) for t in targets)

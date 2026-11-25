@@ -15,6 +15,8 @@ class MainStoryAssets:
 	I_MS_COURTYARD_ENTRY = RuleImage(roi_front=(855,233,40,20), roi_back=(480,150,620,220), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_courtyard_entry.png")
 	# 剧情场景对话按钮的暗盘+三点(边缘亮弧在转, 只裁内核); 阈值0.8=用户裁决, 剧情环境纯净 
 	I_MS_STORY_DIALOG = RuleImage(roi_front=(1123,329,36,20), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_story_dialog.png")
+	# 剧情专用左上角对话气泡, 与圆形返回键共同确认剧情HUD上下文 
+	I_MS_STORY_HUD_CHAT = RuleImage(roi_front=(95,24,39,35), roi_back=(75,0,75,80), threshold=0.83, method="Template matching", file="./tasks/MainStory/ms/ms_story_hud_chat.png")
 	# 对话右下角跳过按钮的文字(按钮底色半透明随庭院皮肤变, 只裁文字) 
 	I_MS_SKIP_DIALOG = RuleImage(roi_front=(845,560,50,24), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_skip_dialog.png")
 	# 剧情动画右上角跳过键(内切正方形, 含菱形轮廓四角) 
@@ -24,13 +26,8 @@ class MainStoryAssets:
 	# 剧情场景探查按钮(眼睛图标) 
 	I_MS_INVESTIGATE = RuleImage(roi_front=(589,126,100,100), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_investigate.png")
 	# 剧情场景战斗按钮(交叉双刀图标) 
-	I_MS_BATTLE = RuleImage(roi_front=(252,214,74,58), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_battle.png")
+	I_MS_BATTLE = RuleImage(roi_front=(720,106,24,22), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_battle.png")
 	# 剧情场景问号推进按钮(掩膜=盘内稳定核心; 悬停NPC景深不同尺寸会变, 0.88x实测0.921); 阈值0.8=用户裁决 
-	I_MS_STORY_QUESTION = RuleImage(roi_front=(883,231,44,64), roi_back=(0,180,1280,220), threshold=0.8, method="Masked template matching", file="./tasks/MainStory/ms/ms_story_question.png")
-
-
-	# Swipe Rule Assets
-	# 空等时把被弹窗挡住的剧情图标滑出来(固定向左滑, 图标消失后会在屏幕更低处重现) 
-	S_MS_SCENE_SWIPE = RuleSwipe(roi_front=(920,360,80,60), roi_back=(280,360,80,60), mode="default", name="ms_scene_swipe")
+	I_MS_STORY_QUESTION = RuleImage(roi_front=(469,130,25,36), roi_back=(0,0,1280,720), threshold=0.7, method="Masked template matching", file="./tasks/MainStory/ms/ms_story_question.png")
 
 
