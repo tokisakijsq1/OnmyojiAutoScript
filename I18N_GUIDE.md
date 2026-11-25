@@ -71,6 +71,18 @@ hya_invite_friend_name: str = Field(default='', description='hya_invite_friend_n
   不含 = 附加表没改对。注意后端下发的 `title` 其实已是中文（`_translate_text`
   热加载），前端 label 不采用它、用自己的表渲染——"title 中文 + label 英文"并存
   正是"前端旧表"的症状。
+- **重复故障先验 API，不能只凭症状断言“网页没刷新”**：2026-11-24 MainStory 截图中
+  `main_story_config`、`ms_idle_timeout`、`ms_escape_limit`、`ms_max_count` 显示原始 key，
+  但 help/description 是中文；逐项确认键已存在于 `assets/i18n/zh-CN.json` 后，
+  直连运行中的 `GET /home/additional_translate`（`127.0.0.1:22288`）返回 HTTP 200，
+  `zh-CN` 中四个键及 `MainStory` 均为正确中文。由此确认这是**前端已加载的附加翻译字典过期**，
+  不是字段键拼错、JSON 漏项或后端 title 翻译失败。此时刷新 oasx 页面（F5）或关闭后重开，
+  让前端重新请求该接口；后端无需重启。若 API 缺键，才查服务工作目录/实际读取的附加表，
+  不要把所有 label 英文问题都归因到刷新。
+- 排查顺序固定为：①检查 `assets/i18n/zh-CN.json` 精确 key 与中文值；②用 Python urllib
+  请求当前 OAS 服务的 `/home/additional_translate` 并检查 `zh-CN` 对应值（注意端口、
+  working directory 和代理）；③API 有值则刷新/重开 oasx；API 无值才修服务端读取路径或附加表。
+  后端 `script_task()` 返回的 `title` 已翻译、或 help 已中文，都**不能证明前端 label 字典已更新**。
 - 后端 `script_task()` 接口返回的 `title` 是 pydantic 自动生成的
   Title Case（如 `Hya Invite Friend Name`），前端并不用它做展示，
   前端是拿**字段名 key** 自己查表翻译的，所以 key 必须写成字段名原样（全小写下划线）。

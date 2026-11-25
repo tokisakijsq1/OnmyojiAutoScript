@@ -224,5 +224,13 @@
   "mdp_kill_timeout": "等待击杀超时(分钟)",
   "mdp_kill_timeout_help": "集结邀请后等待好友击杀鬼王的最长时间，超时重新集结邀请一次；第二次仍超时收工（鬼王约37分钟后自然逃跑）",
   "mdp_max_duration": "单次运行上限(分钟)",
-  "mdp_max_duration_help": "兜底时长：循环召唤到票尽自然收工，超过此时长强制收工下次再跑"
+  "mdp_max_duration_help": "兜底时长：循环召唤到票尽自然收工，超过此时长强制收工下次再跑",
+  "MainStory": "主线剧情",
+  "main_story_config": "主线剧情设置",
+  "ms_idle_timeout": "无进展等待(秒)",
+  "ms_idle_timeout_help": "剧情画面连续多少秒没有出现任何可识别的按钮后，点左上角返回退出当前剧情。对话和动画播放中返回键无效，而那些画面一定有跳过按钮，所以不会打断对话或动画",
+  "ms_escape_limit": "退出剧情次数上限",
+  "ms_escape_limit_help": "单次运行中因卡在未识别的画面而点返回退出剧情的次数上限，达到后结束任务并推送通知。现场截图保存在 log/screenshots/MainStory，可据此补充素材",
+  "ms_max_count": "单次最多推进段数",
+  "ms_max_count_help": "单次运行最多进入多少段主线剧情，防止异常情况下无限循环。庭院不再出现入口图标时任务正常结束"
 }

@@ -20,7 +20,7 @@ class ConfigManual:
         > Pets > TalismanPass > Delegation > Hyakkiyakou
         > Secret > WeeklyTrifles > MysteryShop > Duel > FindJade
         > TrueOrochi > RichMan
-        > MetaDemon > FloatParade > Quiz > KittyShop > DyeTrials > MemoryScrolls
+        > MetaDemon > FloatParade > Quiz > KittyShop > DyeTrials > MemoryScrolls > MainStory
         > MetaDemonProvider > MetaDemonAssist
         """
 

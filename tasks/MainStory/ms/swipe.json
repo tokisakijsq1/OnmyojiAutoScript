@@ -1,0 +1,9 @@
+[
+  {
+    "itemName": "ms_scene_swipe",
+    "roiFront": "920,360,80,60",
+    "roiBack": "280,360,80,60",
+    "mode": "default",
+    "description": "空等时把被弹窗挡住的剧情图标滑出来(固定向左滑, 图标消失后会在屏幕更低处重现)"
+  }
+]
