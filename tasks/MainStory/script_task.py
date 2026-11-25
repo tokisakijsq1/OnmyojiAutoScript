@@ -16,6 +16,7 @@ import numpy as np
 from cached_property import cached_property
 
 from module.base.timer import Timer
+from module.base.utils.utils import random_normal_distribution_int
 from module.exception import TaskEnd
 from module.logger import logger
 
@@ -68,10 +69,12 @@ SCENE_MOVING_DIFF = 2.5
 # 顶部的跑马灯横幅和帧率标签一直在变, 不参与帧差比较
 SCENE_DIFF_TOP = 120
 SCENE_DIFF_SIZE = (160, 75)
-# 顶部聊天播报横幅的禁点区(2026-11-25 用户截图红框, 实测 435,61 ~ 1083,108): 从庭院进入剧情后,
-# 命中框碰到这个区域的按钮一律不点——播报浮在按钮上层, 点下去只会误触播报; 被它压住的按钮
-# 按"没看见"处理, 交给空等 / 返回退路。coord() 是命中框内的随机点, 所以按"框相交"判断
+# 顶部聊天播报横幅区域(2026-11-25 用户截图红框, 实测 435,61 ~ 1083,108): 从庭院进入剧情后,
+# 按钮命中框与这块区域重叠时只点"框外露出的部分"(取禁区外最大子矩形), 整颗都被盖住才当作没看见;
+# coord() 是命中框内的随机点, 直接点可能落进播报, 所以点击前先裁出安全区
 CHAT_BANNER_BOX = (435, 61, 648, 47)
+# 播报外露出的子区域至少宽/高各多少像素才值得点: 太窄的缝点了也点不中按钮本体
+CHAT_BANNER_MIN_CLICKABLE = 6
 # 诊断截图目录
 DIAGNOSIS_DIR = './log/screenshots/MainStory'
 
@@ -114,9 +117,10 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
 
     @cached_property
     def story_buttons(self) -> list:
-        """剧情场景内每轮按此优先级找按钮; ms_battle1 是战斗按钮的并列备用位, 识别到其一即点"""
+        """剧情场景内每轮按此优先级找按钮; battle1/question1 是战斗/问号按钮的并列备用位, 识别到其一即点"""
         return self.skip_buttons + [self.I_MS_INVESTIGATE, self.I_MS_BATTLE, self.I_MS_BATTLE1,
-                                    self.I_MS_STORY_DIALOG, self.I_MS_STORY_QUESTION]
+                                    self.I_MS_STORY_DIALOG, self.I_MS_STORY_QUESTION,
+                                    self.I_MS_STORY_QUESTION1]
 
     @cached_property
     def story_markers(self) -> list:
@@ -269,11 +273,12 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
             visible = []
             for t in buttons:
                 if not (self._story_icon_visible(t) if t in
-                        (self.I_MS_STORY_DIALOG, self.I_MS_STORY_QUESTION) else self.appear(t)):
+                        (self.I_MS_STORY_DIALOG, self.I_MS_STORY_QUESTION, self.I_MS_STORY_QUESTION1)
+                        else self.appear(t)):
                     continue
-                if self._in_chat_banner(t):
-                    # 聊天播报压住的按钮点了会误触播报: 当作没看见, 让空等/返回退路接手
-                    logger.info(f'Story button {t.name} covered by chat banner, ignore it')
+                if self._click_rect_outside_banner(t) is None:
+                    # 整个命中框都被聊天播报盖住, 没有露出的可点部分: 当作没看见, 让空等/返回退路接手
+                    logger.info(f'Story button {t.name} fully covered by chat banner, ignore it')
                     continue
                 visible.append(t)
             sig = tuple((t.name, t.roi_front[0] // SIGNATURE_CELL, t.roi_front[1] // SIGNATURE_CELL)
@@ -294,7 +299,14 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
             # 1) 剧情按钮: 按优先级点第一个, 仍在冷却则等一会再看
             if visible:
                 courtyard.reset()
-                if self.appear_then_click(visible[0], interval=STORY_CLICK_INTERVAL):
+                target = visible[0]
+                if self.appear(target, interval=STORY_CLICK_INTERVAL):
+                    # 聊天播报压住一部分时只点框外露出的部分(见 CHAT_BANNER_BOX 注释)
+                    cx, cy, cw, ch = self._click_rect_outside_banner(target)
+                    self._humanized_click_delay()
+                    self.device.click(cx + random_normal_distribution_int(0, cw),
+                                      cy + random_normal_distribution_int(0, ch),
+                                      control_name=target.name)
                     clicks += 1
                     time.sleep(CLICK_SETTLE)
                     if sig != last_sig:
@@ -309,7 +321,7 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
                         ineffective += 1
                         if ineffective >= CLICK_RETRY_LIMIT:
                             blocked_sig = sig
-                            logger.warning(f'Story button {visible[0].name} clicked {ineffective} times '
+                            logger.warning(f'Story button {target.name} clicked {ineffective} times '
                                            f'without visible effect, block it and fall back')
                     idle.reset()
                     idle_rounds = 0
@@ -441,11 +453,25 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
         return self.appear(target) and self._story_hud_visible()
 
     @staticmethod
-    def _in_chat_banner(target) -> bool:
-        """按钮命中框是否碰到顶部聊天播报禁点区(coord() 是框内随机点, 相交即可能点进播报)。"""
+    def _click_rect_outside_banner(target):
+        """聊天播报区域(CHAT_BANNER_BOX)压住按钮时, 取禁区外最大的露出子矩形作为点击区域。
+
+        coord() 是命中框内的随机点, 直接点可能落进播报; 且 match() 只回写 roi_front 的 x/y,
+        裁改 roi_front 本身会污染后续匹配, 所以单独算安全矩形。四个方向的条带里挑面积最大的,
+        宽高都要达到 CHAT_BANNER_MIN_CLICKABLE 才算可点。
+        :return: (x, y, w, h) 或 None(整颗按钮都被播报盖住, 没有露出的部分)
+        """
         x, y, w, h = target.roi_front
         bx, by, bw, bh = CHAT_BANNER_BOX
-        return x < bx + bw and x + w > bx and y < by + bh and y + h > by
+        strips = [(x, y, w, by - y),                     # 禁点区上方
+                  (x, by + bh, w, y + h - (by + bh)),    # 禁点区下方
+                  (x, y, bx - x, h),                     # 禁点区左侧
+                  (bx + bw, y, x + w - (bx + bw), h)]    # 禁点区右侧
+        usable = [s for s in strips
+                  if s[2] >= CHAT_BANNER_MIN_CLICKABLE and s[3] >= CHAT_BANNER_MIN_CLICKABLE]
+        if not usable:
+            return None
+        return max(usable, key=lambda s: s[2] * s[3])
 
     def _any_visible(self, targets) -> bool:
         return any(self.appear(t) for t in targets)
