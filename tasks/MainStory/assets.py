@@ -27,6 +27,8 @@ class MainStoryAssets:
 	I_MS_INVESTIGATE = RuleImage(roi_front=(589,126,100,100), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_investigate.png")
 	# 剧情场景战斗按钮(交叉双刀图标) 
 	I_MS_BATTLE = RuleImage(roi_front=(720,106,24,22), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_battle.png")
+	# 战斗按钮并列备用位: 与ms_battle功能相同, 二者识别到其一即点; 当前为ms_battle副本, 未来遇到特殊符号用标注工具替换此图 
+	I_MS_BATTLE1 = RuleImage(roi_front=(720,106,24,22), roi_back=(0,0,1280,720), threshold=0.8, method="Template matching", file="./tasks/MainStory/ms/ms_battle1.png")
 	# 剧情场景问号推进按钮(掩膜=盘内稳定核心; 悬停NPC景深不同尺寸会变, 0.88x实测0.921); 阈值0.8=用户裁决 
 	I_MS_STORY_QUESTION = RuleImage(roi_front=(469,130,25,36), roi_back=(0,0,1280,720), threshold=0.7, method="Masked template matching", file="./tasks/MainStory/ms/ms_story_question.png")
 

@@ -114,9 +114,9 @@ class ScriptTask(GameUi, GeneralBattle, MainStoryAssets):
 
     @cached_property
     def story_buttons(self) -> list:
-        """剧情场景内每轮按此优先级找按钮"""
-        return self.skip_buttons + [self.I_MS_INVESTIGATE, self.I_MS_BATTLE, self.I_MS_STORY_DIALOG,
-                                    self.I_MS_STORY_QUESTION]
+        """剧情场景内每轮按此优先级找按钮; ms_battle1 是战斗按钮的并列备用位, 识别到其一即点"""
+        return self.skip_buttons + [self.I_MS_INVESTIGATE, self.I_MS_BATTLE, self.I_MS_BATTLE1,
+                                    self.I_MS_STORY_DIALOG, self.I_MS_STORY_QUESTION]
 
     @cached_property
     def story_markers(self) -> list:

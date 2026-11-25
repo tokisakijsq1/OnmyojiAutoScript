@@ -72,6 +72,15 @@
     "description": "剧情场景战斗按钮(交叉双刀图标)"
   },
   {
+    "itemName": "ms_battle1",
+    "imageName": "ms_battle1.png",
+    "roiFront": "720,106,24,22",
+    "roiBack": "0,0,1280,720",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "战斗按钮并列备用位: 与ms_battle功能相同, 二者识别到其一即点; 当前为ms_battle副本, 未来遇到特殊符号用标注工具替换此图"
+  },
+  {
     "itemName": "ms_story_question",
     "imageName": "ms_story_question.png",
     "roiFront": "469,130,25,36",
