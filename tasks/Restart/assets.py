@@ -11,21 +11,21 @@ class RestartAssets:
 
 
 	# Image Rule Assets
-	# 庭院事务按钮 
+	# note 
 	I_NOTE = RuleImage(roi_front=(782,415,27,31), roi_back=(134,363,968,189), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_note.png")
-	# 庭院事务主页 
+	# page 
 	I_PAGE = RuleImage(roi_front=(264,41,182,51), roi_back=(243,14,260,99), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_page.png")
-	# 一键完成 
+	# complete_tasks 
 	I_COMPLETE_TASKS = RuleImage(roi_front=(1124,599,75,78), roi_back=(1116,588,93,98), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_complete_tasks.png")
-	# 领取成功 
+	# success_claimed 
 	I_SUCCESS_CLAIMED = RuleImage(roi_front=(302,27,184,51), roi_back=(257,10,272,84), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_success_claimed.png")
-	# 日常 
+	# daily 
 	I_DAILY = RuleImage(roi_front=(1138,139,63,45), roi_back=(1126,90,125,249), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_daily.png")
-	# 暂无可完成的任务 
+	# no_tasks 
 	I_NO_TASKS = RuleImage(roi_front=(538,225,205,32), roi_back=(492,214,291,51), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_no_tasks.png")
-	# description 
+	# confirm 
 	I_CONFIRM = RuleImage(roi_front=(674,391,131,63), roi_back=(400,199,485,320), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_confirm.png")
-	# description 
+	# skip 
 	I_SKIP = RuleImage(roi_front=(1170,36,56,28), roi_back=(1144,0,109,99), threshold=0.8, method="Template matching", file="./tasks/Restart/courtyard_affairs/courtyard_affairs_skip.png")
 
 
@@ -87,9 +87,9 @@ class RestartAssets:
 
 
 	# Click Rule Assets
-	# 相同服务器多个角色选择界面,点击空白区域 确认登录 
+	# login_ensure_login_character_in_same_svr 
 	C_LOGIN_ENSURE_LOGIN_CHARACTER_IN_SAME_SVR = RuleClick(roi_front=(600,240,500,400), roi_back=(600,240,500,400), name="login_ensure_login_character_in_same_svr")
-	# 卷轴关闭区域点击(用户新增，用于点击I_LOGIN_SCROOLL_CLOSE的区域而不依赖图片识别) 
+	# login_scroll_close_area 
 	C_LOGIN_SCROLL_CLOSE_AREA = RuleClick(roi_front=(1181,634,28,39), roi_back=(1162,595,77,112), name="login_scroll_close_area")
 
 
@@ -105,7 +105,7 @@ class RestartAssets:
 	# description 
 	I_LOGIN_YELLOW_CLOSE = RuleImage(roi_front=(29,17,46,44), roi_back=(0,0,94,86), threshold=0.8, method="Template matching", file="./tasks/Restart/login/login_login_yellow_close.png")
 	# 用于判断是否出现登录选区的 
-	I_LOGIN_8 = RuleImage(roi_front=(178,572,53,60), roi_back=(1,547,241,105), threshold=0.8, method="Template matching", file="./tasks/Restart/login/login_login_8.png")
+	I_LOGIN_8 = RuleImage(roi_front=(15,565,49,54), roi_back=(1,547,241,105), threshold=0.8, method="Template matching", file="./tasks/Restart/login/login_login_8.png")
 	# 指定角色进入游戏,默认第一个 
 	I_LOGIN_SPECIFIC_SERVE = RuleImage(roi_front=(0,0,120,120), roi_back=(0,0,120,120), threshold=0.8, method="Template matching", file="./tasks/Restart/login/login_login_specific_serve.png")
 	# 下载插画 
@@ -129,15 +129,15 @@ class RestartAssets:
 
 
 	# Ocr Rule Assets
-	# 正在连接服务器 
+	# login_network 
 	O_LOGIN_NETWORK = RuleOcr(roi=(534,649,189,39), area=(210,492,100,100), mode="Single", method="Default", keyword="正在连接服务器", name="login_network")
-	# Ocr-description 
+	# login_enter_game 
 	O_LOGIN_ENTER_GAME = RuleOcr(roi=(589,544,101,107), area=(558,574,154,49), mode="Single", method="Default", keyword="进入", name="login_enter_game")
-	# 兼容原先的进入游戏 
+	# login_enter_game_origin 
 	O_LOGIN_ENTER_GAME_ORIGIN = RuleOcr(roi=(550,567,176,56), area=(558,574,154,49), mode="Single", method="Default", keyword="进入游戏", name="login_enter_game_origin")
-	# 点击屏幕跳过 
+	# login_skip_1 
 	O_LOGIN_SKIP_1 = RuleOcr(roi=(1046,35,130,37), area=(1046,35,130,37), mode="Single", method="Default", keyword="点击屏幕跳过", name="login_skip_1")
-	# 登录指定角色，默认第一个 
+	# login_specific_serve 
 	O_LOGIN_SPECIFIC_SERVE = RuleOcr(roi=(110,120,350,600), area=(110,120,350,600), mode="Full", method="Default", keyword="", name="login_specific_serve")
 
 
