@@ -11,101 +11,95 @@ class WeeklyTriflesAssets:
 
 
 	# Click Rule Assets
-	# 进入已经挑战的第一个 
+	# wt_ab_click 
 	C_WT_AB_CLICK = RuleClick(roi_front=(168,362,68,72), roi_back=(168,362,68,72), name="wt_ab_click")
-
-
-	# Image Rule Assets
-	# 今日挑战 
-	I_WT_DAY_BATTLE = RuleImage(roi_front=(40,365,65,66), roi_back=(40,365,65,66), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_day_battle.png")
-	# 今天一个都没有打 
-	I_WT_NO_DAY = RuleImage(roi_front=(167,360,72,69), roi_back=(167,360,72,69), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_no_day.png")
-	# 地鬼分享 
-	I_WT_SHARE_AB = RuleImage(roi_front=(1187,273,45,39), roi_back=(1176,90,76,326), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_share_ab.png")
-	# 分享勾玉 
-	I_WT_AB_JADE = RuleImage(roi_front=(977,552,44,47), roi_back=(977,552,44,47), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_ab_jade.png")
-	# 微信分享 
-	I_WT_AB_WECHAT = RuleImage(roi_front=(920,646,50,41), roi_back=(760,620,240,85), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_ab_wechat.png")
-
-
-	# Image Rule Assets
-	# 进入普通召唤 
-	I_BM_ENTER = RuleImage(roi_front=(437,600,62,68), roi_back=(437,600,62,68), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bm_enter.png")
-	# 确定 
-	I_BM_CONFIRM = RuleImage(roi_front=(418,620,173,59), roi_back=(418,620,173,59), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bm_confirm.png")
-	# 再次召唤 
-	I_BM_AGAIN = RuleImage(roi_front=(686,617,178,60), roi_back=(686,617,178,60), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bm_again.png")
-	# 破碎符咒召唤次数选择标志 
-	I_BMT_CHECK = RuleImage(roi_front=(742,571,32,33), roi_back=(644,565,276,41), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bmt_check.png")
-
-
-	# Ocr Rule Assets
-	# 左上角的数量 
-	O_BA_AMOUNT_1 = RuleOcr(roi=(535,11,124,36), area=(535,11,124,36), mode="Digit", method="Default", keyword="", name="ba_amount_1")
-	# 召唤的时候的数量 
-	O_BA_AMOUNT_2 = RuleOcr(roi=(762,570,125,35), area=(762,570,125,35), mode="DigitCounter", method="Default", keyword="", name="ba_amount_2")
-	# 破碎符咒召唤次数 
-	O_BA_TIMES = RuleOcr(roi=(741,564,174,44), area=(641,566,278,41), mode="Full", method="Default", keyword="", name="ba_times")
-
-
-	# Click Rule Assets
-	# 微信分享的点击 
+	# wt_wechat 
 	C_WT_WECHAT = RuleClick(roi_front=(470,111,337,44), roi_back=(470,111,337,44), name="wt_wechat")
 
 
 	# Image Rule Assets
-	# 点击“式神” 
-	I_WT_SHIKIAGMI = RuleImage(roi_front=(280,620,920,100), roi_back=(280,620,920,100), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_shikiagmi.png")
-	# 点击式神绘卷 
-	I_WT_SHARE = RuleImage(roi_front=(336,280,50,48), roi_back=(266,241,199,141), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_share.png")
-	# 百鬼夜行图 
+	# wt_day_battle 
+	I_WT_DAY_BATTLE = RuleImage(roi_front=(40,365,65,66), roi_back=(40,365,65,66), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_day_battle.png")
+	# wt_no_day 
+	I_WT_NO_DAY = RuleImage(roi_front=(167,360,72,69), roi_back=(167,360,72,69), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_no_day.png")
+	# wt_share_ab 
+	I_WT_SHARE_AB = RuleImage(roi_front=(1187,273,45,39), roi_back=(1176,90,76,326), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_share_ab.png")
+	# wt_ab_jade 
+	I_WT_AB_JADE = RuleImage(roi_front=(977,552,44,47), roi_back=(977,552,44,47), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_ab_jade.png")
+	# wt_ab_wechat 
+	I_WT_AB_WECHAT = RuleImage(roi_front=(920,646,50,41), roi_back=(760,620,240,85), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/area_boss/area_boss_wt_ab_wechat.png")
+
+
+	# Image Rule Assets
+	# bm_enter 
+	I_BM_ENTER = RuleImage(roi_front=(437,600,62,68), roi_back=(437,600,62,68), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bm_enter.png")
+	# bm_confirm 
+	I_BM_CONFIRM = RuleImage(roi_front=(418,620,173,59), roi_back=(418,620,173,59), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bm_confirm.png")
+	# bm_again 
+	I_BM_AGAIN = RuleImage(roi_front=(686,617,178,60), roi_back=(686,617,178,60), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bm_again.png")
+	# bmt_check 
+	I_BMT_CHECK = RuleImage(roi_front=(742,571,32,33), roi_back=(644,565,276,41), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/broken_amulet/broken_amulet_bmt_check.png")
+
+
+	# Ocr Rule Assets
+	# ba_amount_1 
+	O_BA_AMOUNT_1 = RuleOcr(roi=(535,11,124,36), area=(535,11,124,36), mode="Digit", method="Default", keyword="", name="ba_amount_1")
+	# ba_amount_2 
+	O_BA_AMOUNT_2 = RuleOcr(roi=(762,570,125,35), area=(762,570,125,35), mode="DigitCounter", method="Default", keyword="", name="ba_amount_2")
+	# ba_times 
+	O_BA_TIMES = RuleOcr(roi=(741,564,174,44), area=(641,566,278,41), mode="Full", method="Default", keyword="", name="ba_times")
+	# wt_lucky_tickets 
+	O_WT_LUCKY_TICKETS = RuleOcr(roi=(1145,16,95,32), area=(1145,16,95,32), mode="DigitCounter", method="Default", keyword="", name="wt_lucky_tickets")
+	# wt_save_cost 
+	O_WT_SAVE_COST = RuleOcr(roi=(1162,676,35,24), area=(1156,670,52,40), mode="Digit", method="Default", keyword="", name="wt_save_cost")
+
+
+	# Image Rule Assets
+	# wt_shikiagmi 
+	I_WT_SHIKIAGMI = RuleImage(roi_front=(1005,631,42,43), roi_back=(280,620,920,100), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_shikiagmi.png")
+	# wt_share 
+	I_WT_SHARE = RuleImage(roi_front=(824,613,28,22), roi_back=(742,553,199,141), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_share.png")
+	# wt_logo 
 	I_WT_LOGO = RuleImage(roi_front=(1106,72,34,111), roi_back=(1065,11,117,207), threshold=0.7, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_logo.png")
-	# 微信分享 
+	# wt_collect_wechat 
 	I_WT_COLLECT_WECHAT = RuleImage(roi_front=(325,645,50,45), roi_back=(119,594,1045,126), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_collect_wechat.png")
-	# 二维码 
+	# wt_qr_code 
 	I_WT_QR_CODE = RuleImage(roi_front=(473,161,336,96), roi_back=(404,112,483,168), threshold=0.65, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_qr_code.png")
 
 
 	# Image Rule Assets
-	# 秘闻进入 
+	# wt_enter_se 
 	I_WT_ENTER_SE = RuleImage(roi_front=(1145,598,100,100), roi_back=(1145,598,100,100), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/secret/secret_wt_enter_se.png")
-	# 秘闻分享 
+	# wt_se_share 
 	I_WT_SE_SHARE = RuleImage(roi_front=(911,570,46,43), roi_back=(886,547,92,95), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/secret/secret_wt_se_share.png")
-	# 微信 
+	# wt_se_wechat 
 	I_WT_SE_WECHAT = RuleImage(roi_front=(823,641,45,37), roi_back=(700,601,220,89), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/secret/secret_wt_se_wechat.png")
-	# 勾玉 
+	# wt_se_jade 
 	I_WT_SE_JADE = RuleImage(roi_front=(1126,533,35,39), roi_back=(1118,525,50,55), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/secret/secret_wt_se_jade.png")
-	# 排行 
+	# wt_se_rank 
 	I_WT_SE_RANK = RuleImage(roi_front=(1017,572,45,44), roi_back=(989,556,103,81), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/secret/secret_wt_se_rank.png")
 
 
 	# Image Rule Assets
-	# 前往摸鱼页面 
+	# guild_goto_tf 
 	I_GUILD_GOTO_TF = RuleImage(roi_front=(30,433,88,30), roi_back=(7,153,227,329), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_guild_goto_tf.png")
-	# 关闭首次进入弹窗 
+	# wt_happy_get 
 	I_WT_HAPPY_GET = RuleImage(roi_front=(736,461,119,35), roi_back=(736,461,119,35), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_happy_get.png")
-	# 全部保存本周次数 
+	# wt_save_all 
 	I_WT_SAVE_ALL = RuleImage(roi_front=(1115,598,79,74), roi_back=(1115,598,79,74), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_save_all.png")
-	# 摸鱼行动页面标志 
+	# check_touch_fish 
 	I_CHECK_TOUCH_FISH = RuleImage(roi_front=(1082,20,27,27), roi_back=(1082,20,27,27), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_check_touch_fish.png")
-	# 返回庭院 
+	# wt_tf_goto_main 
 	I_WT_TF_GOTO_MAIN = RuleImage(roi_front=(93,17,42,39), roi_back=(0,0,198,82), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_tf_goto_main.png")
-	# 打开折叠窗口 
+	# wt_open_fold_window 
 	I_WT_OPEN_FOLD_WINDOW = RuleImage(roi_front=(28,155,21,21), roi_back=(28,155,21,21), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_open_fold_window.png")
-	# 已经打开的折叠窗口 
+	# wt_fold_window 
 	I_WT_FOLD_WINDOW = RuleImage(roi_front=(261,155,21,21), roi_back=(261,155,21,21), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_fold_window.png")
-	# 确认储存的按钮 
+	# wt_tf_confirm 
 	I_WT_TF_CONFIRM = RuleImage(roi_front=(672,588,139,56), roi_back=(672,588,139,56), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_tf_confirm.png")
-	# 储存成功的标志 
+	# wt_tf_save_success 
 	I_WT_TF_SAVE_SUCCESS = RuleImage(roi_front=(942,243,62,25), roi_back=(871,212,219,70), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_tf_save_success.png")
-	# 上周存储界面 
+	# wt_last_save 
 	I_WT_LAST_SAVE = RuleImage(roi_front=(590,78,99,24), roi_back=(540,58,213,59), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/touch_fish/touch_fish_wt_last_save.png")
-
-
-	# Ocr Rule Assets
-	# 现有福运御守数量 
-	O_WT_LUCKY_TICKETS = RuleOcr(roi=(1145,16,95,32), area=(1145,16,95,32), mode="DigitCounter", method="Default", keyword="", name="wt_lucky_tickets")
-	# 全部储存需要的御守数量 
-	O_WT_SAVE_COST = RuleOcr(roi=(1162,676,35,24), area=(1156,670,52,40), mode="Digit", method="Default", keyword="", name="wt_save_cost")
 
 
