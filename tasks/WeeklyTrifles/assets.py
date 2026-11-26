@@ -56,7 +56,7 @@ class WeeklyTriflesAssets:
 
 	# Image Rule Assets
 	# wt_shikiagmi 
-	I_WT_SHIKIAGMI = RuleImage(roi_front=(1005,631,42,43), roi_back=(280,620,920,100), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_shikiagmi.png")
+	I_WT_SHIKIAGMI = RuleImage(roi_front=(334,621,917,99), roi_back=(332,620,920,100), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_shikiagmi.png")
 	# wt_share 
 	I_WT_SHARE = RuleImage(roi_front=(824,613,28,22), roi_back=(742,553,199,141), threshold=0.8, method="Template matching", file="./tasks/WeeklyTrifles/collect/collect_wt_share.png")
 	# wt_logo 

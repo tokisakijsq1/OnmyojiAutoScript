@@ -2,8 +2,8 @@
   {
     "itemName": "wt_shikiagmi",
     "imageName": "collect_wt_shikiagmi.png",
-    "roiFront": "1005,631,42,43",
-    "roiBack": "280,620,920,100",
+    "roiFront": "334,621,917,99",
+    "roiBack": "332,620,920,100",
     "method": "Template matching",
     "threshold": 0.8,
     "description": "wt_shikiagmi"
